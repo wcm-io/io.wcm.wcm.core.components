@@ -2,5 +2,314 @@
   "jcr:primaryType": "cq:Component",
   "jcr:title": "wcm.io Text (v2)",
   "componentGroup": ".wcmio-core-wcm",
-  "sling:resourceSuperType": "core/wcm/components/text/v2/text"
+  "sling:resourceSuperType": "core/wcm/components/text/v2/text",
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "plugins": {
+              "items": {
+                "Formatting": {
+                  "items": {
+                    "fixedcol": {
+                      "items": {
+                        "col1": {
+                          "items": {
+                            /* Hide AEM links plugins, the component uses the wcm.io alternative plugin */
+                            "links": {
+                              "sling:hideResource": true
+                            }/*,
+                            -- plugin names with "." are currently not supported in the policy editor - comment out for now --
+                            "wcmio.handler.richtext.links": {
+                              "sling:orderBefore": "links",
+                              "sling:resourceType": "granite/ui/components/coral/foundation/container",
+                              "granite:class": "js-cq-IPEPlugin-group",
+                              "items": {
+                                "wcmio.handler.richtext.links": {
+                                  "sling:resourceType": "cq/gui/components/authoring/dialog/inplaceediting/configuration/plugin",
+                                  "jcr:title": "Show link insertion options (link, unlink)",
+                                  "features": "modifylink,unlink",
+                                  "name": "wcmio.handler.richtext.links",
+                                  "defaultEnabled": true
+                                }
+                              },
+                              "granite:data": {
+                                "plugin-root-name": "rtePlugins",
+                                "name": "wcmio.handler.richtext.links"
+                              }
+                            }*/
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:editConfig": {
+    "jcr:primaryType": "cq:EditConfig",
+    "cq:inherit": true,
+    
+    "cq:inplaceEditing": {
+      "jcr:primaryType": "cq:InplaceEditingConfig",
+      "editorType": "text",
+      "active": true,
+      "config": {
+        "jcr:primaryType": "nt:unstructured",
+
+        "htmlRules": {
+
+          // Ensure valid XHTML markup with <strong> and <em> tags
+          "docType": {
+            "baseType": "xhtml",
+            "version": "1.0",
+            "typeConfig": {
+              "useSemanticMarkup": true,
+              "semanticMarkupMap": {
+                "b": "strong",
+                "i": "em"
+              },
+              "isXhtmlStrict": false
+            }
+          },
+
+          // Default link dialog configuration
+          "links": {
+            "cssMode": "keep",
+            "protocols": [
+              "http://",
+              "https://",
+              "mailto:"
+            ],
+            "targetConfig": {
+              "mode": "blank"
+            },
+            "ensureInternalLinkExt": false
+          }
+
+        },
+
+        "rtePlugins": {
+          "tracklinks": {
+            "features": "*"
+          },
+          "table": {
+            "features": "-",
+            "hiddenHeaderConfig": {
+              "hiddenHeaderClassName": "cq-wcm-foundation-aria-visuallyhidden"
+            }
+          },
+          "paraformat": {
+            "formats": {
+              "default_p": {
+                "description": "Paragraph",
+                "tag": "p"
+              },
+              "default_h1": {
+                "description": "Heading 1",
+                "tag": "h1"
+              },
+              "default_h2": {
+                "description": "Heading 2",
+                "tag": "h2"
+              },
+              "default_h3": {
+                "description": "Heading 3",
+                "tag": "h3"
+              },
+              "default_h4": {
+                "description": "Heading 4",
+                "tag": "h4"
+              },
+              "default_h5": {
+                "description": "Heading 5",
+                "tag": "h5"
+              },
+              "default_h6": {
+                "description": "Heading 6",
+                "tag": "h6"
+              },
+              "default_blockquote": {
+                "description": "Quote",
+                "tag": "blockquote"
+              },
+              "default_hr": {
+                "description": "Horizontal Rule (visual line break)",
+                "tag": "hr"
+              },
+              "default_pre": {
+                "description": "Preformatted",
+                "tag": "pre"
+              }
+            }
+          },
+          "misctools": {
+            "specialCharsConfig": {
+              "chars": {
+                "default_copyright": {
+                  "entity": "&copy;",
+                  "name": "copyright"
+                },
+                "default_euro": {
+                  "entity": "&euro;",
+                  "name": "euro"
+                },
+                "default_registered": {
+                  "entity": "&reg;",
+                  "name": "registered"
+                },
+                "default_trademark": {
+                  "entity": "&trade;",
+                  "name": "trademark"
+                }
+              }
+            }
+          },
+          "edit": {
+            "features": "*",
+            "htmlPasteRules": {
+              "allowedAttributes": {
+                "a": [
+                  "href", "name", "title", "alt",
+                  // allow attributes of custom RTE link plugin
+                  "data-link-type", "data-link-content-ref", "data-link-cross-context-content-ref",
+                  "data-link-media-ref", "data-link-external-ref", "data-link-window-target", "data-link-media-download"
+                ]
+              }
+            }
+          },
+          "links": {
+            "features": "-"
+          },
+          "wcmio.handler.richtext.links": {
+            "features": [
+              "modifylink",
+              "unlink"
+            ]
+          },
+          "justify": {
+            "features": "-"
+          },
+          "format": {
+            "features": "bold,italic"
+          }
+        },
+
+        // Configure toolbars for IPE and fulltext mode in Touch UI
+        "uiSettings": {
+          "cui": {
+            "inline": {
+              "toolbar": [
+                "#format",
+                "#lists",
+                "-",
+                "wcmio.handler.richtext.links#modifylink",
+                "wcmio.handler.richtext.links#unlink",
+                "-",
+                "#paraformat",
+                "-",
+                "fullscreen#start",
+                "-",
+                "control#close",
+                "control#save"
+              ],
+              "popovers": {
+                "format": {
+                  "ref": "format",
+                  "items": [
+                    "format#bold",
+                    "format#italic",
+                    "format#underline"
+                  ]
+                },
+                "lists": {
+                  "ref": "lists",
+                  "icon": "text",
+                  "items": [
+                    "lists#unordered",
+                    "lists#ordered",
+                    "lists#outdent",
+                    "lists#indent"
+                  ]
+                },
+                "paraformat": {
+                  "ref": "paraformat",
+                  "items": "paraformat:getFormats:paraformat-pulldown"
+                }
+              }
+            },
+            "fullscreen": {
+              "toolbar": [
+                "format#bold",
+                "format#italic",
+                "format#underline",
+                "-",
+                "subsuperscript#subscript",
+                "subsuperscript#superscript",
+                "-",
+                "edit#cut",
+                "edit#copy",
+                "edit#paste-default",
+                "edit#paste-plaintext",
+                "edit#paste-wordhtml",
+                "-",
+                "wcmio.handler.richtext.links#modifylink",
+                "wcmio.handler.richtext.links#unlink",
+                "-",
+                "findreplace#find",
+                "findreplace#replace",
+                "-",
+                "undo#undo",
+                "undo#redo",
+                "-",
+                "justify#justifyleft",
+                "justify#justifycenter",
+                "justify#justifyright",
+                "justify#justifyjustify",
+                "-",
+                "lists#unordered",
+                "lists#ordered",
+                "lists#outdent",
+                "lists#indent",
+                "-",
+                "table#createoredit",
+                "image#imageProps",
+                "spellcheck#checktext",
+                "misctools#specialchars",
+                "misctools#sourceedit",
+                "-",
+                "#paraformat",
+                "-",
+                "fullscreen#finish"
+              ],
+              "popovers": {
+                "paraformat": {
+                  "ref": "paraformat",
+                  "items": "paraformat:getFormats:paraformat-pulldown"
+                }
+              }
+            },
+            "icons": {
+              "justify": {
+                "command": "#justify",
+                "icon": "coral-Icon coral-Icon--textCenter"
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
 }
