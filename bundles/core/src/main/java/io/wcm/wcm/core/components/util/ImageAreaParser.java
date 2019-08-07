@@ -69,7 +69,8 @@ public final class ImageAreaParser {
       if (remainingTokens.length > 0) {
         String href = StringUtils.removeAll(remainingTokens[0], "\"");
 
-        // TODO: resolve/rewrite link via link handler
+        // resolve and validate via link handler
+        href = linkHandler.get(href).buildUrl();
 
         if (StringUtils.isBlank(href)) {
           break;

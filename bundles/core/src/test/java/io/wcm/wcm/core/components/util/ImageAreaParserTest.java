@@ -19,6 +19,7 @@
  */
 package io.wcm.wcm.core.components.util;
 
+import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -41,13 +42,18 @@ import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 @ExtendWith(AemContextExtension.class)
 public class ImageAreaParserTest {
 
+  private static final String VALID_CONTENT_REF = CONTENT_ROOT;
+  private static final String INVALID_CONTENT_REF = CONTENT_ROOT + "/invalid";
+
   public static final String MAP_STRING = "[circle(256,256,256)\"http://myhost\"|\"\"|\"\"|(0.2000,0.3001,0.2000)]"
-      + "[rect(256,171,1023,682)\"http://myhost\"|\"\"|\"altText\"|(0.1992,0.2005,0.7992,0.7995)]"
-      + "[poly(917,344,1280,852,532,852)\"http://myhost\"|\"_blank\"|\"\"|(0.7164,0.4033,1.0000,0.9988,0.4156,0.9988)]";
+      + "[rect(256,171,1023,682)\"" + VALID_CONTENT_REF + "\"|\"\"|\"altText\"|(0.1992,0.2005,0.7992,0.7995)]"
+      + "[poly(917,344,1280,852,532,852)\"http://myhost\"|\"_blank\"|\"\"|(0.7164,0.4033,1.0000,0.9988,0.4156,0.9988)]"
+      // this rect has an invalid content reference and thus should be removed during parsing
+      + "[rect(256,171,1023,682)\"" + INVALID_CONTENT_REF + "\"|\"\"|\"altText\"|(0.1992,0.2005,0.7992,0.7995)]";
 
   public static final List<ImageArea> EXPECTED_AREAS = ImmutableList.of(
       new ImageAreaImpl("circle", "256,256,256", "0.2000,0.3001,0.2000", "http://myhost", "", ""),
-      new ImageAreaImpl("rect", "256,171,1023,682", "0.1992,0.2005,0.7992,0.7995", "http://myhost", "", "altText"),
+      new ImageAreaImpl("rect", "256,171,1023,682", "0.1992,0.2005,0.7992,0.7995", VALID_CONTENT_REF + ".html", "", "altText"),
       new ImageAreaImpl("poly", "917,344,1280,852,532,852", "0.7164,0.4033,1.0000,0.9988,0.4156,0.9988", "http://myhost", "_blank", ""));
 
   private final AemContext context = AppAemContext.newAemContext();
