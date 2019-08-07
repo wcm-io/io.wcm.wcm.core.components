@@ -1,0 +1,13 @@
+<!--/*
+  changes from /apps/core/wcm/components/languagenavigation/v1/languagenavigation/itemContent.html
+  - use linkValid and linkAttributes properties to build anchor tag  
+*/-->
+<template data-sly-template.itemContent="${@ item='The language navigation item'}">
+  <span data-sly-test.hasChildren="${item.children.size > 0}"
+      class="cmp-languagenavigation__item-title" lang="${item.language}">${item.title}</span>
+  <a data-sly-test="${!hasChildren}"
+      class="cmp-languagenavigation__item-link"
+      data-sly-unwrap="${!item.linkValid}"
+      data-sly-attribute="${item.linkAttributes}"
+      hreflang="${item.language}" lang="${item.language}" rel="alternate" title="${item.title}">${item.title}</a>
+</template>

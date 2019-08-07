@@ -1,0 +1,119 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Image (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/image/v2/image",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "extraClientlibs": ["io.wcm.wcm.core.components.image.v2.editor"],
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+
+            "asset": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Use wcm.io Media Handler FileUpload */
+                        "file": {
+                          "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+                          "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            "metadata": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+                        "linkURL": {
+                          /* hide link pagefield and replace it with wcm.io Link dialog */
+                          "sling:hideResource": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            /* wcm.io Link Handler Tab */
+            "link": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab"
+            }
+
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+
+            "properties": {
+              "items": {
+                "content": {
+                  "items": {
+
+                    /* Media format definition */
+                    "mediaFormatDefinition": {
+                      "sling:resourceType": "granite/ui/components/coral/foundation/include",
+                      "path": "wcm-io/wcm/core/global/include/mediaFormatDefinitionFieldSet",
+                      "sling:orderBefore": "enableLazyLoading"
+                    },
+
+                    "jpegQuality": {
+                      /* JPEG quality is configured via media handler configuration */
+                      "sling:hideResource": true
+                    }
+                  }
+                }
+              }
+            },
+
+            "features": {
+              "items": {
+                "content": {
+                  "items": {
+                    "accordion": {
+                      "items": {
+                        "orientation": {
+                          "items": {
+                            "flip": {
+                              /* Flip not supported by wcm.io Media Handler (nor by the AEM image editor atm) */
+                              "sling:hideResource": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

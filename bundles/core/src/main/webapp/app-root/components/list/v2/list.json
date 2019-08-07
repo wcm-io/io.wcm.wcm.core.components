@@ -1,0 +1,6 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io List (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/list/v2/list"
+}

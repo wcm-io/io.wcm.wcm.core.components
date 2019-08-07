@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:crx="http://www.day.com/crx/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:oak="http://jackrabbit.apache.org/oak/ns/1.0" xmlns:rep="internal" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:slingevent="http://sling.apache.org/jcr/event/1.0" jcr:primaryType="rep:root">
+  <users jcr:primaryType="rep:AuthorizableFolder">
+    <system jcr:primaryType="rep:AuthorizableFolder">
+      <wcm-io-samples jcr:primaryType="rep:AuthorizableFolder">
+        <wcmioDamSystemUser jcr:primaryType="rep:SystemUser" jcr:uuid="04fdc272-3f39-3999-9e06-ea9e1a5f4f04" rep:authorizableId="wcmioDamSystemUser" rep:principalName="wcmioDamSystemUser"/>
+      </wcm-io-samples>
+    </system>
+  </users>
+</jcr:root>

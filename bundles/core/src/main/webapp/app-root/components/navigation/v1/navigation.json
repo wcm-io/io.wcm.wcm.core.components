@@ -1,0 +1,69 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Navigation (v1)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/navigation/v1/navigation",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Disable navigation root parameter; it's detected automatically */
+                        "navigationRoot": {
+                          "rootPath": "/content",
+                          "name": "./navigationRoot",
+                          "fieldLabel": "Navigation Root",
+                          "sling:resourceType": "granite/ui/components/coral/foundation/form/pathfield",
+                          "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
+                          "disabled": true
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+
+                /* Disable navigation root parameter; it's detected automatically */
+                "navigationRoot": {
+                  "rootPath": "/content",
+                  "name": "./navigationRoot",
+                  "fieldLabel": "Navigation Root",
+                  "sling:resourceType": "granite/ui/components/coral/foundation/form/pathfield",
+                  "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
+                  "disabled": true
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

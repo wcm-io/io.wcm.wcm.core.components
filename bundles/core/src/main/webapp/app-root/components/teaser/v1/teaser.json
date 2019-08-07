@@ -1,0 +1,7 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Teaser (v1)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/teaser/v1/teaser",
+  "imageDelegate": "wcm-io/wcm/core/components/image/v2/image"
+}

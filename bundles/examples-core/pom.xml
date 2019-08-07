@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wcm.io
+  %%
+  Copyright (C) 2019 wcm.io
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.wcm</groupId>
+    <artifactId>io.wcm.wcm.core.components.parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../../parent/pom.xml</relativePath>
+  </parent>
+
+  <groupId>io.wcm.samples</groupId>
+  <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <name>WCM Core Components Examples Core</name>
+  <description>Examples for wcm.io WCM Core Components.</description>
+
+  <dependencies>
+
+    <!-- Core Components -->
+    <dependency>
+      <groupId>io.wcm</groupId>
+      <artifactId>io.wcm.wcm.core.components</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- For build compatibility with Java 11 -->
+    <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-annotation_1.3_spec</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>io.wcm.devops.maven.plugins</groupId>
+        <artifactId>eclipse-maven-plugin</artifactId>
+        <configuration>
+          <addVersionToProjectName>false</addVersionToProjectName>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+
+            <!-- For build compatibility with Java 11 -->
+            <Import-Package>
+              javax.annotation;version="[0.0,2)",
+              *
+            </Import-Package>
+
+            <!-- All wcm.io Handler SPI implementation only get active for the resource paths of this application -->
+            <Wcmio-CAService-ContextPathRegex>^/(content|content/dam|conf)/wcmio-core-components-examples(/.*)?$</Wcmio-CAService-ContextPathRegex>
+
+          </instructions>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

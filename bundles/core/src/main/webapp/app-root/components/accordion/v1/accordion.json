@@ -1,0 +1,7 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Accordion (v1)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/accordion/v1/accordion",
+  "cq:isContainer": true
+}
