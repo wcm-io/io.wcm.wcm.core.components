@@ -35,8 +35,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_tech_carousel_v1"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <teaser_556024830
@@ -48,8 +48,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_carousel_v1"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <title_865328580
@@ -152,8 +152,8 @@
                                 actionsEnabled="false"
                                 descriptionFromPage="false"
                                 fileReference="/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg"
-                                linkType="internal"
                                 linkContentRef="/content/wcmio-core-components-examples/library/carousel"
+                                linkType="internal"
                                 textIsRich="true"
                                 titleFromPage="false"/>
                             <teaser_841933659
@@ -165,8 +165,8 @@
                                 actionsEnabled="false"
                                 descriptionFromPage="false"
                                 fileReference="/content/dam/core-components-examples/library/sample-assets/snowy-mountain-glacier.jpg"
-                                linkType="internal"
                                 linkContentRef="/content/wcmio-core-components-examples/library/carousel"
+                                linkType="internal"
                                 textIsRich="true"
                                 titleFromPage="false"/>
                             <teaser
@@ -178,8 +178,8 @@
                                 actionsEnabled="false"
                                 descriptionFromPage="false"
                                 fileReference="/content/dam/core-components-examples/library/sample-assets/lava-rock-formation.jpg"
-                                linkType="internal"
                                 linkContentRef="/content/wcmio-core-components-examples/library/carousel"
+                                linkType="internal"
                                 textIsRich="true"
                                 titleFromPage="false"/>
                         </carousel_8337507762>

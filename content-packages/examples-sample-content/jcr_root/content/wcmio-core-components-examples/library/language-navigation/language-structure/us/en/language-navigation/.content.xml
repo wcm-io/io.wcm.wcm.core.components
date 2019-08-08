@@ -35,8 +35,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/languagenavigation/v1/languagenavigation"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <teaser_556024830
@@ -48,8 +48,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_languagenavigation_v1"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <title_865328580

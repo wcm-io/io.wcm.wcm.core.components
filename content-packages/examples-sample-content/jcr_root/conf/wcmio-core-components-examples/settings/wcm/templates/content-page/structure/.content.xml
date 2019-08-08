@@ -23,8 +23,8 @@
                     displayPopupTitle="true"
                     fileReference="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg"
                     isDecorative="false"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library"
+                    linkType="internal"
                     titleValueFromDAM="true"/>
             </responsivegrid_1409995310>
             <responsivegrid_1755067073
@@ -39,8 +39,8 @@
                     displayPopupTitle="true"
                     fileReference="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg"
                     isDecorative="false"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library"
+                    linkType="internal"
                     titleValueFromDAM="true"/>
                 <navigation
                     jcr:primaryType="nt:unstructured"
