@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.models;
+package io.wcm.wcm.core.components.models.mixin;
 
 import java.util.Map;
 

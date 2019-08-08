@@ -37,7 +37,7 @@ import com.adobe.cq.wcm.core.components.models.Button;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
-import io.wcm.wcm.core.components.models.LinkMixin;
+import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
  * wcm.io-based enhancements for {@link Button}:
