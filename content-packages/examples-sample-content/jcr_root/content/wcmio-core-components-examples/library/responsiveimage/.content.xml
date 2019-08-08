@@ -24,7 +24,7 @@
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Image allows a single image asset to be displayed on the page. Images are adaptive; the relevant image width is selected for the screen size and lazy loading is available.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p&gt;Responsive Image allows a single image asset to be displayed on the page. Images are responsive using HTML5 markup features.&lt;/p&gt;&#xA;"
                     textIsRich="true"/>
                 <teaser
                     cq:styleIds="[1550165685463]"

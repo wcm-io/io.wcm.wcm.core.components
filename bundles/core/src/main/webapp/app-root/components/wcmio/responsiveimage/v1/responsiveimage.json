@@ -224,19 +224,9 @@
                     /* Media format definition */
                     "mediaFormatDefinition": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/include",
-                      "path": "wcm-io/wcm/core/global/include/mediaFormatDefinitionFieldSet",
-                      "sling:orderBefore": "enableLazyLoading"
+                      "path": "wcm-io/wcm/core/global/include/mediaFormatDefinitionFieldSet"
                     },
 
-                    "enableLazyLoading": {
-                      "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
-                      "uncheckedValue": "true",
-                      "name": "./disableLazyLoading",
-                      "text": "Enable lazy loading",
-                      "value": false,
-                      "checked": false,
-                      "fieldDescription": "Defer loading images until they become visible."
-                    },
                     "decorative": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                       "uncheckedValue": "false",
@@ -280,19 +270,6 @@
                       "value": true,
                       "checked": true,
                       "fieldDescription": "Check to disable tracking of asset's UUID."
-                    },
-                    "widths": {
-                      "sling:resourceType": "granite/ui/components/coral/foundation/form/multifield",
-                      "granite:class": "core-image-widths",
-                      "fieldLabel": "Widths",
-                      "fieldDescription": "Define a list of alternative image widths (in pixels). The most appropriate image will be loaded by the component. Note that this setting has no effect on SVG images.",
-                      "field": {
-                        "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
-                        "defaultValue": 1280,
-                        "required": true,
-                        "min": 0,
-                        "name": "./allowedRenditionWidths"
-                      }
                     }
                   }
                 }
