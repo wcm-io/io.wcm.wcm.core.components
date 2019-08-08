@@ -1,0 +1,31 @@
+<div data-sly-use.image="io.wcm.wcm.core.components.models.ResponsiveImage"    
+    data-sly-test="${image.mediaValid}"
+    data-cmp-is="responsiveimage"
+    data-asset="${image.fileReference}"
+    data-asset-id="${image.uuid}"
+    data-title="${image.title || image.alt}"
+    class="cmp-wcmio-responsiveimage ${!wcmmode.disabled ? 'cq-dd-image' : ''}"
+    itemscope itemtype="http://schema.org/ImageObject">
+  <a class="cmp-wcmio-responsiveimage__link"
+      data-cmp-hook-image="link"
+      data-sly-unwrap="${!image.linkValid}"
+      data-sly-attribute="${image.linkAttributes}">
+    <noscript data-sly-unwrap="${!image.areas}" data-cmp-hook-image="noscript">
+      <sly data-sly-test.usemap="${'{0}{1}' @ format=['#', resource.path]}"></sly>
+      <img src="${image.mediaUrl}" class="cmp-wcmio-responsiveimage__image" itemprop="contentUrl" data-cmp-hook-image="image"
+          data-sly-attribute.usemap="${image.areas ? usemap : ''}"
+          alt="${image.alt || true}" title="${image.displayPopupTitle && image.title}"/>
+      <map data-sly-test="${image.areas}"
+          data-sly-list.area="${image.areas}"
+          name="${resource.path}"
+          data-cmp-hook-image="map">
+        <area shape="${area.shape}" coords="${area.coordinates}" href="${area.href}" target="${area.target}" alt="${area.alt}"
+            data-cmp-hook-image="area" data-cmp-relcoords="${area.relativeCoordinates}">
+      </map>
+    </noscript>
+  </a>
+  <span class="cmp-wcmio-responsiveimage__title" itemprop="caption" data-sly-test="${!image.displayPopupTitle && image.title}">${image.title}</span>
+  <meta itemprop="caption" content="${image.title}" data-sly-test="${image.displayPopupTitle && image.title}">
+</div>
+<sly data-sly-use.template="wcm-io/handler/media/components/placeholder/mediaPlaceholder.html"
+    data-sly-call="${template.placeholder @ isEmpty=!image.mediaValid, media=image.mediaObject, classAppend='cmp-wcmio-responsiveimage cq-dd-image'}"></sly>

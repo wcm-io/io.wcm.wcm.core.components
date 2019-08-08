@@ -44,8 +44,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/accordion.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/accordion"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -67,8 +67,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/breadcrumb.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/breadcrumb/hidden/level-1/level-2/breadcrumb"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -90,8 +90,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/button.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/button"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -113,8 +113,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/carousel.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/carousel"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -136,8 +136,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/container.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/container"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -159,8 +159,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/content-fragment.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/content-fragment"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -182,8 +182,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/content-fragment-list.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/content-fragment-list"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -205,8 +205,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/download.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/download"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -229,8 +229,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/image.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/image"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -252,8 +252,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/language-navigation.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/language-navigation/language-structure/us/en/language-navigation"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -275,8 +275,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/list.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/list"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -298,8 +298,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/navigation.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/navigation"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -321,8 +321,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/separator.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/separator"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -344,8 +344,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/social-sharing.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/social-sharing"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -367,8 +367,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/tabs.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/tabs"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -390,8 +390,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/teaser.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/teaser"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -413,8 +413,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/text.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/text"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -436,8 +436,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="true"
                     fileReference="/content/dam/core-components-examples/library/components/title.svg"
-                    linkType="internal"
                     linkContentRef="/content/wcmio-core-components-examples/library/title"
+                    linkType="internal"
                     textIsRich="true"
                     titleFromPage="true">
                     <cq:responsive jcr:primaryType="nt:unstructured">
@@ -470,6 +470,7 @@
     <content-fragment-list/>
     <download/>
     <image/>
+    <responsiveimage/>
     <language-navigation/>
     <list/>
     <navigation/>
