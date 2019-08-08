@@ -5,19 +5,6 @@
 
   "cq:editConfig": {
     "jcr:primaryType": "cq:EditConfig",
-    "cq:dropTargets": {
-      "jcr:primaryType": "nt:unstructured",
-      "image": {
-        "accept": ["image/gif", "image/jpeg", "image/png", "image/tiff", "image/svg+xml"],
-        "groups": ["media"],
-        "propertyName": "./fileReference",
-        "parameters": {
-          "imageCrop": "",
-          "imageMap": "",
-          "imageRotate": ""
-        }
-      }
-    },
     "cq:inplaceEditing": {
       "jcr:primaryType": "cq:InplaceEditingConfig",
       "editorType": "image",
@@ -48,7 +35,7 @@
         },
         "ui": {
           "inline": {
-            "toolbar": ["crop#launch", "rotate#right", "history#undo", "history#redo", "fullscreen#fullscreen", "control#close", "control#finish"],
+            "toolbar": ["rotate#right", "history#undo", "history#redo", "fullscreen#fullscreen", "control#close", "control#finish"],
             "replacementToolbars": {
               "crop": ["crop#identifier", "crop#unlaunch", "crop#confirm"]
             }
@@ -135,7 +122,6 @@
                           "items": {
                             "alt": {
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
-                              "required": true,
                               "name": "./alt",
                               "fieldLabel": "Alternative Text",
                               "fieldDescription": "Textual alternative of the meaning or function of the image, for visually impaired readers."
