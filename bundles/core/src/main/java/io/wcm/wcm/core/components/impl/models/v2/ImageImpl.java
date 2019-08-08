@@ -135,7 +135,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
 
     // resolve media and properties from DAM asset
     media = mediaHandler.get(resource).build();
-    if (media.isValid() && (media.getRendition() == null || !media.getRendition().isImage())) {
+    if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
     }
@@ -156,7 +156,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
     }
 
     // build image areas
-    areas = ImageAreaParser.buildFromMapString(properties.get(Image.PN_MAP, String.class), linkHandler);
+    areas = ImageAreaParser.buildFromMapString(properties.get(PN_MAP, String.class), linkHandler);
   }
 
   /**
