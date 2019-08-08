@@ -57,10 +57,11 @@ import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
+import io.wcm.handler.media.imagemap.ImageMapArea;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
-import io.wcm.wcm.core.components.impl.util.ImageAreaParser;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
@@ -122,7 +123,6 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
   private List<Long> widths = Collections.emptyList();
   private long noScriptWidth;
   private String srcPattern;
-  private List<ImageArea> areas;
 
   @PostConstruct
   private void activate() {
@@ -154,9 +154,6 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
     else {
       link = linkHandler.get(resource).build();
     }
-
-    // build image areas
-    areas = ImageAreaParser.buildFromMapString(properties.get(PN_MAP, String.class), linkHandler);
   }
 
   /**
@@ -274,7 +271,13 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
 
   @Override
   public List<ImageArea> getAreas() {
-    return areas;
+    List<ImageMapArea> map = media.getMap();
+    if (map == null) {
+      return null;
+    }
+    return map.stream()
+        .map(ImageAreaImpl::new)
+        .collect(Collectors.toList());
   }
 
   @Override

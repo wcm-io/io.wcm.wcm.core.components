@@ -19,70 +19,56 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.adobe.cq.wcm.core.components.models.ImageArea;
+
+import io.wcm.handler.media.imagemap.ImageMapArea;
 
 /**
  * Implementation of {@link ImageArea}.
  */
 public class ImageAreaImpl implements ImageArea {
 
-  private final String shape;
-  private final String coordinates;
-  private final String relativeCoordinates;
-  private final String href;
-  private final String target;
-  private final String alt;
+  private final ImageMapArea delegate;
 
   /**
-   * @param shape Shape
-   * @param coordinates coordinates
-   * @param relativeCoordinates Relative coordinates
-   * @param href href
-   * @param target Target
-   * @param alt Alt. text
+   * @param delegate Delegate
    */
-  public ImageAreaImpl(String shape, String coordinates, String relativeCoordinates, String href, String target, String alt) {
-    this.shape = shape;
-    this.coordinates = coordinates;
-    this.relativeCoordinates = relativeCoordinates;
-    this.href = href;
-    this.target = target;
-    this.alt = alt;
+  public ImageAreaImpl(ImageMapArea delegate) {
+    this.delegate = delegate;
   }
 
   @Override
   public String getShape() {
-    return shape;
+    return delegate.getShape();
   }
 
   @Override
   public String getCoordinates() {
-    return coordinates;
+    return delegate.getCoordinates();
   }
 
   @Override
   public String getRelativeCoordinates() {
-    return relativeCoordinates;
+    return delegate.getRelativeCoordinates();
   }
 
   @Override
   public String getHref() {
-    return href;
+    return delegate.getLinkUrl();
   }
 
   @Override
   public String getTarget() {
-    return target;
+    return StringUtils.defaultString(delegate.getLinkWindowTarget());
   }
 
   @Override
   public String getAlt() {
-    return alt;
+    return StringUtils.defaultString(delegate.getAltText());
   }
 
   @Override
@@ -97,7 +83,7 @@ public class ImageAreaImpl implements ImageArea {
 
   @Override
   public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    return delegate.toString();
   }
 
 }

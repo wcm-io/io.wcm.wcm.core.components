@@ -22,7 +22,6 @@ package io.wcm.wcm.core.components.impl.models.wcmio.v1;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_IS_DECORATIVE;
-import static com.adobe.cq.wcm.core.components.models.Image.PN_MAP;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_TITLE_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_UUID_DISABLED;
 import static com.day.cq.commons.ImageResource.PN_ALT;
@@ -31,6 +30,7 @@ import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -57,9 +57,10 @@ import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
+import io.wcm.handler.media.imagemap.ImageMapArea;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.util.ImageAreaParser;
+import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.models.ResponsiveImage;
 
 /**
@@ -101,7 +102,6 @@ public class ResponsiveImageImpl implements ResponsiveImage {
   private String fileReference;
   private boolean displayPopupTitle;
   private boolean isDecorative;
-  private List<ImageArea> areas;
 
   @PostConstruct
   private void activate() {
@@ -129,9 +129,6 @@ public class ResponsiveImageImpl implements ResponsiveImage {
     else {
       link = linkHandler.get(resource).build();
     }
-
-    // build image areas
-    areas = ImageAreaParser.buildFromMapString(properties.get(PN_MAP, String.class), linkHandler);
   }
 
   /**
@@ -217,7 +214,13 @@ public class ResponsiveImageImpl implements ResponsiveImage {
 
   @Override
   public List<ImageArea> getAreas() {
-    return areas;
+    List<ImageMapArea> map = media.getMap();
+    if (map == null) {
+      return null;
+    }
+    return map.stream()
+        .map(ImageAreaImpl::new)
+        .collect(Collectors.toList());
   }
 
 }

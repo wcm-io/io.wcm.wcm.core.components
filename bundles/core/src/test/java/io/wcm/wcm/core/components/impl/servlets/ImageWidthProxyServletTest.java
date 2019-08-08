@@ -84,8 +84,19 @@ class ImageWidthProxyServletTest {
   @Test
   void testWithoutWidth() throws Exception {
     context.requestPathInfo().setSelectorString(SELECTOR);
+    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/asset",
+        PN_MEDIA_REF_STANDARD, asset.getPath()));
+
     underTest.doGet(context.request(), context.response());
-    assertEquals(HttpServletResponse.SC_NOT_FOUND, context.response().getStatus());
+    assertEquals(HttpServletResponse.SC_OK, context.response().getStatus());
+
+    // validate streamed image
+    assertEquals(ContentType.JPEG, context.response().getContentType());
+    byte[] data = context.response().getOutput();
+    try (ByteArrayInputStream is = new ByteArrayInputStream(data)) {
+      Layer layer = new Layer(is);
+      assertEquals(160, layer.getWidth());
+    }
   }
 
   @Test

@@ -17,30 +17,22 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.util;
+package io.wcm.samples.core.testcontext;
 
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.google.common.collect.ImmutableList;
 
-import io.wcm.handler.link.LinkHandler;
-import io.wcm.samples.core.testcontext.AppAemContext;
-import io.wcm.sling.commons.adapter.AdaptTo;
-import io.wcm.testing.mock.aem.junit5.AemContext;
-import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import io.wcm.handler.media.imagemap.impl.ImageMapAreaImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 
-@ExtendWith(AemContextExtension.class)
-public class ImageAreaParserTest {
+public final class ImageAreaTestData {
 
   private static final String VALID_CONTENT_REF = CONTENT_ROOT;
   private static final String INVALID_CONTENT_REF = CONTENT_ROOT + "/invalid";
@@ -52,38 +44,18 @@ public class ImageAreaParserTest {
       + "[rect(256,171,1023,682)\"" + INVALID_CONTENT_REF + "\"|\"\"|\"altText\"|(0.1992,0.2005,0.7992,0.7995)]";
 
   public static final List<ImageArea> EXPECTED_AREAS = ImmutableList.of(
-      new ImageAreaImpl("circle", "256,256,256", "0.2000,0.3001,0.2000", "http://myhost", "", ""),
-      new ImageAreaImpl("rect", "256,171,1023,682", "0.1992,0.2005,0.7992,0.7995", VALID_CONTENT_REF + ".html", "", "altText"),
-      new ImageAreaImpl("poly", "917,344,1280,852,532,852", "0.7164,0.4033,1.0000,0.9988,0.4156,0.9988", "http://myhost", "_blank", ""));
+      area("circle", "256,256,256", "0.2000,0.3001,0.2000", "http://myhost", null, null),
+      area("rect", "256,171,1023,682", "0.1992,0.2005,0.7992,0.7995", VALID_CONTENT_REF + ".html", null, "altText"),
+      area("poly", "917,344,1280,852,532,852", "0.7164,0.4033,1.0000,0.9988,0.4156,0.9988", "http://myhost", "_blank", null));
 
-  private final AemContext context = AppAemContext.newAemContext();
-
-  private LinkHandler linkHandler;
-
-  @BeforeEach
-  void setUp() {
-    linkHandler = AdaptTo.notNull(context.request(), LinkHandler.class);
+  private ImageAreaTestData() {
+    // constants only
   }
 
-  @Test
-  void testValidMap() {
-    List<ImageArea> areas = ImageAreaParser.buildFromMapString(MAP_STRING, linkHandler);
-    assertEquals(EXPECTED_AREAS, areas);
-  }
-
-  @Test
-  void testNull() {
-    assertNull(ImageAreaParser.buildFromMapString(null, linkHandler));
-  }
-
-  @Test
-  void testEmptyString() {
-    assertNull(ImageAreaParser.buildFromMapString("", linkHandler));
-  }
-
-  @Test
-  void testInvalidString() {
-    assertNull(ImageAreaParser.buildFromMapString("[xyz][", linkHandler));
+  private static ImageArea area(@NotNull String shape, @NotNull String coordinates, @Nullable String relativeCoordinates,
+      @NotNull String linkUrl, @Nullable String linkWindowTarget, @Nullable String altText) {
+    return new ImageAreaImpl(new ImageMapAreaImpl(shape, coordinates, relativeCoordinates,
+        linkUrl, linkWindowTarget, altText));
   }
 
 }
