@@ -59,10 +59,10 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
+import io.wcm.wcm.core.components.impl.util.ImageAreaParser;
 import io.wcm.wcm.core.components.models.LinkMixin;
 import io.wcm.wcm.core.components.models.MediaMixin;
-import io.wcm.wcm.core.components.servlets.ImageWidthProxyServlet;
-import io.wcm.wcm.core.components.util.ImageAreaParser;
 
 /**
  * wcm.io-based enhancements for {@link Image}:

@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.util;
+package io.wcm.wcm.core.components.impl.util;
 
 import java.util.ArrayList;
 import java.util.List;

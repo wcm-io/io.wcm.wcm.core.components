@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.util;
+package io.wcm.wcm.core.components.impl.util;
 
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;

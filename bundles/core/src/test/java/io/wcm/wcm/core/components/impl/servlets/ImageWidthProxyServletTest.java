@@ -17,12 +17,12 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.servlets;
+package io.wcm.wcm.core.components.impl.servlets;
 
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
-import static io.wcm.wcm.core.components.servlets.ImageWidthProxyServlet.SELECTOR;
+import static io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet.SELECTOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;

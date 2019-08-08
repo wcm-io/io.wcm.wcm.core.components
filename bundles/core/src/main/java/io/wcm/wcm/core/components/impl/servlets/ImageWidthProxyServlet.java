@@ -1,4 +1,4 @@
-package io.wcm.wcm.core.components.servlets;
+package io.wcm.wcm.core.components.impl.servlets;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;

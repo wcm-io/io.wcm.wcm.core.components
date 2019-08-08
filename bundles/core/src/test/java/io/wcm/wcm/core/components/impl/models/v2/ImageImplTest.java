@@ -67,7 +67,7 @@ import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
-import io.wcm.wcm.core.components.util.ImageAreaParserTest;
+import io.wcm.wcm.core.components.impl.util.ImageAreaParserTest;
 
 @ExtendWith(AemContextExtension.class)
 class ImageImplTest {
