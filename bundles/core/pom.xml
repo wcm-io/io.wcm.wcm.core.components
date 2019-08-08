@@ -38,6 +38,10 @@
   <description>Enhances AEM Sites Core Components with wcm.io functionality.</description>
   <url>${site.url}/wcm/core-components/</url>
 
+  <properties>
+    <site.url.module.prefix>wcm/core-components/core</site.url.module.prefix>
+  </properties>
+
   <dependencies>
 
     <dependency>
@@ -219,5 +223,12 @@
 
     </plugins>
   </build>
+
+  <distributionManagement>
+    <site>
+      <id>${site.deploy.id}</id>
+      <url>${site.deploy.url}${site.url.module.prefix}</url>
+    </site>
+  </distributionManagement>
 
 </project>
