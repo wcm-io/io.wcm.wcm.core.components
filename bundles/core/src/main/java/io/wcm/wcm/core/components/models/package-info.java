@@ -18,7 +18,7 @@
  * #L%
  */
 /**
- * Mixin interfaces for core component models.
+ * Interfaces for core component models.
  */
 @org.osgi.annotation.versioning.Version("1.0.0")
 package io.wcm.wcm.core.components.models;

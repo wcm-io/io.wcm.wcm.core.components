@@ -50,7 +50,7 @@ import io.wcm.handler.media.MediaArgs;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.models.MediaMixin;
+import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
 /**
  * wcm.io-based enhancements for {@link Download}:

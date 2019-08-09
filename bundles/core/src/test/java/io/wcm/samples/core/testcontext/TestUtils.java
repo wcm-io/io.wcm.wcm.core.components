@@ -40,8 +40,8 @@ import com.day.cq.wcm.api.Page;
 import com.google.common.collect.ImmutableMap;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
-import io.wcm.wcm.core.components.models.LinkMixin;
-import io.wcm.wcm.core.components.models.MediaMixin;
+import io.wcm.wcm.core.components.models.mixin.LinkMixin;
+import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
 /**
  * Test helpers.

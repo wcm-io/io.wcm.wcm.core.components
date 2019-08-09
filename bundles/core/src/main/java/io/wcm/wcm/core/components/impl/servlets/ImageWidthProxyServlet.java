@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaArgs;
+import io.wcm.handler.media.MediaBuilder;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.impl.ImageFileServlet;
 import io.wcm.sling.commons.adapter.AdaptTo;
@@ -65,14 +66,7 @@ public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
 
   @Override
   protected void doGet(@NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) throws ServletException, IOException {
-
-    // validate width parameter
     long width = getWidth(request);
-    if (width <= 0) {
-      log.debug("Invalid width parameter, send 404: {}", width);
-      response.sendError(HttpServletResponse.SC_NOT_FOUND);
-      return;
-    }
 
     // build media URL and validate it
     Media media = buildMedia(request, width);
@@ -111,9 +105,11 @@ public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
   private Media buildMedia(SlingHttpServletRequest request, long width) {
     Resource resource = request.getResource();
     MediaHandler mediaHandler = AdaptTo.notNull(request, MediaHandler.class);
-    return mediaHandler.get(resource)
-        .args(new MediaArgs().fixedWidth(width))
-        .build();
+    MediaBuilder builder = mediaHandler.get(resource);
+    if (width > 0) {
+      builder.args(new MediaArgs().fixedWidth(width));
+    }
+    return builder.build();
   }
 
   private boolean usesImageFileServlet(String mediaUrl) {

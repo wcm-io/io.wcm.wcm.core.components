@@ -28,7 +28,7 @@ import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.link.Link;
-import io.wcm.wcm.core.components.models.LinkMixin;
+import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
  * {@link ListItem} implementation.

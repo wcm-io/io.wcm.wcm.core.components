@@ -17,13 +17,14 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.models;
+package io.wcm.wcm.core.components.models.mixin;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ConsumerType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.wcm.handler.media.Media;
 
@@ -45,8 +46,18 @@ public interface MediaMixin {
    * Returns true if the media was resolved successful.
    * @return Media is valid
    */
+  @JsonProperty("wcmio:mediaValid")
   default boolean isMediaValid() {
     return getMediaObject().isValid();
+  }
+
+  /**
+   * Resolved media URLs.
+   * @return Media is valid
+   */
+  @JsonProperty("wcmio:mediaUrl")
+  default @Nullable String getMediaUrl() {
+    return getMediaObject().getUrl();
   }
 
   /**
@@ -54,8 +65,8 @@ public interface MediaMixin {
    * This is in most cases an img element, but may also contain other arbitrary markup.
    * @return Media markup
    */
-  @Nullable
-  default String getMediaMarkup() {
+  @JsonProperty("wcmio:mediaMarkup")
+  default @Nullable String getMediaMarkup() {
     return getMediaObject().getMarkup();
   }
 

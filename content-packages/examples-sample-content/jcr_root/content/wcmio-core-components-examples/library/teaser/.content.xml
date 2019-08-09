@@ -35,8 +35,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_tech_teaser_v1"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <teaser_556024830
@@ -48,8 +48,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_teaser_v1"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <title_865328580
@@ -179,8 +179,8 @@
                             actionsEnabled="false"
                             descriptionFromPage="false"
                             fileReference="/content/dam/core-components-examples/library/sample-assets/lava-rock-formation.jpg"
-                            linkType="internal"
                             linkContentRef="/content/wcmio-core-components-examples/library/teaser"
+                            linkType="internal"
                             textIsRich="true"
                             titleFromPage="false"/>
                     </component>
@@ -341,8 +341,8 @@
                             sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
                             actionsEnabled="false"
                             descriptionFromPage="true"
-                            linkType="internal"
                             linkContentRef="/content/wcmio-core-components-examples/library/teaser"
+                            linkType="internal"
                             textIsRich="true"
                             titleFromPage="true"/>
                     </component>

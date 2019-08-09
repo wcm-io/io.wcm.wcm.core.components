@@ -63,11 +63,11 @@ import com.day.cq.wcm.api.Page;
 
 import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.samples.core.testcontext.AppAemContext;
+import io.wcm.samples.core.testcontext.ImageAreaTestData;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
-import io.wcm.wcm.core.components.impl.util.ImageAreaParserTest;
 
 @ExtendWith(AemContextExtension.class)
 class ImageImplTest {
@@ -381,11 +381,11 @@ class ImageImplTest {
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
-        PN_MAP, ImageAreaParserTest.MAP_STRING));
+        PN_MAP, ImageAreaTestData.MAP_STRING));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
-    assertEquals(ImageAreaParserTest.EXPECTED_AREAS, underTest.getAreas());
+    assertEquals(ImageAreaTestData.EXPECTED_AREAS, underTest.getAreas());
   }
 
 }

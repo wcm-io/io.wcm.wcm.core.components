@@ -35,8 +35,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_tech_list_v2"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <teaser_556024830
@@ -48,8 +48,8 @@
                     actionsEnabled="false"
                     descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkType="external"
                     linkExternalRef="https://www.adobe.com/go/aem_cmp_list_v2"
+                    linkType="external"
                     textIsRich="true"
                     titleFromPage="false"/>
                 <title_865328580

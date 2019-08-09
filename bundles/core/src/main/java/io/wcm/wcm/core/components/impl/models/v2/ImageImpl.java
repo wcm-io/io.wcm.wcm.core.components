@@ -59,10 +59,10 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
-import io.wcm.wcm.core.components.impl.util.ImageAreaParser;
-import io.wcm.wcm.core.components.models.LinkMixin;
-import io.wcm.wcm.core.components.models.MediaMixin;
+import io.wcm.wcm.core.components.models.mixin.LinkMixin;
+import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
 /**
  * wcm.io-based enhancements for {@link Image}:
@@ -118,11 +118,11 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
   private boolean displayPopupTitle;
   private boolean enableLazyLoading;
   private boolean isDecorative;
+  private List<ImageArea> areas;
 
   private List<Long> widths = Collections.emptyList();
   private long noScriptWidth;
   private String srcPattern;
-  private List<ImageArea> areas;
 
   @PostConstruct
   private void activate() {
@@ -135,7 +135,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
 
     // resolve media and properties from DAM asset
     media = mediaHandler.get(resource).build();
-    if (media.isValid() && (media.getRendition() == null || !media.getRendition().isImage())) {
+    if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
     }
@@ -144,6 +144,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
       widths = buildRenditionWidths(media.getRendition());
       noScriptWidth = getNoScriptWidth();
       srcPattern = buildSrcPattern(media.getUrl());
+      areas = ImageAreaImpl.convertMap(media.getMap());
     }
 
     // resolve link - decorative images have no link and no alt text by definition
@@ -154,9 +155,6 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
     else {
       link = linkHandler.get(resource).build();
     }
-
-    // build image areas
-    areas = ImageAreaParser.buildFromMapString(properties.get(Image.PN_MAP, String.class), linkHandler);
   }
 
   /**

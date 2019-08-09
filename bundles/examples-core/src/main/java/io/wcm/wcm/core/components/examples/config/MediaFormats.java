@@ -66,6 +66,16 @@ public final class MediaFormats {
       .build();
 
   /**
+   * Fixed size
+   */
+  public static final MediaFormat FIXED_SIZE = create("fixed_size")
+      .label("Fixed Size")
+      .ratio(4, 3)
+      .fixedDimension(500, 375)
+      .extensions(IMAGE_FILE_EXTENSIONS)
+      .build();
+
+  /**
    * Download
    */
   public static final MediaFormat DOWNLOAD = create("download")

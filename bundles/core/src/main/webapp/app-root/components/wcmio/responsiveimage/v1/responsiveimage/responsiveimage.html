@@ -1,0 +1,23 @@
+<div data-sly-use.image="io.wcm.wcm.core.components.models.ResponsiveImage"    
+    data-sly-test="${image.mediaValid}"
+    data-cmp-is="wcmio-responsiveimage"
+    data-asset="${image.fileReference}"
+    data-asset-id="${image.uuid}"
+    data-title="${image.title || image.alt}"
+    class="cmp-wcmio-responsiveimage ${!wcmmode.disabled ? 'cq-dd-image' : ''}"
+    itemscope itemtype="http://schema.org/ImageObject">
+  <a class="cmp-wcmio-responsiveimage__link"
+      data-cmp-hook-image="link"
+      data-sly-unwrap="${!image.linkValid}"
+      data-sly-attribute="${image.linkAttributes}">
+
+    <!--/* Use context='unsafe' to support responsive markup with picture/source etc.
+           which is otherwise filter out by default AEM XSS settings */-->
+    ${image.mediaMarkup @ context='unsafe'}
+
+  </a>
+  <span class="cmp-wcmio-responsiveimage__title" itemprop="caption" data-sly-test="${!image.displayPopupTitle && image.title}">${image.title}</span>
+  <meta itemprop="caption" content="${image.title}" data-sly-test="${image.displayPopupTitle && image.title}">
+</div>
+<sly data-sly-use.template="wcm-io/handler/media/components/placeholder/mediaPlaceholder.html"
+    data-sly-call="${template.placeholder @ isEmpty=!image.mediaValid, media=image.mediaObject, classAppend='cmp-wcmio-responsiveimage cq-dd-image'}"></sly>
