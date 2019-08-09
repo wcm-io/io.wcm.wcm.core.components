@@ -208,9 +208,9 @@
                   "items": {
 
                     /* Media format definition */
-                    "mediaFormatDefinition": {
+                    "mediaFormatSelection": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/include",
-                      "path": "wcm-io/wcm/core/global/include/mediaFormatDefinitionFieldSet"
+                      "path": "wcm-io/handler/media/components/global/include/mediaFormatSelection"
                     },
 
                     "decorative": {
@@ -260,6 +260,12 @@
                   }
                 }
               }
+            },
+
+            /* Responsive Image settings */
+            "responsiveImageTab": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/media/components/global/include/responsiveImageSettings"
             },
 
             "features": {
