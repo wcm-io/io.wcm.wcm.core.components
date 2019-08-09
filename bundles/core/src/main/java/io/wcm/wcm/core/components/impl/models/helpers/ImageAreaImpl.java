@@ -19,9 +19,13 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 
@@ -84,6 +88,20 @@ public class ImageAreaImpl implements ImageArea {
   @Override
   public String toString() {
     return delegate.toString();
+  }
+
+  /**
+   * Converts a image map of {@link ImageMapArea} objects to a {@link ImageArea} objects.
+   * @param imageMap Image map
+   * @return Converted image map
+   */
+  public static @Nullable List<ImageArea> convertMap(@Nullable List<ImageMapArea> imageMap) {
+    if (imageMap == null) {
+      return null;
+    }
+    return imageMap.stream()
+        .map(ImageAreaImpl::new)
+        .collect(Collectors.toList());
   }
 
 }

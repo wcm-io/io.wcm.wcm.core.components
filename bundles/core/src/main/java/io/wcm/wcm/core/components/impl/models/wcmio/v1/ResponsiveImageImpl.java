@@ -30,7 +30,6 @@ import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -57,7 +56,7 @@ import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
-import io.wcm.handler.media.imagemap.ImageMapArea;
+import io.wcm.handler.media.MediaNameConstants;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
@@ -102,6 +101,7 @@ public class ResponsiveImageImpl implements ResponsiveImage {
   private String fileReference;
   private boolean displayPopupTitle;
   private boolean isDecorative;
+  private List<ImageArea> areas;
 
   @PostConstruct
   private void activate() {
@@ -111,14 +111,21 @@ public class ResponsiveImageImpl implements ResponsiveImage {
     displayPopupTitle = properties.get(PN_DISPLAY_POPUP_TITLE, currentStyle.get(PN_DISPLAY_POPUP_TITLE, true));
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
-    // resolve media and properties from DAM asset
-    media = mediaHandler.get(resource).build();
+    // resolve media from DAM asset
+    // add custom properties as defined in "image" core component
+    media = mediaHandler.get(resource)
+        .property("itemprop", "contentUrl")
+        .property("data-cmp-hook-image", "image")
+        .property(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
+        .build();
+
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
     }
     if (media.isValid()) {
       initPropertiesFromDamAsset(properties);
+      areas = ImageAreaImpl.convertMap(media.getMap());
     }
 
     // resolve link - decorative images have no link and no alt text by definition
@@ -214,13 +221,7 @@ public class ResponsiveImageImpl implements ResponsiveImage {
 
   @Override
   public List<ImageArea> getAreas() {
-    List<ImageMapArea> map = media.getMap();
-    if (map == null) {
-      return null;
-    }
-    return map.stream()
-        .map(ImageAreaImpl::new)
-        .collect(Collectors.toList());
+    return areas;
   }
 
 }

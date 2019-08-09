@@ -57,7 +57,6 @@ import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
-import io.wcm.handler.media.imagemap.ImageMapArea;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
@@ -119,6 +118,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
   private boolean displayPopupTitle;
   private boolean enableLazyLoading;
   private boolean isDecorative;
+  private List<ImageArea> areas;
 
   private List<Long> widths = Collections.emptyList();
   private long noScriptWidth;
@@ -144,6 +144,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
       widths = buildRenditionWidths(media.getRendition());
       noScriptWidth = getNoScriptWidth();
       srcPattern = buildSrcPattern(media.getUrl());
+      areas = ImageAreaImpl.convertMap(media.getMap());
     }
 
     // resolve link - decorative images have no link and no alt text by definition
@@ -271,13 +272,7 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
 
   @Override
   public List<ImageArea> getAreas() {
-    List<ImageMapArea> map = media.getMap();
-    if (map == null) {
-      return null;
-    }
-    return map.stream()
-        .map(ImageAreaImpl::new)
-        .collect(Collectors.toList());
+    return areas;
   }
 
   @Override

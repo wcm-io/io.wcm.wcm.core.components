@@ -10,19 +10,11 @@
       data-cmp-hook-image="link"
       data-sly-unwrap="${!image.linkValid}"
       data-sly-attribute="${image.linkAttributes}">
-    <noscript data-sly-unwrap="${!image.areas}" data-cmp-hook-image="noscript">
-      <sly data-sly-test.usemap="${'{0}{1}' @ format=['#', resource.path]}"></sly>
-      <img src="${image.mediaUrl}" class="cmp-wcmio-responsiveimage__image" itemprop="contentUrl" data-cmp-hook-image="image"
-          data-sly-attribute.usemap="${image.areas ? usemap : ''}"
-          alt="${image.alt || true}" title="${image.displayPopupTitle && image.title}"/>
-      <map data-sly-test="${image.areas}"
-          data-sly-list.area="${image.areas}"
-          name="${resource.path}"
-          data-cmp-hook-image="map">
-        <area shape="${area.shape}" coords="${area.coordinates}" href="${area.href}" target="${area.target}" alt="${area.alt}"
-            data-cmp-hook-image="area" data-cmp-relcoords="${area.relativeCoordinates}">
-      </map>
-    </noscript>
+
+    <!--/* Use context='unsafe' to support responsive markup with picture/source etc.
+           which is otherwise filter out by default AEM XSS settings */-->
+    ${image.mediaMarkup @ context='unsafe'}
+
   </a>
   <span class="cmp-wcmio-responsiveimage__title" itemprop="caption" data-sly-test="${!image.displayPopupTitle && image.title}">${image.title}</span>
   <meta itemprop="caption" content="${image.title}" data-sly-test="${image.displayPopupTitle && image.title}">
