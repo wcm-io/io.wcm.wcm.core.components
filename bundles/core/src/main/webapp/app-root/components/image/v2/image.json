@@ -4,6 +4,71 @@
   "componentGroup": ".wcmio-core-wcm",
   "sling:resourceSuperType": "core/wcm/components/image/v2/image",
 
+  "cq:editConfig": {
+    "jcr:primaryType": "cq:EditConfig",
+    "cq:inherit": true,
+    /* 
+     * Overwrite inplace edit config to:
+     * - Disable cropping on inline toolbar as it does not support predefined ratios
+     * - Remove default ratios as they are fetched from assigned media formats
+     * - Remove image/webp support
+     */
+    "cq:inplaceEditing": {
+      "jcr:primaryType": "cq:InplaceEditingConfig",
+      "editorType": "image",
+      "active": true,
+      "config": {
+        "jcr:primaryType": "nt:unstructured",
+        "plugins": {
+          "crop": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "flip": {
+            "features": "-",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "map": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff", "image/svg+xml"]
+          },
+          "rotate": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "zoom": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff", "image/svg+xml"]
+          }
+        },
+        "ui": {
+          "inline": {
+            "toolbar": ["rotate#right", "history#undo", "history#redo", "fullscreen#fullscreen", "control#close", "control#finish"],
+            "replacementToolbars": {
+              "crop": ["crop#identifier", "crop#unlaunch", "crop#confirm"]
+            }
+          },
+          "fullscreen": {
+            "toolbar": {
+              "left": ["crop#launchwithratio", "rotate#right", "map#launch", "flip#horizontal", "flip#vertical", "zoom#reset100", "zoom#popupslider"],
+              "right": ["history#undo", "history#redo", "fullscreen#fullscreenexit"]
+            },
+            "replacementToolbars": {
+              "crop": {
+                "left": ["crop#identifier"],
+                "right": ["crop#unlaunch", "crop#confirm"]
+              },
+              "map": {
+                "left": ["map#rectangle", "map#circle", "map#polygon"],
+                "right": ["map#unlaunch", "map#confirm"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
   "cq:dialog": {
     "jcr:primaryType": "nt:unstructured",
     "extraClientlibs": ["io.wcm.wcm.core.components.image.v2.editor"],
@@ -99,6 +164,14 @@
                           "items": {
                             "flip": {
                               /* Flip not supported by wcm.io Media Handler (nor by the AEM image editor atm) */
+                              "sling:hideResource": true
+                            }
+                          }
+                        },
+                        "crop": {
+                          "items": {
+                            "configWrapper": {
+                              /* Hide definition of aspect ratios, they are fetched from assigned media formats */
                               "sling:hideResource": true
                             }
                           }

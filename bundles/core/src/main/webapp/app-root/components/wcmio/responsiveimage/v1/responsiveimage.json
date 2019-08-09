@@ -327,37 +327,6 @@
                               "jcr:title": "Allow crop",
                               "features": "*",
                               "name": "crop"
-                            },
-                            "configWrapper": {
-                              "sling:resourceType": "cq/gui/components/authoring/dialog/inplaceediting/configuration/wrapper",
-                              "configPath": "./plugins/crop/aspectRatios",
-                              "aspectratios": {
-                                "sling:resourceType": "granite/ui/components/coral/foundation/form/multifield",
-                                "composite": true,
-                                "granite:class": "cq-AspectRatio",
-                                "fieldLabel": "Aspect Ratios",
-                                "field": {
-                                  "sling:resourceType": "granite/ui/components/coral/foundation/container",
-                                  "granite:class": "cq-AspectRatio-field",
-                                  "name": "./plugins/crop/aspectRatios",
-                                  "items": {
-                                    "name": {
-                                      "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
-                                      "granite:class": "cq-AspectRatio-name",
-                                      "name": "name",
-                                      "fieldLabel": "Name"
-                                    },
-                                    "ratio": {
-                                      "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
-                                      "granite:class": "cq-AspectRatio-ratio",
-                                      "min": "0",
-                                      "name": "ratio",
-                                      "step": "0.0001",
-                                      "fieldLabel": "Ratio"
-                                    }
-                                  }
-                                }
-                              }
                             }
                           }
                         }
