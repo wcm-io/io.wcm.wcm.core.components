@@ -4,7 +4,7 @@
   - use media handler placeholder with additional resolution information
 */-->
 <div data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image"    
-    data-sly-test="${image.src}"
+    data-sly-test="${image.mediaValid}"
     data-cmp-is="image"
     data-cmp-lazy="${image.lazyEnabled}"
     data-cmp-src="${image.srcUriTemplate ? image.srcUriTemplate : image.src}"
@@ -12,7 +12,7 @@
     data-asset="${image.fileReference}"
     data-asset-id="${image.uuid}"
     data-title="${image.title || image.alt}"
-    class="cmp-image${!wcmmode.disabled ? ' cq-dd-image' : ''}"
+    class="cmp-image"
     itemscope itemtype="http://schema.org/ImageObject">
   <a class="cmp-image__link"
       data-cmp-hook-image="link"

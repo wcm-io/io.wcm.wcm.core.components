@@ -1,3 +1,5 @@
 #base=css
 
+placeholder.css
 responsiveimage.css
+teaser.css

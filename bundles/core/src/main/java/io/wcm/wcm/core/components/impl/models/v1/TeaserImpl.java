@@ -21,6 +21,7 @@ package io.wcm.wcm.core.components.impl.models.v1;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_DESCRIPTION;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
+import static io.wcm.handler.media.MediaNameConstants.PROP_CSS_CLASS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +117,9 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
 
 
     // resolve teaser media
-    media = mediaHandler.get(resource).build();
+    media = mediaHandler.get(resource)
+        .property(PROP_CSS_CLASS, "cmp-image__image")
+        .build();
 
     // resolve actions with links
     if (actionsEnabled) {

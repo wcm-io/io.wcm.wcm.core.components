@@ -1,0 +1,5 @@
+.cmp-examples-demo .cmp-teaser img, .cmp-examples-demo .cmp-teaser picture {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
