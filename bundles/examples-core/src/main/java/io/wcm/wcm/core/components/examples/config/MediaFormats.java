@@ -54,6 +54,15 @@ public final class MediaFormats {
       .build();
 
   /**
+   * Extra Wide
+   */
+  public static final MediaFormat EXTRA_WIDE = create("extra_wide")
+      .label("Extra Wide")
+      .ratio(32, 10)
+      .extensions(IMAGE_FILE_EXTENSIONS)
+      .build();
+
+  /**
    * Portrait
    */
   public static final MediaFormat PORTRAIT = create("portrait")
