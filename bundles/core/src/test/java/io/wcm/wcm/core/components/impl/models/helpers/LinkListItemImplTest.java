@@ -19,10 +19,6 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import static com.day.cq.commons.jcr.JcrConstants.JCR_DESCRIPTION;
-import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.wcm.api.NameConstants.PN_NAV_TITLE;
-import static com.day.cq.wcm.api.NameConstants.PN_PAGE_TITLE;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
@@ -40,12 +36,11 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
-import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
 @ExtendWith(AemContextExtension.class)
-class PageListItemImplTest {
+class LinkListItemImplTest {
 
   private final AemContext context = AppAemContext.newAemContext();
 
@@ -58,17 +53,12 @@ class PageListItemImplTest {
 
   @Test
   void testValidLink() {
-    Page page = context.create().page(CONTENT_ROOT + "/page1", null,
-        ImmutableValueMap.of(JCR_DESCRIPTION, "My Description"));
+    Page page = context.create().page(CONTENT_ROOT + "/page1");
     Link link = linkHandler.get(page).build();
-    ListItem underTest = new PageListItemImpl(page, link);
+    ListItem underTest = new LinkListItemImpl("My Title", link);
 
+    assertEquals("My Title", underTest.getTitle());
     assertEquals(page.getPath() + ".html", underTest.getURL());
-    assertEquals("page1", underTest.getName());
-    assertEquals("page1", underTest.getTitle());
-    assertEquals("My Description", underTest.getDescription());
-    assertNull(underTest.getLastModified());
-    assertEquals(page.getPath(), underTest.getPath());
 
     assertValidLink(underTest, page.getPath() + ".html");
   }
@@ -82,39 +72,6 @@ class PageListItemImplTest {
     assertNull(underTest.getURL());
 
     assertInvalidLink(underTest);
-  }
-
-  @Test
-  void testTitle() {
-    Page page = context.create().page(CONTENT_ROOT + "/page1", null,
-        ImmutableValueMap.of(JCR_TITLE, "My Title"));
-    Link link = linkHandler.get(page).build();
-    ListItem underTest = new PageListItemImpl(page, link);
-
-    assertEquals("My Title", underTest.getTitle());
-  }
-
-  @Test
-  void testPageTitle() {
-    Page page = context.create().page(CONTENT_ROOT + "/page1", null,
-        ImmutableValueMap.of(JCR_TITLE, "My Title",
-            PN_PAGE_TITLE, "My Page Title"));
-    Link link = linkHandler.get(page).build();
-    ListItem underTest = new PageListItemImpl(page, link);
-
-    assertEquals("My Page Title", underTest.getTitle());
-  }
-
-  @Test
-  void testNavigationTitle() {
-    Page page = context.create().page(CONTENT_ROOT + "/page1", null,
-        ImmutableValueMap.of(JCR_TITLE, "My Title",
-            PN_PAGE_TITLE, "My Page Title",
-            PN_NAV_TITLE, "My Navigation Title"));
-    Link link = linkHandler.get(page).build();
-    ListItem underTest = new PageListItemImpl(page, link);
-
-    assertEquals("My Navigation Title", underTest.getTitle());
   }
 
 }

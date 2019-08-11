@@ -19,31 +19,27 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import java.util.Calendar;
-
 import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
-import com.day.cq.wcm.api.Page;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.link.Link;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
- * {@link ListItem} implementation for page links.
+ * {@link ListItem} implementation for any links.
  */
-public class PageListItemImpl implements ListItem, LinkMixin {
+public class LinkListItemImpl implements ListItem, LinkMixin {
 
-  private final Page page;
+  private final String title;
   private final Link link;
 
   /**
-   * @param page Page
+   * @param title Title
    * @param link Link
    */
-  public PageListItemImpl(@NotNull Page page, @NotNull Link link) {
-    this.page = page;
+  public LinkListItemImpl(@NotNull String title, @NotNull Link link) {
+    this.title = title;
     this.link = link;
   }
 
@@ -60,38 +56,7 @@ public class PageListItemImpl implements ListItem, LinkMixin {
 
   @Override
   public String getTitle() {
-    String title = page.getNavigationTitle();
-    if (title == null) {
-      title = page.getPageTitle();
-    }
-    if (title == null) {
-      title = page.getTitle();
-    }
-    if (title == null) {
-      title = page.getName();
-    }
     return title;
-  }
-
-  @Override
-  public String getDescription() {
-    return page.getDescription();
-  }
-
-  @Override
-  public Calendar getLastModified() {
-    return page.getLastModified();
-  }
-
-  @Override
-  public String getPath() {
-    return page.getPath();
-  }
-
-  @Override
-  @JsonIgnore
-  public String getName() {
-    return page.getName();
   }
 
 }
