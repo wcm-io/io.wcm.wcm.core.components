@@ -12,7 +12,7 @@
     data-asset="${image.fileReference}"
     data-asset-id="${image.uuid}"
     data-title="${image.title || image.alt}"
-    class="cmp-image"
+    class="cmp-image ${!wcmmode.disabled ? 'cq-dd-image' : ''}"
     itemscope itemtype="http://schema.org/ImageObject">
   <a class="cmp-image__link"
       data-cmp-hook-image="link"
