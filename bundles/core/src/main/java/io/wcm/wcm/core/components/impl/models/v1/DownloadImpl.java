@@ -29,13 +29,11 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,6 +48,7 @@ import io.wcm.handler.media.MediaArgs;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
 /**
@@ -64,14 +63,12 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class DownloadImpl implements Download, MediaMixin {
+public class DownloadImpl extends AbstractComponentExporterImpl implements Download, MediaMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/download/v1/download";
 
-  @SlingObject
-  private Resource resource;
   @AemObject
-  protected Style currentStyle;
+  private Style currentStyle;
 
   @ValueMapValue(name = JCR_TITLE, injectionStrategy = InjectionStrategy.OPTIONAL)
   private String title;
@@ -163,11 +160,6 @@ public class DownloadImpl implements Download, MediaMixin {
   @Override
   public String getUrl() {
     return media.getUrl();
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
   @Override

@@ -22,12 +22,10 @@ package io.wcm.wcm.core.components.impl.models.v2;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,6 +35,7 @@ import com.adobe.cq.wcm.core.components.models.Title;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
@@ -51,7 +50,7 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class TitleImpl implements Title, LinkMixin {
+public class TitleImpl extends AbstractComponentExporterImpl implements Title, LinkMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/title/v2/title";
 
@@ -59,8 +58,6 @@ public class TitleImpl implements Title, LinkMixin {
   @Via(type = ResourceSuperType.class)
   private Title delegate;
 
-  @SlingObject
-  private Resource resource;
   @Self
   private LinkHandler linkHandler;
   private Link link;
@@ -74,11 +71,6 @@ public class TitleImpl implements Title, LinkMixin {
   @NotNull
   public Link getLinkObject() {
     return link;
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
   // --- fallback implementations ---

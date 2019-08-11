@@ -35,13 +35,11 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
 
@@ -59,6 +57,7 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.MediaNameConstants;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.models.ResponsiveImage;
 
@@ -72,17 +71,15 @@ import io.wcm.wcm.core.components.models.ResponsiveImage;
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 @JsonIgnoreProperties(value = { "linkObject", "mediaObject" })
-public class ResponsiveImageImpl implements ResponsiveImage {
+public class ResponsiveImageImpl extends AbstractComponentExporterImpl implements ResponsiveImage {
 
   /**
    * Resource type
    */
   public static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/wcmio/responsiveimage/v1/responsiveimage";
 
-  @SlingObject
-  private Resource resource;
   @AemObject
-  protected Style currentStyle;
+  private Style currentStyle;
   @Self
   private LinkHandler linkHandler;
   @Self
@@ -187,11 +184,6 @@ public class ResponsiveImageImpl implements ResponsiveImage {
   @NotNull
   public Media getMediaObject() {
     return media;
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
   @Override

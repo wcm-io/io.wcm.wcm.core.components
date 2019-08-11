@@ -24,12 +24,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,6 +39,7 @@ import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.wcm.handler.link.LinkHandler;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.PageListItemImpl;
 
 /**
@@ -55,7 +54,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.PageListItemImpl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class ListImpl implements List {
+public class ListImpl extends AbstractComponentExporterImpl implements List {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/list/v2/list";
 
@@ -63,8 +62,6 @@ public class ListImpl implements List {
   @Via(type = ResourceSuperType.class)
   private List delegate;
 
-  @SlingObject
-  private Resource resource;
   @Self
   private LinkHandler linkHandler;
 
@@ -76,11 +73,6 @@ public class ListImpl implements List {
         .filter(Objects::nonNull)
         .map(page -> (ListItem)new PageListItemImpl(page, linkHandler.get(page).build()))
         .collect(Collectors.toList());
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
   // --- delegated methods ---

@@ -28,12 +28,10 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.ComponentExporter;
@@ -48,6 +46,7 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.url.ui.SiteRoot;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.NavigationItemImpl;
 
 /**
@@ -63,14 +62,12 @@ import io.wcm.wcm.core.components.impl.models.helpers.NavigationItemImpl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class NavigationImpl implements Navigation {
+public class NavigationImpl extends AbstractComponentExporterImpl implements Navigation {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/navigation/v1/navigation";
 
   private static final int NO_STRUCTURE_DEPTH = -1;
 
-  @SlingObject
-  private Resource resource;
   @AemObject
   private Style currentStyle;
   @AemObject
@@ -122,12 +119,6 @@ public class NavigationImpl implements Navigation {
     }
     return result;
   }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
-  }
-
 
   /**
    * Builds the navigation tree for a {@code navigationRoot} page.

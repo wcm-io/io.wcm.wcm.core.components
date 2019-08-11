@@ -28,13 +28,10 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -47,6 +44,7 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.url.ui.SiteRoot;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.BreadcrumbItemImpl;
 
 /**
@@ -62,12 +60,10 @@ import io.wcm.wcm.core.components.impl.models.helpers.BreadcrumbItemImpl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class BreadcrumbImpl implements Breadcrumb {
+public class BreadcrumbImpl extends AbstractComponentExporterImpl implements Breadcrumb {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/breadcrumb/v2/breadcrumb";
 
-  @SlingObject
-  private Resource resource;
   @AemObject
   private Style currentStyle;
   @AemObject
@@ -119,11 +115,6 @@ public class BreadcrumbImpl implements Breadcrumb {
 
   private boolean checkIfNotHidden(Page page) {
     return !page.isHideInNav() || showHidden;
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
 }

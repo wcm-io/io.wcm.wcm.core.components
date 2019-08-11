@@ -22,14 +22,11 @@ package io.wcm.wcm.core.components.impl.models.v2;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -37,6 +34,7 @@ import com.adobe.cq.wcm.core.components.models.Text;
 
 import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.handler.richtext.TextMode;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 
 /**
  * wcm.io-based enhancements for {@link Text}:
@@ -50,12 +48,10 @@ import io.wcm.handler.richtext.TextMode;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class TextImpl implements Text {
+public class TextImpl extends AbstractComponentExporterImpl implements Text {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/text/v2/text";
 
-  @SlingObject
-  private Resource resource;
   @Self
   private RichTextHandler richTextHandler;
 
@@ -79,11 +75,6 @@ public class TextImpl implements Text {
   @Override
   public boolean isRichText() {
     return textIsRich;
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
 }

@@ -34,13 +34,11 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
 
@@ -59,6 +57,7 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
@@ -82,7 +81,7 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 @JsonIgnoreProperties(value = { "linkObject", "mediaObject" })
-public class ImageImpl implements Image, MediaMixin, LinkMixin {
+public class ImageImpl extends AbstractComponentExporterImpl implements Image, MediaMixin, LinkMixin {
 
   /**
    * Resource type
@@ -90,10 +89,8 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
   public static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/image/v2/image";
   private static final String WIDTH_PLACEHOLDER = "{.width}";
 
-  @SlingObject
-  private Resource resource;
   @AemObject
-  protected Style currentStyle;
+  private Style currentStyle;
   @Self
   private LinkHandler linkHandler;
   @Self
@@ -206,11 +203,6 @@ public class ImageImpl implements Image, MediaMixin, LinkMixin {
   @NotNull
   public Media getMediaObject() {
     return media;
-  }
-
-  @Override
-  public @NotNull String getExportedType() {
-    return resource.getResourceType();
   }
 
   @Override
