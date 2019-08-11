@@ -8,3 +8,7 @@
   display: block;
   margin: .75rem 0;
 }
+
+.cmp-examples-demo .cq-placeholder {
+  min-width: 25rem;
+}
