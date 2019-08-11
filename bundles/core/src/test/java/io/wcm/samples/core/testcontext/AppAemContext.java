@@ -31,6 +31,8 @@ import java.util.Locale;
 import org.apache.sling.api.resource.PersistenceException;
 import org.jetbrains.annotations.NotNull;
 
+import com.adobe.cq.export.json.SlingModelFilter;
+
 import io.wcm.handler.media.spi.MediaHandlerConfig;
 import io.wcm.handler.url.spi.UrlHandlerConfig;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
@@ -67,6 +69,9 @@ public final class AppAemContext {
   private static final AemContextCallback SETUP_CALLBACK = new AemContextCallback() {
     @Override
     public void execute(@NotNull AemContext context) throws PersistenceException, IOException {
+
+      // mock services
+      context.registerService(SlingModelFilter.class, new MockSlingModelFilter());
 
       // context path strategy
       MockCAConfig.contextPathStrategyAbsoluteParent(context, ROOT_LEVEL);

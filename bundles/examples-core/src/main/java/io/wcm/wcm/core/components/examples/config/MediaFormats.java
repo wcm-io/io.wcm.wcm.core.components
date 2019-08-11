@@ -41,7 +41,6 @@ public final class MediaFormats {
   public static final MediaFormat SQUARE = create("square")
       .label("Square")
       .ratio(1, 1)
-      .minWidth(500)
       .extensions(IMAGE_FILE_EXTENSIONS)
       .build();
 
@@ -51,7 +50,6 @@ public final class MediaFormats {
   public static final MediaFormat WIDE = create("wide")
       .label("Wide")
       .ratio(16, 9)
-      .minWidth(500)
       .extensions(IMAGE_FILE_EXTENSIONS)
       .build();
 
@@ -61,7 +59,6 @@ public final class MediaFormats {
   public static final MediaFormat PORTRAIT = create("portrait")
       .label("Portrait")
       .ratio(1, 2)
-      .minWidth(300)
       .extensions(IMAGE_FILE_EXTENSIONS)
       .build();
 
@@ -70,7 +67,6 @@ public final class MediaFormats {
    */
   public static final MediaFormat FIXED_SIZE = create("fixed_size")
       .label("Fixed Size")
-      .ratio(4, 3)
       .fixedDimension(500, 375)
       .extensions(IMAGE_FILE_EXTENSIONS)
       .build();
