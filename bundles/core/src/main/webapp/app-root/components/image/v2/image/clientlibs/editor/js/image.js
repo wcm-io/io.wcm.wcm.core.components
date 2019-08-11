@@ -1,6 +1,6 @@
 /*
   changes from /apps/core/wcm/components/image/v2/image/clientlibs/editor/js/image.js
-  - add conditions to check if $linkURLGroup and $linkURLField reallly exists in the dialog
+  - add conditions to check if $linkURLGroup and $linkURLField really exists in the dialog
 */
 
 /* global jQuery, Coral */

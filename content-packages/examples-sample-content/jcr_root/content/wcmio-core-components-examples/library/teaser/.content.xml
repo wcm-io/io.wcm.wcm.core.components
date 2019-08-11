@@ -234,7 +234,8 @@
                             <actions jcr:primaryType="nt:unstructured">
                                 <item0
                                     jcr:primaryType="nt:unstructured"
-                                    link="/content/wcmio-core-components-examples/library/teaser"
+                                    linkContentRef="/content/wcmio-core-components-examples/library/teaser"
+                                    linkType="internal"
                                     text="Call To Action"/>
                             </actions>
                         </teaser>
@@ -289,11 +290,13 @@
                             <actions jcr:primaryType="nt:unstructured">
                                 <item0
                                     jcr:primaryType="nt:unstructured"
-                                    link="/content/wcmio-core-components-examples/library/teaser"
+                                    linkContentRef="/content/wcmio-core-components-examples/library/teaser"
+                                    linkType="internal"
                                     text="Call To Action"/>
                                 <item1
                                     jcr:primaryType="nt:unstructured"
-                                    link="/content/wcmio-core-components-examples/library"
+                                    linkContentRef="/content/wcmio-core-components-examples/library"
+                                    linkType="internal"
                                     text="Call To Action"/>
                             </actions>
                         </teaser_2781767054>
