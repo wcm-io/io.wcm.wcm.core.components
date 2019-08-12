@@ -24,9 +24,9 @@ if [[ $0 == *":\\"* ]]; then
   DISPLAY_PAUSE_MESSAGE=true
 fi
 
-# install AEM 6.4 SP5
+# install AEM 6.4 SP2
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=:adobe.binary.aem.64.servicepack:AEM-6.4.5.0:zip:6.4.5 \
+    -Dvault.artifact=:adobe.binary.aem.64.servicepack:AEM-6.4.2.0:zip:6.4.2 \
     -Dvault.delayAfterInstallSec=60 \
     -Dsling.url=${SLING_URL}
 
