@@ -45,11 +45,20 @@ public final class MediaFormats {
       .build();
 
   /**
+   * Landscape
+   */
+  public static final MediaFormat LANDSCAPE = create("landscape")
+      .label("Landscape")
+      .ratio(16, 9)
+      .extensions(IMAGE_FILE_EXTENSIONS)
+      .build();
+
+  /**
    * Wide
    */
   public static final MediaFormat WIDE = create("wide")
       .label("Wide")
-      .ratio(16, 9)
+      .ratio(2, 1)
       .extensions(IMAGE_FILE_EXTENSIONS)
       .build();
 
