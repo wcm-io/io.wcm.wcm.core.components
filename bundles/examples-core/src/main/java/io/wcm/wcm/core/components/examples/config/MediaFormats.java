@@ -33,7 +33,7 @@ public final class MediaFormats {
   }
 
   private static final String[] IMAGE_FILE_EXTENSIONS = new String[] {
-      "gif", "jpg", "png", "tif", "webp", "svg" };
+      "gif", "jpg", "png", "tif", "svg" };
 
   /**
    * Square
