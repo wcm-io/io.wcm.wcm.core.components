@@ -5,7 +5,7 @@
     <jcr:content
         cq:allowedTemplates="/conf/wcmio-core-components-examples/settings/wcm/templates/.*"
         cq:deviceGroups="[/etc/mobile/groups/responsive]"
-        cq:redirectTarget="/content/wcmio-core-components-examples/library/breadcrumb/hidden/level-1/level-2/breadcrumb/"
+        cq:redirectTarget="/content/wcmio-core-components-examples/library/breadcrumb/hidden/level-1/level-2/breadcrumb"
         jcr:primaryType="nt:unstructured"
         jcr:title="Breadcrumb"
         sling:redirectStatus="{Long}302"

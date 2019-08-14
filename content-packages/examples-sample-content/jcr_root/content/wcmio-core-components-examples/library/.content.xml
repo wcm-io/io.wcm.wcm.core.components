@@ -14,17 +14,11 @@
                 cq:styleIds="[1544293237403]"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
-                <text_1740702241
-                    cq:styleIds="[1644862132301]"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Component Library &lt;a href=&quot;https://github.com/adobe/aem-core-wcm-components/releases/tag/core.wcm.components.reactor-2.5.0&quot;&gt;2.5.0&lt;/a&gt;&lt;/h1&gt;&#xA;"
-                    textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Get to know the AEM Core Components with this collection of component examples - currently featuring a selection of the available components. For all components, visit our &lt;a href=&quot;https://github.com/Adobe-Marketing-Cloud/aem-core-wcm-components&quot;&gt;GitHub Project&lt;/a&gt;.&lt;/p&gt;&#xA;"
+                    text="&lt;p&gt;Get to know the wcm. WCM Core Components (based on AEM Core Components) with this collection of component examples - currently featuring a selection of the available components. For all components, visit our &lt;a data-link-type=&quot;external&quot; data-link-external-ref=&quot;https://wcm.io/wcm/core-components/&quot; data-link-window-target=&quot;_blank&quot; href=&quot;#&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;&#xA;"
                     textIsRich="true"/>
                 <text_585499147
                     cq:styleIds="[1550289148555]"
@@ -337,29 +331,6 @@
                             width="12"/>
                     </cq:responsive>
                 </teaser_803940090>
-                <teaser_1803864476
-                    cq:styleIds="[1547060090076]"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="true"
-                    fileReference="/content/dam/core-components-examples/library/components/social-sharing.svg"
-                    linkContentRef="/content/wcmio-core-components-examples/library/social-sharing"
-                    linkType="internal"
-                    textIsRich="true"
-                    titleFromPage="true">
-                    <cq:responsive jcr:primaryType="nt:unstructured">
-                        <default
-                            jcr:primaryType="nt:unstructured"
-                            width="4"/>
-                        <small
-                            jcr:primaryType="nt:unstructured"
-                            width="6"/>
-                        <extrasmall
-                            jcr:primaryType="nt:unstructured"
-                            width="12"/>
-                    </cq:responsive>
-                </teaser_1803864476>
                 <teaser_1767983946
                     cq:styleIds="[1547060090076]"
                     jcr:primaryType="nt:unstructured"
@@ -475,7 +446,6 @@
     <list/>
     <navigation/>
     <separator/>
-    <social-sharing/>
     <tabs/>
     <teaser/>
     <text/>

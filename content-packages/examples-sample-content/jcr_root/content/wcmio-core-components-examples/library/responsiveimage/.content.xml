@@ -26,32 +26,16 @@
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p&gt;Responsive Image allows a single image asset to be displayed on the page. Images are responsive using HTML5 markup features.&lt;/p&gt;&#xA;"
                     textIsRich="true"/>
-                <teaser
+                <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
                     jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Technical Documentation"
+                    jcr:title="wcm.io Documentation"
                     sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkExternalRef="https://www.adobe.com/go/aem_cmp_tech_image_v2"
+                    linkExternalRef="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/wcmio/responsiveimage/v1"
                     linkType="external"
-                    textIsRich="true"
-                    titleFromPage="false"/>
-                <teaser_556024830
-                    cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;Adobe Help Center&lt;/p&gt;&#xD;&#xA;"
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Using Core Components"
-                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
-                    fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkExternalRef="https://www.adobe.com/go/aem_cmp_image_v2"
-                    linkType="external"
-                    textIsRich="true"
-                    titleFromPage="false"/>
+                    linkWindowTarget="_blank"/>
                 <title_865328580
                     cq:styleIds="[1544759664489]"
                     jcr:primaryType="nt:unstructured"

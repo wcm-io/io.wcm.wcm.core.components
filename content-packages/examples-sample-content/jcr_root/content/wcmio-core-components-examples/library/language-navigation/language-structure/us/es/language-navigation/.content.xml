@@ -27,32 +27,27 @@
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p&gt;Navegación de idioma proporciona una navegación de idioma / país para un sitio, de modo que los visitantes puedan navegar a la misma página en una ubicación diferente.&lt;/p&gt;&#xD;&#xA;"
                     textIsRich="true"/>
-                <teaser
+                <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
                     jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Technical Documentation"
+                    jcr:title="wcm.io Documentation"
                     sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
+                    linkExternalRef="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/languagenavigation/v1"
+                    linkType="external"
+                    linkWindowTarget="_blank"/>
+                <teaser_github_adobe
+                    cq:styleIds="[1550165685463]"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Adobe Documentation"
+                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
+                    fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
                     linkExternalRef="https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/languagenavigation/v1/languagenavigation"
                     linkType="external"
-                    textIsRich="true"
-                    titleFromPage="false"/>
-                <teaser_556024830
-                    cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;Adobe Help Center&lt;/p&gt;&#xD;&#xA;"
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Using Core Components"
-                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
-                    fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkExternalRef="https://www.adobe.com/go/aem_cmp_languagenavigation_v1"
-                    linkType="external"
-                    textIsRich="true"
-                    titleFromPage="false"/>
+                    linkWindowTarget="_blank"
+                    textIsRich="true"/>
                 <title_865328580
                     cq:styleIds="[1544759664489]"
                     jcr:primaryType="nt:unstructured"

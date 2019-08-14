@@ -26,32 +26,27 @@
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p&gt;Carousel allows a user to cycle through content panels. Slides of varying component type can be created.&lt;/p&gt;&#xA;"
                     textIsRich="true"/>
-                <teaser
+                <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
                     jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Technical Documentation"
+                    jcr:title="wcm.io Documentation"
                     sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkExternalRef="https://www.adobe.com/go/aem_cmp_tech_carousel_v1"
+                    linkExternalRef="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/carousel/v1"
                     linkType="external"
-                    textIsRich="true"
-                    titleFromPage="false"/>
-                <teaser_556024830
+                    linkWindowTarget="_blank"/>
+                <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;Adobe Help Center&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Using Core Components"
+                    jcr:title="Adobe Documentation"
                     sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkExternalRef="https://www.adobe.com/go/aem_cmp_carousel_v1"
+                    linkExternalRef="https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/carousel/v1/carousel"
                     linkType="external"
-                    textIsRich="true"
-                    titleFromPage="false"/>
+                    linkWindowTarget="_blank"
+                    textIsRich="true"/>
                 <title_865328580
                     cq:styleIds="[1544759664489]"
                     jcr:primaryType="nt:unstructured"

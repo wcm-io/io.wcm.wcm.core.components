@@ -19,13 +19,17 @@
                 <image_1442382866
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/image/v2/image"
+                    alt="wcm.io WCM Core Components"
                     altValueFromDAM="true"
                     displayPopupTitle="true"
-                    fileReference="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg"
+                    fileName="wcmio-wcm-core-components.png"
                     isDecorative="false"
                     linkContentRef="/content/wcmio-core-components-examples/library"
                     linkType="internal"
-                    titleValueFromDAM="true"/>
+                    linkWindowTarget="_self"
+                    titleValueFromDAM="true">
+                    <file/>
+                </image_1442382866>
             </responsivegrid_1409995310>
             <responsivegrid_1755067073
                 cq:styleIds="[1545309119491]"
@@ -69,7 +73,7 @@
                 <text
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Built with &lt;a href=&quot;https://github.com/adobe/aem-core-wcm-components/releases/tag/core.wcm.components.reactor-2.5.0&quot;&gt;Core Components 2.5.0&lt;/a&gt;.&lt;/p&gt;&#xA;"
+                    text="&lt;p&gt;Built with &lt;a href=&quot;https://wcm.io/wcm/core-components/&quot; target=&quot;_blank&quot;&gt;wcm.io WCM Core Components&lt;/a&gt;.&lt;/p&gt;&#xA;"
                     textIsRich="true"/>
             </responsivegrid_2176569853>
         </root>

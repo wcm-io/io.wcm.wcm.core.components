@@ -38,7 +38,11 @@
   <description>Examples for wcm.io WCM Core Components.</description>
 
   <build>
-    <sourceDirectory>src/content/jcr_root</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>jcr_root</directory>
+      </resource>
+    </resources>
     <plugins>
 
       <plugin>
