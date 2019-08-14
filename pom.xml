@@ -33,15 +33,20 @@
   <artifactId>io.wcm.wcm.core.components.root</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <url>${site.url}/${site.url.module.prefix}/</url>
 
-  <name>WCM Core Components Root</name>
-
+  <name>WCM Core Components</name>
+  
   <scm>
     <connection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</connection>
     <developerConnection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</developerConnection>
     <url>https://github.com/wcm-io/wcm-io-wcm-core-components</url>
     <tag>HEAD</tag>
   </scm>
+
+  <properties>
+    <site.url.module.prefix>wcm/core-components</site.url.module.prefix>
+  </properties>
 
   <modules>
     <module>parent</module>
@@ -63,26 +68,14 @@
         </configuration>
       </plugin>
 
-      <!-- Do not deploy sources to repository -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <configuration>
-          <attach>false</attach>
-        </configuration>
-      </plugin>
-
-      <!-- Do not generate site -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-          <skipDeploy>true</skipDeploy>
-        </configuration>
-      </plugin>
-
     </plugins>
   </build>
+
+  <distributionManagement>
+    <site>
+      <id>${site.deploy.id}</id>
+      <url>${site.deploy.url}${site.url.module.prefix}</url>
+    </site>
+  </distributionManagement>
 
 </project>

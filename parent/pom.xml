@@ -36,11 +36,8 @@
   
   <name>WCM Core Components</name>
   <description>Enhances AEM Sites Core Components with wcm.io functionality.</description>
-  <url>${site.url}/${site.url.module.prefix}/</url>
   
   <properties>
-    <site.url.module.prefix>wcm/core-components</site.url.module.prefix>
-
     <core.wcm.components.version>2.5.0</core.wcm.components.version>
   </properties>
 
@@ -189,11 +186,21 @@
     </dependencies>
   </dependencyManagement>
 
-  <distributionManagement>
-    <site>
-      <id>${site.deploy.id}</id>
-      <url>${site.deploy.url}${site.url.module.prefix}</url>
-    </site>
-  </distributionManagement>
+  <build>
+
+    <plugins>
+
+      <!-- do not generate site for this project -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <skipDeploy>true</skipDeploy>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
 
 </project>
