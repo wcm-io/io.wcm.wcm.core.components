@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/wcm-io/wcm-io-wcm-core-components.png?branch=develop)](https://travis-ci.org/wcm-io/wcm-io-wcm-core-components)
 [![Code Coverage](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components/branch/develop/graph/badge.svg)](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components)
 
-Enhances [AEM Sites Core Components][adobe-core-compoonents] with wcm.io functionality.
+Enhances [AEM Sites Core Components][adobe-core-components] with wcm.io functionality.
 
 Documentation: https://wcm.io/wcm/core-components/<br/>
 Issues: https://wcm-io.atlassian.net/browse/WWCM<br/>
@@ -24,4 +24,4 @@ mvn clean install
 ```
 
 
-[adobe-core-compoonents]: https://github.com/adobe/aem-core-wcm-components
+[adobe-core-components]: https://github.com/adobe/aem-core-wcm-components

@@ -18,7 +18,7 @@
  * #L%
  */
 /**
- * Interfaces for core component models.
+ * Interfaces for wcm.io Core Component models.
  */
 @org.osgi.annotation.versioning.Version("1.0.0")
 package io.wcm.wcm.core.components.models;

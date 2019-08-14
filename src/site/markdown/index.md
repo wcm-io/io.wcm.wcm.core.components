@@ -1,6 +1,6 @@
 ## About WCM Core Components
 
-Enhances [AEM Sites Core Components][adobe-core-compoonents] with wcm.io functionality.
+Enhances [AEM Sites Core Components][adobe-core-components] with wcm.io functionality.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components)
 
@@ -16,7 +16,7 @@ Enhances [AEM Sites Core Components][adobe-core-compoonents] with wcm.io functio
 
 ### Overview
 
-Adobe provides AEM developers with a set of [Core Components][adobe-core-compoonents] that should be the starting point for every AEM application. The wcm.io WCM Core Components enhance the Adobe Core Components and introduces centrally managed handling for links, media and rich text by leveraging the [wcm.io Handler][wcmio-handler] modules. You can quickly try them out in a local AEM instance by installing the [wcm.io WCM Core Component Library][component-library].
+Adobe provides AEM developers with a set of [Core Components][adobe-core-components] that should be the starting point for every AEM application. The wcm.io WCM Core Components enhance the Adobe Core Components and introduces centrally managed handling for links, media and rich text by leveraging the [wcm.io Handler][wcmio-handler] modules. You can quickly try them out in a local AEM instance by installing the [wcm.io WCM Core Component Library][component-library].
 
 Features added to the Core Components:
 
@@ -26,7 +26,7 @@ Features added to the Core Components:
 * Adds central rich text support with a customized link RTE plugin provided by [wcm.io RichText Handler][wcmio-handler-richtext]
 * Adds a new "Responsive Image" Core Component that uses standard HTML5 markup
 
-A detailed documentation for each component can be found in the [component overview][components].
+A detailed documentation for each component can be found in the [Component Overview][components].
 
 
 ### AEM Version Support Matrix
@@ -41,6 +41,7 @@ A detailed documentation for each component can be found in the [component overv
 To use this module you have to deploy also:
 
 |---|---|---|
+| [AEM Sites Core Components (ZIP)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) |
 | [wcm.io Sling Commons](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons) |
 | [wcm.io AEM Sling Models Extensions](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models) |
 | [wcm.io WCM Commons](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons) |
@@ -54,7 +55,7 @@ To use this module you have to deploy also:
 
 [apidocs]: core/apidocs/
 [changelog]: changes-report.html
-[adobe-core-compoonents]: https://github.com/adobe/aem-core-wcm-components
+[adobe-core-components]: https://github.com/adobe/aem-core-wcm-components
 [wcmio-handler]: https://wcm.io/handler/
 [wcmio-handler-url]: https://wcm.io/handler/url/
 [wcmio-handler-link]: https://wcm.io/handler/link/
