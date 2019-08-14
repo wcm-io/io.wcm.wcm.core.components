@@ -12,7 +12,7 @@ wcm-io/wcm/core/components/navigation/v1/navigation
 ## Enhanced Features
 
 * Inherits all features from its [super component][extends-component]
-* Uses [wcm.io Link Handler][wcmio-handler-link] for processing the breadcrumb links
+* Uses [wcm.io Link Handler][wcmio-handler-link] for processing the navigation links
 
 [extends-component]: https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/navigation/v1/navigation
 [wcmio-handler-link]: https://wcm.io/handler/link/

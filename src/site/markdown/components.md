@@ -14,7 +14,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span> _Media Handler,_ <span c
 
 **Page authoring components**
 
-* [Text](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/text/v2) <span class="marker-label">RICHTEXT</span>
+* [Text](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/text/v2) <span class="marker-label">RICHTEXT</span> <span class="marker-label">LINK</span>
 * [Title](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v2) <span class="marker-label">LINK</span>
 * [Image](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/image/v2) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
 * [Download](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/download/v1) <span class="marker-label">MEDIA</span>
