@@ -7,20 +7,33 @@ Enhances [AEM Sites Core Components][adobe-core-compoonents] with wcm.io functio
 
 ### Documentation
 
+* [Usage][usage]
+* [Component Overview][components]
+* [Component Library][component-library]
 * [API documentation][apidocs]
 * [Changelog][changelog]
 
 
 ### Overview
 
-TBD
+Adobe provides AEM developers with a set of [Core Components][adobe-core-compoonents] that should be the starting point for every AEM application. The wcm.io WCM Core Components enhance the Adobe Core Components and introduces centrally managed handling for links, media and rich text by leveraging the [wcm.io Handler][wcmio-handler] modules. You can quickly try them out in a local AEM instance by installing the [wcm.io WCM Core Component Library][component-library].
+
+Features added to the Core Components:
+
+* Provides URL handling and externalization by [wcm.io URL Handler][wcmio-handler-url]
+* Adds central link handling provided by [wcm.io Link Handler][wcmio-handler-link]
+* Adds central image and asset handling with special support for responsive images provided by [wcm.io Media Handler][wcmio-handler-media]
+* Adds central rich text support with a customized link RTE plugin provided by [wcm.io RichText Handler][wcmio-handler-richtext]
+* Adds a new "Responsive Image" Core Component that uses standard HTML5 markup
+
+A detailed documentation for each component can be found in the [component overview][components].
 
 
 ### AEM Version Support Matrix
 
-|WCM Commons version |AEM version supported
-|--------------------|----------------------
-|1.0.x               |AEM 6.3 and up
+|wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
+|-----------------------------------|----------------------------------|-------------------------------------------
+|1.0.x                              | 2.5.0                            | AEM 6.3 SP3, AEM 6.4 SP2, AEM 6.5 and up
 
 
 ### Dependencies
@@ -42,3 +55,11 @@ To use this module you have to deploy also:
 [apidocs]: core/apidocs/
 [changelog]: changes-report.html
 [adobe-core-compoonents]: https://github.com/adobe/aem-core-wcm-components
+[wcmio-handler]: https://wcm.io/handler/
+[wcmio-handler-url]: https://wcm.io/handler/url/
+[wcmio-handler-link]: https://wcm.io/handler/link/
+[wcmio-handler-media]: https://wcm.io/handler/media/
+[wcmio-handler-richtext]: https://wcm.io/handler/richtext/
+[usage]: usage.html
+[component-library]: component-library.html
+[components]: components.html
