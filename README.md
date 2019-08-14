@@ -1,4 +1,4 @@
-<img src="https://wcm.io/images/favicon-16@2x.png"/> wcm.io WCM
+<img src="https://wcm.io/images/favicon-16@2x.png"/> wcm.io WCM Core Components
 ======
 [![Build Status](https://travis-ci.org/wcm-io/wcm-io-wcm-core-components.png?branch=develop)](https://travis-ci.org/wcm-io/wcm-io-wcm-core-components)
 [![Code Coverage](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components/branch/develop/graph/badge.svg)](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components)
@@ -22,6 +22,11 @@ Then you can build using
 ```
 mvn clean install
 ```
+
+## Build and deploy to local AEM Instance
+
+The script `build-deploy.sh` compiles everything and deploys the WCM Core Components including the Component Library to a local AEM instance running on port 4502.
+
 
 
 [adobe-core-components]: https://github.com/adobe/aem-core-wcm-components
