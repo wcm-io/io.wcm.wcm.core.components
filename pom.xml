@@ -54,6 +54,15 @@
   <build>
     <plugins>
     
+      <!-- do not deploy this hierarchy pom into maven repository -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+
       <!-- Do not deploy sources to repository -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

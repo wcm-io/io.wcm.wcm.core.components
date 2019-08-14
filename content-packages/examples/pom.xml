@@ -169,11 +169,11 @@
               <root>/content/dam/rep:policy</root>
             </filter>
             <filter>
-              <root>/apps/wcm-io-samples/${project.artifactId}</root>
+              <root>/apps/wcm-io-samples/wcm-core-components</root>
             </filter>
           </filters>
 
-          <embeddedTarget>/apps/wcm-io-samples/${project.artifactId}/install</embeddedTarget>
+          <embeddedTarget>/apps/wcm-io-samples/wcm-core-components/install</embeddedTarget>
           <embeddeds>
             <!-- Include application bundles from io.wcm.samples and their dependencies from io.wcm -->
             <embedded>
