@@ -20,6 +20,10 @@
   -->
 
 <workspaceFilter version="1.0">
-  <filter root="/conf/wcmio-core-components-examples"/>
-  <filter root="/content/wcmio-core-components-examples"/>
+  <filter root="/conf/wcmio-core-components-examples">
+    <exclude pattern="^.*/dam:thumbnails(/.*)?$"/>
+  </filter>
+  <filter root="/content/wcmio-core-components-examples">
+    <exclude pattern="^.*/dam:thumbnails(/.*)?$"/>
+  </filter>
 </workspaceFilter>
