@@ -11,7 +11,7 @@ wcm-io/wcm/core/components/accordion/v1/accordion
 
 ## Enhanced Features
 
-* No enhancements - inherits all features from it's [super component][extends-component]
+* No enhancements - inherits all features from its [super component][extends-component]
 
 
 
