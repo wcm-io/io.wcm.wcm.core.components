@@ -1,5 +1,4 @@
 .cmp-wcmio-responsiveimage img, .cmp-wcmio-responsiveimage picture {
-  width: 100%;
   max-width: 100%;
   height: auto;
 }
