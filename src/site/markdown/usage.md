@@ -23,11 +23,18 @@ It is recommended to always reference the wcm.io Core Component Variant resource
 To experiment with the wcm.io WCM Core Components install the [wcm.io WCM Core Component Library][component-library] in a local AEM instance.
 
 
+### Setting up your project
+
+If you want to start a new project it is recommended to use the [wcm.io Maven Archtype for AEM][maven-archetype-aem] and setting the `optionWcmioHandler=y`. The sets up a new AEM project including the setup for wcm.io Handler and includes some example usages of WCM Core Components.
+
+When you want to switch an existing project make sure to include all dependency bundles and apply the required [system configuration][handler-configuration].
+
+
 ### Drop-in replacement
 
 The wcm.io WCM Core Components are designed to be a drop-in replacement for the AEM Sites Core Components. All content properties stored by the original components can also be read by the wcm.io components, and the generated markup is the same.
 
-Components that store link target information (e.g. Button, Title, Teaser, Image component) will can read the link target information from the "old" property (e.g. `linkURL`). But once the data is edited and saved using the edit dialog, this old property is removed an replaced with the [Link Handler-specific properties][link-handler-link-properties]. That means after that a switch back to the original components may required a content migration back to the "old" link properties.
+Components that store link target information (e.g. Button, Title, Teaser, Image component) can read the link target information from the "old" property (e.g. `linkURL`). But once the data is edited and saved using the edit dialog, this old property is removed and replaced with the [Link Handler-specific properties][link-handler-link-properties]. That means that a switch back to the original components may require a manual content migration back to the "old" link properties.
 
 
 
@@ -36,3 +43,5 @@ Components that store link target information (e.g. Button, Title, Teaser, Image
 [component-library]: component-library.html
 [component-guidelines]: https://docs.adobe.com/content/help/en/experience-manager-core-components/using/developing/guidelines.html
 [link-handler-link-properties]: https://wcm.io/handler/link/usage.html#Link_properties_in_resource
+[maven-archetype-aem]: https://wcm.io/tooling/maven/archetypes/aem/
+[handler-configuration]: https://wcm.io/handler/configuration.html
