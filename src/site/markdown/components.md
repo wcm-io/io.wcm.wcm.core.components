@@ -2,14 +2,14 @@
 
 ### Enhanced AEM Sites Core Components
 
-_Enhanced with_ <span class="marker-label">MEDIA</span> _Media Handler,_ <span class="marker-label">LINK</span> _Link Handler,_ <span class="marker-label">RICHTEXT</span> _RichText Handler._
+_Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler,_ <span class="marker-label">LINK</span>&nbsp;_Link&nbsp;Handler,_ <span class="marker-label">RICHTEXT</span>&nbsp;_RichText&nbsp;Handler,_ <span class="marker-label">URL</span>&nbsp;_URL&nbsp;Handler._
 
 **Template components**
 
 * [Page](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/page/v2)
-* [Navigation](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/navigation/v1) <span class="marker-label">LINK</span>
+* [Navigation](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/navigation/v1) <span class="marker-label">LINK</span> <span class="marker-label">URL</span>
 * [Language Navigation](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/languagenavigation/v1) <span class="marker-label">LINK</span>
-* [Breadcrumb](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v2) <span class="marker-label">LINK</span>
+* [Breadcrumb](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v2) <span class="marker-label">LINK</span> <span class="marker-label">URL</span>
 * [Quick Search](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/search/v1)
 
 **Page authoring components**
