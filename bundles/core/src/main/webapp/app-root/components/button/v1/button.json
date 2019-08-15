@@ -4,6 +4,9 @@
   "componentGroup": ".wcmio-core-wcm",
   "sling:resourceSuperType": "core/wcm/components/button/v1/button",
 
+  /* Fallback mode for Link Handler to support existing content that used a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": "link",
+
   "cq:dialog": {
     "jcr:primaryType": "nt:unstructured",
     "content": {

@@ -25,7 +25,9 @@ To experiment with the wcm.io WCM Core Components install the [wcm.io WCM Core C
 
 ### Drop-in replacement
 
-Are the wcm.io WCM Core Components a drop-in replacement for the AEM Sites Core Components? In most cases, yes. But the dialogs that store link information (e.g. Button, Image, Teaser components) store the target link data in [different attributes][link-handler-link-properties] than the original core components. So the link data properties have to be converted when switching to wcm.io WCM Core Components.
+The wcm.io WCM Core Components are designed to be a drop-in replacement for the AEM Sites Core Components. All content properties stored by the original components can also be read by the wcm.io components, and the generated markup is the same.
+
+Components that store link target information (e.g. Button, Title, Teaser, Image component) will can read the link target information from the "old" property (e.g. `linkURL`). But once the data is edited and saved using the edit dialog, this old property is removed an replaced with the [Link Handler-specific properties][link-handler-link-properties]. That means after that a switch back to the original components may required a content migration back to the "old" link properties.
 
 
 

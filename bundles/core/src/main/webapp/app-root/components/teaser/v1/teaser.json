@@ -4,6 +4,9 @@
   "componentGroup": ".wcmio-core-wcm",
   "sling:resourceSuperType": "core/wcm/components/teaser/v1/teaser",
 
+  /* Fallback mode for Link Handler to support existing content that used a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": ["linkURL","link"],
+
   "cq:editConfig": {
     "jcr:primaryType": "cq:EditConfig",
     "cq:inherit": true,

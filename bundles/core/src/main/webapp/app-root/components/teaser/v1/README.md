@@ -19,7 +19,7 @@ wcm-io/wcm/core/components/teaser/v1/teaser
 * Uses the enhanced Media Handler File Upload dialog widget with path field and media format validation
 * Uses [wcm.io RichText Handler][wcmio-handler-richtext] for processing the description rich text
 * Uses [wcm.io Link Handler][wcmio-handler-link] for processing the teaser and action links
-* Use the Link Handler dialog widget for defining link type and link target
+* Uses the Link Handler dialog widget for defining link type and link target
 
 [extends-component]: https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/teaser/v1/teaser
 [wcmio-handler-media]: https://wcm.io/handler/media/
