@@ -5,6 +5,27 @@
 
   "cq:editConfig": {
     "jcr:primaryType": "cq:EditConfig",
+
+    /*
+     * Although this is auto-generated if not present by the media handler, keep it here to support
+     * default component mappings for paragraph systems.
+     */
+    "cq:dropTargets": {
+      "jcr:primaryType": "nt:unstructured",
+      "image": {
+        "jcr:primaryType": "cq:DropTargetConfig",
+        "accept": ["image/gif", "image/jpeg", "image/png", "image/tiff", "image/svg+xml"],
+        "groups": ["media"],
+        "propertyName": "./fileReference",
+        "parameters": {
+          "jcr:primaryType": "nt:unstructured",
+          "imageCrop": "",
+          "imageMap": "",
+          "imageRotate": ""
+        }
+      }
+    },
+
     "cq:inplaceEditing": {
       "jcr:primaryType": "cq:InplaceEditingConfig",
       "editorType": "image",
