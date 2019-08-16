@@ -4,7 +4,7 @@ Image component written in HTL that renders an responsive image using standard H
 
 ## Resource Type
 ```
-wcm/core/components/wcmio/responsiveimage/v1/responsiveimage
+wcm-io/wcm/core/components/wcmio/responsiveimage/v1/responsiveimage
 ```
 
 ## Features
