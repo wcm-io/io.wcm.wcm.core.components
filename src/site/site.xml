@@ -24,12 +24,6 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
-  <skin>
-    <groupId>io.wcm.maven.skins</groupId>
-    <artifactId>reflow-maven-skin</artifactId>
-    <version>1.0.10</version>
-  </skin>
-
   <body>
     <head><![CDATA[
       <style>
