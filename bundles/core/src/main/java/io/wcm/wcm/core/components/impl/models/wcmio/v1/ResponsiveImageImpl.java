@@ -49,6 +49,9 @@ import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.day.cq.wcm.api.designer.Style;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.wcm.handler.commons.dom.HtmlElement;
+import io.wcm.handler.commons.dom.Image;
+import io.wcm.handler.commons.dom.Picture;
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
@@ -123,6 +126,11 @@ public class ResponsiveImageImpl extends AbstractComponentExporterImpl implement
     if (media.isValid()) {
       initPropertiesFromDamAsset(properties);
       areas = ImageAreaImpl.convertMap(media.getMap());
+
+      // display popup title
+      if (this.displayPopupTitle() && media.getElement() != null) {
+        setImageTitle(media.getElement(), getTitle());
+      }
     }
 
     // resolve link - decorative images have no link and no alt text by definition
@@ -170,6 +178,22 @@ public class ResponsiveImageImpl extends AbstractComponentExporterImpl implement
             alt = assetDescription;
           }
         }
+      }
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  private static void setImageTitle(HtmlElement<?> element, String title) {
+    if (element == null) {
+      return;
+    }
+    if (element instanceof Picture || element instanceof Image) {
+      element.setTitle(title);
+    }
+    else {
+      List<HtmlElement<?>> children = (List)element.getChildren();
+      for (HtmlElement<?> child : children) {
+        setImageTitle(child, title);
       }
     }
   }

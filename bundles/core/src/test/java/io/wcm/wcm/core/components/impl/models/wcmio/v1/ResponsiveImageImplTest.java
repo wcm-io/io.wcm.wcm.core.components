@@ -134,6 +134,7 @@ class ResponsiveImageImplTest {
     assertTrue(underTest.displayPopupTitle());
     assertEquals(asset.getPath(), underTest.getFileReference());
     assertNull(underTest.getAreas());
+    assertEquals("Asset Title", underTest.getMediaObject().getElement().getAttributeValue("title"));
 
     assertValidMedia(underTest, expectedMediaUrl);
     assertInvalidLink(underTest);
@@ -266,11 +267,12 @@ class ResponsiveImageImplTest {
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
+        JCR_TITLE, "Resource Title",
         PN_DISPLAY_POPUP_TITLE, false));
 
     ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
-
     assertFalse(underTest.displayPopupTitle());
+    assertNull(underTest.getMediaObject().getElement().getAttributeValue("title"));
   }
 
   @Test
@@ -325,11 +327,14 @@ class ResponsiveImageImplTest {
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
+        JCR_TITLE, "Resource Title",
         PN_MAP, ImageAreaTestData.MAP_STRING));
 
     ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
 
     assertEquals(ImageAreaTestData.EXPECTED_AREAS, underTest.getAreas());
+    // image is wrapped in wrapper element when sibling with map areas is present
+    assertEquals("Asset Title", underTest.getMediaObject().getElement().getChild("img").getAttributeValue("title"));
   }
 
 }
