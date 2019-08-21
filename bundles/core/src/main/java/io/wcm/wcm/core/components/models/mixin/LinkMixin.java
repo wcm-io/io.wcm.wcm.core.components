@@ -57,8 +57,8 @@ public interface LinkMixin {
    * Resolved link URL.
    * @return Link URL
    */
-  @JsonProperty("wcmio:linkUrl")
-  default @Nullable String getLinkUrl() {
+  @JsonProperty("wcmio:linkURL")
+  default @Nullable String getLinkURL() {
     return getLinkObject().getUrl();
   }
 
