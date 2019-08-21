@@ -55,8 +55,8 @@ public interface MediaMixin {
    * Resolved media URLs.
    * @return Media is valid
    */
-  @JsonProperty("wcmio:mediaUrl")
-  default @Nullable String getMediaUrl() {
+  @JsonProperty("wcmio:mediaURL")
+  default @Nullable String getMediaURL() {
     return getMediaObject().getUrl();
   }
 

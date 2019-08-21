@@ -21,6 +21,7 @@ package io.wcm.samples.core.testcontext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -87,13 +88,17 @@ public final class TestUtils {
     assertTrue(object instanceof MediaMixin, "is MediaMixin");
     MediaMixin mediaMixin = (MediaMixin)object;
     assertTrue(mediaMixin.isMediaValid());
-    assertEquals(mediaUrl, mediaMixin.getMediaObject().getUrl());
+    assertEquals(mediaUrl, mediaMixin.getMediaURL());
+    if (mediaMixin.getMediaObject().getRendition().isImage()) {
+      assertNotNull(mediaMixin.getMediaMarkup());
+    }
   }
 
   public static void assertInvalidMedia(Object object) {
     assertTrue(object instanceof MediaMixin, "is MediaMixin");
     MediaMixin mediaMixin = (MediaMixin)object;
     assertFalse(mediaMixin.isMediaValid());
+    assertNull(mediaMixin.getMediaURL());
     assertNull(mediaMixin.getMediaMarkup());
   }
 
