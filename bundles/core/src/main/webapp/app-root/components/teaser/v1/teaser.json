@@ -146,7 +146,7 @@
                                   "features": "-"
                                 },
                                 /* Enable wcm.io RTE link plugin */
-                                "wcmio.handler.richtext.links": {
+                                "wcmio-links": {
                                   "features": [
                                     "modifylink",
                                     "unlink"
@@ -177,8 +177,8 @@
                                       "#justify",
                                       "#lists",
                                       /* Use wcm.io RTE Link plugin actions */
-                                      "wcmio.handler.richtext.links#modifylink",
-                                      "wcmio.handler.richtext.links#unlink",
+                                      "wcmio-links#modifylink",
+                                      "wcmio-links#unlink",
                                       "#paraformat"
                                     ]
                                   },
@@ -195,8 +195,8 @@
                                       "lists#outdent",
                                       "lists#indent",
                                       /* Use wcm.io RTE Link plugin actions */
-                                      "wcmio.handler.richtext.links#modifylink",
-                                      "wcmio.handler.richtext.links#unlink",
+                                      "wcmio-links#modifylink",
+                                      "wcmio-links#unlink",
                                       "table#createoredit",
                                       "#paraformat",
                                       "image#imageProps"

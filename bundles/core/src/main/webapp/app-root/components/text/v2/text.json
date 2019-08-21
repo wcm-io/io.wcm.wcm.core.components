@@ -21,26 +21,25 @@
                             /* Hide AEM links plugins, the component uses the wcm.io alternative plugin */
                             "links": {
                               "sling:hideResource": true
-                            }/*,
-                            -- plugin names with "." are currently not supported in the policy editor - comment out for now --
-                            "wcmio.handler.richtext.links": {
+                            },
+                            "wcmio-links": {
                               "sling:orderBefore": "links",
                               "sling:resourceType": "granite/ui/components/coral/foundation/container",
                               "granite:class": "js-cq-IPEPlugin-group",
                               "items": {
-                                "wcmio.handler.richtext.links": {
+                                "wcmio-links": {
                                   "sling:resourceType": "cq/gui/components/authoring/dialog/inplaceediting/configuration/plugin",
                                   "jcr:title": "Show link insertion options (link, unlink)",
                                   "features": "modifylink,unlink",
-                                  "name": "wcmio.handler.richtext.links",
+                                  "name": "wcmio-links",
                                   "defaultEnabled": true
                                 }
                               },
                               "granite:data": {
                                 "plugin-root-name": "rtePlugins",
-                                "name": "wcmio.handler.richtext.links"
+                                "name": "wcmio-links"
                               }
-                            }*/
+                            }
                           }
                         }
                       }
@@ -190,7 +189,7 @@
           "links": {
             "features": "-"
           },
-          "wcmio.handler.richtext.links": {
+          "wcmio-links": {
             "features": [
               "modifylink",
               "unlink"
@@ -212,8 +211,8 @@
                 "#format",
                 "#lists",
                 "-",
-                "wcmio.handler.richtext.links#modifylink",
-                "wcmio.handler.richtext.links#unlink",
+                "wcmio-links#modifylink",
+                "wcmio-links#unlink",
                 "-",
                 "#paraformat",
                 "-",
@@ -262,8 +261,8 @@
                 "edit#paste-plaintext",
                 "edit#paste-wordhtml",
                 "-",
-                "wcmio.handler.richtext.links#modifylink",
-                "wcmio.handler.richtext.links#unlink",
+                "wcmio-links#modifylink",
+                "wcmio-links#unlink",
                 "-",
                 "findreplace#find",
                 "findreplace#replace",
