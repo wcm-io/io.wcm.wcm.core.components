@@ -47,7 +47,6 @@ import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.day.cq.wcm.api.designer.Style;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -80,7 +79,6 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-@JsonIgnoreProperties(value = { "linkObject", "mediaObject" })
 public class ImageImpl extends AbstractComponentExporterImpl implements Image, MediaMixin, LinkMixin {
 
   /**

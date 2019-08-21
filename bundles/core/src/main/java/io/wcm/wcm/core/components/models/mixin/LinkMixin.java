@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ConsumerType;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.wcm.handler.link.Link;
@@ -34,13 +34,13 @@ import io.wcm.handler.link.Link;
  * Adds wcm.io Link support to model interface.
  */
 @ConsumerType
-@JsonIgnoreProperties(value = "linkObject")
 public interface LinkMixin {
 
   /**
    * Get wcm.io Link handler object
    * @return Link
    */
+  @JsonIgnore
   @NotNull
   Link getLinkObject();
 

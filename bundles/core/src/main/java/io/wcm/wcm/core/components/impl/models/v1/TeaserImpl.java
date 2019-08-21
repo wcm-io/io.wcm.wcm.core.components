@@ -43,7 +43,6 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.Teaser;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -68,7 +67,6 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
     resourceType = TeaserImpl.RESOURCE_TYPE)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-@JsonIgnoreProperties(value = { "linkObject", "mediaObject" })
 public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser, MediaMixin, LinkMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/teaser/v1/teaser";

@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ConsumerType;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.wcm.handler.media.Media;
@@ -32,13 +32,13 @@ import io.wcm.handler.media.Media;
  * Adds wcm.io Media support to model interface.
  */
 @ConsumerType
-@JsonIgnoreProperties(value = "mediaObject")
 public interface MediaMixin {
 
   /**
    * Get wcm.io Media handler object
    * @return Media
    */
+  @JsonIgnore
   @NotNull
   Media getMediaObject();
 
@@ -66,6 +66,7 @@ public interface MediaMixin {
    * @return Media markup
    */
   @JsonProperty("wcmio:mediaMarkup")
+  @JsonIgnore
   default @Nullable String getMediaMarkup() {
     return getMediaObject().getMarkup();
   }

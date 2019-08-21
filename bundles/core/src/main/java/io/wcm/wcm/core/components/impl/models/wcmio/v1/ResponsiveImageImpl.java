@@ -47,7 +47,6 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.day.cq.wcm.api.designer.Style;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.wcm.handler.commons.dom.HtmlElement;
 import io.wcm.handler.commons.dom.Image;
@@ -73,7 +72,6 @@ import io.wcm.wcm.core.components.models.ResponsiveImage;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-@JsonIgnoreProperties(value = { "linkObject", "mediaObject" })
 public class ResponsiveImageImpl extends AbstractComponentExporterImpl implements ResponsiveImage {
 
   /**
