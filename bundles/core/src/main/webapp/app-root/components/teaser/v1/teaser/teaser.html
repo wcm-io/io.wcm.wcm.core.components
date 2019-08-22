@@ -16,5 +16,5 @@
     <sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
   </div>
 </div>
-<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
-    data-sly-call="${templates.placeholder @ isEmpty=!hasContent, classAppend='cmp-teaser'}"></sly>
+<sly data-sly-use.template="wcm-io/handler/media/components/placeholder/mediaPlaceholder.html"
+    data-sly-call="${template.placeholder @ isEmpty=!hasContent, media=teaser.mediaObject, classAppend='cmp-teaser cq-dd-image'}"></sly>
