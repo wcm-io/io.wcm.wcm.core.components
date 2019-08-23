@@ -97,17 +97,17 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.2.7-SNAPSHOT</version>
+        <version>1.3.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.6.1-SNAPSHOT</version>
+        <version>1.7.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.richtext</artifactId>
-        <version>1.3.1-SNAPSHOT</version>
+        <version>1.3.2</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -187,7 +187,6 @@
   </dependencyManagement>
 
   <build>
-
     <plugins>
 
       <!-- do not generate site for this project -->
@@ -201,6 +200,24 @@
       </plugin>
 
     </plugins>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>external.atlassian.jgitflow</groupId>
+          <artifactId>jgitflow-maven-plugin</artifactId>
+          <configuration>
+            <!-- Do not prefix release numbers with artifactId - GIT contains only one released artifact -->
+            <flowInitContext>
+              <releaseBranchPrefix>release/</releaseBranchPrefix>
+              <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+              <versionTagPrefix />
+            </flowInitContext>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
   </build>
 
 </project>
