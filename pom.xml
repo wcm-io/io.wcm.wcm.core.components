@@ -24,20 +24,20 @@
 
   <parent>
     <groupId>io.wcm</groupId>
-    <artifactId>io.wcm.wcm.parent</artifactId>
-    <version>1.1.4</version>
-    <relativePath/>
+    <artifactId>io.wcm.wcm.core.components.parent</artifactId>
+    <version>1.0.0</version>
+    <relativePath>parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm</groupId>
-  <artifactId>io.wcm.wcm.core.components</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
+  <artifactId>io.wcm.wcm.core.components.root</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <url>${site.url}/${site.url.module.prefix}/</url>
 
   <name>WCM Core Components</name>
   <description>Enhances AEM Sites Core Components with wcm.io functionality.</description>
-  <url>${site.url}/${site.url.module.prefix}/</url>
-
+  
   <scm>
     <connection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</connection>
     <developerConnection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</developerConnection>
@@ -49,130 +49,27 @@
     <site.url.module.prefix>wcm/core-components</site.url.module.prefix>
   </properties>
 
-  <dependencies>
-
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.sling.models</artifactId>
-      <version>1.4.0</version>
-      <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.sling.commons</artifactId>
-      <version>1.2.2</version>
-      <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.testing.aem-mock.junit5</artifactId>
-      <version>2.4.6</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.testing.logging-mock</artifactId>
-      <version>2.0.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.testing.wcm-io-mock.sling</artifactId>
-      <version>1.0.4</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <scope>compile</scope>
-    </dependency>
-
-    <!-- For build compatibility with Java 11 -->
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-annotation_1.3_spec</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-  </dependencies>
-
+  <modules>
+    <module>parent</module>
+    <module>bundles/core</module>
+    <module>bundles/examples-core</module>
+    <module>content-packages/examples-sample-content</module>
+    <module>content-packages/examples</module>
+  </modules>
+  
   <build>
-
     <plugins>
-
+    
+      <!-- do not deploy this hierarchy pom into maven repository -->
       <plugin>
-        <groupId>io.wcm.devops.maven.plugins</groupId>
-        <artifactId>eclipse-maven-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
         <configuration>
-          <addVersionToProjectName>false</addVersionToProjectName>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
-            <Sling-Initial-Content>
-              SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/wcm/core
-            </Sling-Initial-Content>
-            <Sling-Model-Packages>
-              io.wcm.wcm.core
-            </Sling-Model-Packages>
-
-            <!-- For build compatibility with Java 11 -->
-            <Import-Package>
-              javax.annotation;version="[0.0,2)",
-              *
-            </Import-Package>
-
-          </instructions>
+          <skip>true</skip>
         </configuration>
       </plugin>
 
     </plugins>
-    <pluginManagement>
-      <plugins>
-
-        <!-- Disable checkstyle for this project due to https://github.com/checkstyle/checkstyle/issues/4589, https://github.com/checkstyle/checkstyle/issues/3236 -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <configuration>
-            <skip>true</skip>
-          </configuration>
-        </plugin>
-
-      </plugins>
-    </pluginManagement>
   </build>
 
   <distributionManagement>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:tags="[core-components-examples:component-type/social]"
+        cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
+        jcr:description="Display a section divider"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Separator"
+        sling:resourceType="core-components-examples/components/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <text_1740702241
+                    cq:styleIds="[1644862132301]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
+                    text="&lt;h1&gt;Separator&lt;sub&gt;v1&lt;/sub&gt;&lt;/h1&gt;&#xA;"
+                    textIsRich="true"/>
+                <text
+                    cq:styleIds="[1544762734201]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
+                    text="&lt;p&gt;Separator displays a horizontal line on the page for dividing sections of content.&lt;/p&gt;&#xA;"
+                    textIsRich="true"/>
+                <teaser_github_wcmio
+                    cq:styleIds="[1550165685463]"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="wcm.io Documentation"
+                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
+                    fileReference="/content/dam/core-components-examples/library/github-logo.svg"
+                    linkExternalRef="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/separator/v1"
+                    linkType="external"
+                    linkWindowTarget="_blank"/>
+                <teaser_github_adobe
+                    cq:styleIds="[1550165685463]"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Adobe Documentation"
+                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
+                    fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
+                    linkExternalRef="https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/separator/v1/separator"
+                    linkType="external"
+                    linkWindowTarget="_blank"
+                    textIsRich="true"/>
+                <title_865328580
+                    cq:styleIds="[1544759664489]"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Examples"
+                    sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
+                    type="h2"/>
+                <title_290384408
+                    cq:styleIds="[1544759676459]"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Standard"
+                    sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
+                    type="h3"/>
+                <text_1337506761
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
+                    text="&lt;p&gt;Separator is simply a horizontal rule rendered on the page and can be used for dividing sections of content.&lt;/p&gt;&#xA;"
+                    textIsRich="true"/>
+                <demo
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="core-components-examples/components/demo"
+                    fullWidth="{Boolean}true">
+                    <component
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="core-components-examples/components/demo/component">
+                        <separator
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm-io/wcm/core/components/separator/v1/separator"/>
+                    </component>
+                    <info
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm-io/wcm/core/components/tabs/v1/tabs">
+                        <properties
+                            cq:panelTitle="Properties"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="core-components-examples/components/demo/properties"
+                            reference="../../component"/>
+                        <markup
+                            cq:panelTitle="Markup"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="core-components-examples/components/demo/markup"
+                            reference="../../component"/>
+                        <json
+                            cq:panelTitle="JSON"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="core-components-examples/components/demo/json"
+                            reference="../../component"/>
+                    </info>
+                </demo>
+            </responsivegrid>
+        </root>
+        <image jcr:primaryType="nt:unstructured">
+            <file/>
+        </image>
+    </jcr:content>
+</jcr:root>

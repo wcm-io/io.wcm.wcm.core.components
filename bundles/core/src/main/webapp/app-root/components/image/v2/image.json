@@ -1,0 +1,195 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Image (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/image/v2/image",
+
+  /* Fallback mode for Link Handler to support existing content that used a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": "linkURL",
+
+  "cq:editConfig": {
+    "jcr:primaryType": "cq:EditConfig",
+    "cq:inherit": true,
+    /* 
+     * Overwrite inplace edit config to:
+     * - Disable cropping on inline toolbar as it does not support predefined ratios
+     * - Remove default ratios as they are fetched from assigned media formats
+     * - Remove image/webp support
+     */
+    "cq:inplaceEditing": {
+      "jcr:primaryType": "cq:InplaceEditingConfig",
+      "editorType": "image",
+      "active": true,
+      "config": {
+        "jcr:primaryType": "nt:unstructured",
+        "plugins": {
+          "crop": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "flip": {
+            "features": "-",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "map": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff", "image/svg+xml"]
+          },
+          "rotate": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "zoom": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff", "image/svg+xml"]
+          }
+        },
+        "ui": {
+          "inline": {
+            "toolbar": ["rotate#right", "history#undo", "history#redo", "fullscreen#fullscreen", "control#close", "control#finish"],
+            "replacementToolbars": {
+              "crop": ["crop#identifier", "crop#unlaunch", "crop#confirm"]
+            }
+          },
+          "fullscreen": {
+            "toolbar": {
+              "left": ["crop#launchwithratio", "rotate#right", "map#launch", "flip#horizontal", "flip#vertical", "zoom#reset100", "zoom#popupslider"],
+              "right": ["history#undo", "history#redo", "fullscreen#fullscreenexit"]
+            },
+            "replacementToolbars": {
+              "crop": {
+                "left": ["crop#identifier"],
+                "right": ["crop#unlaunch", "crop#confirm"]
+              },
+              "map": {
+                "left": ["map#rectangle", "map#circle", "map#polygon"],
+                "right": ["map#unlaunch", "map#confirm"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "extraClientlibs": ["io.wcm.wcm.core.components.image.v2.editor"],
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+
+            "asset": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Use wcm.io Media Handler FileUpload */
+                        "file": {
+                          "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+                          "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            "metadata": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+                        "linkURL": {
+                          /* hide link pagefield and replace it with wcm.io Link dialog */
+                          "sling:hideResource": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            /* wcm.io Link Handler Tab */
+            "link": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab"
+            }
+
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+
+            "properties": {
+              "items": {
+                "content": {
+                  "items": {
+
+                    /* Media format definition */
+                    "mediaFormatSelection": {
+                      "sling:resourceType": "granite/ui/components/coral/foundation/include",
+                      "path": "wcm-io/handler/media/components/global/include/mediaFormatSelection",
+                      "sling:orderBefore": "enableLazyLoading"
+                    },
+
+                    "jpegQuality": {
+                      /* JPEG quality is configured via media handler configuration */
+                      "sling:hideResource": true
+                    }
+                  }
+                }
+              }
+            },
+
+            "features": {
+              "items": {
+                "content": {
+                  "items": {
+                    "accordion": {
+                      "items": {
+                        "orientation": {
+                          "items": {
+                            "flip": {
+                              /* Flip not supported by wcm.io Media Handler (nor by the AEM image editor atm) */
+                              "sling:hideResource": true
+                            }
+                          }
+                        },
+                        "crop": {
+                          "items": {
+                            "configWrapper": {
+                              /* Hide definition of aspect ratios, they are fetched from assigned media formats */
+                              "sling:hideResource": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

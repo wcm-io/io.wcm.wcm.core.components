@@ -1,0 +1,14 @@
+<!--/*
+  changes from /apps/core/wcm/components/list/v2/list/item.html
+  - use linkValid and linkAttributes properties to build anchor tag  
+*/-->
+<template data-sly-template.item="${@ list, item}">
+  <article>
+    <a class="cmp-list__item-link" data-sly-unwrap="${!list.linkItems || !item.linkValid}" data-sly-attribute="${item.linkAttributes}">
+      <span class="cmp-list__item-title">${item.title}</span>
+      <span data-sly-test="${list.showModificationDate}"
+          class="cmp-list__item-date">${list.dateFormatString @format=item.lastModified}</span>
+    </a>
+    <span data-sly-test="${list.showDescription}" class="cmp-list__item-description">${item.description}</span>
+  </article>
+</template>

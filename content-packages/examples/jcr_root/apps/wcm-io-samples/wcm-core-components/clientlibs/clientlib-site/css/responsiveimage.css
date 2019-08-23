@@ -1,0 +1,10 @@
+.cmp-wcmio-responsiveimage img, .cmp-wcmio-responsiveimage picture {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.cmp-wcmio-responsiveimage .cmp-wcmio-responsiveimage__title {
+  display: block;
+  margin: .75rem 0;
+}

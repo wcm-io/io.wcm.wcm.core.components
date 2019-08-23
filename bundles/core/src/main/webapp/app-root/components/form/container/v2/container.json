@@ -1,0 +1,7 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Form Container (v2)",
+  "componentGroup": ".wcmio-core-wcm-form",
+  "sling:resourceSuperType": "core/wcm/components/form/container/v2/container",
+  "cq:isContainer": true
+}

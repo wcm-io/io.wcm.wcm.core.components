@@ -1,0 +1,45 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Button (v1)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/button/v1/button",
+
+  /* Fallback mode for Link Handler to support existing content that used a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": "link",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+                        "link": {
+                          /* hide link pagefield and replace it with wcm.io Link dialog */
+                          "sling:hideResource": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            /* wcm.io Link Handler Tab */
+            "link": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab"
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

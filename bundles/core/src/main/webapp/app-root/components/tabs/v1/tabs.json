@@ -1,0 +1,7 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Tabs (v1)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/tabs/v1/tabs",
+  "cq:isContainer": true
+}

@@ -1,0 +1,69 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Breadcrumb (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/breadcrumb/v2/breadcrumb",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Disable start level parameter; it's detected automatically */
+                        "startLevel": {
+                          "name": "./startLevel",
+                          "value": "",
+                          "fieldLabel": "Navigation Start Level",
+                          "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
+                          "fieldDescription": "Navigation start level is detected automatically from wcm.io URL Handler site root level.",
+                          "disabled": true
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+
+                /* Disable start level parameter; it's detected automatically */
+                "startLevel": {
+                  "name": "./startLevel",
+                  "value": "",
+                  "fieldLabel": "Navigation Start Level",
+                  "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
+                  "fieldDescription": "Navigation start level is detected automatically from wcm.io URL Handler site root level.",
+                  "disabled": true
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}
