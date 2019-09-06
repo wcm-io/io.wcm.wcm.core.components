@@ -186,7 +186,8 @@
       "jcr:primaryType": "cq:InplaceEditingConfig",
       "editorType": "text",
       "active": true,
-      "config": {
+      "configPath": "inplaceEditingConfig",
+      "inplaceEditingConfig": {
         "jcr:primaryType": "nt:unstructured",
 
         "htmlRules": {

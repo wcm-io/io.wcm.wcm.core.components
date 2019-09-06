@@ -71,9 +71,11 @@ class NavigationImplTest {
   @Test
   void testDefault() {
     context.currentResource(context.create().resource(root, "navigation",
-        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        "accessibilityLabel", "my-label"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
+    assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
     assertNavigationItems(underTest.getItems(), page1, page3);

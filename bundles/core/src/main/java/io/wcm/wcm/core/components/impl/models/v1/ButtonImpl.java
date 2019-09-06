@@ -92,4 +92,9 @@ public class ButtonImpl extends AbstractComponentExporterImpl implements Button,
     return this.delegate.getIcon();
   }
 
+  @Override
+  public String getAccessibilityLabel() {
+    return this.delegate.getAccessibilityLabel();
+  }
+
 }
