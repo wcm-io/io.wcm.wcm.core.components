@@ -24,7 +24,8 @@
                           "fieldLabel": "Navigation Root",
                           "sling:resourceType": "granite/ui/components/coral/foundation/form/pathfield",
                           "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
-                          "disabled": true
+                          "disabled": true,
+                          "required": false
                         }
 
                       }
@@ -55,7 +56,8 @@
                   "fieldLabel": "Navigation Root",
                   "sling:resourceType": "granite/ui/components/coral/foundation/form/pathfield",
                   "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
-                  "disabled": true
+                  "disabled": true,
+                  "required": false
                 }
 
               }
