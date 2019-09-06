@@ -4,4 +4,7 @@
     <templates/>
     <policies/>
     <template-types/>
+    <jcr:content
+        jcr:language="en"
+        jcr:primaryType="cq:PageContent"/>
 </jcr:root>
