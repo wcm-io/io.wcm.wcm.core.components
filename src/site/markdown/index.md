@@ -33,7 +33,8 @@ A detailed documentation for each component can be found in the [Component Overv
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
 |-----------------------------------|----------------------------------|-------------------------------------------
-|1.0.x                              | 2.5.0                            | AEM 6.3 SP3, AEM 6.4 SP2, AEM 6.5 and up
+|1.1.x                              | 2.6.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
+|1.0                                | 2.5.0                            | AEM 6.3 SP3, AEM 6.4 SP2, AEM 6.5 and up
 
 
 ### Dependencies
@@ -53,6 +54,11 @@ To use this module you have to deploy also:
 | [wcm.io RichText Handler](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.handler.richtext) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.handler.richtext/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.handler.richtext) |
 
 
+### Further Resources
+
+* [adaptTo() 2019 Talk: Assets and Links in AEM Projects][adaptto-talk-2019-assets-links-in-aem-projects]
+
+
 [apidocs]: core/apidocs/
 [changelog]: changes-report.html
 [adobe-core-components]: https://github.com/adobe/aem-core-wcm-components
@@ -64,3 +70,4 @@ To use this module you have to deploy also:
 [usage]: usage.html
 [component-library]: component-library.html
 [components]: components.html
+[adaptto-talk-2019-assets-links-in-aem-projects]: https://adapt.to/2019/en/schedule/assets-and-links-in-aem-projects.html

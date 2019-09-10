@@ -67,6 +67,7 @@ class ButtonImplTest {
 
     assertNull(underTest.getText());
     assertNull(underTest.getIcon());
+    assertNull(underTest.getAccessibilityLabel());
     assertNull(underTest.getLink());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
@@ -79,6 +80,7 @@ class ButtonImplTest {
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         JCR_TITLE, "My Button",
         "icon", "my-icon",
+        "accessibilityLabel", "my-label",
         PN_LINK_TYPE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://host",
         PN_LINK_WINDOW_TARGET, "_blank"));
@@ -86,6 +88,7 @@ class ButtonImplTest {
 
     assertEquals("My Button", underTest.getText());
     assertEquals("my-icon", underTest.getIcon());
+    assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals("http://host", underTest.getLink());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 

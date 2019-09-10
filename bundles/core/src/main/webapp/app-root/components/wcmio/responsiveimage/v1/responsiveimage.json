@@ -30,7 +30,8 @@
       "jcr:primaryType": "cq:InplaceEditingConfig",
       "editorType": "image",
       "active": true,
-      "config": {
+      "configPath": "inplaceEditingConfig",
+      "inplaceEditingConfig": {
         "jcr:primaryType": "nt:unstructured",
         "plugins": {
           "crop": {

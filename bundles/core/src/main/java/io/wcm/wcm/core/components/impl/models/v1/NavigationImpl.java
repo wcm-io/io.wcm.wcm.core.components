@@ -31,7 +31,9 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.ComponentExporter;
@@ -78,6 +80,9 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
   private LinkHandler linkHandler;
   private List<NavigationItem> items;
 
+  @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+  private String accessibilityLabel;
+
   private int structureDepth;
   private boolean skipNavigationRoot;
 
@@ -98,6 +103,11 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
       items = createItems();
     }
     return items;
+  }
+
+  @Override
+  public String getAccessibilityLabel() {
+    return accessibilityLabel;
   }
 
   private List<NavigationItem> createItems() {

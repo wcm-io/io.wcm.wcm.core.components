@@ -3,6 +3,7 @@
   - use linkValid and linkAttributes properties from navItem to build anchor tag  
 */-->
 <nav class="cmp-breadcrumb"
+    aria-label="${'Breadcrumb' @ i18n}"
     data-sly-use.breadcrumb="com.adobe.cq.wcm.core.components.models.Breadcrumb"    
     data-sly-test="${breadcrumb.items.size > 0}">
   <ol class="cmp-breadcrumb__list"
