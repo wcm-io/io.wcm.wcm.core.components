@@ -244,6 +244,7 @@
                 io.wcm,
                 io.wcm.samples
               </groupId>
+              <type>jar</type>
             </embedded>
             <!-- Sling Context-Aware Configuration (for AEM 6.3) -->
             <embedded>
@@ -252,6 +253,7 @@
                 org.apache.sling.caconfig.spi,
                 org.apache.sling.caconfig.impl
               </artifactId>
+              <type>jar</type>
             </embedded>
           </embeddeds>
           
