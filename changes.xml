@@ -27,6 +27,9 @@
       <action type="update" dev="sseifert">
         Text v2 component: Apply wcm.io RichText Handler RTE link plugin also to edit dialog.
       </action>
+      <action type="update" dev="sseifert">
+        wcm.io Responsive Image component: Define component icon.
+      </action>
     </release>
 
     <release version="1.0.0" date="2019-08-23">

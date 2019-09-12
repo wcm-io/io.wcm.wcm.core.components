@@ -2,6 +2,7 @@
   "jcr:primaryType": "cq:Component",
   "jcr:title": "wcm.io Responsive Image (v1)",
   "componentGroup": ".wcmio-core-wcm",
+  "cq:icon": "image",
 
   "cq:editConfig": {
     "jcr:primaryType": "cq:EditConfig",
