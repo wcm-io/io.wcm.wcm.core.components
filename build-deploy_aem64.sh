@@ -26,8 +26,12 @@ fi
 
 # install AEM 6.4 SP2
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=:adobe.binary.aem.64.servicepack:AEM-6.4.2.0:zip:6.4.2 \
+    -Dvault.artifact=adobe.binary.aem.64.servicepack:AEM-6.4.4.0:zip:6.4.4 \
     -Dvault.delayAfterInstallSec=60 \
     -Dsling.url=${SLING_URL}
+
+if [ "$?" -ne "0" ]; then
+  exit
+fi
 
 ./build-deploy.sh --sling.url=${SLING_URL} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
