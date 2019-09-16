@@ -14,6 +14,12 @@
                 cq:styleIds="[1544293237403]"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid">
+                <text_1740702241
+                    cq:styleIds="[1644862132301]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io-samples/wcm-core-components/components/versionText"
+                    text="&lt;h1&gt;Component Library &lt;a href=&quot;https://wcm.io/wcm/core-components/&quot; target=&quot;_blank&quot;&gt;${project.version}&lt;/a&gt;&lt;/h1&gt;&#xA;"
+                    textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
