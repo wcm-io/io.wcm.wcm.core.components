@@ -17,9 +17,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 * [Text](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/text/v2) <span class="marker-label">RICHTEXT</span> <span class="marker-label">LINK</span>
 * [Title](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v2) <span class="marker-label">LINK</span>
 * [Image](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/image/v2) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
-* [Download](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/download/v1) <span class="marker-label">MEDIA</span>
 * [Teaser](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/teaser/v1) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span> <span class="marker-label">RICHTEXT</span>
-* [Button](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/button/v1) <span class="marker-label">LINK</span>
 * [List](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/list/v2) <span class="marker-label">LINK</span>
 * [Content Fragment](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/contentfragment/v1)
 * [Content Fragment List](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/contentfragmentlist/v1)
@@ -27,9 +25,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 
 **Container components**
 
-* [Container](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/container/v1) <span class="marker-label">MEDIA</span>
 * [Carousel](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/carousel/v1)
-* [Accordion](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/accordion/v1)
 * [Tabs](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/tabs/v1)
 
 **Form components**
