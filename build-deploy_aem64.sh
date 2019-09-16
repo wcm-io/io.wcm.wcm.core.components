@@ -30,4 +30,8 @@ mvn --non-recursive wcmio-content-package:install \
     -Dvault.delayAfterInstallSec=60 \
     -Dsling.url=${SLING_URL}
 
+if [ "$?" -ne "0" ]; then
+  exit
+fi
+
 ./build-deploy.sh --sling.url=${SLING_URL} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
