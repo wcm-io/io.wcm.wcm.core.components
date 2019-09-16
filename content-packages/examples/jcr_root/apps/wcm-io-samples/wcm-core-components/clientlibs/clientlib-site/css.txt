@@ -3,3 +3,4 @@
 placeholder.css
 responsiveimage.css
 teaser.css
+text.css
