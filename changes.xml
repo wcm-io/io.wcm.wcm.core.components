@@ -41,7 +41,7 @@
     <release version="1.0.0" date="2019-08-23">
       <action type="add">See <![CDATA[<a href="https://wcm-io.atlassian.net/wiki/x/AYCJS">New: wcm.io WCM Core Components 1.0.0</a>]]> for an introduction.</action>
       <action type="add" dev="sseifert">
-        Initial release.
+        Initial release (based on AEM Sites Core Components 2.5.0).
       </action>
     </release>
 
