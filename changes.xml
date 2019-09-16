@@ -23,7 +23,10 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="1.0.2-2.5.0" date="not released">
+    <release version="1.0.2-2.4.0" date="not released">
+      <action type="update" dev="sseifert">
+        Backport to AEM Sites Core Components 2.4.0.
+      </action>
       <action type="update" dev="sseifert">
         Text v2 component: Apply wcm.io RichText Handler RTE link plugin also to edit dialog.
       </action>
@@ -35,7 +38,7 @@
     <release version="1.0.0" date="2019-08-23">
       <action type="add">See <![CDATA[<a href="https://wcm-io.atlassian.net/wiki/x/AYCJS">New: wcm.io WCM Core Components 1.0.0</a>]]> for an introduction.</action>
       <action type="add" dev="sseifert">
-        Initial release.
+        Initial release (based on AEM Sites Core Components 2.5.0).
       </action>
     </release>
 
