@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.0.1-2.4.0-SNAPSHOT</version>
+  <version>1.0.2-2.4.0</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
@@ -237,4 +237,8 @@
     </pluginManagement>
   </build>
 
+
+  <scm>
+    <tag>1.0.2-2.4.0</tag>
+  </scm>
 </project>
