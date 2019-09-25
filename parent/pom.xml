@@ -216,11 +216,15 @@
           </configuration>
         </plugin>
         
-        <!-- Fix for ClassNotFound-problem with release plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <!-- Do not prefix release numbers with artifactId - GIT contains only one released artifact -->
+            <tagNameFormat>@{project.version}</tagNameFormat>
+          </configuration>
           <dependencies>
+            <!-- Fix for ClassNotFound-problem with release plugin -->
             <dependency>
               <groupId>org.apache.maven.scm</groupId>
               <artifactId>maven-scm-api</artifactId>
