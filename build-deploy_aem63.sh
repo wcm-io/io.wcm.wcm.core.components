@@ -26,8 +26,23 @@ fi
 
 # install AEM 6.3 SP3
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=:adobe.binary.aem.63.servicepack:AEM-6.3.3.0:zip:6.3.3 \
+    -Dvault.artifact=adobe.binary.aem.63.servicepack:AEM-6.3.3.0:zip:6.3.3 \
     -Dvault.delayAfterInstallSec=60 \
     -Dsling.url=${SLING_URL}
+
+if [ "$?" -ne "0" ]; then
+  exit
+fi
+
+# install AEM 6.3 SP3 CFP4
+mvn --non-recursive wcmio-content-package:install \
+    -Dvault.artifact=adobe.binary.aem.63.cumulativefixpack:AEM-CFP-6.3.3.4:zip:4.0 \
+    -Dvault.delayAfterInstallSec=60 \
+    -Dsling.url=${SLING_URL}
+
+if [ "$?" -ne "0" ]; then
+  exit
+fi
+
 
 ./build-deploy.sh --sling.url=${SLING_URL} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
