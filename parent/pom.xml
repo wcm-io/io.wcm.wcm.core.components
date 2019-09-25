@@ -215,6 +215,19 @@
             </flowInitContext>
           </configuration>
         </plugin>
+        
+        <!-- Fix for ClassNotFound-problem with release plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.scm</groupId>
+              <artifactId>maven-scm-api</artifactId>
+              <version>1.11.2</version>
+            </dependency>
+          </dependencies>
+        </plugin>
 
       </plugins>
     </pluginManagement>
