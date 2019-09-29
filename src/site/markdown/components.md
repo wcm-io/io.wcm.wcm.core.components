@@ -18,6 +18,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 * [Title](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v2) <span class="marker-label">LINK</span>
 * [Image](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/image/v2) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
 * [Download](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/download/v1) <span class="marker-label">MEDIA</span>
+* [Embed](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/embed/v1)
 * [Experience Fragment](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/experiencefragment/v1)
 * [Teaser](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/teaser/v1) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span> <span class="marker-label">RICHTEXT</span>
 * [Button](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/button/v1) <span class="marker-label">LINK</span>

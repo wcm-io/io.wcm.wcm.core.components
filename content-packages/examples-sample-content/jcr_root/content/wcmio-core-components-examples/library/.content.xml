@@ -222,6 +222,28 @@
                             width="12"/>
                     </cq:responsive>
                 </teaser_1138854624>
+                <teaser_1138854628
+                    cq:styleIds="[1547060090076]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io/wcm/core/components/teaser/v1/teaser"
+                    actionsEnabled="false"
+                    descriptionFromPage="true"
+                    fileReference="/content/dam/core-components-examples/library/components/embed.svg"
+                    linkURL="/content/wcmio-core-components-examples/library/embed"
+                    textIsRich="true"
+                    titleFromPage="true">
+                    <cq:responsive jcr:primaryType="nt:unstructured">
+                        <default
+                            jcr:primaryType="nt:unstructured"
+                            width="4"/>
+                        <small
+                            jcr:primaryType="nt:unstructured"
+                            width="6"/>
+                        <extrasmall
+                            jcr:primaryType="nt:unstructured"
+                            width="12"/>
+                    </cq:responsive>
+                </teaser_1138854628>
                 <teaser_1565704130
                     cq:styleIds="[1547060090076]"
                     jcr:primaryType="nt:unstructured"
@@ -469,6 +491,7 @@
     <content-fragment/>
     <content-fragment-list/>
     <download/>
+    <embed/>
     <experience-fragment/>
     <image/>
     <responsiveimage/>
