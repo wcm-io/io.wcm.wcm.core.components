@@ -33,8 +33,10 @@ A detailed documentation for each component can be found in the [Component Overv
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
 |-----------------------------------|----------------------------------|-------------------------------------------
-|1.1.x                              | 2.6.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
-|1.0                                | 2.5.0                            | AEM 6.3 SP3, AEM 6.4 SP2, AEM 6.5 and up
+| 1.2.x-2.7.0                       | 2.7.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
+| 1.1.x-2.6.0                       | 2.6.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
+| 1.0.x-2.5.0                       | 2.5.0                            | AEM 6.3 SP3, AEM 6.4 SP2, AEM 6.5 and up
+| 1.0.x-2.4.0                       | 2.4.0                            | AEM 6.3 SP3, AEM 6.4 SP2, AEM 6.5 and up
 
 
 ### Dependencies

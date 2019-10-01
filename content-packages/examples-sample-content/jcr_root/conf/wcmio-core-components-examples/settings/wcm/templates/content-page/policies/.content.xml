@@ -75,6 +75,14 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     </v1>
                                 </container>
+                                <embed jcr:primaryType="nt:unstructured">
+                                    <v1 jcr:primaryType="nt:unstructured">
+                                        <embed
+                                            cq:policy="wcm-io/wcm/core/components/embed/v1/embed/policy_1569759811450"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    </v1>
+                                </embed>
                             </components>
                         </core>
                     </wcm>
