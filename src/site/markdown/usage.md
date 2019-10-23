@@ -17,6 +17,8 @@ Example:
 
 It is recommended to always reference the wcm.io Core Component Variant resource type even for those components, that are currently not enhanced by wcm.io but 100% inherited. It is possible that in future releases wcm.io feature enhancements will be required.
 
+If you want to customize the components further, follow the [Customizing Core Components][customizing-core-components] guidelines.
+
 
 ### Component Library
 
@@ -45,3 +47,4 @@ Components that store link target information (e.g. Button, Title, Teaser, Image
 [link-handler-link-properties]: https://wcm.io/handler/link/usage.html#Link_properties_in_resource
 [maven-archetype-aem]: https://wcm.io/tooling/maven/archetypes/aem/
 [handler-configuration]: https://wcm.io/handler/configuration.html
+[customizing-core-components]: https://docs.adobe.com/content/help/en/experience-manager-core-components/using/developing/customizing.html
