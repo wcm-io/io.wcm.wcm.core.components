@@ -32,7 +32,9 @@ import io.wcm.handler.link.Link;
 /**
  * {@link NavigationItem} wrapper for breadcrumb.
  */
-@JsonIgnoreProperties(value = { "page", "children", "level", "description", "lastModified", "path" })
+@JsonIgnoreProperties({
+    "page", "children", "level", "description", "lastModified", "path"
+})
 public class BreadcrumbItemImpl extends NavigationItemImpl implements NavigationItem {
 
   /**

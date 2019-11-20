@@ -39,6 +39,7 @@ import io.wcm.wcm.core.components.impl.models.v2.ImageImpl;
  * to media handler-URLs internally.
  * <p>
  * Expected selectors:
+ * </p>
  * <ol>
  * <li>imgwidth</li>
  * <li>{width}</li>
