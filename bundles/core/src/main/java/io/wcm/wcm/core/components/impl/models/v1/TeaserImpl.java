@@ -24,6 +24,7 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static io.wcm.handler.media.MediaNameConstants.PROP_CSS_CLASS;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -189,7 +190,7 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
 
   @Override
   public List<ListItem> getActions() {
-    return actions;
+    return Collections.unmodifiableList(actions);
   }
 
   @Override
