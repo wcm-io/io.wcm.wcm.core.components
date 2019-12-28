@@ -22,6 +22,7 @@ package io.wcm.wcm.core.components.impl.models.v1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -84,17 +85,30 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
   private String accessibilityLabel;
 
   private int structureDepth;
-  private boolean skipNavigationRoot;
+  private int structureStart;
 
   @PostConstruct
   private void activate() {
     ValueMap properties = resource.getValueMap();
-    structureDepth = properties.get(PN_STRUCTURE_DEPTH, currentStyle.get(PN_STRUCTURE_DEPTH, -1));
+    structureDepth = properties.get(PN_STRUCTURE_DEPTH, currentStyle.get(PN_STRUCTURE_DEPTH, NO_STRUCTURE_DEPTH));
     boolean collectAllPages = properties.get(PN_COLLECT_ALL_PAGES, currentStyle.get(PN_COLLECT_ALL_PAGES, true));
     if (collectAllPages) {
       structureDepth = NO_STRUCTURE_DEPTH;
     }
-    skipNavigationRoot = properties.get(PN_SKIP_NAVIGATION_ROOT, currentStyle.get(PN_SKIP_NAVIGATION_ROOT, true));
+
+    if (currentStyle.containsKey(PN_STRUCTURE_START) || properties.containsKey(PN_STRUCTURE_START)) {
+      structureStart = properties.get(PN_STRUCTURE_START, currentStyle.get(PN_STRUCTURE_START, 1));
+    }
+    else {
+      @SuppressWarnings("deprecation")
+      boolean skipNavigationRoot = properties.get(PN_SKIP_NAVIGATION_ROOT, currentStyle.get(PN_SKIP_NAVIGATION_ROOT, true));
+      if (skipNavigationRoot) {
+        structureStart = 1;
+      }
+      else {
+        structureStart = 0;
+      }
+    }
   }
 
   @Override
@@ -115,19 +129,59 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
     Page rootPage = siteRoot.getRootPage();
     if (rootPage != null) {
       NavigationRoot navigationRoot = new NavigationRoot(rootPage, structureDepth);
-      result = getItems(navigationRoot, navigationRoot.page);
-      if (!skipNavigationRoot) {
-        Link link = linkHandler.get(navigationRoot.page).build();
-        boolean isSelected = checkSelected(navigationRoot.page, link);
-        NavigationItemImpl root = new NavigationItemImpl(navigationRoot.page, link, isSelected, 0, result);
-        result = new ArrayList<>();
-        result.add(root);
-      }
+      result = getNavigationTree(navigationRoot);
     }
     else {
       result = Collections.emptyList();
     }
-    return result;
+    return Collections.unmodifiableList(result);
+  }
+
+  /**
+   * Build navigation tree respecting the configured structure start level.
+   * @param navigationRoot Navigation root
+   * @return Navigation item
+   */
+  private List<NavigationItem> getNavigationTree(NavigationRoot navigationRoot) {
+    List<NavigationItem> itemTree = new ArrayList<>();
+    List<NavigationRoot> rootItems = getRootItems(navigationRoot);
+    for (NavigationRoot rootItem : rootItems) {
+      itemTree.addAll(getItems(rootItem, rootItem.page));
+    }
+    if (structureStart == 0) {
+      Link link = linkHandler.get(navigationRoot.page).build();
+      boolean isSelected = checkSelected(navigationRoot.page, link);
+      NavigationItemImpl root = new NavigationItemImpl(navigationRoot.page, link, isSelected, 0, itemTree);
+      itemTree = new ArrayList<>();
+      itemTree.add(root);
+    }
+    return itemTree;
+  }
+
+  /**
+   * Get navigation root items for the configured structure start.
+   * @param navigationRoot Navigation root.
+   * @return Navigation root items
+   */
+  private List<NavigationRoot> getRootItems(NavigationRoot navigationRoot) {
+    LinkedList<NavigationRoot> rootItems = new LinkedList<>();
+    rootItems.addLast(navigationRoot);
+    if (structureStart > 0) {
+      int level = 1;
+      while (level != structureStart && !rootItems.isEmpty()) {
+        int size = rootItems.size();
+        while (size > 0) {
+          NavigationRoot item = rootItems.removeFirst();
+          Iterator<Page> it = item.page.listChildren(new PageFilter());
+          while (it.hasNext()) {
+            rootItems.addLast(new NavigationRoot(it.next(), structureDepth));
+          }
+          size = size - 1;
+        }
+        level = level + 1;
+      }
+    }
+    return rootItems;
   }
 
   /**
@@ -147,7 +201,7 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
         List<NavigationItem> children = getItems(navigationRoot, page);
         Link link = linkHandler.get(page).build();
         boolean isSelected = checkSelected(page, link);
-        if (skipNavigationRoot) {
+        if (structureStart == 0) {
           level = level - 1;
         }
         pages.add(new NavigationItemImpl(page, link, isSelected, level, children));
