@@ -74,7 +74,7 @@
                         <contentfragmentlist
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm-io/wcm/core/components/contentfragmentlist/v1/contentfragmentlist"
-                            modelPath="/conf/wcmio-core-components-examples/settings/dam/cfm/models/office"
+                            modelPath="/conf/core-components-examples/settings/dam/cfm/models/office"
                             parentPath="/content/dam/core-components-examples/library/sample-assets"/>
                     </component>
                     <info
@@ -117,7 +117,7 @@
                         <contentfragmentlist
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm-io/wcm/core/components/contentfragmentlist/v1/contentfragmentlist"
-                            modelPath="/conf/wcmio-core-components-examples/settings/dam/cfm/models/office"
+                            modelPath="/conf/core-components-examples/settings/dam/cfm/models/office"
                             parentPath="/content/dam/core-components-examples/library/sample-assets"
                             tagNames="[core-components-examples:region/north-america]"/>
                     </component>
@@ -162,7 +162,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm-io/wcm/core/components/contentfragmentlist/v1/contentfragmentlist"
                             elementNames="[title,city]"
-                            modelPath="/conf/wcmio-core-components-examples/settings/dam/cfm/models/office"
+                            modelPath="/conf/core-components-examples/settings/dam/cfm/models/office"
                             parentPath="/content/dam/core-components-examples/library/sample-assets"/>
                     </component>
                     <info
