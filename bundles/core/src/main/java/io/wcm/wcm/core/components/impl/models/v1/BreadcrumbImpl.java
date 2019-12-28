@@ -89,7 +89,7 @@ public class BreadcrumbImpl extends AbstractComponentExporterImpl implements Bre
     if (items == null) {
       items = createItems();
     }
-    return items;
+    return Collections.unmodifiableList(items);
   }
 
   private List<NavigationItem> createItems() {

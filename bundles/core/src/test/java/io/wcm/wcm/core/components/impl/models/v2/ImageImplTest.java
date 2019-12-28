@@ -107,6 +107,7 @@ class ImageImplTest {
     assertNull(underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
+    assertFalse(underTest.isDecorative());
 
     assertInvalidMedia(underTest);
     assertInvalidLink(underTest);
@@ -213,6 +214,7 @@ class ImageImplTest {
     assertEquals("Asset Title", underTest.getTitle());
     assertNull(underTest.getAlt());
     assertNull(underTest.getLink());
+    assertTrue(underTest.isDecorative());
 
     assertInvalidLink(underTest);
   }

@@ -266,6 +266,11 @@ public class ImageImpl extends AbstractComponentExporterImpl implements Image, M
   }
 
   @Override
+  public boolean isDecorative() {
+    return isDecorative;
+  }
+
+  @Override
   public String getJson() {
     // not required for image v2
     return null;
