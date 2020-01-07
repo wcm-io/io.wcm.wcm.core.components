@@ -298,7 +298,7 @@ public class ImageImpl extends AbstractComponentExporterImpl implements Image, M
    * @return Picked width
    */
   private long getNoScriptWidth() {
-    if (widths.size() == 0) {
+    if (widths.isEmpty()) {
       return 0;
     }
     return widths.get((int)Math.round(widths.size() / 2d - 0.5d));

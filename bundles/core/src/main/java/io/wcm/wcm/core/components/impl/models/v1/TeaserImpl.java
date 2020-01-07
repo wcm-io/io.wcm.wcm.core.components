@@ -83,27 +83,23 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
 
   private Media media;
   private Link link;
-  private List<ListItem> actions = new ArrayList<>();
+  private final List<ListItem> actions = new ArrayList<>();
   private Page targetPage;
 
   private String title;
   private String description;
   private String titleType;
   private boolean actionsEnabled;
-  private boolean titleHidden;
-  private boolean descriptionHidden;
   private boolean imageLinkHidden;
   private boolean titleLinkHidden;
-  private boolean titleFromPage;
-  private boolean descriptionFromPage;
 
   @PostConstruct
   private void activate() {
     ValueMap properties = resource.getValueMap();
 
     // read style properties
-    titleHidden = currentStyle.get(PN_TITLE_HIDDEN, false);
-    descriptionHidden = currentStyle.get(PN_DESCRIPTION_HIDDEN, false);
+    boolean titleHidden = currentStyle.get(PN_TITLE_HIDDEN, false);
+    boolean descriptionHidden = currentStyle.get(PN_DESCRIPTION_HIDDEN, false);
     titleType = currentStyle.get(PN_TITLE_TYPE, (String)null);
     imageLinkHidden = currentStyle.get(PN_IMAGE_LINK_HIDDEN, false);
     titleLinkHidden = currentStyle.get(PN_TITLE_LINK_HIDDEN, false);
@@ -111,8 +107,8 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
 
     // read component properties
     actionsEnabled = properties.get(PN_ACTIONS_ENABLED, false) && !actionsDisabled;
-    titleFromPage = properties.get(PN_TITLE_FROM_PAGE, false);
-    descriptionFromPage = properties.get(PN_DESCRIPTION_FROM_PAGE, false);
+    boolean titleFromPage = properties.get(PN_TITLE_FROM_PAGE, false);
+    boolean descriptionFromPage = properties.get(PN_DESCRIPTION_FROM_PAGE, false);
 
 
     // resolve teaser media
