@@ -57,7 +57,6 @@ import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.MediaNameConstants;
-import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
@@ -85,8 +84,6 @@ public class ResponsiveImageImpl extends AbstractComponentExporterImpl implement
   private LinkHandler linkHandler;
   @Self
   private MediaHandler mediaHandler;
-  @Self
-  private UrlHandler urlHandler;
 
   @ValueMapValue(name = PN_ALT, injectionStrategy = InjectionStrategy.OPTIONAL)
   private String alt;
@@ -98,7 +95,6 @@ public class ResponsiveImageImpl extends AbstractComponentExporterImpl implement
   private String uuid;
   private String fileReference;
   private boolean displayPopupTitle;
-  private boolean isDecorative;
   private List<ImageArea> areas;
 
   @PostConstruct
@@ -107,7 +103,7 @@ public class ResponsiveImageImpl extends AbstractComponentExporterImpl implement
 
     // read basic properties
     displayPopupTitle = properties.get(PN_DISPLAY_POPUP_TITLE, currentStyle.get(PN_DISPLAY_POPUP_TITLE, true));
-    isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
+    boolean isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
     // resolve media from DAM asset
     // add custom properties as defined in "image" core component

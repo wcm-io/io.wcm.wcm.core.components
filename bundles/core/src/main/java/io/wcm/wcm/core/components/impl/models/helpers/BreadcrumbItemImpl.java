@@ -19,6 +19,8 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
+import static org.apache.sling.api.SlingConstants.PROPERTY_PATH;
+
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +34,9 @@ import io.wcm.handler.link.Link;
 /**
  * {@link NavigationItem} wrapper for breadcrumb.
  */
-@JsonIgnoreProperties(value = { "page", "children", "level", "description", "lastModified", "path" })
+@JsonIgnoreProperties({
+    "page", "children", "level", "description", "lastModified", PROPERTY_PATH
+})
 public class BreadcrumbItemImpl extends NavigationItemImpl implements NavigationItem {
 
   /**

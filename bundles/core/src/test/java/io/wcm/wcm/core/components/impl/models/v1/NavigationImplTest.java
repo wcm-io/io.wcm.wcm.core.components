@@ -22,6 +22,7 @@ package io.wcm.wcm.core.components.impl.models.v1;
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_COLLECT_ALL_PAGES;
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_SKIP_NAVIGATION_ROOT;
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_STRUCTURE_DEPTH;
+import static com.adobe.cq.wcm.core.components.models.Navigation.PN_STRUCTURE_START;
 import static com.day.cq.wcm.api.NameConstants.PN_HIDE_IN_NAV;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.assertNavigationItems;
@@ -53,6 +54,8 @@ class NavigationImplTest {
   private Page root;
   private Page page1;
   private Page page11;
+  private Page page111;
+  private Page page112;
   private Page page12;
   private Page page3;
 
@@ -63,6 +66,8 @@ class NavigationImplTest {
     root = context.pageManager().getPage(CONTENT_ROOT);
     page1 = context.create().page(root, "page1");
     page11 = context.create().page(page1, "page11");
+    page111 = context.create().page(page11, "page111");
+    page112 = context.create().page(page11, "page112");
     page12 = context.create().page(page1, "page12");
     context.create().page(root, "page2", null, ImmutableValueMap.of(PN_HIDE_IN_NAV, true));
     page3 = context.create().page(root, "page3");
@@ -80,7 +85,78 @@ class NavigationImplTest {
 
     assertNavigationItems(underTest.getItems(), page1, page3);
     assertNavigationItems(underTest.getItems().get(0).getChildren(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page111, page112);
     assertNavigationItems(underTest.getItems().get(1).getChildren());
+  }
+
+  @Test
+  void testStructureStart_0() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 0,
+        "accessibilityLabel", "my-label"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertEquals("my-label", underTest.getAccessibilityLabel());
+    assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+
+    assertNavigationItems(underTest.getItems(), root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+  }
+
+  @Test
+  void testStructureStart_0_structureDepth_2() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 0,
+        PN_STRUCTURE_DEPTH, 2,
+        PN_COLLECT_ALL_PAGES, false,
+        "accessibilityLabel", "my-label"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertEquals("my-label", underTest.getAccessibilityLabel());
+    assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+
+    assertNavigationItems(underTest.getItems(), root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren());
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+  }
+
+  @Test
+  void testStructureStart_1() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 1,
+        "accessibilityLabel", "my-label"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertEquals("my-label", underTest.getAccessibilityLabel());
+    assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+
+    assertNavigationItems(underTest.getItems(), page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems().get(1).getChildren());
+  }
+
+  @Test
+  void testStructureStart_2() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 2,
+        "accessibilityLabel", "my-label"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertEquals("my-label", underTest.getAccessibilityLabel());
+    assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+
+    assertNavigationItems(underTest.getItems(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
   }
 
   @Test
@@ -97,7 +173,8 @@ class NavigationImplTest {
   }
 
   @Test
-  void testIncludeNavigationRoot() {
+  @SuppressWarnings("deprecation")
+  void testIncludeNavigationRoot_SkipNavigationRoot() {
     context.currentResource(context.create().resource(root, "navigation",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_SKIP_NAVIGATION_ROOT, false));
@@ -108,11 +185,13 @@ class NavigationImplTest {
     assertNavigationItems(underTest.getItems(), root);
     assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
     assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), page111, page112);
     assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
   }
 
   @Test
-  void testIncludeNavigationRootAndStructureDepth() {
+  @SuppressWarnings("deprecation")
+  void testIncludeNavigationRootAndStructureDepth_SkipNavigationRoot() {
     context.currentResource(context.create().resource(page3, "navigation",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_SKIP_NAVIGATION_ROOT, false,
@@ -131,7 +210,8 @@ class NavigationImplTest {
   }
 
   @Test
-  void testIncludeNavigationRootAndStructureDepth_ContentPolicy() {
+  @SuppressWarnings("deprecation")
+  void testIncludeNavigationRootAndStructureDepth_ContentPolicy_SkipNavigationRoot() {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_SKIP_NAVIGATION_ROOT, false,
         PN_STRUCTURE_DEPTH, 1,

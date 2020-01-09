@@ -266,6 +266,11 @@ public class ImageImpl extends AbstractComponentExporterImpl implements Image, M
   }
 
   @Override
+  public boolean isDecorative() {
+    return isDecorative;
+  }
+
+  @Override
   public String getJson() {
     // not required for image v2
     return null;
@@ -293,7 +298,7 @@ public class ImageImpl extends AbstractComponentExporterImpl implements Image, M
    * @return Picked width
    */
   private long getNoScriptWidth() {
-    if (widths.size() == 0) {
+    if (widths.isEmpty()) {
       return 0;
     }
     return widths.get((int)Math.round(widths.size() / 2d - 0.5d));

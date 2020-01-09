@@ -87,7 +87,6 @@ public class DownloadImpl extends AbstractComponentExporterImpl implements Downl
   private boolean displayFormat;
   private boolean displayFilename;
 
-  private ValueMap properties;
   private String titleType;
   private String filename;
   private String format;
@@ -99,7 +98,7 @@ public class DownloadImpl extends AbstractComponentExporterImpl implements Downl
   @PostConstruct
   @SuppressWarnings("null")
   protected void initModel() {
-    properties = resource.getValueMap();
+    ValueMap properties = resource.getValueMap();
 
     titleFromAsset = properties.get(PN_TITLE_FROM_ASSET, titleFromAsset);
     descriptionFromAsset = properties.get(PN_DESCRIPTION_FROM_ASSET, descriptionFromAsset);
