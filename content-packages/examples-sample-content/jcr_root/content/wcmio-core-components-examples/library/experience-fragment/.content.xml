@@ -98,6 +98,8 @@
                 </demo_759741754>
             </responsivegrid>
         </root>
-        <image/>
+        <image jcr:primaryType="nt:unstructured">
+            <file/>
+        </image>
     </jcr:content>
 </jcr:root>

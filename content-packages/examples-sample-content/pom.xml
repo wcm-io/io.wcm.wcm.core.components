@@ -51,7 +51,7 @@
         <extensions>true</extensions>
         <configuration>
           <group>wcm-io-samples</group>
-          <packageType>container</packageType>
+          <packageType>content</packageType>
         </configuration>
       </plugin>
 
