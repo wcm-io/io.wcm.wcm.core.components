@@ -186,12 +186,12 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.8.0</version>
+        <version>1.8.2</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -218,13 +218,16 @@
       <plugin>
         <groupId>org.apache.jackrabbit</groupId>
         <artifactId>filevault-package-maven-plugin</artifactId>
-        <!-- TODO: resolve validation conflicts with plugin version 1.1.0 -->
-        <version>1.0.3</version>
         <extensions>true</extensions>
         <configuration>
           <group>wcm-io-samples</group>
-          <packageType>container</packageType>
+          <packageType>mixed</packageType>
           <accessControlHandling>merge</accessControlHandling>
+          <validatorsSettings>
+            <jackrabbit-packagetype>
+              <isDisabled>true</isDisabled>
+            </jackrabbit-packagetype>
+          </validatorsSettings>
 
           <filters>
             <filter>
