@@ -36,6 +36,7 @@
 
   <name>WCM Core Components Examples Core</name>
   <description>Examples for wcm.io WCM Core Components.</description>
+  <url>${site.url}/wcm/core-components/</url>
 
   <dependencies>
 
