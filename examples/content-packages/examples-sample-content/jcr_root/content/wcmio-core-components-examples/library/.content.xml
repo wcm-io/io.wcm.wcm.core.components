@@ -24,7 +24,7 @@
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Get to know the &lt;a data-link-type=&quot;external&quot; data-link-external-ref=&quot;https://wcm.io/wcm/core-components/&quot; data-link-window-target=&quot;_blank&quot; href=&quot;#&quot;&gt;wcm.io WCM Core Components&lt;/a&gt; (based on AEM Sites Core Components).&lt;/p&gt;&#xA;"
+                    text="&lt;p&gt;Get to know the &lt;a data-link-type=&quot;external&quot; data-link-external-ref=&quot;https://wcm.io/wcm/core-components/&quot; data-link-window-target=&quot;_blank&quot; href=&quot;#&quot;&gt;wcm.io WCM Core Components&lt;/a&gt; (based on AEM WCM Core Components).&lt;/p&gt;&#xA;"
                     textIsRich="true"/>
                 <text_585499147
                     cq:styleIds="[1550289148555]"

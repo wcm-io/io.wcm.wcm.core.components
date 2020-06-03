@@ -1,6 +1,6 @@
 ## wcm.io WCM Core Component Overview
 
-### Enhanced AEM Sites Core Components
+### Enhanced AEM WCM Core Components
 
 _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler,_ <span class="marker-label">LINK</span>&nbsp;_Link&nbsp;Handler,_ <span class="marker-label">RICHTEXT</span>&nbsp;_RichText&nbsp;Handler,_ <span class="marker-label">URL</span>&nbsp;_URL&nbsp;Handler._
 
@@ -52,7 +52,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 * [wcm.io Responsive Image](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/wcmio/responsiveimage/v1) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
 
 
-### Unsupported AEM Sites Core Components
+### Unsupported AEM WCM Core Components
 
 **Page authoring components**
 

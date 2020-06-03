@@ -25,7 +25,7 @@
 
     <release version="1.3.0-2.9.0" date="not released">
       <action type="update" dev="sseifert">
-        Update to Adobe Sites Core Components 2.9.0.
+        Update to AEM WCM Core Components 2.9.0.
       </action>
       <action type="update" dev="sseifert">
         Add Data Layer support for Responsive Image component.
@@ -34,13 +34,13 @@
 
     <release version="1.2.2-2.8.0" date="2020-01-09">
       <action type="update" dev="sseifert">
-        Update to Adobe Sites Core Components 2.8.0.
+        Update to AEM WCM Core Components 2.8.0.
       </action>
     </release>
 
     <release version="1.2.0-2.7.0" date="2019-10-01">
       <action type="update" dev="sseifert">
-        Update to Adobe Sites Core Components 2.7.0.
+        Update to AEM WCM Core Components 2.7.0.
       </action>
       <action type="update" dev="sseifert">
         wcm.io Responsive Image component: Define component icon.
@@ -55,7 +55,7 @@
 
     <release version="1.1.0" date="2019-09-10">
       <action type="update" dev="sseifert">
-        Update to Adobe Sites Core Components 2.6.0 with support for all new features.
+        Update to AEM WCM Core Components 2.6.0 with support for all new features.
       </action>
       <action type="update" dev="sseifert">
         Text v2 component: Apply wcm.io RichText Handler RTE link plugin also to edit dialog.
@@ -65,7 +65,7 @@
     <release version="1.0.0" date="2019-08-23">
       <action type="add">See <![CDATA[<a href="https://wcm-io.atlassian.net/wiki/x/AYCJS">New: wcm.io WCM Core Components 1.0.0</a>]]> for an introduction.</action>
       <action type="add" dev="sseifert">
-        Initial release (based on AEM Sites Core Components 2.5.0).
+        Initial release (based on AEM WCM Core Components 2.5.0).
       </action>
     </release>
 

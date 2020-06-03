@@ -35,7 +35,7 @@
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
-  <description>Enhances AEM Sites Core Components with wcm.io functionality.</description>
+  <description>Enhances AEM WCM Core Components with wcm.io functionality.</description>
   
   <properties>
     <core.wcm.components.version>2.9.0</core.wcm.components.version>

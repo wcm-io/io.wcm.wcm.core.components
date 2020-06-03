@@ -1,6 +1,6 @@
 ## About WCM Core Components
 
-Enhances [AEM Sites Core Components][adobe-core-components] with wcm.io functionality.
+Enhances [AEM WCM Core Components][adobe-core-components] with wcm.io functionality.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components)
 
@@ -46,7 +46,7 @@ A detailed documentation for each component can be found in the [Component Overv
 To use this module you have to deploy also:
 
 |---|---|---|
-| [AEM Sites Core Components (ZIP)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) |
+| [AEM WCM Core Components (ZIP)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) |
 | [wcm.io Sling Commons](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons) |
 | [wcm.io AEM Sling Models Extensions](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models) |
 | [wcm.io WCM Commons](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons) |

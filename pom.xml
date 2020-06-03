@@ -36,7 +36,7 @@
   <url>${site.url}/${site.url.module.prefix}/</url>
 
   <name>WCM Core Components</name>
-  <description>Enhances AEM Sites Core Components with wcm.io functionality.</description>
+  <description>Enhances AEM WCM Core Components with wcm.io functionality.</description>
   
   <scm>
     <connection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</connection>
