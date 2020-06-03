@@ -20,6 +20,7 @@
 package io.wcm.wcm.core.components.impl.models.helpers;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
 
@@ -29,7 +30,7 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 /**
  * {@link ListItem} implementation for any links.
  */
-public class LinkListItemImpl implements ListItem, LinkMixin {
+public class LinkListItemImpl extends AbstractListItemImpl implements ListItem, LinkMixin {
 
   private final String title;
   private final Link link;
@@ -38,7 +39,8 @@ public class LinkListItemImpl implements ListItem, LinkMixin {
    * @param title Title
    * @param link Link
    */
-  public LinkListItemImpl(@NotNull String title, @NotNull Link link) {
+  public LinkListItemImpl(@NotNull String title, @NotNull Link link, @Nullable String parentId) {
+    super(parentId, link.getLinkRequest().getResource());
     this.title = title;
     this.link = link;
   }
@@ -57,6 +59,22 @@ public class LinkListItemImpl implements ListItem, LinkMixin {
   @Override
   public String getTitle() {
     return title;
+  }
+
+  // --- data layer ---
+
+  /*
+   * DataLayerProvider implementation of field getters
+   */
+
+  @Override
+  public String getDataLayerTitle() {
+    return getTitle();
+  }
+
+  @Override
+  public Link getDataLayerLink() {
+    return link;
   }
 
 }

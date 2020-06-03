@@ -22,8 +22,10 @@ package io.wcm.wcm.core.components.impl.models.v1;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.v1.LayoutContainerImpl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +33,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.LayoutContainer;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.Page;
 
 import io.wcm.samples.core.testcontext.AppAemContext;
@@ -59,8 +62,24 @@ class LayoutContainerImplTest {
 
     LayoutContainer underTest = AdaptTo.notNull(context.request(), LayoutContainer.class);
 
-    assertNull(underTest.getId());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+    assertNotNull(underTest.getId());
+    assertNull(underTest.getData());
+  }
+
+  @Test
+  @SuppressWarnings("null")
+  void testEmpty_DataLayer() {
+    enableDataLayer(context, true);
+
+    context.currentResource(context.create().resource(page, "container",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
+
+    LayoutContainer underTest = AdaptTo.notNull(context.request(), LayoutContainer.class);
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
   }
 
 }

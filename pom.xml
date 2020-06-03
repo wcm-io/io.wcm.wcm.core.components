@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.2.3-2.8.0-SNAPSHOT</version>
+    <version>1.2.3-2.9.0-SNAPSHOT</version>
     <relativePath>parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.root</artifactId>
-  <version>1.2.3-2.8.0-SNAPSHOT</version>
+  <version>1.2.3-2.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>${site.url}/${site.url.module.prefix}/</url>
 
@@ -52,9 +52,7 @@
   <modules>
     <module>parent</module>
     <module>bundles/core</module>
-    <module>bundles/examples-core</module>
-    <module>content-packages/examples-sample-content</module>
-    <module>content-packages/examples</module>
+    <module>examples</module>
   </modules>
   
   <build>

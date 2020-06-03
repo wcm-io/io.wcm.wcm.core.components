@@ -24,6 +24,7 @@ import static org.apache.sling.api.SlingConstants.PROPERTY_PATH;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
@@ -45,10 +46,12 @@ public class BreadcrumbItemImpl extends NavigationItemImpl implements Navigation
    * @param active Active
    * @param level Level
    * @param children Children
+   * @param parentId Parent ID
    */
   public BreadcrumbItemImpl(@NotNull Page page, @NotNull Link link,
-      boolean active, int level, @NotNull List<NavigationItem> children) {
-    super(page, link, active, level, children);
+      boolean active, int level, @NotNull List<NavigationItem> children,
+      @Nullable String parentId) {
+    super(page, link, active, level, children, parentId);
   }
 
 }

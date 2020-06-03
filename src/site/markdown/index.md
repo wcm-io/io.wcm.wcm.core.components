@@ -32,7 +32,8 @@ A detailed documentation for each component can be found in the [Component Overv
 ### AEM Version Support Matrix
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
-|-----------------------------------|----------------------------------|-------------------------------------------
+|-----------------------------------|----------------------------------|---------------------------------------------
+| 1.3.x-2.9.0                       | 2.9.0                            | AEM 6.4 SP8, AEM 6.5 SP4, AEM Cloud Service
 | 1.2.x-2.8.0                       | 2.8.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
 | 1.2.x-2.7.0                       | 2.7.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
 | 1.1.x-2.6.0                       | 2.6.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up

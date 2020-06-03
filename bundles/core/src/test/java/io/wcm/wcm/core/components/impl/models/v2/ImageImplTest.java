@@ -43,11 +43,13 @@ import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.ImageImpl.RESOURCE_TYPE;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -58,6 +60,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.Image;
+import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
 
@@ -108,9 +113,11 @@ class ImageImplTest {
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
     assertFalse(underTest.isDecorative());
+    assertNotNull(underTest.getId());
 
     assertInvalidMedia(underTest);
     assertInvalidLink(underTest);
+    assertNull(underTest.getData());
 
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
   }
@@ -184,7 +191,10 @@ class ImageImplTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testWithImageAndLink() {
+    enableDataLayer(context, true);
+
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
@@ -198,6 +208,16 @@ class ImageImplTest {
     assertEquals("http://myhost", underTest.getLink());
 
     assertValidLink(underTest, "http://myhost");
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
+    assertEquals("Asset Title", data.getTitle());
+    assertEquals("http://myhost", data.getLinkUrl());
+
+    AssetData assetData = ((ImageData)data).getAssetData();
+    assertEquals(asset.getPath(), assetData.getUrl());
+    assertEquals(asset.getMimeType(), assetData.getFormat());
   }
 
   @Test

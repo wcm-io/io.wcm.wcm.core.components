@@ -188,6 +188,12 @@
                               "fieldDescription": "When checked, the caption won't be displayed below the image, but as a pop-up displayed by some browsers when hovering over the image."
                             }
                           }
+                        },
+                        "id": {
+                          "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
+                          "name": "./id",
+                          "fieldLabel": "ID",
+                          "fieldDescription": "HTML ID attribute to apply to the component."
                         }
                       }
                     }

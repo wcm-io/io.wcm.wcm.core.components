@@ -21,6 +21,7 @@ package io.wcm.wcm.core.components.impl.models.v2;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -34,7 +35,7 @@ import com.adobe.cq.wcm.core.components.models.Text;
 
 import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.handler.richtext.TextMode;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 
 /**
  * wcm.io-based enhancements for {@link Text}:
@@ -48,7 +49,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterI
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class TextImpl extends AbstractComponentExporterImpl implements Text {
+public class TextImpl extends AbstractComponentImpl implements Text {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/text/v2/text";
 
@@ -75,6 +76,13 @@ public class TextImpl extends AbstractComponentExporterImpl implements Text {
   @Override
   public boolean isRichText() {
     return textIsRich;
+  }
+
+  // --- data layer ---
+
+  @Override
+  public String getDataLayerText() {
+    return StringUtils.defaultString(text);
   }
 
 }

@@ -3,9 +3,10 @@
   - use linkValid and linkAttributes properties to build anchor tag  
 */-->
 <sly data-sly-template.title="${@ teaser}">
-  <h2 class="cmp-teaser__title" data-sly-test.title="${teaser.title}" data-sly-element="${teaser.titleType}">
-    <a class="cmp-teaser__title-link"
-        data-sly-attribute="${teaser.linkAttributes}"
-        data-sly-unwrap="${!teaser.linkValid || teaser.titleLinkHidden}">${title}</a>
-  </h2>
+    <h2 class="cmp-teaser__title" data-sly-test.title="${teaser.title}" data-sly-element="${teaser.titleType}">
+        <a class="cmp-teaser__title-link"
+           data-sly-attribute="${teaser.linkAttributes}"
+           data-sly-unwrap="${!teaser.linkValid || teaser.titleLinkHidden}"
+           data-cmp-clickable="${teaser.data ? true : false}">${title}</a>
+    </h2>
 </sly>

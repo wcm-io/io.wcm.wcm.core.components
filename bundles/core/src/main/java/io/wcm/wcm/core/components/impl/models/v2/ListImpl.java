@@ -30,6 +30,7 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -39,7 +40,7 @@ import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.wcm.handler.link.LinkHandler;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.PageListItemImpl;
 
 /**
@@ -54,7 +55,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.PageListItemImpl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class ListImpl extends AbstractComponentExporterImpl implements List {
+public class ListImpl extends AbstractComponentImpl implements List {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/list/v2/list";
 
@@ -71,11 +72,16 @@ public class ListImpl extends AbstractComponentExporterImpl implements List {
   public @NotNull Collection<ListItem> getListItems() {
     return getItems().stream()
         .filter(Objects::nonNull)
-        .map(page -> (ListItem)new PageListItemImpl(page, linkHandler.get(page).build()))
+        .map(page -> (ListItem)new PageListItemImpl(page, linkHandler.get(page).build(), getId()))
         .collect(Collectors.toList());
   }
 
   // --- delegated methods ---
+
+  @Override
+  public @Nullable String getId() {
+    return this.delegate.getId();
+  }
 
   @Override
   @SuppressWarnings("deprecation")

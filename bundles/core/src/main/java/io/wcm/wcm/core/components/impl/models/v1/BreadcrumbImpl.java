@@ -44,7 +44,7 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.url.ui.SiteRoot;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.BreadcrumbItemImpl;
 
 /**
@@ -60,14 +60,12 @@ import io.wcm.wcm.core.components.impl.models.helpers.BreadcrumbItemImpl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class BreadcrumbImpl extends AbstractComponentExporterImpl implements Breadcrumb {
+public class BreadcrumbImpl extends AbstractComponentImpl implements Breadcrumb {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/breadcrumb/v2/breadcrumb";
 
   @AemObject
   private Style currentStyle;
-  @AemObject
-  private Page currentPage;
   @Self
   private SiteRoot siteRoot;
   @Self
@@ -101,7 +99,7 @@ public class BreadcrumbImpl extends AbstractComponentExporterImpl implements Bre
         if (checkIfNotHidden(page)) {
           Link link = linkHandler.get(page).build();
           NavigationItem navigationItem = new BreadcrumbItemImpl(page, link,
-              isActivePage, page.getDepth(), Collections.emptyList());
+              isActivePage, page.getDepth(), Collections.emptyList(), getId());
           result.add(0, navigationItem);
         }
       }

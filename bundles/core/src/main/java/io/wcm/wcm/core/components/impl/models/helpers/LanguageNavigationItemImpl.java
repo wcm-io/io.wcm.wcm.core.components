@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.LanguageNavigationItem;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
@@ -48,11 +49,12 @@ public class LanguageNavigationItemImpl extends NavigationItemImpl implements La
    * @param level Level
    * @param children Children
    * @param title Title
+   * @param parentId Parent ID
    */
   public LanguageNavigationItemImpl(@NotNull Page page, @NotNull Link link,
       boolean active, int level, @NotNull List<NavigationItem> children,
-      String title) {
-    super(page, link, active, level, children);
+      @Nullable String title, @Nullable String parentId) {
+    super(page, link, active, level, children, parentId);
     this.page = page;
     this.title = title;
   }
@@ -87,6 +89,11 @@ public class LanguageNavigationItemImpl extends NavigationItemImpl implements La
       language = page.getLanguage(false).toString().replace('_', '-');
     }
     return language;
+  }
+
+  @Override
+  public String getDataLayerLanguage() {
+    return getLanguage();
   }
 
 }

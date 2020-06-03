@@ -49,7 +49,7 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.url.ui.SiteRoot;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.NavigationItemImpl;
 
 /**
@@ -65,7 +65,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.NavigationItemImpl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class NavigationImpl extends AbstractComponentExporterImpl implements Navigation {
+public class NavigationImpl extends AbstractComponentImpl implements Navigation {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/navigation/v1/navigation";
 
@@ -73,8 +73,6 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
 
   @AemObject
   private Style currentStyle;
-  @AemObject
-  private Page currentPage;
   @Self
   private SiteRoot siteRoot;
   @Self
@@ -151,7 +149,7 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
     if (structureStart == 0) {
       Link link = linkHandler.get(navigationRoot.page).build();
       boolean isSelected = checkSelected(navigationRoot.page, link);
-      NavigationItemImpl root = new NavigationItemImpl(navigationRoot.page, link, isSelected, 0, itemTree);
+      NavigationItemImpl root = new NavigationItemImpl(navigationRoot.page, link, isSelected, 0, itemTree, getId());
       itemTree = new ArrayList<>();
       itemTree.add(root);
     }
@@ -204,7 +202,7 @@ public class NavigationImpl extends AbstractComponentExporterImpl implements Nav
         if (structureStart == 0) {
           level = level - 1;
         }
-        pages.add(new NavigationItemImpl(page, link, isSelected, level, children));
+        pages.add(new NavigationItemImpl(page, link, isSelected, level, children, getId()));
       }
     }
     return pages;

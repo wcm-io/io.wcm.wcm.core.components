@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <library/>
+    <jcr:content
+        cq:allowedTemplates="[/conf/wcmio-core-components-examples/settings/wcm/templates/.*]"
+        cq:deviceGroups="[/etc/mobile/groups/responsive]"
+        cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
+        jcr:language="en_us"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="wcm.io WCM Core Components"
+        sling:configRef="/conf/wcmio-core-components-examples"
+        sling:redirect="{Boolean}true"
+        sling:redirectStatus="{Long}302"
+        sling:resourceType="core-components-examples/components/page"
+        redirectTarget="/content/wcmio-core-components-examples/library">
+        <image/>
+    </jcr:content>
+</jcr:root>
