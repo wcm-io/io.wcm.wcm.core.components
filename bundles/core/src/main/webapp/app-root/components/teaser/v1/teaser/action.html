@@ -3,7 +3,10 @@
   - use linkValid and linkAttributes properties to build anchor tag  
 */-->
 <sly data-sly-template.action="${@ action}">
-  <a class="cmp-teaser__action-link"
-      data-sly-attribute="${action.linkAttributes}"
-      data-sly-unwrap="${!action.linkValid}">${action.title}</a>
+    <a class="cmp-teaser__action-link"
+       data-sly-attribute="${action.linkAttributes}"
+       data-sly-unwrap="${!action.linkValid}"
+       id="${action.id}"
+       data-cmp-data-layer="${action.data.json}"
+       data-cmp-clickable="${action.data ? true : false}">${action.title}</a>
 </sly>

@@ -27,10 +27,12 @@ import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.TitleImpl.RESOURCE_TYPE;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +40,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.Title;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.Page;
 
 import io.wcm.handler.link.type.ExternalLinkType;
@@ -71,12 +74,17 @@ class TitleImplTest {
     assertNull(underTest.getLinkURL());
     assertFalse(underTest.isLinkDisabled());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+    assertNotNull(underTest.getId());
 
     assertInvalidLink(underTest);
+    assertNull(underTest.getData());
   }
 
   @Test
+  @SuppressWarnings("null")
   void testProperties() {
+    enableDataLayer(context, true);
+
     context.currentResource(context.create().resource(page, "title",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         JCR_TITLE, "My Title",
@@ -92,6 +100,12 @@ class TitleImplTest {
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
     assertValidLink(underTest, "http://host", "_blank");
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
+    assertEquals("My Title", data.getTitle());
+    assertEquals("http://host", data.getLinkUrl());
   }
 
 }

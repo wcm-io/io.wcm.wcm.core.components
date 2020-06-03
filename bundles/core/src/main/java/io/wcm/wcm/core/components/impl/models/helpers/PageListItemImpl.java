@@ -22,18 +22,21 @@ package io.wcm.wcm.core.components.impl.models.helpers;
 import java.util.Calendar;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.link.Link;
+import io.wcm.wcm.core.components.impl.models.v1.datalayer.PageDataImpl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
  * {@link ListItem} implementation for page links.
  */
-public class PageListItemImpl implements ListItem, LinkMixin {
+public class PageListItemImpl extends AbstractListItemImpl implements ListItem, LinkMixin {
 
   private final Page page;
   private final Link link;
@@ -41,8 +44,10 @@ public class PageListItemImpl implements ListItem, LinkMixin {
   /**
    * @param page Page
    * @param link Link
+   * @param parentId Parent ID
    */
-  public PageListItemImpl(@NotNull Page page, @NotNull Link link) {
+  public PageListItemImpl(@NotNull Page page, @NotNull Link link, @Nullable String parentId) {
+    super(parentId, page.getContentResource());
     this.page = page;
     this.link = link;
   }
@@ -92,6 +97,23 @@ public class PageListItemImpl implements ListItem, LinkMixin {
   @JsonIgnore
   public String getName() {
     return page.getName();
+  }
+
+  // --- data layer ---
+
+  @Override
+  protected @NotNull ComponentData getComponentData() {
+    return new PageDataImpl(this, resource);
+  }
+
+  @Override
+  public String getDataLayerTitle() {
+    return getTitle();
+  }
+
+  @Override
+  public Link getDataLayerLink() {
+    return link;
   }
 
 }

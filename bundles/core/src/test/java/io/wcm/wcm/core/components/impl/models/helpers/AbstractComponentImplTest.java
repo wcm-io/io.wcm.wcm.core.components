@@ -21,7 +21,7 @@ package io.wcm.wcm.core.components.impl.models.helpers;
 
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Model;
@@ -66,7 +66,7 @@ class AbstractComponentImplTest {
 
     DummyComponent underTest = AdaptTo.notNull(context.request(), DummyComponent.class);
 
-    assertNull(underTest.getId());
+    assertNotNull(underTest.getId());
   }
 
   @Model(adaptables = SlingHttpServletRequest.class)

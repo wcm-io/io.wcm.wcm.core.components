@@ -20,6 +20,7 @@
 package io.wcm.samples.core.testcontext;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_LANGUAGE;
+import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static io.wcm.testing.mock.wcmio.caconfig.ContextPlugins.WCMIO_CACONFIG;
 import static io.wcm.testing.mock.wcmio.handler.ContextPlugins.WCMIO_HANDLER;
 import static io.wcm.testing.mock.wcmio.sling.ContextPlugins.WCMIO_SLING;
@@ -50,6 +51,7 @@ public final class AppAemContext {
   public static final String LANGUAGE_ROOT = "/content/sample";
   public static final String CONTENT_ROOT = LANGUAGE_ROOT + "/en";
   public static final String DAM_ROOT = "/content/dam/sample";
+  public static final String TEMPLATE_PATH = "/apps/app1/templates/template1";
 
   private AppAemContext() {
     // static methods only
@@ -74,15 +76,19 @@ public final class AppAemContext {
       context.registerService(SlingModelFilter.class, new MockSlingModelFilter());
 
       // context path strategy
-      MockCAConfig.contextPathStrategyAbsoluteParent(context, ROOT_LEVEL);
+      MockCAConfig.contextPathStrategyAbsoluteParent(context, ROOT_LEVEL - 1, ROOT_LEVEL);
 
       // setup handler
       context.registerService(UrlHandlerConfig.class, new UrlHandlerConfigImpl());
       context.registerService(MediaHandlerConfig.class, new MediaHandlerConfigImpl());
 
+      // create template
+      context.create().resource(TEMPLATE_PATH,
+          JCR_TITLE, "Template #1");
+
       // create root pages
       context.create().page(LANGUAGE_ROOT);
-      context.create().page(CONTENT_ROOT, null,
+      context.create().page(CONTENT_ROOT, TEMPLATE_PATH,
           ImmutableValueMap.of(JCR_LANGUAGE, Locale.US.toLanguageTag()));
 
     }

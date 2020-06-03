@@ -46,6 +46,7 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.designer.Style;
 
 import io.wcm.handler.link.Link;
@@ -56,8 +57,9 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
+import io.wcm.wcm.core.components.impl.models.v1.datalayer.ImageDataImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
@@ -79,7 +81,7 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class ImageImpl extends AbstractComponentExporterImpl implements Image, MediaMixin, LinkMixin {
+public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixin, LinkMixin {
 
   /**
    * Resource type
@@ -332,6 +334,28 @@ public class ImageImpl extends AbstractComponentExporterImpl implements Image, M
     // insert {.width} placeholder for rendition selection
     return StringUtils.replace(url, "." + ImageWidthProxyServlet.SELECTOR + ".",
         "." + ImageWidthProxyServlet.SELECTOR + WIDTH_PLACEHOLDER + ".");
+  }
+
+  // --- data layer ---
+
+  @Override
+  protected @NotNull ComponentData getComponentData() {
+    return new ImageDataImpl(this, resource);
+  }
+
+  @Override
+  public Media getDataLayerMedia() {
+    return media;
+  }
+
+  @Override
+  public String getDataLayerTitle() {
+    return title;
+  }
+
+  @Override
+  public Link getDataLayerLink() {
+    return link;
   }
 
 }

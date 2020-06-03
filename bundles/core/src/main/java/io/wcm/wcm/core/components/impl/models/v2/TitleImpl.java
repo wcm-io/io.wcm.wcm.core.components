@@ -28,6 +28,7 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -35,7 +36,7 @@ import com.adobe.cq.wcm.core.components.models.Title;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
@@ -50,7 +51,7 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class TitleImpl extends AbstractComponentExporterImpl implements Title, LinkMixin {
+public class TitleImpl extends AbstractComponentImpl implements Title, LinkMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/title/v2/title";
 
@@ -83,6 +84,11 @@ public class TitleImpl extends AbstractComponentExporterImpl implements Title, L
   // --- delegated methods ---
 
   @Override
+  public @Nullable String getId() {
+    return this.delegate.getId();
+  }
+
+  @Override
   public String getText() {
     return this.delegate.getText();
   }
@@ -95,6 +101,18 @@ public class TitleImpl extends AbstractComponentExporterImpl implements Title, L
   @Override
   public boolean isLinkDisabled() {
     return this.delegate.isLinkDisabled();
+  }
+
+  // --- data layer ---
+
+  @Override
+  public Link getDataLayerLink() {
+    return link;
+  }
+
+  @Override
+  public String getDataLayerTitle() {
+    return getText();
   }
 
 }

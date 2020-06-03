@@ -166,7 +166,31 @@ execute_deploy() {
   echo -e "*** \e[1mDeploy to AEM\e[0m ***"
   echo ""
 
-  mvn -f content-packages/examples \
+  mvn -f examples/content-packages/examples \
+      -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.all.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.apps.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.content.zip' \
+      -Dvault.force=true \
+      ${JVM_ARGS} \
+      -Dsling.url=${SLING_URL} \
+      -Dsling.user=${SLING_USER} \
+      -Dsling.password=${SLING_PASSWORD} \
+      wcmio-content-package:install
+
+  if [ "$?" -ne "0" ]; then
+    exit_with_error "*** DEPLOY FAILED ***"
+  fi
+
+  mvn -f examples/content-packages/examples \
+      ${JVM_ARGS} \
+      -Dsling.url=${SLING_URL} \
+      -Dsling.user=${SLING_USER} \
+      -Dsling.password=${SLING_PASSWORD} \
+      wcmio-content-package:install
+
+  if [ "$?" -ne "0" ]; then
+    exit_with_error "*** DEPLOY FAILED ***"
+  fi
+
+   mvn -f examples/content-packages/examples-sample-content \
       ${JVM_ARGS} \
       -Dsling.url=${SLING_URL} \
       -Dsling.user=${SLING_USER} \
