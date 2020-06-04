@@ -44,9 +44,11 @@ import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.v1.TeaserImpl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -57,6 +59,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.Teaser;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
 
@@ -102,13 +105,18 @@ class TeaserImplTest {
     assertNull(underTest.getDescription());
     assertNull(underTest.getTitleType());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+    assertNotNull(underTest.getId());
 
     assertInvalidMedia(underTest);
     assertInvalidLink(underTest);
+    assertNull(underTest.getData());
   }
 
   @Test
+  @SuppressWarnings("null")
   void testWithImageAndPrimaryLink() {
+    enableDataLayer(context, true);
+
     context.currentResource(context.create().resource(page, "teaser",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         JCR_TITLE, "Teaser Title",
@@ -132,6 +140,13 @@ class TeaserImplTest {
 
     assertValidMedia(underTest, "/content/dam/sample/sample.jpg/_jcr_content/renditions/original./sample.jpg");
     assertValidLink(underTest, "http://host", "_blank");
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
+    assertEquals("Teaser Title", data.getTitle());
+    assertEquals("Teaser Description", data.getDescription());
+    assertEquals("http://host", data.getLinkUrl());
   }
 
   @Test

@@ -28,6 +28,7 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -35,7 +36,7 @@ import com.adobe.cq.wcm.core.components.models.Button;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
@@ -50,7 +51,7 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class ButtonImpl extends AbstractComponentExporterImpl implements Button, LinkMixin {
+public class ButtonImpl extends AbstractComponentImpl implements Button, LinkMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/button/v1/button";
 
@@ -73,6 +74,18 @@ public class ButtonImpl extends AbstractComponentExporterImpl implements Button,
     return link;
   }
 
+  // --- data layer ---
+
+  @Override
+  public String getDataLayerTitle() {
+    return delegate.getText();
+  }
+
+  @Override
+  public Link getDataLayerLink() {
+    return link;
+  }
+
   // --- fallback implementations ---
 
   @Override
@@ -81,6 +94,11 @@ public class ButtonImpl extends AbstractComponentExporterImpl implements Button,
   }
 
   // --- delegated methods ---
+
+  @Override
+  public @Nullable String getId() {
+    return this.delegate.getId();
+  }
 
   @Override
   public String getText() {

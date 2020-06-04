@@ -48,7 +48,7 @@ import io.wcm.handler.media.MediaArgs;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
 /**
@@ -63,7 +63,7 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class DownloadImpl extends AbstractComponentExporterImpl implements Download, MediaMixin {
+public class DownloadImpl extends AbstractComponentImpl implements Download, MediaMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/download/v1/download";
 
@@ -135,10 +135,7 @@ public class DownloadImpl extends AbstractComponentExporterImpl implements Downl
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);
       if (damAsset != null) {
         if (titleFromAsset) {
-          String assetTitle = damAsset.getMetadataValueFromJcr(DC_TITLE);
-          if (StringUtils.isNotEmpty(assetTitle)) {
-            title = assetTitle;
-          }
+          title = damAsset.getMetadataValueFromJcr(DC_TITLE);
         }
         if (descriptionFromAsset) {
           String assetDescription = damAsset.getMetadataValueFromJcr(DC_DESCRIPTION);

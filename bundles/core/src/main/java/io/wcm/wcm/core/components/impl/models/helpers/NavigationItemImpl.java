@@ -22,6 +22,7 @@ package io.wcm.wcm.core.components.impl.models.helpers;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
@@ -45,10 +46,11 @@ public class NavigationItemImpl extends PageListItemImpl implements NavigationIt
    * @param active Active
    * @param level Level
    * @param children Children
+   * @param parentId Parent ID
    */
   public NavigationItemImpl(@NotNull Page page, @NotNull Link link,
-      boolean active, int level, @NotNull List<NavigationItem> children) {
-    super(page, link);
+      boolean active, int level, @NotNull List<NavigationItem> children, @Nullable String parentId) {
+    super(page, link, parentId);
     this.page = page;
     this.active = active;
     this.level = level;

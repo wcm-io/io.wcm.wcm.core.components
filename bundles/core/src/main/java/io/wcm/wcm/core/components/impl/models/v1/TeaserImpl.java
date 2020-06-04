@@ -51,7 +51,7 @@ import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemImpl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
@@ -68,7 +68,7 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
     resourceType = TeaserImpl.RESOURCE_TYPE)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser, MediaMixin, LinkMixin {
+public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMixin, LinkMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/teaser/v1/teaser";
 
@@ -86,6 +86,7 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
   private final List<ListItem> actions = new ArrayList<>();
   private Page targetPage;
 
+  private String pretitle;
   private String title;
   private String description;
   private String titleType;
@@ -98,6 +99,7 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
     ValueMap properties = resource.getValueMap();
 
     // read style properties
+    boolean pretitleHidden = currentStyle.get(PN_PRETITLE_HIDDEN, false);
     boolean titleHidden = currentStyle.get(PN_TITLE_HIDDEN, false);
     boolean descriptionHidden = currentStyle.get(PN_DESCRIPTION_HIDDEN, false);
     titleType = currentStyle.get(PN_TITLE_TYPE, (String)null);
@@ -124,7 +126,7 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
           String actionTitle = actionResource.getValueMap().get(PN_ACTION_TEXT, String.class);
           Link actionLink = linkHandler.get(actionResource).build();
           if (actionTitle != null && actionLink.isValid()) {
-            actions.add(new LinkListItemImpl(actionTitle, actionLink));
+            actions.add(new LinkListItemImpl(actionTitle, actionLink, getId()));
             if (targetPage == null) {
               // get target page from first action
               targetPage = actionLink.getTargetPage();
@@ -143,6 +145,9 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
     }
 
     // read title and description
+    if (!pretitleHidden) {
+      pretitle = properties.get("pretitle", String.class);
+    }
     if (!titleHidden) {
       if (titleFromPage) {
         if (targetPage != null) {
@@ -205,6 +210,11 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
   }
 
   @Override
+  public String getPretitle() {
+    return pretitle;
+  }
+
+  @Override
   public boolean isTitleLinkHidden() {
     return titleLinkHidden;
   }
@@ -217,6 +227,24 @@ public class TeaserImpl extends AbstractComponentExporterImpl implements Teaser,
   @Override
   public String getTitleType() {
     return titleType;
+  }
+
+
+  // --- data layer ---
+
+  @Override
+  public String getDataLayerTitle() {
+    return getTitle();
+  }
+
+  @Override
+  public Link getDataLayerLink() {
+    return link;
+  }
+
+  @Override
+  public String getDataLayerDescription() {
+    return getDescription();
   }
 
 }

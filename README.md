@@ -3,12 +3,13 @@
 [![Build Status](https://travis-ci.org/wcm-io/wcm-io-wcm-core-components.png?branch=develop)](https://travis-ci.org/wcm-io/wcm-io-wcm-core-components)
 [![Code Coverage](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components/branch/develop/graph/badge.svg)](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components)
 
-Enhances [AEM Sites Core Components][adobe-core-components] with wcm.io functionality.
+Enhances [AEM WCM Core Components][adobe-core-components] with wcm.io functionality.
 
 Documentation: https://wcm.io/wcm/core-components/<br/>
 Issues: https://wcm-io.atlassian.net/browse/WWCM<br/>
 Wiki: https://wcm-io.atlassian.net/wiki/<br/>
-Continuous Integration: https://travis-ci.org/wcm-io/wcm-io-wcm-core-components/
+Continuous Integration: https://travis-ci.org/wcm-io/wcm-io-wcm-core-components/<br/>
+Commercial support: https://wcm.io/commercial-support.html
 
 
 ## Build from sources

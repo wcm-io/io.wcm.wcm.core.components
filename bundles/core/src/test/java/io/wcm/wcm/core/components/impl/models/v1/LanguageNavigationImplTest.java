@@ -26,8 +26,12 @@ import static io.wcm.samples.core.testcontext.AppAemContext.LANGUAGE_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.assertNavigationItems;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.v1.LanguageNavigationImpl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.assertNavigationItems_DataLayer;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Locale;
 
@@ -36,6 +40,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.LanguageNavigation;
+import com.adobe.cq.wcm.core.components.models.NavigationItem;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.day.cq.wcm.api.Page;
 
 import io.wcm.samples.core.testcontext.AppAemContext;
@@ -69,8 +76,31 @@ class LanguageNavigationImplTest {
     LanguageNavigation underTest = AdaptTo.notNull(context.request(), LanguageNavigation.class);
 
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+    assertNotNull(underTest.getId());
 
     assertNavigationItems(underTest.getItems(), root_en, root_fr);
+    assertNull(underTest.getData());
+  }
+
+  @Test
+  @SuppressWarnings("null")
+  void testDefault_DataLayer() {
+    enableDataLayer(context, true);
+
+    context.currentResource(context.create().resource(root_en, "languageNavigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_NAVIGATION_ROOT, LANGUAGE_ROOT));
+    LanguageNavigation underTest = AdaptTo.notNull(context.request(), LanguageNavigation.class);
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
+
+    assertNavigationItems_DataLayer(underTest.getItems(), root_en, root_fr);
+    NavigationItem item1 = underTest.getItems().get(0);
+    assertEquals("en-US", ((PageData)item1.getData()).getLanguage());
+    NavigationItem item2 = underTest.getItems().get(1);
+    assertEquals("fr", ((PageData)item2.getData()).getLanguage());
   }
 
 }

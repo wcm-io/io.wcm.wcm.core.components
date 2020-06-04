@@ -28,9 +28,13 @@ import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.assertNavigationItems;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.v1.NavigationImpl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.assertNavigationItems_DataLayer;
+import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +42,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.Navigation;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.Page;
 
 import io.wcm.samples.core.testcontext.AppAemContext;
@@ -82,11 +87,33 @@ class NavigationImplTest {
 
     assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+    assertNotNull(underTest.getId());
+    assertNull(underTest.getData());
 
     assertNavigationItems(underTest.getItems(), page1, page3);
     assertNavigationItems(underTest.getItems().get(0).getChildren(), page11, page12);
     assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page111, page112);
     assertNavigationItems(underTest.getItems().get(1).getChildren());
+  }
+
+  @Test
+  @SuppressWarnings("null")
+  void testDefault_DataLayer() {
+    enableDataLayer(context, true);
+
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        "accessibilityLabel", "my-label"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
+
+    assertNavigationItems_DataLayer(underTest.getItems(), page1, page3);
+    assertNavigationItems_DataLayer(underTest.getItems().get(0).getChildren(), page11, page12);
+    assertNavigationItems_DataLayer(underTest.getItems().get(0).getChildren().get(0).getChildren(), page111, page112);
+    assertNavigationItems_DataLayer(underTest.getItems().get(1).getChildren());
   }
 
   @Test

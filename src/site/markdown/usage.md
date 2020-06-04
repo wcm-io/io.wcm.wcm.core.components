@@ -1,6 +1,6 @@
 ## WCM Core Component Usage
 
-For each of the [AEM Sites Core Components][adobe-core-components] the wcm.io WCM Core Component module provides it's own component variant inheriting all features from the AEM Sites Core Components and enhancing them with wcm.io functionality.
+For each of the [AEM WCM Core Components][adobe-core-components] the wcm.io WCM Core Component module provides it's own component variant inheriting all features from the AEM WCM Core Components and enhancing them with wcm.io functionality.
 
 Each wcm.io WCM Core Component has it's own resource type as documented in the [Component Overview][components].
 
@@ -34,7 +34,7 @@ When you want to switch an existing project make sure to include all dependency 
 
 ### Drop-in replacement
 
-The wcm.io WCM Core Components are designed to be a drop-in replacement for the AEM Sites Core Components. All content properties stored by the original components can also be read by the wcm.io components, and the generated markup is the same.
+The wcm.io WCM Core Components are designed to be a drop-in replacement for the AEM WCM Core Components. All content properties stored by the original components can also be read by the wcm.io components, and the generated markup is the same.
 
 Components that store link target information (e.g. Button, Title, Teaser, Image component) can read the link target information from the "old" property (e.g. `linkURL`). But once the data is edited and saved using the edit dialog, this old property is removed and replaced with the [Link Handler-specific properties][link-handler-link-properties]. That means that a switch back to the original components may require a manual content migration back to the "old" link properties.
 

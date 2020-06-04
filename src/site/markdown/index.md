@@ -1,6 +1,6 @@
 ## About WCM Core Components
 
-Enhances [AEM Sites Core Components][adobe-core-components] with wcm.io functionality.
+Enhances [AEM WCM Core Components][adobe-core-components] with wcm.io functionality.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components)
 
@@ -32,7 +32,8 @@ A detailed documentation for each component can be found in the [Component Overv
 ### AEM Version Support Matrix
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
-|-----------------------------------|----------------------------------|-------------------------------------------
+|-----------------------------------|----------------------------------|---------------------------------------------
+| 1.3.x-2.9.0                       | 2.9.0                            | AEM 6.4 SP8, AEM 6.5 SP4, AEM Cloud Service
 | 1.2.x-2.8.0                       | 2.8.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
 | 1.2.x-2.7.0                       | 2.7.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
 | 1.1.x-2.6.0                       | 2.6.0                            | AEM 6.3 SP3, AEM 6.4 SP4, AEM 6.5 and up
@@ -45,7 +46,7 @@ A detailed documentation for each component can be found in the [Component Overv
 To use this module you have to deploy also:
 
 |---|---|---|
-| [AEM Sites Core Components (ZIP)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) |
+| [AEM WCM Core Components (ZIP)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adobe.cq/core.wcm.components.all) |
 | [wcm.io Sling Commons](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.commons) |
 | [wcm.io AEM Sling Models Extensions](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.sling.models) |
 | [wcm.io WCM Commons](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.commons) |

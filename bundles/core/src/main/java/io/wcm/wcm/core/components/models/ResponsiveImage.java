@@ -25,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ConsumerType;
 
 import com.adobe.cq.export.json.ComponentExporter;
+import com.adobe.cq.wcm.core.components.models.Component;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,7 +37,7 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
  * {@code /apps/wcm-io/wcm/core/components/responsiveimage} component.
  */
 @ConsumerType
-public interface ResponsiveImage extends ComponentExporter, MediaMixin, LinkMixin {
+public interface ResponsiveImage extends Component, ComponentExporter, MediaMixin, LinkMixin {
 
   /**
    * Returns the value for the {@code alt} attribute of the image.

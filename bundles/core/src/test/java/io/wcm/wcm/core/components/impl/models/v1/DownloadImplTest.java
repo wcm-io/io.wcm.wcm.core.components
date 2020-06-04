@@ -42,6 +42,7 @@ import static io.wcm.wcm.core.components.impl.models.v1.DownloadImpl.RESOURCE_TY
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -92,8 +93,10 @@ class DownloadImplTest {
     assertTrue(underTest.displayFormat());
     assertNull(underTest.getFilename());
     assertTrue(underTest.displayFilename());
+    assertNotNull(underTest.getId());
 
     assertInvalidMedia(underTest);
+    assertNull(underTest.getData());
 
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
   }
