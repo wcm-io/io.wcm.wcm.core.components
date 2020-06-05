@@ -45,22 +45,6 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.caconfig.api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.caconfig.spi</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.sling</groupId>
-      <artifactId>org.apache.sling.caconfig.impl</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
       <scope>compile</scope>
