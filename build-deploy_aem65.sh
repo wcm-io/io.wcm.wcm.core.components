@@ -26,8 +26,8 @@ fi
 
 # install AEM 6.5 with service pack
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=adobe.binary.aem.65.servicepack:AEM-6.5.4.0:zip:6.5.4 \
-    -Dvault.delayAfterInstallSec=60 \
+    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.5 \
+    -Dvault.delayAfterInstallSec=30 \
     -Dsling.url=${SLING_URL}
 
 if [ "$?" -ne "0" ]; then
