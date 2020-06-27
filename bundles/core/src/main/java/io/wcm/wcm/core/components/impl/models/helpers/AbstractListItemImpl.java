@@ -24,6 +24,7 @@ import static io.wcm.wcm.core.components.impl.models.helpers.IdGenerator.ID_SEPA
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -42,7 +43,7 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl {
    * @param parentId Parent ID
    * @param resource Resource
    */
-  protected AbstractListItemImpl(@Nullable String parentId, @Nullable Resource resource) {
+  protected AbstractListItemImpl(@Nullable String parentId, @NotNull Resource resource) {
     this.resource = resource;
     this.parentId = parentId;
   }
