@@ -24,4 +24,4 @@ if [[ $0 == *":\\"* ]]; then
   DISPLAY_PAUSE_MESSAGE=true
 fi
 
-./build-deploy.sh --sling.url=${SLING_URL} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
+./build-deploy.sh --deploy.core.components=false --sling.url=${SLING_URL} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
