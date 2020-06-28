@@ -36,6 +36,7 @@ import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -80,7 +81,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
   private List<NavigationItem> items;
 
   @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-  private String accessibilityLabel;
+  private @Nullable String accessibilityLabel;
 
   private int structureDepth;
   private int structureStart;

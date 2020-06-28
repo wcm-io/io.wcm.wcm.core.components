@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.3.2-2.9.0</version>
+    <version>1.4.0-2.10.0</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>
   <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
-  <version>1.3.2-2.9.0</version>
+  <version>1.4.0-2.10.0</version>
   <packaging>jar</packaging>
 
   <name>WCM Core Components Examples Core</name>
@@ -44,7 +44,7 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.wcm.core.components</artifactId>
-      <version>1.3.2-2.9.0</version>
+      <version>1.4.0-2.10.0</version>
       <scope>compile</scope>
     </dependency>
 
@@ -68,6 +68,7 @@
           <bnd>
             Sling-Initial-Content: \
               SLING-INF/app-root/components;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/components, \
+              SLING-INF/app-root/templates;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/templates, \
               SLING-INF/app-root/clientlibs;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/clientlibs
 
             <!-- For build compatibility with Java 11 -->
