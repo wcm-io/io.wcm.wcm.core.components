@@ -33,6 +33,7 @@ BUILD=false
 DEPLOY=false
 HELP=false
 DEFAULT_COMMANDS=true
+DEPLOY_CORE_COMPONENTS=true
 
 ####
 
@@ -78,6 +79,10 @@ parse_parameters() {
       ;;
       --display\.pause\.message=*|-Ddisplay\.pause\.message=*)
       DISPLAY_PAUSE_MESSAGE="${i#*=}"
+      shift # past argument with no value
+      ;;
+      --deploy\.core\.components=*|-Ddeploy\.core\.components=*)
+      DEPLOY_CORE_COMPONENTS="${i#*=}"
       shift # past argument with no value
       ;;
       build)
@@ -166,8 +171,29 @@ execute_deploy() {
   echo -e "*** \e[1mDeploy to AEM\e[0m ***"
   echo ""
 
+  if [ "$DEPLOY_CORE_COMPONENTS" = true ]; then
+    echo ""
+    echo "Deploy Core Components..."
+    echo ""
+    mvn -f examples/content-packages/examples \
+        -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.all.zip' \
+        -Dvault.force=true \
+        ${JVM_ARGS} \
+        -Dsling.url=${SLING_URL} \
+        -Dsling.user=${SLING_USER} \
+        -Dsling.password=${SLING_PASSWORD} \
+        wcmio-content-package:install
+
+    if [ "$?" -ne "0" ]; then
+      exit_with_error "*** DEPLOY FAILED ***"
+    fi
+  fi
+
+  echo ""
+  echo "Deploy Core Components examples..."
+  echo ""
   mvn -f examples/content-packages/examples \
-      -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.all.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.apps.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.content.zip' \
+      -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.examples.ui.apps.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.content.zip' \
       -Dvault.force=true \
       ${JVM_ARGS} \
       -Dsling.url=${SLING_URL} \
@@ -179,6 +205,9 @@ execute_deploy() {
     exit_with_error "*** DEPLOY FAILED ***"
   fi
 
+  echo ""
+  echo "Deploy wcm.io WCM Core Components examples application..."
+  echo ""
   mvn -f examples/content-packages/examples \
       ${JVM_ARGS} \
       -Dsling.url=${SLING_URL} \
@@ -190,7 +219,10 @@ execute_deploy() {
     exit_with_error "*** DEPLOY FAILED ***"
   fi
 
-   mvn -f examples/content-packages/examples-sample-content \
+  echo ""
+  echo "Deploy wcm.io WCM Core Components examples content..."
+  echo ""
+  mvn -f examples/content-packages/examples-sample-content \
       ${JVM_ARGS} \
       -Dsling.url=${SLING_URL} \
       -Dsling.user=${SLING_USER} \

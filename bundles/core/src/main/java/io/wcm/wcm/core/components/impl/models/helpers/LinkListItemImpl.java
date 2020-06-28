@@ -19,12 +19,14 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
+import org.apache.sling.api.resource.Resource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
 
 import io.wcm.handler.link.Link;
+import io.wcm.handler.link.SyntheticLinkResource;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
@@ -38,11 +40,22 @@ public class LinkListItemImpl extends AbstractListItemImpl implements ListItem, 
   /**
    * @param title Title
    * @param link Link
+   * @param parentId Parent Id
+   * @param contextResource Resource in context of which this link item is used
    */
-  public LinkListItemImpl(@NotNull String title, @NotNull Link link, @Nullable String parentId) {
-    super(parentId, link.getLinkRequest().getResource());
+  public LinkListItemImpl(@NotNull String title, @NotNull Link link, @Nullable String parentId,
+      @NotNull Resource contextResource) {
+    super(parentId, getLinkRequestResource(link, contextResource));
     this.title = title;
     this.link = link;
+  }
+
+  private static @NotNull Resource getLinkRequestResource(@NotNull Link link, @NotNull Resource contextResource) {
+    Resource resource = link.getLinkRequest().getResource();
+    if (resource == null) {
+      resource = new SyntheticLinkResource(contextResource.getResourceResolver(), contextResource.getPath());
+    }
+    return resource;
   }
 
   @Override

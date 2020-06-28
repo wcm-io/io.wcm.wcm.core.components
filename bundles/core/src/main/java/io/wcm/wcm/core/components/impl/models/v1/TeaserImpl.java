@@ -126,7 +126,7 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
           String actionTitle = actionResource.getValueMap().get(PN_ACTION_TEXT, String.class);
           Link actionLink = linkHandler.get(actionResource).build();
           if (actionTitle != null && actionLink.isValid()) {
-            actions.add(new LinkListItemImpl(actionTitle, actionLink, getId()));
+            actions.add(new LinkListItemImpl(actionTitle, actionLink, getId(), this.resource));
             if (targetPage == null) {
               // get target page from first action
               targetPage = actionLink.getTargetPage();

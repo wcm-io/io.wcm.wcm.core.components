@@ -20,6 +20,7 @@
   -->
 
 <workspaceFilter version="1.0">
+  <filter root="/apps/wcm-io-samples/wcm-core-components/config"/>
   <filter root="/apps/wcm-io-samples/wcm-core-components/config.author"/>
   <filter root="/apps/wcm-io-samples/wcm-core-components/install"/>
 </workspaceFilter>
