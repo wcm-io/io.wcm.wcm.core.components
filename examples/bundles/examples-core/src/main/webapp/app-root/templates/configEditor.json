@@ -1,0 +1,12 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:title": "wcm.io Configuration Editor",
+
+  "allowedPaths": "^/content/wcmio-core-components-examples(/.+)?$",
+  "allowedChildren": "",
+
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "sling:resourceType": "/apps/wcm-io/caconfig/editor/components/page/editor"
+  }
+}
