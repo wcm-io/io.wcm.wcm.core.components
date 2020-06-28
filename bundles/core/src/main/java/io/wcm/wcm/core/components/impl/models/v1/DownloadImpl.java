@@ -36,6 +36,7 @@ import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -71,11 +72,11 @@ public class DownloadImpl extends AbstractComponentImpl implements Download, Med
   private Style currentStyle;
 
   @ValueMapValue(name = JCR_TITLE, injectionStrategy = InjectionStrategy.OPTIONAL)
-  private String title;
+  private @Nullable String title;
   @ValueMapValue(name = JCR_DESCRIPTION, injectionStrategy = InjectionStrategy.OPTIONAL)
-  private String description;
+  private @Nullable String description;
   @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-  private String actionText;
+  private @Nullable String actionText;
 
   @Self
   private MediaHandler mediaHandler;

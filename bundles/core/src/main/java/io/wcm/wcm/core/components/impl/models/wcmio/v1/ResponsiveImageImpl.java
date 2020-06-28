@@ -42,6 +42,7 @@ import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -88,9 +89,9 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
   private MediaHandler mediaHandler;
 
   @ValueMapValue(name = PN_ALT, injectionStrategy = InjectionStrategy.OPTIONAL)
-  private String alt;
+  private @Nullable String alt;
   @ValueMapValue(name = JCR_TITLE, injectionStrategy = InjectionStrategy.OPTIONAL)
-  private String title;
+  private @Nullable String title;
 
   private Link link;
   private Media media;
