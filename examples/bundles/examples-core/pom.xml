@@ -68,6 +68,7 @@
           <bnd>
             Sling-Initial-Content: \
               SLING-INF/app-root/components;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/components, \
+              SLING-INF/app-root/templates;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/templates, \
               SLING-INF/app-root/clientlibs;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/clientlibs
 
             <!-- For build compatibility with Java 11 -->
