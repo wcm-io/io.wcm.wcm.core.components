@@ -26,6 +26,13 @@
                           "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
                           "disabled": true,
                           "required": false
+                        },
+
+                        /*
+                         * Hide flag, it has no meaning with link handler underneath. 
+                         */
+                        "disableShadowing": {
+                          "sling:hideResource": true
                         }
 
                       }
@@ -58,6 +65,13 @@
                   "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
                   "disabled": true,
                   "required": false
+                },
+
+                /*
+                 * Hide flag, it has no meaning with link handler underneath. 
+                 */
+                "disableShadowing": {
+                  "sling:hideResource": true
                 }
 
               }

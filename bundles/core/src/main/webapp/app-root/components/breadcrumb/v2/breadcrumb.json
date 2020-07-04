@@ -25,6 +25,13 @@
                           "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
                           "fieldDescription": "Navigation start level is detected automatically from wcm.io URL Handler site root level.",
                           "disabled": true
+                        },
+
+                        /*
+                         * Hide flag, it has no meaning with link handler underneath. 
+                         */
+                        "disableShadowing": {
+                          "sling:hideResource": true
                         }
 
                       }
