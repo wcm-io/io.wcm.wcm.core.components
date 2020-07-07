@@ -24,6 +24,9 @@
   <body>
 
     <release version="1.4.2-2.10.0" date="not released">
+      <action type="update" dev="sseifert" issue="WWCM-12">
+        navigation: Support relative and absolute "navigation root" paths. Relative paths are resolved relative to site root, absolute path is rewritten to current context and used directly.
+      </action>
       <action type="update" dev="sseifert">
         navigation, breadcrumb: Hide disableShadowing and startLevel parameter.
       </action>

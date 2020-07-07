@@ -20,11 +20,13 @@
 package io.wcm.wcm.core.components.impl.models.v1;
 
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_COLLECT_ALL_PAGES;
+import static com.adobe.cq.wcm.core.components.models.Navigation.PN_NAVIGATION_ROOT;
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_SKIP_NAVIGATION_ROOT;
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_STRUCTURE_DEPTH;
 import static com.adobe.cq.wcm.core.components.models.Navigation.PN_STRUCTURE_START;
 import static com.day.cq.wcm.api.NameConstants.PN_HIDE_IN_NAV;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.samples.core.testcontext.AppAemContext.LANGUAGE_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.assertNavigationItems;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.v1.NavigationImpl.RESOURCE_TYPE;
@@ -56,6 +58,7 @@ class NavigationImplTest {
 
   private final AemContext context = AppAemContext.newAemContext();
 
+  private Page languageRoot;
   private Page root;
   private Page page1;
   private Page page11;
@@ -68,6 +71,7 @@ class NavigationImplTest {
   void setUp() throws Exception {
     loadComponentDefinition(context, RESOURCE_TYPE);
 
+    languageRoot = context.pageManager().getPage(LANGUAGE_ROOT);
     root = context.pageManager().getPage(CONTENT_ROOT);
     page1 = context.create().page(root, "page1");
     page11 = context.create().page(page1, "page11");
@@ -184,6 +188,89 @@ class NavigationImplTest {
 
     assertNavigationItems(underTest.getItems(), page11, page12);
     assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+  }
+
+  @Test
+  void testNavigationRoot_RelativeRootPath() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 1,
+        PN_NAVIGATION_ROOT, "page1"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+  }
+
+  @Test
+  void testNavigationRoot_RelativeRootPath_ContentPolicy() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_STRUCTURE_START, 1,
+        PN_NAVIGATION_ROOT, "page1");
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+  }
+
+  @Test
+  void testNavigationRoot_RelativeRootPath_Invalid() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 1,
+        PN_NAVIGATION_ROOT, "page_not_existing"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems());
+  }
+
+  @Test
+  void testNavigationRoot_AbsoluteRootPath() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 1,
+        PN_NAVIGATION_ROOT, "/content/sample/en/page1"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+  }
+
+  @Test
+  void testNavigationRoot_AbsoluteRootPath_RewriteContext() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 1,
+        PN_NAVIGATION_ROOT, "/content/other-sample/fr/page1"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems(), page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+  }
+
+  @Test
+  void testNavigationRoot_AbsoluteRootPath_OutsideContext() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_STRUCTURE_START, 0,
+        PN_NAVIGATION_ROOT, "/content/sample"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems(), languageRoot);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page1, page3);
+  }
+
+  @Test
+  void testNavigationRoot_AbsoluteRootPath_Invalid() {
+    context.currentResource(context.create().resource(root, "navigation",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_NAVIGATION_ROOT, "/content/sample/en/page_not_existing"));
+    Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
+
+    assertNavigationItems(underTest.getItems());
   }
 
   @Test

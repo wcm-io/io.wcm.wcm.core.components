@@ -17,14 +17,13 @@
                     "column": {
                       "items": {
 
-                        /* Disable navigation root parameter; it's detected automatically */
+                        /* Navigation root is detected automatically, optionally support a relative or absolute path */
                         "navigationRoot": {
                           "rootPath": "/content",
                           "name": "./navigationRoot",
-                          "fieldLabel": "Navigation Root",
-                          "sling:resourceType": "granite/ui/components/coral/foundation/form/pathfield",
-                          "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
-                          "disabled": true,
+                          "fieldLabel": "Navigation Root (relative or absolute path)",
+                          "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/pathfield",
+                          "fieldDescription": "Site root is used by default. Relative path is resovled relative to site root, absolute path is rewritten to current context.",
                           "required": false
                         },
 
@@ -56,14 +55,13 @@
             "properties": {
               "items": {
 
-                /* Disable navigation root parameter; it's detected automatically */
+                /* Navigation root is detected automatically, optionally support a relative or absolute path */
                 "navigationRoot": {
                   "rootPath": "/content",
                   "name": "./navigationRoot",
-                  "fieldLabel": "Navigation Root",
-                  "sling:resourceType": "granite/ui/components/coral/foundation/form/pathfield",
-                  "fieldDescription": "Navigation root is detected automatically from wcm.io URL Handler site root level.",
-                  "disabled": true,
+                  "fieldLabel": "Navigation Root (relative or absolute path)",
+                  "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/pathfield",
+                  "fieldDescription": "Site root is used by default. Relative path is resovled relative to site root, absolute path is rewritten to current context.",
                   "required": false
                 },
 

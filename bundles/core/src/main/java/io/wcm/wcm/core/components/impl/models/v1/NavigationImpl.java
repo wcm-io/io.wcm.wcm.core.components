@@ -19,6 +19,8 @@
  */
 package io.wcm.wcm.core.components.impl.models.v1;
 
+import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -29,11 +31,15 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.SyntheticResource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,10 +50,12 @@ import com.adobe.cq.wcm.core.components.models.Navigation;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
+import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.designer.Style;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
+import io.wcm.handler.url.UrlHandler;
 import io.wcm.handler.url.ui.SiteRoot;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
@@ -74,8 +82,14 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
 
   @AemObject
   private Style currentStyle;
+  @AemObject
+  private PageManager pageManager;
+  @SlingObject
+  private ResourceResolver resourceResolver;
   @Self
   private SiteRoot siteRoot;
+  @Self
+  private UrlHandler urlHandler;
   @Self
   private LinkHandler linkHandler;
   private List<NavigationItem> items;
@@ -83,12 +97,14 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
   @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
   private @Nullable String accessibilityLabel;
 
+  private String navigationRootPath;
   private int structureDepth;
   private int structureStart;
 
   @PostConstruct
   private void activate() {
     ValueMap properties = resource.getValueMap();
+    navigationRootPath = resource.getValueMap().get(PN_NAVIGATION_ROOT, currentStyle.get(PN_NAVIGATION_ROOT, String.class));
     structureDepth = properties.get(PN_STRUCTURE_DEPTH, currentStyle.get(PN_STRUCTURE_DEPTH, NO_STRUCTURE_DEPTH));
     boolean collectAllPages = properties.get(PN_COLLECT_ALL_PAGES, currentStyle.get(PN_COLLECT_ALL_PAGES, true));
     if (collectAllPages) {
@@ -125,7 +141,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
 
   private List<NavigationItem> createItems() {
     List<NavigationItem> result = new ArrayList<>();
-    Page rootPage = siteRoot.getRootPage();
+    Page rootPage = getNavigationRootPage();
     if (rootPage != null) {
       NavigationRoot navigationRoot = new NavigationRoot(rootPage, structureDepth);
       result = getNavigationTree(navigationRoot);
@@ -134,6 +150,32 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
       result = Collections.emptyList();
     }
     return Collections.unmodifiableList(result);
+  }
+
+  /**
+   * Get root page for navigation.
+   * @return Root page or null if detection was not possible
+   */
+  private @Nullable Page getNavigationRootPage() {
+    Page navigationRootPage = null;
+    if (StringUtils.isBlank(navigationRootPath)) {
+      // use site root as configured in URL handler as navigation root
+      navigationRootPage = siteRoot.getRootPage();
+    }
+    else if (StringUtils.startsWith(navigationRootPath, "/")) {
+      // configured root path is absolute path - rewrite to current context and try to resolve matching page
+      Resource configuredRootResource = new SyntheticResource(resourceResolver, navigationRootPath, NT_UNSTRUCTURED);
+      String rewrittenPath = urlHandler.rewritePathToContext(configuredRootResource);
+      navigationRootPage = pageManager.getPage(rewrittenPath);
+    }
+    else {
+      // configured root path is relative path - try to resolve relative to site root path
+      String siteRootPath = siteRoot.getRootPath();
+      if (siteRootPath != null) {
+        navigationRootPage = pageManager.getPage(siteRootPath + "/" + navigationRootPath);
+      }
+    }
+    return navigationRootPage;
   }
 
   /**
