@@ -17,18 +17,13 @@
                     "column": {
                       "items": {
 
-                        /* Disable start level parameter; it's detected automatically */
+                        /* Hide start level parameter; it's detected automatically */
                         "startLevel": {
-                          "name": "./startLevel",
-                          "value": "",
-                          "fieldLabel": "Navigation Start Level",
-                          "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
-                          "fieldDescription": "Navigation start level is detected automatically from wcm.io URL Handler site root level.",
-                          "disabled": true
+                          "sling:hideResource": true
                         },
 
                         /*
-                         * Hide flag, it has no meaning with link handler underneath. 
+                         * Hide disableShadowing, it has no meaning with link handler underneath. 
                          */
                         "disableShadowing": {
                           "sling:hideResource": true
@@ -55,14 +50,16 @@
             "properties": {
               "items": {
 
-                /* Disable start level parameter; it's detected automatically */
+                /* Hide start level parameter; it's detected automatically */
                 "startLevel": {
-                  "name": "./startLevel",
-                  "value": "",
-                  "fieldLabel": "Navigation Start Level",
-                  "sling:resourceType": "granite/ui/components/coral/foundation/form/numberfield",
-                  "fieldDescription": "Navigation start level is detected automatically from wcm.io URL Handler site root level.",
-                  "disabled": true
+                  "sling:hideResource": true
+                },
+
+                /*
+                 * Hide disableShadowing, it has no meaning with link handler underneath. 
+                 */
+                "disableShadowing": {
+                  "sling:hideResource": true
                 }
 
               }
