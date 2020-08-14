@@ -45,7 +45,7 @@
       "items": {
         "tabs": {
           "items": {
-            "background": {
+            "containerSettings": {
               "items": {
                 "container": {
                   "sling:resourceType": "granite/ui/components/coral/foundation/container",
