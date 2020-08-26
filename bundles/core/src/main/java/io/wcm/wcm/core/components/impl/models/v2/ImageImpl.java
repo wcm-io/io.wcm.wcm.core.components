@@ -115,6 +115,7 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
   private String fileReference;
   private boolean displayPopupTitle;
   private boolean enableLazyLoading;
+  private int lazyThreshold;
   private boolean isDecorative;
   private List<ImageArea> areas;
 
@@ -129,6 +130,7 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     // read basic properties
     displayPopupTitle = properties.get(PN_DISPLAY_POPUP_TITLE, currentStyle.get(PN_DISPLAY_POPUP_TITLE, true));
     enableLazyLoading = !currentStyle.get(PN_DESIGN_LAZY_LOADING_ENABLED, true);
+    lazyThreshold = currentStyle.get(PN_DESIGN_LAZY_THRESHOLD, 0);
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
     // resolve media and properties from DAM asset
@@ -249,6 +251,11 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
   @Override
   public boolean isLazyEnabled() {
     return enableLazyLoading;
+  }
+
+  @Override
+  public int getLazyThreshold() {
+    return lazyThreshold;
   }
 
   @Override

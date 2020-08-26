@@ -22,6 +22,7 @@ package io.wcm.wcm.core.components.impl.models.v2;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_ALLOWED_RENDITION_WIDTHS;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_LOADING_ENABLED;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_THRESHOLD;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_IS_DECORATIVE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_MAP;
@@ -111,6 +112,7 @@ class ImageImplTest {
     assertArrayEquals(new int[0], underTest.getWidths());
     assertNull(underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
+    assertEquals(0, underTest.getLazyThreshold());
     assertNull(underTest.getAreas());
     assertFalse(underTest.isDecorative());
     assertNotNull(underTest.getId());
@@ -242,7 +244,8 @@ class ImageImplTest {
   @Test
   void testWithImageAndLink_Decorative_ContentPolicy() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_IS_DECORATIVE, true);
+        PN_IS_DECORATIVE, true,
+        PN_DESIGN_LAZY_THRESHOLD, 10);
 
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
@@ -255,6 +258,7 @@ class ImageImplTest {
     assertEquals("Asset Title", underTest.getTitle());
     assertNull(underTest.getAlt());
     assertNull(underTest.getLink());
+    assertEquals(10, underTest.getLazyThreshold());
 
     assertInvalidLink(underTest);
   }
