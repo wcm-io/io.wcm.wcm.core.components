@@ -38,7 +38,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 
 **Form components**
 
-* [Form container](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/container/v2)
+* [Form container](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/container/v2) <span class="marker-label">LINK</span>
 * [Form text field](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/text/v2)
 * [Form options field](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/options/v2)
 * [Form hidden field](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/hidden/v2)
