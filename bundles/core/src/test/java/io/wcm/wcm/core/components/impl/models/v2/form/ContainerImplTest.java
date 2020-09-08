@@ -17,13 +17,14 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.models.v1.form;
+package io.wcm.wcm.core.components.impl.models.v2.form;
 
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
-import static io.wcm.wcm.core.components.impl.models.v1.form.ContainerImpl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v2.form.ContainerImpl.RESOURCE_TYPE;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,6 +71,22 @@ class ContainerImplTest {
 
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
     assertEquals("/content/sample/en/page1.html", underTest.getAction());
+    assertNull(underTest.getRedirect());
+  }
+
+  @Test
+  void testWithRedirect() {
+    Page thankYouPage = context.create().page(page, "thankyou");
+
+    context.currentResource(context.create().resource(page, "container",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        "redirect", thankYouPage.getPath()));
+
+    Container underTest = AdaptTo.notNull(context.request(), Container.class);
+
+    assertEquals(RESOURCE_TYPE, underTest.getExportedType());
+    assertEquals("/content/sample/en/page1.html", underTest.getAction());
+    assertEquals("/content/sample/en/page1/thankyou.html", underTest.getRedirect());
   }
 
 }

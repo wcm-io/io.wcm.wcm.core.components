@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.models.v1.form;
+package io.wcm.wcm.core.components.impl.models.v2.form;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;

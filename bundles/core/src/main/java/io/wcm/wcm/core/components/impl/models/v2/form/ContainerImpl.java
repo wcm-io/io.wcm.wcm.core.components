@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.models.v1.form;
+package io.wcm.wcm.core.components.impl.models.v2.form;
 
 import java.util.Map;
 
@@ -44,7 +44,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterI
 /**
  * wcm.io-based enhancements for {@link Container}:
  * <ul>
- * <li>Generate form action URL using link handler</li>
+ * <li>Generate form action and redirect URLs using link handler</li>
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
@@ -67,15 +67,24 @@ public class ContainerImpl extends AbstractComponentExporterImpl implements Cont
   private Page currentPage;
 
   private String action;
+  private String redirect;
 
   @PostConstruct
   private void initModel() {
     this.action = linkHandler.get(currentPage).buildUrl();
+
+    String redirectPath = resource.getValueMap().get("redirect", String.class);
+    this.redirect = linkHandler.get(redirectPath).buildUrl();
   }
 
   @Override
   public String getAction() {
     return action;
+  }
+
+  @Override
+  public String getRedirect() {
+    return redirect;
   }
 
   // --- delegated methods ---
@@ -103,11 +112,6 @@ public class ContainerImpl extends AbstractComponentExporterImpl implements Cont
   @Override
   public String getResourceTypeForDropArea() {
     return this.delegate.getResourceTypeForDropArea();
-  }
-
-  @Override
-  public String getRedirect() {
-    return this.delegate.getRedirect();
   }
 
   @Override

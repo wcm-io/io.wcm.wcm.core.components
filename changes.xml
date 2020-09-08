@@ -25,7 +25,7 @@
 
     <release version="1.5.2-2.11.0" date="not released">
       <action type="update" dev="sseifert">
-        Enhance Form Container component to generate form action URL via link handler (respecting configured Sling mappings).
+        Enhance Form Container component to generate form action and redirect URLs via link handler (respecting configured Sling mappings).
       </action>
     </release>
 
