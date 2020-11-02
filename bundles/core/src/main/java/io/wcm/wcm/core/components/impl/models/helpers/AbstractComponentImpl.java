@@ -19,7 +19,7 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import static io.wcm.wcm.core.components.impl.models.helpers.IdGenerator.ID_SEPARATOR;
+import static com.adobe.cq.wcm.core.components.util.ComponentUtils.ID_SEPARATOR;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.Component;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.util.ComponentUtils;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.components.ComponentContext;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -60,7 +61,7 @@ public abstract class AbstractComponentImpl extends AbstractComponentExporterImp
       id = properties.get(PN_ID, String.class);
     }
     if (StringUtils.isEmpty(id)) {
-      id = IdGenerator.generateIdForComponent(resource, currentPage, componentContext);
+      id = ComponentUtils.getId(resource, currentPage, componentContext);
     }
     else {
       id = StringUtils.replace(StringUtils.normalizeSpace(StringUtils.trim(id)), " ", ID_SEPARATOR);

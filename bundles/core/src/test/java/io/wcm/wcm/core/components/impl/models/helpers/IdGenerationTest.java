@@ -27,6 +27,7 @@ import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.adobe.cq.wcm.core.components.util.ComponentUtils;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.commons.WCMUtils;
 
@@ -35,7 +36,7 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
 @ExtendWith(AemContextExtension.class)
-public class IdGeneratorTest {
+public class IdGenerationTest {
 
   public static final String RESOURCE_TYPE = "app1/components/mycomp";
   public static final String PAGE_PATH = "/content/mypath";
@@ -47,14 +48,14 @@ public class IdGeneratorTest {
 
   @Test
   void testGenerateId() {
-    assertEquals(EXPECTED_ID, IdGenerator.generateId("mycomp", RESOURCE_PATH));
+    assertEquals(EXPECTED_ID, ComponentUtils.generateId("mycomp", RESOURCE_PATH));
   }
 
   @Test
   public void testGenerateIdForComponent_OnlyResource() {
     Resource resource = context.create().resource(RESOURCE_PATH,
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
-    assertEquals(EXPECTED_ID, IdGenerator.generateIdForComponent(resource, null, null));
+    assertEquals(EXPECTED_ID, ComponentUtils.getId(resource, null, null));
   }
 
   @Test
@@ -64,7 +65,7 @@ public class IdGeneratorTest {
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
     context.currentResource(resource);
 
-    assertEquals(EXPECTED_ID, IdGenerator.generateIdForComponent(resource, context.currentPage(),
+    assertEquals(EXPECTED_ID, ComponentUtils.getId(resource, context.currentPage(),
         WCMUtils.getComponentContext(context.request())));
   }
 

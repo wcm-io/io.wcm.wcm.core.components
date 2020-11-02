@@ -19,13 +19,15 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import static io.wcm.wcm.core.components.impl.models.helpers.IdGenerator.ID_SEPARATOR;
+import static com.adobe.cq.wcm.core.components.util.ComponentUtils.ID_SEPARATOR;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import com.adobe.cq.wcm.core.components.util.ComponentUtils;
 
 /**
  * Abstract helper class for ListItem implementations.
@@ -59,7 +61,7 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl {
     }
     if (StringUtils.isEmpty(id)) {
       String prefix = StringUtils.join(parentId, ID_SEPARATOR, ITEM_ID_PREFIX);
-      id = IdGenerator.generateId(prefix, resource.getPath());
+      id = ComponentUtils.generateId(prefix, resource.getPath());
     }
     else {
       id = StringUtils.replace(StringUtils.normalizeSpace(StringUtils.trim(id)), " ", ID_SEPARATOR);

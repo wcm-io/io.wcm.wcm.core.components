@@ -46,7 +46,7 @@ import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import io.wcm.wcm.core.components.impl.models.helpers.IdGeneratorTest;
+import io.wcm.wcm.core.components.impl.models.helpers.IdGenerationTest;
 
 @ExtendWith(AemContextExtension.class)
 class ComponentDataImplTest {
@@ -61,9 +61,9 @@ class ComponentDataImplTest {
   void setUp() {
     context.addModelsForClasses(DummyComponent.class);
 
-    Page page = context.create().page(IdGeneratorTest.PAGE_PATH);
-    Resource resource = context.create().resource(page, IdGeneratorTest.RESOURCE_NAME,
-        PROPERTY_RESOURCE_TYPE, IdGeneratorTest.RESOURCE_TYPE,
+    Page page = context.create().page(IdGenerationTest.PAGE_PATH);
+    Resource resource = context.create().resource(page, IdGenerationTest.RESOURCE_NAME,
+        PROPERTY_RESOURCE_TYPE, IdGenerationTest.RESOURCE_TYPE,
         JCR_TITLE, "my-title",
         JCR_DESCRIPTION, "my-desc",
         JCR_CREATED, TIMESTAMP,
@@ -79,9 +79,9 @@ class ComponentDataImplTest {
   void testProperties() {
     ComponentData underTest = new ComponentDataImpl(component, context.currentResource());
 
-    assertEquals(IdGeneratorTest.EXPECTED_ID, underTest.getId());
+    assertEquals(IdGenerationTest.EXPECTED_ID, underTest.getId());
     assertNull(underTest.getParentId());
-    assertEquals(IdGeneratorTest.RESOURCE_TYPE, underTest.getType());
+    assertEquals(IdGenerationTest.RESOURCE_TYPE, underTest.getType());
     assertEquals("my-title", underTest.getTitle());
     assertEquals("my-desc", underTest.getDescription());
     assertEquals("my-text", underTest.getText());
@@ -99,8 +99,8 @@ class ComponentDataImplTest {
   @Test
   void testJson() throws JSONException {
     ComponentData underTest = new ComponentDataImpl(component, context.currentResource());
-    JSONAssert.assertEquals("{'" + IdGeneratorTest.EXPECTED_ID + "': {"
-        + "'@type': '" + IdGeneratorTest.RESOURCE_TYPE + "', "
+    JSONAssert.assertEquals("{'" + IdGenerationTest.EXPECTED_ID + "': {"
+        + "'@type': '" + IdGenerationTest.RESOURCE_TYPE + "', "
         + "'xdm:linkURL': 'http://myhost', "
         + "'dc:title': 'my-title', "
         + "'dc:description': 'my-desc', "

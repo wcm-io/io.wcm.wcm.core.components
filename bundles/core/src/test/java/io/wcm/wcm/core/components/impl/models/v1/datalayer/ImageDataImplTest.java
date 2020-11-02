@@ -43,7 +43,7 @@ import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import io.wcm.wcm.core.components.impl.models.helpers.IdGeneratorTest;
+import io.wcm.wcm.core.components.impl.models.helpers.IdGenerationTest;
 
 @ExtendWith(AemContextExtension.class)
 class ImageDataImplTest {
@@ -59,9 +59,9 @@ class ImageDataImplTest {
     Asset asset = context.create().asset("/content/dam/my-asset.png", 10, 10, "image/png",
         TagConstants.PN_TAGS, "tag1");
 
-    Page page = context.create().page(IdGeneratorTest.PAGE_PATH);
-    Resource resource = context.create().resource(page, IdGeneratorTest.RESOURCE_NAME,
-        PROPERTY_RESOURCE_TYPE, IdGeneratorTest.RESOURCE_TYPE,
+    Page page = context.create().page(IdGenerationTest.PAGE_PATH);
+    Resource resource = context.create().resource(page, IdGenerationTest.RESOURCE_NAME,
+        PROPERTY_RESOURCE_TYPE, IdGenerationTest.RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath());
     context.currentResource(resource);
 
@@ -72,9 +72,9 @@ class ImageDataImplTest {
   void testProperties() {
     ImageData underTest = new ImageDataImpl(component, context.currentResource());
 
-    assertEquals(IdGeneratorTest.EXPECTED_ID, underTest.getId());
+    assertEquals(IdGenerationTest.EXPECTED_ID, underTest.getId());
     assertNull(underTest.getParentId());
-    assertEquals(IdGeneratorTest.RESOURCE_TYPE, underTest.getType());
+    assertEquals(IdGenerationTest.RESOURCE_TYPE, underTest.getType());
 
     AssetData assetData = underTest.getAssetData();
     assertNotNull(assetData);
@@ -89,8 +89,8 @@ class ImageDataImplTest {
   @Test
   void testJson() throws JSONException {
     ImageData underTest = new ImageDataImpl(component, context.currentResource());
-    JSONAssert.assertEquals("{'" + IdGeneratorTest.EXPECTED_ID + "': {"
-        + "'@type': '" + IdGeneratorTest.RESOURCE_TYPE + "', "
+    JSONAssert.assertEquals("{'" + IdGenerationTest.EXPECTED_ID + "': {"
+        + "'@type': '" + IdGenerationTest.RESOURCE_TYPE + "', "
         + "'image': {"
         + "'@type': 'image/png', "
         + "'repo:path': '/content/dam/my-asset.png', "
