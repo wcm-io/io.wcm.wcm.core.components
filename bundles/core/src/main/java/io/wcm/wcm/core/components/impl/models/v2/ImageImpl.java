@@ -27,6 +27,7 @@ import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -47,7 +48,9 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
-import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.AssetDataBuilder;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.day.cq.wcm.api.designer.Style;
 
 import io.wcm.handler.link.Link;
@@ -57,10 +60,10 @@ import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
+import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
-import io.wcm.wcm.core.components.impl.models.v1.datalayer.ImageDataImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
@@ -347,23 +350,19 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
   // --- data layer ---
 
   @Override
-  protected @NotNull ComponentData getComponentData() {
-    return new ImageDataImpl(this, resource);
-  }
-
-  @Override
-  public Media getDataLayerMedia() {
-    return media;
-  }
-
-  @Override
-  public String getDataLayerTitle() {
-    return title;
-  }
-
-  @Override
-  public Link getDataLayerLink() {
-    return link;
+  @SuppressWarnings("null")
+  protected @NotNull ImageData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asImageComponent()
+        .withTitle(this::getTitle)
+        .withLinkUrl(this::getLink)
+        .withAssetData(() -> Optional.of(media)
+            .filter(Media::isValid)
+            .map(Media::getAsset)
+            .map(asset -> AdaptTo.notNull(asset, com.day.cq.dam.api.Asset.class))
+            .map(DataLayerBuilder::forAsset)
+            .map(AssetDataBuilder::build)
+            .orElse(null))
+        .build();
   }
 
 }

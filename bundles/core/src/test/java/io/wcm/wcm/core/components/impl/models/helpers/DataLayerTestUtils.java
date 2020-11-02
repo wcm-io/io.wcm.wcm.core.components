@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.models.v1.datalayer;
+package io.wcm.wcm.core.components.impl.models.helpers;
 
 import static io.wcm.samples.core.testcontext.AppAemContext.LANGUAGE_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -91,7 +91,7 @@ public final class DataLayerTestUtils {
       ListItem item = itemsList.get(i);
       ComponentData data = item.getData();
       assertNotNull(data, "Item #" + i + " componentData");
-      assertEquals("cq:PageContent", data.getType(), "Item #" + i + " type");
+      assertEquals("cq:Component/item", data.getType(), "Item #" + i + " type");
       assertEquals(page.getPath() + ".html", data.getLinkUrl(), "Item #" + i + " linkUrl");
       assertEquals(page.getTitle(), data.getTitle(), "Item #" + i + " title");
     }

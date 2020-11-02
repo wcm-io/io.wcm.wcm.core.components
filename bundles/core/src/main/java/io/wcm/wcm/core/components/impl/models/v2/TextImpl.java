@@ -28,10 +28,13 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.Text;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 
 import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.handler.richtext.TextMode;
@@ -81,8 +84,10 @@ public class TextImpl extends AbstractComponentImpl implements Text {
   // --- data layer ---
 
   @Override
-  public String getDataLayerText() {
-    return StringUtils.defaultString(text);
+  protected @NotNull ComponentData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asComponent()
+        .withText(() -> StringUtils.defaultIfEmpty(this.getText(), StringUtils.EMPTY))
+        .build();
   }
 
 }

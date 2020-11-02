@@ -99,7 +99,8 @@ public class BreadcrumbImpl extends AbstractComponentImpl implements Breadcrumb 
         if (checkIfNotHidden(page)) {
           Link link = linkHandler.get(page).build();
           NavigationItem navigationItem = new BreadcrumbItemImpl(page, link,
-              isActivePage, page.getDepth(), Collections.emptyList(), getId());
+              isActivePage, page.getDepth(), Collections.emptyList(),
+              getId(), this.componentContext.getComponent());
           result.add(0, navigationItem);
         }
       }

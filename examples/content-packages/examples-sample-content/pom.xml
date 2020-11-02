@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.5.3-2.11.0-SNAPSHOT</version>
+    <version>1.6.0-2.12.0-SNAPSHOT</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>  
   <artifactId>io.wcm.wcm.core.components.examples-sample-content</artifactId>
-  <version>1.5.3-2.11.0-SNAPSHOT</version>
+  <version>1.6.0-2.12.0-SNAPSHOT</version>
   <packaging>content-package</packaging>
 
   <name>WCM Core Components Examples Content</name>

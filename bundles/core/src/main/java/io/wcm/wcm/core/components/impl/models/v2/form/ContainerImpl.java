@@ -30,6 +30,7 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ContainerExporter;
@@ -122,6 +123,11 @@ public class ContainerImpl extends AbstractComponentExporterImpl implements Cont
   @Override
   public @NotNull Map<String, ? extends ComponentExporter> getExportedItems() {
     return this.delegate.getExportedItems();
+  }
+
+  @Override
+  public @Nullable String[] getErrorMessages() {
+    return this.delegate.getErrorMessages();
   }
 
 }

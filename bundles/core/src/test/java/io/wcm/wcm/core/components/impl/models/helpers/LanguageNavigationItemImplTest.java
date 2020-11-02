@@ -63,7 +63,7 @@ class LanguageNavigationItemImplTest {
             JCR_LANGUAGE, "fr_CA"));
     Link link = linkHandler.get(page).build();
     LanguageNavigationItem underTest = new LanguageNavigationItemImpl(page, link,
-        true, 5, ImmutableList.of(), "My Title", "p-id");
+        true, 5, ImmutableList.of(), "My Title", "p-id", null);
 
     assertEquals(page.getPath(), underTest.getPage().getPath());
     assertTrue(underTest.isActive());
