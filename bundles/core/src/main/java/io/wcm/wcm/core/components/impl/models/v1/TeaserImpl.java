@@ -94,6 +94,7 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
   private String title;
   private String description;
   private String titleType;
+  private boolean showTitleType;
   private boolean actionsEnabled;
   private boolean imageLinkHidden;
   private boolean titleLinkHidden;
@@ -107,6 +108,7 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
     boolean titleHidden = currentStyle.get(PN_TITLE_HIDDEN, false);
     boolean descriptionHidden = currentStyle.get(PN_DESCRIPTION_HIDDEN, false);
     titleType = currentStyle.get(PN_TITLE_TYPE, (String)null);
+    showTitleType = currentStyle.get(Teaser.PN_SHOW_TITLE_TYPE, false);
     imageLinkHidden = currentStyle.get(PN_IMAGE_LINK_HIDDEN, false);
     titleLinkHidden = currentStyle.get(PN_TITLE_LINK_HIDDEN, false);
     boolean actionsDisabled = currentStyle.get(PN_ACTIONS_DISABLED, false);
@@ -237,6 +239,9 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
 
   @Override
   public String getTitleType() {
+    if (showTitleType) {
+      titleType = resource.getValueMap().get(Teaser.PN_TITLE_TYPE, titleType);
+    }
     return titleType;
   }
 
