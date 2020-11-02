@@ -28,6 +28,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.components.Component;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.wcm.handler.link.Link;
@@ -47,11 +48,12 @@ public class BreadcrumbItemImpl extends NavigationItemImpl implements Navigation
    * @param level Level
    * @param children Children
    * @param parentId Parent ID
+   * @param parentComponent The component that contains this list item
    */
   public BreadcrumbItemImpl(@NotNull Page page, @NotNull Link link,
       boolean active, int level, @NotNull List<NavigationItem> children,
-      @Nullable String parentId) {
-    super(page, link, active, level, children, parentId);
+      @Nullable String parentId, @Nullable Component parentComponent) {
+    super(page, link, active, level, children, parentId, parentComponent);
   }
 
 }

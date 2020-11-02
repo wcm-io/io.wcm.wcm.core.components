@@ -21,8 +21,8 @@ package io.wcm.wcm.core.components.impl.models.v1;
 
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
+import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v1.LayoutContainerImpl.RESOURCE_TYPE;
-import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

@@ -26,7 +26,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.Container;
+import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.day.cq.wcm.api.designer.Style;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
@@ -100,5 +103,16 @@ public abstract class AbstractContainerImpl extends AbstractComponentImpl implem
     }
     return "";
   }
+
+  @Override
+  @NotNull
+  protected ContainerData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asContainer()
+        .withShownItems(this::getDataLayerShownItems)
+        .build();
+  }
+
+  @JsonIgnore
+  protected abstract String[] getDataLayerShownItems();
 
 }

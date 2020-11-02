@@ -72,7 +72,8 @@ public class ListImpl extends AbstractComponentImpl implements List {
   public @NotNull Collection<ListItem> getListItems() {
     return getItems().stream()
         .filter(Objects::nonNull)
-        .map(page -> (ListItem)new PageListItemImpl(page, linkHandler.get(page).build(), getId()))
+        .map(page -> (ListItem)new PageListItemImpl(page, linkHandler.get(page).build(),
+            getId(), this.componentContext.getComponent()))
         .collect(Collectors.toList());
   }
 

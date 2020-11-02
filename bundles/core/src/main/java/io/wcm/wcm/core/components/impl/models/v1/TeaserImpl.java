@@ -42,6 +42,8 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.Teaser;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 
@@ -71,6 +73,8 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMixin, LinkMixin {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/teaser/v1/teaser";
+
+  private static final String CTA_ID_PREFIX = "cta";
 
   @AemObject
   private Style currentStyle;
@@ -126,7 +130,14 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
           String actionTitle = actionResource.getValueMap().get(PN_ACTION_TEXT, String.class);
           Link actionLink = linkHandler.get(actionResource).build();
           if (actionTitle != null && actionLink.isValid()) {
-            actions.add(new LinkListItemImpl(actionTitle, actionLink, getId(), this.resource));
+            actions.add(new LinkListItemImpl(actionTitle, actionLink,
+                getId(), this.componentContext.getComponent(),
+                this.resource) {
+              @Override
+              protected String getItemIdPrefix() {
+                return CTA_ID_PREFIX;
+              }
+            });
             if (targetPage == null) {
               // get target page from first action
               targetPage = actionLink.getTargetPage();
@@ -233,18 +244,12 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
   // --- data layer ---
 
   @Override
-  public String getDataLayerTitle() {
-    return getTitle();
-  }
-
-  @Override
-  public Link getDataLayerLink() {
-    return link;
-  }
-
-  @Override
-  public String getDataLayerDescription() {
-    return getDescription();
+  protected @NotNull ComponentData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asComponent()
+        .withTitle(this::getTitle)
+        .withLinkUrl(this::getLinkURL)
+        .withDescription(this::getDescription)
+        .build();
   }
 
 }

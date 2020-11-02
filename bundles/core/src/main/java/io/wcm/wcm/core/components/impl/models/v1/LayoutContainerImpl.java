@@ -85,4 +85,10 @@ public class LayoutContainerImpl extends AbstractContainerImpl implements Layout
     return delegate.getLayout();
   }
 
+  @Override
+  @SuppressWarnings("PMD.ReturnEmptyArrayRatherThanNull")
+  public String[] getDataLayerShownItems() {
+    return null;
+  }
+
 }

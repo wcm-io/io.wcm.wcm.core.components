@@ -27,7 +27,10 @@ import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.LanguageNavigationItem;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
+import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.components.Component;
 
 import io.wcm.handler.link.Link;
 
@@ -50,11 +53,12 @@ public class LanguageNavigationItemImpl extends NavigationItemImpl implements La
    * @param children Children
    * @param title Title
    * @param parentId Parent ID
+   * @param parentComponent The component that contains this list item
    */
   public LanguageNavigationItemImpl(@NotNull Page page, @NotNull Link link,
       boolean active, int level, @NotNull List<NavigationItem> children,
-      @Nullable String title, @Nullable String parentId) {
-    super(page, link, active, level, children, parentId);
+      @Nullable String title, @Nullable String parentId, @Nullable Component parentComponent) {
+    super(page, link, active, level, children, parentId, parentComponent);
     this.page = page;
     this.title = title;
   }
@@ -92,8 +96,11 @@ public class LanguageNavigationItemImpl extends NavigationItemImpl implements La
   }
 
   @Override
-  public String getDataLayerLanguage() {
-    return getLanguage();
+  @NotNull
+  protected final PageData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asPage()
+        .withLanguage(this::getLanguage)
+        .build();
   }
 
 }

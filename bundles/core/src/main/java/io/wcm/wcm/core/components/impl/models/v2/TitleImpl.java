@@ -33,6 +33,8 @@ import org.jetbrains.annotations.Nullable;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.Title;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -106,13 +108,11 @@ public class TitleImpl extends AbstractComponentImpl implements Title, LinkMixin
   // --- data layer ---
 
   @Override
-  public Link getDataLayerLink() {
-    return link;
-  }
-
-  @Override
-  public String getDataLayerTitle() {
-    return getText();
+  protected @NotNull ComponentData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asComponent()
+        .withTitle(this::getText)
+        .withLinkUrl(this::getLinkURL)
+        .build();
   }
 
 }

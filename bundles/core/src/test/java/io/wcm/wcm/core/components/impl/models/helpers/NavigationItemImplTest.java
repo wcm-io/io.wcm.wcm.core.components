@@ -59,7 +59,7 @@ class NavigationItemImplTest {
         ImmutableValueMap.of(JCR_DESCRIPTION, "My Description"));
     Link link = linkHandler.get(page).build();
     NavigationItem underTest = new NavigationItemImpl(page, link,
-        true, 5, ImmutableList.of(), "p-id");
+        true, 5, ImmutableList.of(), "p-id", null);
 
     assertEquals(page.getPath(), underTest.getPage().getPath());
     assertTrue(underTest.isActive());

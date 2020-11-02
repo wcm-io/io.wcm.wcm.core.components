@@ -19,35 +19,44 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import static com.adobe.cq.wcm.core.components.util.ComponentUtils.ID_SEPARATOR;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.adobe.cq.wcm.core.components.models.ListItem;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.adobe.cq.wcm.core.components.util.ComponentUtils;
+import com.day.cq.wcm.api.components.Component;
 
 /**
  * Abstract helper class for ListItem implementations.
  * Generates an ID for the item, using the ID of its parent as a prefix
  */
-public abstract class AbstractListItemImpl extends AbstractComponentImpl {
+public abstract class AbstractListItemImpl extends AbstractComponentImpl implements ListItem {
 
   protected final String parentId;
+  protected final String dataLayerType;
 
   private static final String ITEM_ID_PREFIX = "item";
 
-  private String id;
-
   /**
-   * @param parentId Parent ID
    * @param resource Resource
+   * @param parentId Parent ID
+   * @param parentComponent The component that contains this list item
    */
-  protected AbstractListItemImpl(@Nullable String parentId, @NotNull Resource resource) {
-    this.resource = resource;
+  protected AbstractListItemImpl(@NotNull Resource resource,
+      @Nullable String parentId, @Nullable Component parentComponent) {
     this.parentId = parentId;
+    this.resource = resource;
+    this.dataLayerType = parentComponent != null ? parentComponent.getResourceType() + "/" + ITEM_ID_PREFIX : null;
+  }
+
+  protected String getItemIdPrefix() {
+    return ITEM_ID_PREFIX;
   }
 
   @Override
@@ -55,18 +64,17 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl {
     if (this.resource == null) {
       return null;
     }
-    if (id == null) {
-      ValueMap properties = resource.getValueMap();
-      id = properties.get(PN_ID, String.class);
-    }
-    if (StringUtils.isEmpty(id)) {
-      String prefix = StringUtils.join(parentId, ID_SEPARATOR, ITEM_ID_PREFIX);
-      id = ComponentUtils.generateId(prefix, resource.getPath());
-    }
-    else {
-      id = StringUtils.replace(StringUtils.normalizeSpace(StringUtils.trim(id)), " ", ID_SEPARATOR);
-    }
-    return id;
+    return ComponentUtils.generateId(StringUtils.join(parentId, ComponentUtils.ID_SEPARATOR, getItemIdPrefix()), resource.getPath());
+  }
+
+  @Override
+  protected @NotNull ComponentData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData())
+        .asComponent()
+        .withType(() -> Optional.ofNullable(this.dataLayerType).orElseGet(() -> super.getComponentData().getType()))
+        .withTitle(this::getTitle)
+        .withLinkUrl(this::getURL)
+        .build();
   }
 
 }

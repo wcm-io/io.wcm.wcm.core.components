@@ -41,7 +41,7 @@ import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
-import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
+import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.wcmio.v1.ResponsiveImageImpl.RESOURCE_TYPE;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
