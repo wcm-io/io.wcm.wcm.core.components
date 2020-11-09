@@ -25,12 +25,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ListItem;
-import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.components.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.link.Link;
-import io.wcm.wcm.core.components.impl.models.v1.datalayer.PageDataImpl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
@@ -45,9 +46,11 @@ public class PageListItemImpl extends AbstractListItemImpl implements ListItem, 
    * @param page Page
    * @param link Link
    * @param parentId Parent ID
+   * @param parentComponent The component that contains this list item
    */
-  public PageListItemImpl(@NotNull Page page, @NotNull Link link, @Nullable String parentId) {
-    super(parentId, page.getContentResource());
+  public PageListItemImpl(@NotNull Page page, @NotNull Link link,
+      @Nullable String parentId, @Nullable Component parentComponent) {
+    super(page.getContentResource(), parentId, parentComponent);
     this.page = page;
     this.link = link;
   }
@@ -102,18 +105,11 @@ public class PageListItemImpl extends AbstractListItemImpl implements ListItem, 
   // --- data layer ---
 
   @Override
-  protected @NotNull ComponentData getComponentData() {
-    return new PageDataImpl(this, resource);
-  }
-
-  @Override
-  public String getDataLayerTitle() {
-    return getTitle();
-  }
-
-  @Override
-  public Link getDataLayerLink() {
-    return link;
+  protected @NotNull PageData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asPage()
+        .withTitle(this::getTitle)
+        .withLinkUrl(this::getURL)
+        .build();
   }
 
 }

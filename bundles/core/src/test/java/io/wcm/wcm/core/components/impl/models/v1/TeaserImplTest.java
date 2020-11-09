@@ -25,8 +25,10 @@ import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTIONS_ENABLED;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTION_TEXT;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_DESCRIPTION_FROM_PAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_DESCRIPTION_HIDDEN;
+import static com.adobe.cq.wcm.core.components.models.Teaser.PN_SHOW_TITLE_TYPE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_TITLE_FROM_PAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_TITLE_HIDDEN;
+import static com.adobe.cq.wcm.core.components.models.Teaser.PN_TITLE_TYPE;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_DESCRIPTION;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
@@ -43,8 +45,8 @@ import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
 import static io.wcm.samples.core.testcontext.TestUtils.assertValidMedia;
 import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
+import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v1.TeaserImpl.RESOURCE_TYPE;
-import static io.wcm.wcm.core.components.impl.models.v1.datalayer.DataLayerTestUtils.enableDataLayer;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -299,6 +301,33 @@ class TeaserImplTest {
 
     assertEquals("Page Title", underTest.getTitle());
     assertEquals("Page Description", underTest.getDescription());
+  }
+
+  @Test
+  void testTitleType_PageOverrideNotAllowed() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_TITLE_TYPE, "h4");
+    context.currentResource(context.create().resource(page, "teaser",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_TITLE_TYPE, "h5"));
+
+    Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
+
+    assertEquals("h4", underTest.getTitleType());
+  }
+
+  @Test
+  void testTitleType_PageOverrideAllowed() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_TITLE_TYPE, "h4",
+        PN_SHOW_TITLE_TYPE, true);
+    context.currentResource(context.create().resource(page, "teaser",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_TITLE_TYPE, "h5"));
+
+    Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
+
+    assertEquals("h5", underTest.getTitleType());
   }
 
 }

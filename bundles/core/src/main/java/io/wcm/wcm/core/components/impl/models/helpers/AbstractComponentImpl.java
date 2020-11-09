@@ -19,24 +19,25 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import static io.wcm.wcm.core.components.impl.models.helpers.IdGenerator.ID_SEPARATOR;
+import static com.adobe.cq.wcm.core.components.util.ComponentUtils.ID_SEPARATOR;
+
+import java.util.Calendar;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.caconfig.ConfigurationBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.Component;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
+import com.adobe.cq.wcm.core.components.util.ComponentUtils;
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.components.ComponentContext;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.wcm.handler.link.Link;
-import io.wcm.handler.media.Media;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.v1.datalayer.ComponentDataImpl;
 
 /**
  * Abstract class that can be used as a base class for {@link Component} implementations.
@@ -60,7 +61,7 @@ public abstract class AbstractComponentImpl extends AbstractComponentExporterImp
       id = properties.get(PN_ID, String.class);
     }
     if (StringUtils.isEmpty(id)) {
-      id = IdGenerator.generateIdForComponent(resource, currentPage, componentContext);
+      id = ComponentUtils.getId(resource, currentPage, componentContext);
     }
     else {
       id = StringUtils.replace(StringUtils.normalizeSpace(StringUtils.trim(id)), " ", ID_SEPARATOR);
@@ -70,14 +71,7 @@ public abstract class AbstractComponentImpl extends AbstractComponentExporterImp
 
   private boolean isDataLayerEnabled() {
     if (dataLayerEnabled == null) {
-      dataLayerEnabled = false;
-      if (resource != null) {
-        ConfigurationBuilder builder = resource.adaptTo(ConfigurationBuilder.class);
-        if (builder != null) {
-          ValueMap dataLayerConfig = builder.name("com.adobe.cq.wcm.core.components.internal.DataLayerConfig").asValueMap();
-          dataLayerEnabled = dataLayerConfig.get("enabled", false);
-        }
-      }
+      dataLayerEnabled = ComponentUtils.isDataLayerEnabled(this.resource);
     }
     return dataLayerEnabled;
   }
@@ -107,60 +101,19 @@ public abstract class AbstractComponentImpl extends AbstractComponentExporterImp
    * {@link AbstractComponentImpl#getData()} in case the datalayer is activated
    * @return The component data
    */
+  @SuppressWarnings("null")
   protected @NotNull ComponentData getComponentData() {
-    return new ComponentDataImpl(this, resource);
-  }
-
-  @JsonIgnore
-  public Media getDataLayerMedia() {
-    return null;
-  }
-
-  @JsonIgnore
-  public String getDataLayerTitle() {
-    return null;
-  }
-
-  @JsonIgnore
-  public String getDataLayerDescription() {
-    return null;
-  }
-
-  @JsonIgnore
-  public String getDataLayerText() {
-    return null;
-  }
-
-  @JsonIgnore
-  @SuppressWarnings("PMD.ReturnEmptyArrayRatherThanNull")
-  public String[] getDataLayerTags() {
-    return null;
-  }
-
-  @JsonIgnore
-  public String getDataLayerUrl() {
-    return null;
-  }
-
-  @JsonIgnore
-  public Link getDataLayerLink() {
-    return null;
-  }
-
-  @JsonIgnore
-  public String getDataLayerTemplatePath() {
-    return null;
-  }
-
-  @JsonIgnore
-  public String getDataLayerLanguage() {
-    return null;
-  }
-
-  @JsonIgnore
-  @SuppressWarnings("PMD.ReturnEmptyArrayRatherThanNull")
-  public String[] getDataLayerShownItems() {
-    return null;
+    return DataLayerBuilder.forComponent()
+        .withId(this::getId)
+        .withLastModifiedDate(() ->
+        // Note: this can be simplified in JDK 11
+        Optional.ofNullable(resource.getValueMap().get(JcrConstants.JCR_LASTMODIFIED, Calendar.class))
+            .map(Calendar::getTime)
+            .orElseGet(() -> Optional.ofNullable(resource.getValueMap().get(JcrConstants.JCR_CREATED, Calendar.class))
+                .map(Calendar::getTime)
+                .orElse(null)))
+        .withType(() -> this.resource.getResourceType())
+        .build();
   }
 
 }

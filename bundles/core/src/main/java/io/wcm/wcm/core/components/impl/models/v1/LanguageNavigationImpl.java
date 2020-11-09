@@ -80,7 +80,8 @@ public class LanguageNavigationImpl extends AbstractComponentImpl implements Lan
     Page page = item.getPage();
     Link link = linkHandler.get(page).build();
     return new LanguageNavigationItemImpl(page, link,
-        item.isActive(), item.getLevel(), toLanguageNavigationItems(item.getChildren()), item.getTitle(), getId());
+        item.isActive(), item.getLevel(), toLanguageNavigationItems(item.getChildren()), item.getTitle(),
+        getId(), this.componentContext.getComponent());
   }
 
   // --- delegated methods ---

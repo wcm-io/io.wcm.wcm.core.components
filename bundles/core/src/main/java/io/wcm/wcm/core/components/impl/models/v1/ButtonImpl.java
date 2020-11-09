@@ -33,6 +33,8 @@ import org.jetbrains.annotations.Nullable;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.Button;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -77,13 +79,11 @@ public class ButtonImpl extends AbstractComponentImpl implements Button, LinkMix
   // --- data layer ---
 
   @Override
-  public String getDataLayerTitle() {
-    return delegate.getText();
-  }
-
-  @Override
-  public Link getDataLayerLink() {
-    return link;
+  protected @NotNull ComponentData getComponentData() {
+    return DataLayerBuilder.extending(super.getComponentData()).asComponent()
+        .withTitle(this::getText)
+        .withLinkUrl(this::getLink)
+        .build();
   }
 
   // --- fallback implementations ---

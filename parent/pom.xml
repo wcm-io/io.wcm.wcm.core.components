@@ -31,17 +31,17 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.5.2-2.11.0</version>
+  <version>1.6.0-2.12.0</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
   <description>Enhances AEM WCM Core Components with wcm.io functionality.</description>
   
   <properties>
-    <core.wcm.components.version>2.11.0</core.wcm.components.version>
+    <core.wcm.components.version>2.12.0</core.wcm.components.version>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>${timestamp}</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2020-11-02T13:20:21Z</project.build.outputTimestamp>
   </properties>
 
   <dependencyManagement>
