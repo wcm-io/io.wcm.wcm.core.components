@@ -57,6 +57,7 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
+import io.wcm.handler.media.MediaArgs;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
@@ -137,7 +138,9 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
     // resolve media and properties from DAM asset
-    media = mediaHandler.get(resource).build();
+    // disable dynamic media support as it is not compatible with the "src-pattern" concept
+    MediaArgs mediaArgs = new MediaArgs().dynamicMediaDisabled(true);
+    media = mediaHandler.get(resource).args(mediaArgs).build();
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();

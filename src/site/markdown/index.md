@@ -25,6 +25,7 @@ Features added to the Core Components:
 * Adds central image and asset handling with special support for responsive images provided by [wcm.io Media Handler][wcmio-handler-media]
 * Adds central rich text support with a customized link RTE plugin provided by [wcm.io RichText Handler][wcmio-handler-richtext]
 * Adds a new "Responsive Image" Core Component that uses standard HTML5 markup
+* Add transparent support for Dynamic Media based on [wcm.io Media Handler Dynamic Media Support][wcmio-handler-media-dynamicmedia]
 
 A detailed documentation for each component can be found in the [Component Overview][components].
 
@@ -34,6 +35,7 @@ There is currently no added wcm.io support for the Core Component AMP extensions
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
 |-----------------------------------|----------------------------------|---------------------------------------------
+| 1.7.x-2.13.0                      | 2.13.0, 2.13.2                   | AEM 6.4.8.1, AEM 6.5.6, AEM Cloud Service
 | 1.6.x-2.12.0                      | 2.12.0, 2.12.1                   | AEM 6.4.8.1, AEM 6.5.5, AEM Cloud Service
 | 1.5.x-2.11.0                      | 2.11.0, 2.11.1                   | AEM 6.4.8.1, AEM 6.5.5, AEM Cloud Service
 | 1.4.x-2.10.0                      | 2.10.0                           | AEM 6.4.8.1, AEM 6.5.5, AEM Cloud Service
@@ -74,6 +76,7 @@ To use this module you have to deploy also:
 [wcmio-handler-url]: https://wcm.io/handler/url/
 [wcmio-handler-link]: https://wcm.io/handler/link/
 [wcmio-handler-media]: https://wcm.io/handler/media/
+[wcmio-handler-media-dynamicmedia]: https://wcm.io/handler/media/dynamic-media.html
 [wcmio-handler-richtext]: https://wcm.io/handler/richtext/
 [usage]: usage.html
 [component-library]: component-library.html

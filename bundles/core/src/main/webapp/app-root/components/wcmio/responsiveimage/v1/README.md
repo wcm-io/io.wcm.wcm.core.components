@@ -11,6 +11,7 @@ wcm-io/wcm/core/components/wcmio/responsiveimage/v1/responsiveimage
 
 * Markup and features are similar to the [Image Core Component][image-component], except the image element itself
 * Uses [wcm.io Media Handler][wcmio-handler-media] for processing the image
+* Dynamic media support is supported automatically if enabled
 * Allows to select media format(s) and auto-cropping in the content policy
 * Allows to define responsive image settings in the content policy, allowing to select between image element with sizes and srcset attributes, or picture and sources elements
 * Automatically customizes the in-place image editor cropping ratios to the selected/the application's media formats
