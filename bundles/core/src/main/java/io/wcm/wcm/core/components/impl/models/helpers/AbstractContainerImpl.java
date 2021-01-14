@@ -20,6 +20,8 @@
 package io.wcm.wcm.core.components.impl.models.helpers;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.jetbrains.annotations.NotNull;
@@ -80,7 +82,9 @@ public abstract class AbstractContainerImpl extends AbstractComponentImpl implem
    * @return Style string or empty string.
    */
   private @NotNull String buildBackgroundStyle_BackgroundImage() {
-    Media media = mediaHandler.get(resource)
+    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
+    Resource unwrappedResource = ResourceUtil.unwrap(resource);
+    Media media = mediaHandler.get(unwrappedResource)
         .refProperty(PN_BACKGROUND_IMAGE_REFERENCE)
         .build();
     if (media.isValid()) {

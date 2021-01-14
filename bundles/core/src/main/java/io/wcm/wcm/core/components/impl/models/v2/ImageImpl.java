@@ -35,6 +35,8 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -137,10 +139,13 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     lazyThreshold = currentStyle.get(PN_DESIGN_LAZY_THRESHOLD, 0);
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
+    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
+    Resource unwrappedResource = ResourceUtil.unwrap(resource);
+
     // resolve media and properties from DAM asset
     // disable dynamic media support as it is not compatible with the "src-pattern" concept
     MediaArgs mediaArgs = new MediaArgs().dynamicMediaDisabled(true);
-    media = mediaHandler.get(resource).args(mediaArgs).build();
+    media = mediaHandler.get(unwrappedResource).args(mediaArgs).build();
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
@@ -159,7 +164,7 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
       alt = null;
     }
     else {
-      link = linkHandler.get(resource).build();
+      link = linkHandler.get(unwrappedResource).build();
     }
   }
 

@@ -22,6 +22,8 @@ package io.wcm.wcm.core.components.impl.models.v1;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
@@ -67,7 +69,10 @@ public class ButtonImpl extends AbstractComponentImpl implements Button, LinkMix
 
   @PostConstruct
   private void activate() {
-    link = linkHandler.get(resource).build();
+    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
+    Resource unwrappedResource = ResourceUtil.unwrap(resource);
+
+    link = linkHandler.get(unwrappedResource).build();
   }
 
   @Override

@@ -32,6 +32,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -118,9 +119,11 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
     boolean titleFromPage = properties.get(PN_TITLE_FROM_PAGE, false);
     boolean descriptionFromPage = properties.get(PN_DESCRIPTION_FROM_PAGE, false);
 
+    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
+    Resource unwrappedResource = ResourceUtil.unwrap(resource);
 
     // resolve teaser media
-    media = mediaHandler.get(resource)
+    media = mediaHandler.get(unwrappedResource)
         .property(PROP_CSS_CLASS, "cmp-image__image")
         .build();
 
@@ -153,7 +156,7 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
 
     // if no actions enabled, resolve primary teaser link
     else {
-      link = linkHandler.get(resource).build();
+      link = linkHandler.get(unwrappedResource).build();
       targetPage = link.getTargetPage();
     }
 
