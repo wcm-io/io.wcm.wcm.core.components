@@ -34,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.SlingModelFilter;
 
+import io.wcm.handler.media.spi.MediaFormatProvider;
 import io.wcm.handler.media.spi.MediaHandlerConfig;
 import io.wcm.handler.url.spi.UrlHandlerConfig;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
@@ -81,6 +82,7 @@ public final class AppAemContext {
       // setup handler
       context.registerService(UrlHandlerConfig.class, new UrlHandlerConfigImpl());
       context.registerService(MediaHandlerConfig.class, new MediaHandlerConfigImpl());
+      context.registerService(MediaFormatProvider.class, new MediaFormatProviderImpl());
 
       // create template
       context.create().resource(TEMPLATE_PATH,

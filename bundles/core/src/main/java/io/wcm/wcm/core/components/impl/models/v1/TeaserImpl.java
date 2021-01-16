@@ -32,7 +32,6 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -56,6 +55,7 @@ import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemImpl;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
@@ -119,11 +119,8 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
     boolean titleFromPage = properties.get(PN_TITLE_FROM_PAGE, false);
     boolean descriptionFromPage = properties.get(PN_DESCRIPTION_FROM_PAGE, false);
 
-    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
-    Resource unwrappedResource = ResourceUtil.unwrap(resource);
-
     // resolve teaser media
-    media = mediaHandler.get(unwrappedResource)
+    media = HandlerUnwrapper.get(mediaHandler, resource)
         .property(PROP_CSS_CLASS, "cmp-image__image")
         .build();
 
@@ -156,7 +153,7 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
 
     // if no actions enabled, resolve primary teaser link
     else {
-      link = linkHandler.get(unwrappedResource).build();
+      link = HandlerUnwrapper.get(linkHandler, resource).build();
       targetPage = link.getTargetPage();
     }
 

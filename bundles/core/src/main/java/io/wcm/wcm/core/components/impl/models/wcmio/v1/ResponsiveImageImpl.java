@@ -36,8 +36,6 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -68,6 +66,7 @@ import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.ResponsiveImage;
 
 /**
@@ -113,12 +112,9 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
     displayPopupTitle = properties.get(PN_DISPLAY_POPUP_TITLE, currentStyle.get(PN_DISPLAY_POPUP_TITLE, true));
     boolean isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
-    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
-    Resource unwrappedResource = ResourceUtil.unwrap(resource);
-
     // resolve media from DAM asset
     // add custom properties as defined in "image" core component
-    media = mediaHandler.get(unwrappedResource)
+    media = HandlerUnwrapper.get(mediaHandler, resource)
         .property("itemprop", "contentUrl")
         .property("data-cmp-hook-image", "image")
         .property(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
@@ -144,7 +140,7 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
       alt = null;
     }
     else {
-      link = linkHandler.get(unwrappedResource).build();
+      link = HandlerUnwrapper.get(linkHandler, resource).build();
     }
   }
 

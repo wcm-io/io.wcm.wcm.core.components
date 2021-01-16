@@ -35,8 +35,6 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -59,7 +57,6 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
-import io.wcm.handler.media.MediaArgs;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.url.UrlHandler;
@@ -68,6 +65,7 @@ import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
@@ -139,13 +137,11 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     lazyThreshold = currentStyle.get(PN_DESIGN_LAZY_THRESHOLD, 0);
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
-    // use unwrapped resource for handler processing to ensure the original resource type of the component is used
-    Resource unwrappedResource = ResourceUtil.unwrap(resource);
-
     // resolve media and properties from DAM asset
-    // disable dynamic media support as it is not compatible with the "src-pattern" concept
-    MediaArgs mediaArgs = new MediaArgs().dynamicMediaDisabled(true);
-    media = mediaHandler.get(unwrappedResource).args(mediaArgs).build();
+    media = HandlerUnwrapper.get(mediaHandler, resource)
+        // disable dynamic media support as it is not compatible with the "src-pattern" concept
+        .dynamicMediaDisabled(true)
+        .build();
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
@@ -164,7 +160,7 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
       alt = null;
     }
     else {
-      link = linkHandler.get(unwrappedResource).build();
+      link = HandlerUnwrapper.get(linkHandler, resource).build();
     }
   }
 
