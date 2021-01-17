@@ -39,6 +39,7 @@ import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilde
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 
 /**
@@ -67,7 +68,7 @@ public class TitleImpl extends AbstractComponentImpl implements Title, LinkMixin
 
   @PostConstruct
   private void activate() {
-    link = linkHandler.get(resource).build();
+    link = HandlerUnwrapper.get(linkHandler, resource).build();
   }
 
   @Override

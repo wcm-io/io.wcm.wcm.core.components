@@ -91,7 +91,7 @@ public final class DataLayerTestUtils {
       ListItem item = itemsList.get(i);
       ComponentData data = item.getData();
       assertNotNull(data, "Item #" + i + " componentData");
-      assertEquals("cq:Component/item", data.getType(), "Item #" + i + " type");
+      assertNotNull(data.getType(), "Item #" + i + " type");
       assertEquals(page.getPath() + ".html", data.getLinkUrl(), "Item #" + i + " linkUrl");
       assertEquals(page.getTitle(), data.getTitle(), "Item #" + i + " title");
     }

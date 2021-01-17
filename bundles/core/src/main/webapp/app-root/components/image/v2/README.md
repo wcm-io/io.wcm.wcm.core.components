@@ -13,6 +13,7 @@ wcm-io/wcm/core/components/image/v2/image
 
 * Inherits all features from its [super component][extends-component]
 * Uses [wcm.io Media Handler][wcmio-handler-media] for processing the image
+* There is no support for dynamic media in this component. If you want to use dynamic media, use the "wcm.io Responsive Image" core component.
 * Allows to select media format(s) and auto-cropping in the content policy
 * Automatically customizes the in-place image editor cropping ratios to  the selected/the applications media formats
 * Uses the enhanced Media Handler File Upload dialog widget with path field and media format validation

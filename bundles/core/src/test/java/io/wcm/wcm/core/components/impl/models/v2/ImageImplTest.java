@@ -36,6 +36,8 @@ import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TITLE;
 import static io.wcm.handler.media.MediaNameConstants.NN_MEDIA_INLINE_STANDARD;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
@@ -70,6 +72,8 @@ import com.day.cq.wcm.api.Page;
 import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.samples.core.testcontext.ImageAreaTestData;
+import io.wcm.samples.core.testcontext.MediaFormats;
+import io.wcm.samples.core.testcontext.ResourceTypeForcingResourceWrapper;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -91,6 +95,8 @@ class ImageImplTest {
     asset = context.create().asset(DAM_ROOT + "/sample.jpg", 160, 90, ContentType.JPEG,
         DC_TITLE, "Asset Title",
         DC_DESCRIPTION, "Asset Description");
+    // create web rendition to test auto-cropping
+    context.create().assetRendition(asset, "cq5dam.web.160.90.jpg", 160, 90, ContentType.JPEG);
   }
 
   @Test
@@ -412,6 +418,46 @@ class ImageImplTest {
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals(ImageAreaTestData.EXPECTED_AREAS, underTest.getAreas());
+  }
+
+  @Test
+  void testWithImageAutoCropping_ContentPolicy() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_AUTOCROP, true);
+
+    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, asset.getPath()));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    assertEquals("Asset Title", underTest.getTitle());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg", underTest.getSrc());
+  }
+
+  @Test
+  void testWithImageAutoCropping_ContentPolicy_WrappedResource() {
+    // prepare dummy component that delegates to the component under test
+    final String DELEGATE_RESOURCE_TYPE = "myapp/components/delegate";
+    context.create().resource("/apps/" + DELEGATE_RESOURCE_TYPE,
+        "sling:resourceSuperType", RESOURCE_TYPE);
+
+    context.contentPolicyMapping(DELEGATE_RESOURCE_TYPE,
+        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_AUTOCROP, true);
+
+    Resource resource = context.create().resource(page.getContentResource().getPath() + "/image",
+        PROPERTY_RESOURCE_TYPE, DELEGATE_RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, asset.getPath());
+
+    // set context resource to wrapped resource
+    context.currentResource(new ResourceTypeForcingResourceWrapper(resource, RESOURCE_TYPE));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    assertEquals("Asset Title", underTest.getTitle());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg", underTest.getSrc());
   }
 
 }

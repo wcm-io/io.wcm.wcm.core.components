@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.sling.models.annotations.AemObject;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 
 /**
  * Abstract class which can be used as base class for {@link Container} implementations.
@@ -80,7 +81,7 @@ public abstract class AbstractContainerImpl extends AbstractComponentImpl implem
    * @return Style string or empty string.
    */
   private @NotNull String buildBackgroundStyle_BackgroundImage() {
-    Media media = mediaHandler.get(resource)
+    Media media = HandlerUnwrapper.get(mediaHandler, resource)
         .refProperty(PN_BACKGROUND_IMAGE_REFERENCE)
         .build();
     if (media.isValid()) {

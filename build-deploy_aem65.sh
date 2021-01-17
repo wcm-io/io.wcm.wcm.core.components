@@ -18,7 +18,7 @@
 #  #L%
 
 
-SLING_URL="http://localhost:4502"
+SLING_URL="http://localhost:45025"
 
 if [[ $0 == *":\\"* ]]; then
   DISPLAY_PAUSE_MESSAGE=true
@@ -26,7 +26,7 @@ fi
 
 # install AEM 6.5 with service pack
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.5 \
+    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg-6.5.6:zip:1.0 \
     -Dvault.delayAfterInstallSec=30 \
     -Dsling.url=${SLING_URL}
 

@@ -55,6 +55,7 @@ import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemImpl;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
@@ -118,9 +119,8 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
     boolean titleFromPage = properties.get(PN_TITLE_FROM_PAGE, false);
     boolean descriptionFromPage = properties.get(PN_DESCRIPTION_FROM_PAGE, false);
 
-
     // resolve teaser media
-    media = mediaHandler.get(resource)
+    media = HandlerUnwrapper.get(mediaHandler, resource)
         .property(PROP_CSS_CLASS, "cmp-image__image")
         .build();
 
@@ -153,7 +153,7 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
 
     // if no actions enabled, resolve primary teaser link
     else {
-      link = linkHandler.get(resource).build();
+      link = HandlerUnwrapper.get(linkHandler, resource).build();
       targetPage = link.getTargetPage();
     }
 

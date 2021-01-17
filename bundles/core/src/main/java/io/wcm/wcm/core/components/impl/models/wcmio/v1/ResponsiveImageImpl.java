@@ -66,6 +66,7 @@ import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.ResponsiveImage;
 
 /**
@@ -113,7 +114,7 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
 
     // resolve media from DAM asset
     // add custom properties as defined in "image" core component
-    media = mediaHandler.get(resource)
+    media = HandlerUnwrapper.get(mediaHandler, resource)
         .property("itemprop", "contentUrl")
         .property("data-cmp-hook-image", "image")
         .property(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
@@ -139,7 +140,7 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
       alt = null;
     }
     else {
-      link = linkHandler.get(resource).build();
+      link = HandlerUnwrapper.get(linkHandler, resource).build();
     }
   }
 

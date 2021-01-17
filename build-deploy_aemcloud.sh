@@ -18,7 +18,7 @@
 #  #L%
 
 
-SLING_URL="http://localhost:45026"
+SLING_URL="http://localhost:4502"
 
 if [[ $0 == *":\\"* ]]; then
   DISPLAY_PAUSE_MESSAGE=true

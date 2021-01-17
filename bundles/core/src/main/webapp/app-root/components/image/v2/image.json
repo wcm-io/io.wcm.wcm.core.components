@@ -142,6 +142,11 @@
                 "content": {
                   "items": {
 
+                    "enableDmFeatures": {
+                      /* Dynamic Media gets active automatically with media handler */
+                      "sling:hideResource": true
+                    },
+
                     /* Media format definition */
                     "mediaFormatSelection": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/include",

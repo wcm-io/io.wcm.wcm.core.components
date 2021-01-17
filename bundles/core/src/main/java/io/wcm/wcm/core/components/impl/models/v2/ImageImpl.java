@@ -65,6 +65,7 @@ import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
+import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
@@ -137,7 +138,10 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
 
     // resolve media and properties from DAM asset
-    media = mediaHandler.get(resource).build();
+    media = HandlerUnwrapper.get(mediaHandler, resource)
+        // disable dynamic media support as it is not compatible with the "src-pattern" concept
+        .dynamicMediaDisabled(true)
+        .build();
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
@@ -156,7 +160,7 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
       alt = null;
     }
     else {
-      link = linkHandler.get(resource).build();
+      link = HandlerUnwrapper.get(linkHandler, resource).build();
     }
   }
 

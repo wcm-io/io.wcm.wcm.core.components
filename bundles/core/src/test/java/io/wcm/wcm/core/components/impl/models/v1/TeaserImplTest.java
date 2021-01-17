@@ -29,6 +29,7 @@ import static com.adobe.cq.wcm.core.components.models.Teaser.PN_SHOW_TITLE_TYPE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_TITLE_FROM_PAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_TITLE_HIDDEN;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_TITLE_TYPE;
+import static com.day.cq.commons.ImageResource.PN_ALT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_DESCRIPTION;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
@@ -37,6 +38,8 @@ import static io.wcm.handler.link.LinkNameConstants.PN_LINK_CONTENT_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_WINDOW_TARGET;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
 import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
@@ -68,10 +71,13 @@ import com.day.cq.wcm.api.Page;
 import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.handler.link.type.InternalLinkType;
 import io.wcm.samples.core.testcontext.AppAemContext;
+import io.wcm.samples.core.testcontext.MediaFormats;
+import io.wcm.samples.core.testcontext.ResourceTypeForcingResourceWrapper;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
+import io.wcm.wcm.core.components.models.ResponsiveImage;
 
 @ExtendWith(AemContextExtension.class)
 class TeaserImplTest {
@@ -89,6 +95,8 @@ class TeaserImplTest {
     asset = context.create().asset(DAM_ROOT + "/sample.jpg", 160, 90, ContentType.JPEG,
         DC_TITLE, "Asset Title",
         DC_DESCRIPTION, "Asset Description");
+    // create web rendition to test auto-cropping
+    context.create().assetRendition(asset, "cq5dam.web.160.90.jpg", 160, 90, ContentType.JPEG);
   }
 
   @Test
@@ -328,6 +336,54 @@ class TeaserImplTest {
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
     assertEquals("h5", underTest.getTitleType());
+  }
+
+  @Test
+  void testWithAssetImage_AutoCropping_ContentPolicy() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_AUTOCROP, true);
+
+    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, asset.getPath(),
+        JCR_TITLE, "Resource Title",
+        PN_ALT, "Resource Alt"));
+
+    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+
+    String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg";
+
+    assertValidMedia(underTest, expectedMediaUrl);
+    assertInvalidLink(underTest);
+  }
+
+  @Test
+  void testWithAssetImage_AutoCropping_ContentPolicy_WrappedResource() {
+    // prepare dummy component that delegates to the component under test
+    final String DELEGATE_RESOURCE_TYPE = "myapp/components/delegate";
+    context.create().resource("/apps/" + DELEGATE_RESOURCE_TYPE,
+        "sling:resourceSuperType", RESOURCE_TYPE);
+
+    context.contentPolicyMapping(DELEGATE_RESOURCE_TYPE,
+        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_AUTOCROP, true);
+
+    Resource resource = context.create().resource(page.getContentResource().getPath() + "/image",
+        PROPERTY_RESOURCE_TYPE, DELEGATE_RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, asset.getPath(),
+        JCR_TITLE, "Resource Title",
+        PN_ALT, "Resource Alt");
+
+    // set context resource to wrapped resource
+    context.currentResource(new ResourceTypeForcingResourceWrapper(resource, RESOURCE_TYPE));
+
+    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+
+    String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg";
+
+    assertValidMedia(underTest, expectedMediaUrl);
+    assertInvalidLink(underTest);
   }
 
 }
