@@ -158,7 +158,7 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.commons</artifactId>
-        <version>1.4.0</version>
+        <version>1.4.2</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
