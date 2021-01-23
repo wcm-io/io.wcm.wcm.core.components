@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.7.0-2.13.0</version>
+  <version>1.7.2-2.13.0</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>

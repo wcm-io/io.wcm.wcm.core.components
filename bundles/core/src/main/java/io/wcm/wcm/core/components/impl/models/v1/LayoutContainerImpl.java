@@ -35,6 +35,7 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.LayoutContainer;
 import com.adobe.cq.wcm.core.components.models.ListItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractContainerImpl;
 
@@ -66,6 +67,7 @@ public class LayoutContainerImpl extends AbstractContainerImpl implements Layout
   }
 
   @Override
+  @JsonIgnore
   public @NotNull List<ListItem> getItems() {
     return delegate.getItems();
   }
@@ -86,6 +88,7 @@ public class LayoutContainerImpl extends AbstractContainerImpl implements Layout
   }
 
   @Override
+  @JsonIgnore
   @SuppressWarnings("PMD.ReturnEmptyArrayRatherThanNull")
   public String[] getDataLayerShownItems() {
     return null;
