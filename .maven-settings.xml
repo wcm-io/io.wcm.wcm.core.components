@@ -3,7 +3,7 @@
   #%L
   wcm.io
   %%
-  Copyright (C) 2019 wcm.io
+  Copyright (C) 2014 wcm.io
   %%
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -146,5 +146,13 @@
   <activeProfiles>
     <activeProfile>default</activeProfile>
   </activeProfiles>
+
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>${env.SONATYPE_USERNAME}</username>
+      <password>${env.SONATYPE_PASSWORD}</password>
+    </server>
+  </servers>
 
 </settings>

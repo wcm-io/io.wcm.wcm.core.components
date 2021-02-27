@@ -39,7 +39,7 @@
   <url>${site.url}/wcm/core-components/</url>
 
   <properties>
-    <site.url.module.prefix>wcm/core-components/core</site.url.module.prefix>
+    <site.url.module.prefix>core</site.url.module.prefix>
   </properties>
 
   <dependencies>
@@ -229,12 +229,26 @@
       </plugin>
 
     </plugins>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <configuration>
+            <topSiteURL>${site.deploy.url}</topSiteURL>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
   </build>
 
   <distributionManagement>
     <site>
       <id>${site.deploy.id}</id>
-      <url>${site.deploy.url}${site.url.module.prefix}</url>
+      <url>${site.deploy.url}/${site.url.module.prefix}</url>
     </site>
   </distributionManagement>
 
