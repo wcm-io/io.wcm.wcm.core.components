@@ -60,6 +60,7 @@ import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
+import io.wcm.handler.media.MediaBuilder;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.MediaNameConstants;
 import io.wcm.sling.commons.adapter.AdaptTo;
@@ -84,7 +85,8 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
    * Resource type
    */
   public static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/wcmio/responsiveimage/v1/responsiveimage";
-
+  private static final String ATTRIBUTE_TITLE = "title";
+  
   @AemObject
   private Style currentStyle;
   @Self
@@ -114,11 +116,11 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
 
     // resolve media from DAM asset
     // add custom properties as defined in "image" core component
-    media = HandlerUnwrapper.get(mediaHandler, resource)
+    MediaBuilder mediaBuilder =  HandlerUnwrapper.get(mediaHandler, resource)
         .property("itemprop", "contentUrl")
         .property("data-cmp-hook-image", "image")
-        .property(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
-        .build();
+        .property(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image");
+    media = mediaBuilder.build();
 
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
@@ -127,11 +129,6 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
     if (media.isValid()) {
       initPropertiesFromDamAsset(properties);
       areas = ImageAreaImpl.convertMap(media.getMap());
-
-      // display popup title
-      if (this.displayPopupTitle() && media.getElement() != null) {
-        setImageTitle(media.getElement(), getTitle());
-      }
     }
 
     // resolve link - decorative images have no link and no alt text by definition
@@ -141,6 +138,16 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
     }
     else {
       link = HandlerUnwrapper.get(linkHandler, resource).build();
+    }
+   
+    // display popup title
+    if (this.displayPopupTitle() && media.getElement() != null) {
+      mediaBuilder.property(ATTRIBUTE_TITLE, StringUtils.defaultString(getTitle()));
+    }
+
+    // rebuild the media with the correct alt text and optional title
+    if(media.isValid()) {
+      media = mediaBuilder.altText(StringUtils.defaultString(alt)).build();
     }
   }
 
@@ -179,22 +186,6 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
             alt = assetDescription;
           }
         }
-      }
-    }
-  }
-
-  @SuppressWarnings("unchecked")
-  private static void setImageTitle(HtmlElement<?> element, String title) {
-    if (element == null) {
-      return;
-    }
-    if (element instanceof Picture || element instanceof Image) {
-      element.setTitle(title);
-    }
-    else {
-      List<HtmlElement<?>> children = (List)element.getChildren();
-      for (HtmlElement<?> child : children) {
-        setImageTitle(child, title);
       }
     }
   }
