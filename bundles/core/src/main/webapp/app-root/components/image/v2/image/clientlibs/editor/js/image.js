@@ -37,7 +37,9 @@
             altTuple = new CheckboxTextfieldTuple(dialogContent, 'coral-checkbox[name="./altValueFromDAM"]', 'input[name="./alt"]');
             $altGroup = $dialogContent.find(".cmp-image__editor-alt");
             $linkURLGroup = $dialogContent.find(".cmp-image__editor-link");
-            $linkURLField = $linkURLGroup.find('foundation-autocomplete[name="./linkURL"]');
+            if ($linkURLGroup) {
+              $linkURLField = $linkURLGroup.find('foundation-autocomplete[name="./linkURL"]');
+            }
             captionTuple = new CheckboxTextfieldTuple(dialogContent, 'coral-checkbox[name="./titleValueFromDAM"]', 'input[name="./jcr:title"]');
             $cqFileUpload = $dialog.find(".cq-FileUpload");
             $cqFileUploadEdit = $dialog.find(".cq-FileUpload-edit");
@@ -139,14 +141,20 @@
     function toggleAlternativeFieldsAndLink(checkbox) {
         if (checkbox) {
             if (checkbox.checked) {
-                $linkURLGroup.hide();
+                if ($linkURLGroup) {
+                  $linkURLGroup.hide();
+                }
                 $altGroup.hide();
             } else {
                 $altGroup.show();
-                $linkURLGroup.show();
+                if ($linkURLGroup) {
+                  $linkURLGroup.show();
+                }
             }
-            if ($linkURLField.length) {
-                $linkURLField.adaptTo("foundation-field").setDisabled(checkbox.checked);
+            if ($linkURLField) {
+              if ($linkURLField.length) {
+                  $linkURLField.adaptTo("foundation-field").setDisabled(checkbox.checked);
+              }
             }
             altTuple.hideTextfield(checkbox.checked);
             if (fileReference) {

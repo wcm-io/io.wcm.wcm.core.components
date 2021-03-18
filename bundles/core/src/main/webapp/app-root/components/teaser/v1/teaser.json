@@ -75,7 +75,6 @@
 
   "cq:dialog": {
     "jcr:primaryType": "nt:unstructured",
-    "extraClientlibs": ["io.wcm.wcm.core.components.teaser.v1.editor"],
     "content": {
       "items": {
         "tabs": {
