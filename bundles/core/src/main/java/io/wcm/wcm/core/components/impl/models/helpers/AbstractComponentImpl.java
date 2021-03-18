@@ -71,7 +71,13 @@ public abstract class AbstractComponentImpl extends AbstractComponentExporterImp
 
   private boolean isDataLayerEnabled() {
     if (dataLayerEnabled == null) {
-      dataLayerEnabled = ComponentUtils.isDataLayerEnabled(this.resource);
+      if (this.currentPage != null) {
+        // Check at page level to allow components embedded via containers in editable templates to inherit the setting
+        dataLayerEnabled = ComponentUtils.isDataLayerEnabled(this.currentPage.getContentResource());
+      }
+      else {
+        dataLayerEnabled = ComponentUtils.isDataLayerEnabled(this.resource);
+      }
     }
     return dataLayerEnabled;
   }
