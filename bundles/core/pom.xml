@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.8.0-2.15.0</version>
+    <version>1.8.2-2.15.0</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components</artifactId>
-  <version>1.8.0-2.15.0</version>
+  <version>1.8.2-2.15.0</version>
   <packaging>jar</packaging>
 
   <name>WCM Core Components</name>
@@ -206,6 +206,7 @@
           <bnd>
             Sling-Initial-Content: \
               SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/wcm/core
+            Sling-Namespaces: wcmio=http://wcm.io/ns
 
             <!-- For build compatibility with Java 11 -->
             Import-Package: \
