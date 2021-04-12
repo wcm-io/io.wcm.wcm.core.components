@@ -93,7 +93,7 @@ class ResponsiveImageImplTest {
         DC_TITLE, "Asset Title",
         DC_DESCRIPTION, "Asset Description");
     // create web rendition to test auto-cropping
-    context.create().assetRendition(asset, "cq5dam.web.160.90.jpg", 160, 90, ContentType.JPEG);
+    context.create().assetRenditionWebEnabled(asset);
   }
 
   @Test
