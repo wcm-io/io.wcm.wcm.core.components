@@ -30,6 +30,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -175,6 +176,8 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
       if (descriptionFromPage) {
         if (targetPage != null) {
           description = targetPage.getDescription();
+          // page description is by default no rich text
+          description = StringEscapeUtils.escapeHtml4(description);
         }
       }
       else {
