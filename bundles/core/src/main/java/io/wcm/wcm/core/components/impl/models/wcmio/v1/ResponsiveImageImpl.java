@@ -19,15 +19,12 @@
  */
 package io.wcm.wcm.core.components.impl.models.wcmio.v1;
 
-import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_IS_DECORATIVE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_TITLE_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_UUID_DISABLED;
 import static com.day.cq.commons.ImageResource.PN_ALT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
-import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 
 import java.util.List;
 import java.util.Optional;
@@ -118,6 +115,7 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
         .property("itemprop", "contentUrl")
         .property("data-cmp-hook-image", "image")
         .property(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
+        .decorative(isDecorative)
         .build();
 
     if (media.isValid() && !media.getRendition().isImage()) {
@@ -137,7 +135,6 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
     // resolve link - decorative images have no link and no alt text by definition
     if (isDecorative) {
       link = linkHandler.invalid();
-      alt = null;
     }
     else {
       link = HandlerUnwrapper.get(linkHandler, resource).build();
@@ -154,29 +151,19 @@ public class ResponsiveImageImpl extends AbstractComponentImpl implements Respon
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);
       if (damAsset != null) {
         boolean titleFromAsset = properties.get(PN_TITLE_VALUE_FROM_DAM, currentStyle.get(PN_TITLE_VALUE_FROM_DAM, true));
-        boolean altFromAsset = properties.get(PN_ALT_VALUE_FROM_DAM, currentStyle.get(PN_ALT_VALUE_FROM_DAM, true));
         boolean uuidDisabled = currentStyle.get(PN_UUID_DISABLED, false);
 
         fileReference = damAsset.getPath();
+        alt = asset.getAltText();
 
         if (!uuidDisabled) {
           uuid = damAsset.getID();
         }
 
         if (titleFromAsset) {
-          String assetTitle = damAsset.getMetadataValueFromJcr(DC_TITLE);
+          String assetTitle = asset.getTitle();
           if (StringUtils.isNotEmpty(assetTitle)) {
             title = assetTitle;
-          }
-        }
-
-        if (altFromAsset) {
-          String assetDescription = damAsset.getMetadataValueFromJcr(DC_DESCRIPTION);
-          if (StringUtils.isEmpty(assetDescription)) {
-            assetDescription = damAsset.getMetadataValueFromJcr(DC_TITLE);
-          }
-          if (StringUtils.isNotEmpty(assetDescription)) {
-            alt = assetDescription;
           }
         }
       }

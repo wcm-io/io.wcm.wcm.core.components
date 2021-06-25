@@ -240,7 +240,7 @@ class ImageImplTest {
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Asset Title", underTest.getTitle());
-    assertNull(underTest.getAlt());
+    assertEquals("", underTest.getAlt());
     assertNull(underTest.getLink());
     assertTrue(underTest.isDecorative());
 
@@ -262,7 +262,7 @@ class ImageImplTest {
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Asset Title", underTest.getTitle());
-    assertNull(underTest.getAlt());
+    assertEquals("", underTest.getAlt());
     assertNull(underTest.getLink());
     assertEquals(10, underTest.getLazyThreshold());
 
