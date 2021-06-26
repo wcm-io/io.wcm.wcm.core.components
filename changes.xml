@@ -27,6 +27,9 @@
       <action type="update" dev="sseifert">
         Image/ResponsiveImage: Rely on media handler implementation for handling "isDecorative" and "altValueFromDAM" flags.
       </action>
+      <action type="fix" dev="bkalbitz">
+        Teaser: Escape description from page description (which is plain text) properly as HTML markup.
+      </action>
     </release>
 
     <release version="1.8.2-2.15.0" date="2021-03-25">

@@ -30,7 +30,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -53,6 +52,7 @@ import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.richtext.RichTextHandler;
+import io.wcm.handler.richtext.TextMode;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemImpl;
@@ -177,16 +177,16 @@ public class TeaserImpl extends AbstractComponentImpl implements Teaser, MediaMi
         if (targetPage != null) {
           description = targetPage.getDescription();
           // page description is by default no rich text
-          description = StringEscapeUtils.escapeHtml4(description);
+          description = richTextHandler.get(description).textMode(TextMode.PLAIN).buildMarkup();
         }
       }
       else {
         description = properties.get(JCR_DESCRIPTION, String.class);
+        // description in teaser is rich text
+        description = richTextHandler.get(description).textMode(TextMode.XHTML).buildMarkup();
       }
     }
 
-    // resolve rich text in description field
-    description = richTextHandler.get(description).buildMarkup();
 
   }
 
