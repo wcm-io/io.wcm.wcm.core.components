@@ -143,7 +143,7 @@ class ResponsiveImageImplTest {
     String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg";
 
     assertEquals("Asset Title", underTest.getTitle());
-    assertEquals("Asset Description", underTest.getAlt());
+    assertEquals("Resource Alt", underTest.getAlt());
     assertEquals("", underTest.getUuid());
     assertTrue(underTest.displayPopupTitle());
     assertEquals(asset.getPath(), underTest.getFileReference());
@@ -218,7 +218,7 @@ class ResponsiveImageImplTest {
     ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
 
     assertEquals("Asset Title", underTest.getTitle());
-    assertNull(underTest.getAlt());
+    assertEquals("", underTest.getAlt());
 
     assertInvalidLink(underTest);
   }
@@ -237,7 +237,7 @@ class ResponsiveImageImplTest {
     ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
 
     assertEquals("Asset Title", underTest.getTitle());
-    assertNull(underTest.getAlt());
+    assertEquals("", underTest.getAlt());
 
     assertInvalidLink(underTest);
   }

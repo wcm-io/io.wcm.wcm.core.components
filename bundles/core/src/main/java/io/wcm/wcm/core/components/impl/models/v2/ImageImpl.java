@@ -21,8 +21,6 @@ package io.wcm.wcm.core.components.impl.models.v2;
 
 import static com.day.cq.commons.ImageResource.PN_ALT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
-import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -136,11 +134,14 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     enableLazyLoading = !currentStyle.get(PN_DESIGN_LAZY_LOADING_ENABLED, true);
     lazyThreshold = currentStyle.get(PN_DESIGN_LAZY_THRESHOLD, 0);
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
+    boolean altFromAsset = properties.get(PN_ALT_VALUE_FROM_DAM, currentStyle.get(PN_ALT_VALUE_FROM_DAM, true));
 
     // resolve media and properties from DAM asset
     media = HandlerUnwrapper.get(mediaHandler, resource)
         // disable dynamic media support as it is not compatible with the "src-pattern" concept
         .dynamicMediaDisabled(true)
+        .decorative(isDecorative)
+        .forceAltValueFromAsset(altFromAsset)
         .build();
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
@@ -157,7 +158,6 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
     // resolve link - decorative images have no link and no alt text by definition
     if (isDecorative) {
       link = linkHandler.invalid();
-      alt = null;
     }
     else {
       link = HandlerUnwrapper.get(linkHandler, resource).build();
@@ -174,29 +174,19 @@ public class ImageImpl extends AbstractComponentImpl implements Image, MediaMixi
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);
       if (damAsset != null) {
         boolean titleFromAsset = properties.get(PN_TITLE_VALUE_FROM_DAM, currentStyle.get(PN_TITLE_VALUE_FROM_DAM, true));
-        boolean altFromAsset = properties.get(PN_ALT_VALUE_FROM_DAM, currentStyle.get(PN_ALT_VALUE_FROM_DAM, true));
         boolean uuidDisabled = currentStyle.get(PN_UUID_DISABLED, false);
 
         fileReference = damAsset.getPath();
+        alt = asset.getAltText();
 
         if (!uuidDisabled) {
           uuid = damAsset.getID();
         }
 
         if (titleFromAsset) {
-          String assetTitle = damAsset.getMetadataValueFromJcr(DC_TITLE);
+          String assetTitle = asset.getTitle();
           if (StringUtils.isNotEmpty(assetTitle)) {
             title = assetTitle;
-          }
-        }
-
-        if (altFromAsset) {
-          String assetDescription = damAsset.getMetadataValueFromJcr(DC_DESCRIPTION);
-          if (StringUtils.isEmpty(assetDescription)) {
-            assetDescription = damAsset.getMetadataValueFromJcr(DC_TITLE);
-          }
-          if (StringUtils.isNotEmpty(assetDescription)) {
-            alt = assetDescription;
           }
         }
       }
