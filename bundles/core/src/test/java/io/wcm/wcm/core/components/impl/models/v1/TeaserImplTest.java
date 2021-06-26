@@ -194,6 +194,26 @@ class TeaserImplTest {
     assertEquals("Page Title", underTest.getTitle());
     assertEquals("Page Description", underTest.getDescription());
   }
+  
+  @Test
+  void testTitleDescriptionFromPage_HtmlReservedChars() {
+    Page targetPage = context.create().page(page, "page1", null,
+        JCR_TITLE, "Page Title",
+        JCR_DESCRIPTION, "<&& cool page description &&>");
+    context.currentResource(context.create().resource(page, "teaser",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        JCR_TITLE, "Teaser Title",
+        JCR_DESCRIPTION, "Teaser Description",
+        PN_LINK_TYPE, InternalLinkType.ID,
+        PN_LINK_CONTENT_REF, targetPage.getPath(),
+        PN_TITLE_FROM_PAGE, true,
+        PN_DESCRIPTION_FROM_PAGE, true));
+
+    Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
+
+    assertEquals("Page Title", underTest.getTitle());
+    assertEquals("&lt;&amp;&amp; cool page description &amp;&amp;&gt;", underTest.getDescription());
+  }
 
   @Test
   void testTitleDescriptionFromPage_NotEnabled() {
