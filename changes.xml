@@ -23,6 +23,15 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="1.8.4-2.15.0" date="2021-06-27">
+      <action type="update" dev="sseifert">
+        Image/ResponsiveImage: Rely on media handler implementation for handling "isDecorative" and "altValueFromDAM" flags.
+      </action>
+      <action type="fix" dev="bkalbitz">
+        Teaser: Escape description from page description (which is plain text) properly as HTML markup.
+      </action>
+    </release>
+
     <release version="1.8.2-2.15.0" date="2021-03-25">
       <action type="update" dev="sseifert">
         Editor JS client libraries: Sync image v2 editor clientlib, remove obsolete teaser v1 editor clientlib.

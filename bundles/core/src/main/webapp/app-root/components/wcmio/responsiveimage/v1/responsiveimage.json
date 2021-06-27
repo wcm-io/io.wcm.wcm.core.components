@@ -140,25 +140,11 @@
                           "checked": "${not empty cqDesign.isDecorative ? cqDesign.isDecorative : false}",
                           "fieldDescription": "Check if the image should be ignored by assistive technology and therefore does not require an alternative text. This applies to decorative images only."
                         },
-                        "alternativeGroup": {
-                          "sling:resourceType": "granite/ui/components/coral/foundation/well",
-                          "items": {
-                            "alt": {
-                              "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
-                              "name": "./alt",
-                              "fieldLabel": "Alternative Text",
-                              "fieldDescription": "Textual alternative of the meaning or function of the image, for visually impaired readers."
-                            },
-                            "altValueFromDAM": {
-                              "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
-                              "uncheckedValue": "false",
-                              "name": "./altValueFromDAM",
-                              "text": "Get alternative text from DAM",
-                              "value": true,
-                              "checked": "${not empty cqDesign.altValueFromDAM ? cqDesign.altValueFromDAM : true}",
-                              "fieldDescription": "When checked, populate the image's alt attribute with the value of the dc:description metadata in DAM."
-                            }
-                          }
+                        "alt": {
+                          "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
+                          "name": "./alt",
+                          "fieldLabel": "Alternative Text",
+                          "fieldDescription": "Textual alternative of the meaning or function of the image, for visually impaired readers."
                         },
                         "captionGroup": {
                           "sling:resourceType": "granite/ui/components/coral/foundation/well",
