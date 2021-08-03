@@ -31,7 +31,7 @@ import io.wcm.handler.media.impl.ImageFileServlet;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.wcm.commons.contenttype.ContentType;
 import io.wcm.wcm.commons.contenttype.FileExtension;
-import io.wcm.wcm.core.components.impl.models.v2.ImageImpl;
+import io.wcm.wcm.core.components.impl.models.v2.ImageV2Impl;
 
 /**
  * This servlet acts as a "proxy" for the {@link io.wcm.handler.media.impl.ImageFileServlet}
@@ -47,7 +47,7 @@ import io.wcm.wcm.core.components.impl.models.v2.ImageImpl;
  */
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(
-    resourceTypes = ImageImpl.RESOURCE_TYPE,
+    resourceTypes = { ImageV2Impl.RESOURCE_TYPE },
     selectors = ImageWidthProxyServlet.SELECTOR,
     extensions = { FileExtension.JPEG, FileExtension.PNG, FileExtension.GIF },
     methods = "GET")

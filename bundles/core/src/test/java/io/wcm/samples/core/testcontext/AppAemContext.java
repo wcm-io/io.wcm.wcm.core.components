@@ -32,7 +32,7 @@ import java.util.Locale;
 import org.apache.sling.api.resource.PersistenceException;
 import org.jetbrains.annotations.NotNull;
 
-import com.adobe.cq.export.json.SlingModelFilter;
+import com.adobe.cq.wcm.core.components.internal.link.DefaultPathProcessor;
 
 import io.wcm.handler.media.spi.MediaFormatProvider;
 import io.wcm.handler.media.spi.MediaHandlerConfig;
@@ -73,9 +73,6 @@ public final class AppAemContext {
     @Override
     public void execute(@NotNull AemContext context) throws PersistenceException, IOException {
 
-      // mock services
-      context.registerService(SlingModelFilter.class, new MockSlingModelFilter());
-
       // context path strategy
       MockCAConfig.contextPathStrategyAbsoluteParent(context, ROOT_LEVEL - 1, ROOT_LEVEL);
 
@@ -83,6 +80,9 @@ public final class AppAemContext {
       context.registerService(UrlHandlerConfig.class, new UrlHandlerConfigImpl());
       context.registerService(MediaHandlerConfig.class, new MediaHandlerConfigImpl());
       context.registerService(MediaFormatProvider.class, new MediaFormatProviderImpl());
+
+      // core components link handling services
+      context.registerInjectActivateService(DefaultPathProcessor.class);
 
       // create template
       context.create().resource(TEMPLATE_PATH,

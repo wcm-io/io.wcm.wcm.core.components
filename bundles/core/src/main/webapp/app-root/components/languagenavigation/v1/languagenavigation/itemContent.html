@@ -7,6 +7,7 @@
           class="cmp-languagenavigation__item-title" lang="${item.language}">${item.title}</span>
     <a data-sly-test="${!hasChildren}"
        data-cmp-clickable="${item.data ? true : false}"
+       aria-current="${item.current && 'page'}"
        class="cmp-languagenavigation__item-link"
        data-sly-unwrap="${!item.linkValid}"
        data-sly-attribute="${item.linkAttributes}"

@@ -359,16 +359,6 @@
     </wcm-io>
     <core-components-examples jcr:primaryType="nt:unstructured">
         <components jcr:primaryType="nt:unstructured">
-            <page jcr:primaryType="nt:unstructured">
-                <policy_212634895490169
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Core Components Examples - Page"
-                    sling:resourceType="wcm/core/components/policy/policy"
-                    appResourcesClientlib="cmp-examples.site"
-                    clientlibs="cmp-examples.base">
-                    <jcr:content jcr:primaryType="nt:unstructured"/>
-                </policy_212634895490169>
-            </page>
             <search jcr:primaryType="nt:unstructured">
                 <policy_1572547933941
                     jcr:primaryType="nt:unstructured"
@@ -423,6 +413,16 @@
     <wcm-io-samples jcr:primaryType="nt:unstructured">
         <wcm-core-components jcr:primaryType="nt:unstructured">
             <components jcr:primaryType="nt:unstructured">
+                <page jcr:primaryType="nt:unstructured">
+                    <policy_212634895490169
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Core Components Examples - Page"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        appResourcesClientlib="cmp-examples.site"
+                        clientlibs="cmp-examples.base">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_212634895490169>
+                </page>
                 <versionText jcr:primaryType="nt:unstructured">
                     <default
                         jcr:primaryType="nt:unstructured"

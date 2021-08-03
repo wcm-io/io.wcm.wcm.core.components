@@ -1,0 +1,42 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Page (v3)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/page/v3/page",
+  
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "thumbnail": {
+              "items": {
+                "column": {
+                  "items": {
+                    "featuredimage": {
+                      "items": {
+          
+                        /* Use wcm.io Media Handler FileUpload */
+                        "file": {
+                          "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+                          "namePrefix": "./cq:featuredimage/",
+                          "allowUpload": true
+                        },
+                        "type": {
+                          "sling:hideResource": true
+                        }
+          
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

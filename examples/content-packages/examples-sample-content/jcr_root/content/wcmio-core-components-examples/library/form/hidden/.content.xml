@@ -6,7 +6,7 @@
         jcr:description="Hidden Form Component "
         jcr:primaryType="cq:PageContent"
         jcr:title="Form Hidden"
-        sling:resourceType="core-components-examples/components/page"
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page"
         navTitle="Hidden"
         translated="{Boolean}false">
         <root

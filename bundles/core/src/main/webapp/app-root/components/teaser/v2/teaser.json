@@ -1,0 +1,313 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Teaser (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/teaser/v2/teaser",
+
+  /* Fallback mode for Link Handler to support existing content that used a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": ["linkURL","link"],
+
+  "cq:editConfig": {
+    "jcr:primaryType": "cq:EditConfig",
+    "cq:inherit": true,
+    /* 
+     * Overwrite inplace edit config to:
+     * - Disable cropping on inline toolbar as it does not support predefined ratios
+     * - Remove default ratios as they are fetched from assigned media formats
+     * - Remove image/webp support
+     */
+    "cq:inplaceEditing": {
+      "jcr:primaryType": "cq:InplaceEditingConfig",
+      "editorType": "image",
+      "active": true,
+      "configPath": "inplaceEditingConfig",
+      "inplaceEditingConfig": {
+        "jcr:primaryType": "nt:unstructured",
+        "plugins": {
+          "crop": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "flip": {
+            "features": "-",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "map": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff", "image/svg+xml"]
+          },
+          "rotate": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff"]
+          },
+          "zoom": {
+            "features": "*",
+            "supportedMimeTypes": ["image/jpeg", "image/png", "image/tiff", "image/svg+xml"]
+          }
+        },
+        "ui": {
+          "inline": {
+            "toolbar": ["rotate#right", "history#undo", "history#redo", "fullscreen#fullscreen", "control#close", "control#finish"],
+            "replacementToolbars": {
+              "crop": ["crop#identifier", "crop#unlaunch", "crop#confirm"]
+            }
+          },
+          "fullscreen": {
+            "toolbar": {
+              "left": ["crop#launchwithratio", "rotate#right", "map#launch", "flip#horizontal", "flip#vertical", "zoom#reset100", "zoom#popupslider"],
+              "right": ["history#undo", "history#redo", "fullscreen#fullscreenexit"]
+            },
+            "replacementToolbars": {
+              "crop": {
+                "left": ["crop#identifier"],
+                "right": ["crop#unlaunch", "crop#confirm"]
+              },
+              "map": {
+                "left": ["map#rectangle", "map#circle", "map#polygon"],
+                "right": ["map#unlaunch", "map#confirm"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "image": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Use wcm.io Media Handler FileUpload */
+                        "file": {
+                          "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+                          "allowUpload": false
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "text": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+                        "descriptionGroup": {
+                          "items": {
+                            "description": {
+
+                              "htmlRules": {
+
+                                // Ensure valid XHTML markup with <strong> and <em> tags
+                                "docType": {
+                                  "baseType": "xhtml",
+                                  "version": "1.0",
+                                  "typeConfig": {
+                                    "useSemanticMarkup": true,
+                                    "semanticMarkupMap": {
+                                      "b": "strong",
+                                      "i": "em"
+                                    },
+                                    "isXhtmlStrict": false
+                                  }
+                                },
+
+                                // Default link dialog configuration
+                                "links": {
+                                  "cssMode": "keep",
+                                  "protocols": [
+                                    "http://",
+                                    "https://",
+                                    "mailto:"
+                                  ],
+                                  "targetConfig": {
+                                    "mode": "blank"
+                                  },
+                                  "ensureInternalLinkExt": false
+                                }
+
+                              },
+
+                              "rtePlugins": {
+                                /* Disable OOTB link support */
+                                "links": {
+                                  "features": "-"
+                                },
+                                /* Enable wcm.io RTE link plugin */
+                                "wcmio-links": {
+                                  "features": [
+                                    "modifylink",
+                                    "unlink"
+                                  ]
+                                },
+                                "edit": {
+                                  "features": "*",
+                                  "htmlPasteRules": {
+                                    "allowedAttributes": {
+                                      "a": [
+                                        "href", "name", "title", "alt",
+                                        // allow attributes of custom RTE link plugin
+                                        "data-link-type", "data-link-content-ref", "data-link-cross-context-content-ref",
+                                        "data-link-media-ref", "data-link-external-ref", "data-link-window-target", "data-link-media-download"
+                                      ]
+                                    }
+                                  }
+                                }
+                              },
+
+                              "uiSettings": {
+                                "cui": {
+                                  "inline": {
+                                    "toolbar": [
+                                      "format#bold",
+                                      "format#italic",
+                                      "format#underline",
+                                      "#justify",
+                                      "#lists",
+                                      /* Use wcm.io RTE Link plugin actions */
+                                      "wcmio-links#modifylink",
+                                      "wcmio-links#unlink",
+                                      "#paraformat"
+                                    ]
+                                  },
+                                  "dialogFullScreen": {
+                                    "toolbar": [
+                                      "format#bold",
+                                      "format#italic",
+                                      "format#underline",
+                                      "justify#justifyleft",
+                                      "justify#justifycenter",
+                                      "justify#justifyright",
+                                      "lists#unordered",
+                                      "lists#ordered",
+                                      "lists#outdent",
+                                      "lists#indent",
+                                      /* Use wcm.io RTE Link plugin actions */
+                                      "wcmio-links#modifylink",
+                                      "wcmio-links#unlink",
+                                      "table#createoredit",
+                                      "#paraformat",
+                                      "image#imageProps"
+                                    ]
+                                  }
+                                }
+                              }
+
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            /* wcm.io Link Handler Tab */
+            "link": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab",
+              "sling:orderBefore": "actions"
+            },
+
+            "actions": {
+              "jcr:title": "Actions",
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        "linkURL": {
+                          /* Hide LInkURL field - use separate tab for link instead */
+                          "sling:hideResource": true
+                        },
+
+                        /* Use Link dialog fields for actions  */
+                        "actions": {
+                          "granite:class": "foundation-toggleable",
+                          "field": {
+                            "granite:class": "",
+                            "items": {
+                              "link": {
+                                "sling:hideResource": true
+                              },
+                              "text": {
+                                "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
+                                "name": "./text",
+                                "required": true,
+                                "fieldLabel": "Text",
+                                "emptyText": "",
+                                "granite:class": ""
+                              },
+                              "linkRefContainer": {
+                                "sling:resourceType": "wcm-io/handler/link/components/granite/form/linkRefContainer",
+                                "showLinkTitle": false
+                              }
+                            }
+                          }
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+
+            "main": {
+              "items": {
+
+                /* Media format definition */
+                "mediaFormatSelection": {
+                  "sling:resourceType": "granite/ui/components/coral/foundation/include",
+                  "path": "wcm-io/handler/media/components/global/include/mediaFormatSelection",
+                  "sling:orderBefore": "actions"
+                },
+
+                "imageDelegate": {
+                  /* Delegate feature not required with wcm.io Media Handler */
+                  "sling:hideResource": true
+                }
+
+              }
+            },
+
+            /* Responsive Image settings */
+            "responsiveImageTab": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/media/components/global/include/responsiveImageSettings"
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

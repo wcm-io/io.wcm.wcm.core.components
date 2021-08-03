@@ -6,7 +6,7 @@
         jcr:description="Group and Layout Form Components"
         jcr:primaryType="cq:PageContent"
         jcr:title="Form Container"
-        sling:resourceType="core-components-examples/components/page"
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page"
         navTitle="Container"
         translated="{Boolean}false">
         <root

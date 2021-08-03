@@ -7,7 +7,7 @@
         jcr:description="Display a content fragment asset"
         jcr:primaryType="cq:PageContent"
         jcr:title="Content Fragment"
-        sling:resourceType="core-components-examples/components/page">
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page">
         <root
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid">
@@ -33,7 +33,7 @@
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/content-fragment/v1"/>
+                    linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/contentfragment/v1"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
                     jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
@@ -41,7 +41,7 @@
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkURL="https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/content-fragment/v1/content-fragment"
+                    linkURL="https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/contentfragment/v1/contentfragment"
                     textIsRich="true"/>
                 <title_865328580
                     cq:styleIds="[1544759664489]"

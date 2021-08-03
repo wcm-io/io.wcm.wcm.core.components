@@ -6,7 +6,7 @@
         jcr:description="Display a form button"
         jcr:primaryType="cq:PageContent"
         jcr:title="Form Button"
-        sling:resourceType="core-components-examples/components/page"
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page"
         navTitle="Button"
         translated="{Boolean}false">
         <root

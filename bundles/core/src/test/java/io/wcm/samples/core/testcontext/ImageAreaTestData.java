@@ -29,8 +29,12 @@ import org.jetbrains.annotations.Nullable;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.google.common.collect.ImmutableList;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import io.wcm.handler.link.Link;
 import io.wcm.handler.media.imagemap.impl.ImageMapAreaImpl;
-import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaImpl;
+import io.wcm.handler.media.spi.ImageMapLinkResolver;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaV1Impl;
 
 public final class ImageAreaTestData {
 
@@ -43,19 +47,30 @@ public final class ImageAreaTestData {
       // this rect has an invalid content reference and thus should be removed during parsing
       + "[rect(256,171,1023,682)\"" + INVALID_CONTENT_REF + "\"|\"\"|\"altText\"|(0.1992,0.2005,0.7992,0.7995)]";
 
-  public static final List<ImageArea> EXPECTED_AREAS = ImmutableList.of(
-      area("circle", "256,256,256", "0.2000,0.3001,0.2000", "http://myhost", null, null),
-      area("rect", "256,171,1023,682", "0.1992,0.2005,0.7992,0.7995", VALID_CONTENT_REF + ".html", null, "altText"),
-      area("poly", "917,344,1280,852,532,852", "0.7164,0.4033,1.0000,0.9988,0.4156,0.9988", "http://myhost", "_blank", null));
-
   private ImageAreaTestData() {
     // constants only
   }
 
-  private static ImageArea area(@NotNull String shape, @NotNull String coordinates, @Nullable String relativeCoordinates,
-      @NotNull String linkUrl, @Nullable String linkWindowTarget, @Nullable String altText) {
-    return new ImageAreaImpl(new ImageMapAreaImpl(shape, coordinates, relativeCoordinates,
-        linkUrl, linkWindowTarget, altText));
+  @SuppressWarnings({ "unchecked", "null" })
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH")
+  public static List<ImageArea> getExpectedAreasV1(AemContext context) {
+    ImageMapLinkResolver<Link> imageMapLinkResolver = context.getService(ImageMapLinkResolver.class);
+    return ImmutableList.of(
+        areaV1("circle", "256,256,256", "0.2000,0.3001,0.2000",
+            imageMapLinkResolver.resolveLink("http://myhost", null, context.currentResource()),
+            "http://myhost", null, null),
+        areaV1("rect", "256,171,1023,682", "0.1992,0.2005,0.7992,0.7995",
+            imageMapLinkResolver.resolveLink(VALID_CONTENT_REF, null, context.currentResource()),
+            VALID_CONTENT_REF + ".html", null, "altText"),
+        areaV1("poly", "917,344,1280,852,532,852", "0.7164,0.4033,1.0000,0.9988,0.4156,0.9988",
+            imageMapLinkResolver.resolveLink("http://myhost", "_blank", context.currentResource()),
+            "http://myhost", "_blank", null));
+    }
+
+  private static ImageArea areaV1(@NotNull String shape, @NotNull String coordinates, @Nullable String relativeCoordinates,
+      @Nullable Link link, @NotNull String linkUrl, @Nullable String linkWindowTarget, @Nullable String altText) {
+    return new ImageAreaV1Impl(new ImageMapAreaImpl<Link>(shape, coordinates, relativeCoordinates,
+        link, linkUrl, linkWindowTarget, altText));
   }
 
 }

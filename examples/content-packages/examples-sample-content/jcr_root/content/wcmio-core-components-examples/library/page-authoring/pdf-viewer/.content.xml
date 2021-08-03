@@ -6,7 +6,7 @@
         jcr:description="Embed a PDF Viewer widget to display Document Cloud PDF's"
         jcr:primaryType="cq:PageContent"
         jcr:title="PDF Viewer"
-        sling:resourceType="core-components-examples/components/page">
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page">
         <root
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid">

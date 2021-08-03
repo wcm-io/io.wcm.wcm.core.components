@@ -1,0 +1,49 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Title (v3)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/title/v3/title",
+
+  /* Fallback mode for Link Handler to support existing content that used a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": "linkURL",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+                        /* hide link-related fields and replace it with wcm.io Link dialog
+                           hide also accesibility label/title attribute as they are disabled by default with link dialog */
+                        "sling:hideChildren": ["linkURL","linkAccessibilityLabel","linkTitleAttribute"]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            /* wcm.io Link Handler Tab */
+            "link": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab",
+              "granite:rendercondition": {
+                "jcr:primaryType": "nt:unstructured",
+                "expression": "${!cqDesign.linkDisabled}",
+                "sling:resourceType": "granite/ui/components/foundation/renderconditions/simple"
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

@@ -7,7 +7,7 @@
         jcr:language="de_DE"
         jcr:primaryType="cq:PageContent"
         jcr:title="German"
-        sling:resourceType="core-components-examples/components/page"
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page"
         navTitle="Deutsch"/>
     <language-navigation/>
 </jcr:root>

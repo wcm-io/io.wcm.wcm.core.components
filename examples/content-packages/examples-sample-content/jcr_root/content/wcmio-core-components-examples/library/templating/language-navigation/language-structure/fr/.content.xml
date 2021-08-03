@@ -6,6 +6,6 @@
         cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="France"
-        sling:resourceType="core-components-examples/components/page"/>
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page"/>
     <fr/>
 </jcr:root>
