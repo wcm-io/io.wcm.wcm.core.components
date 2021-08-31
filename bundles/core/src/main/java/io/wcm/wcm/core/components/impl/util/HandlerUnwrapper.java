@@ -21,6 +21,7 @@ package io.wcm.wcm.core.components.impl.util;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceUtil;
+import org.jetbrains.annotations.NotNull;
 
 import io.wcm.handler.link.LinkBuilder;
 import io.wcm.handler.link.LinkHandler;
@@ -49,7 +50,7 @@ public final class HandlerUnwrapper {
    * @param resource Resource
    * @return {@link MediaBuilder} based on unwrapped resource.
    */
-  public static MediaBuilder get(MediaHandler mediaHandler, Resource resource) {
+  public static @NotNull MediaBuilder get(@NotNull MediaHandler mediaHandler, @NotNull Resource resource) {
     return mediaHandler.get(unwrapResource(resource));
   }
 
@@ -59,11 +60,15 @@ public final class HandlerUnwrapper {
    * @param resource Resource
    * @return {@link LinkBuilder} based on unwrapped resource.
    */
-  public static LinkBuilder get(LinkHandler linkHandler, Resource resource) {
+  public static @NotNull LinkBuilder get(@NotNull LinkHandler linkHandler, @NotNull Resource resource) {
     return linkHandler.get(unwrapResource(resource));
   }
 
-  private static Resource unwrapResource(Resource resource) {
+  private static @NotNull Resource unwrapResource(@NotNull Resource resource) {
+    // do not unwrap CoreResourceWrapper which is used for embedding components into each other
+    if (resource instanceof CoreResourceWrapper) {
+      return resource;
+    }
     return ResourceUtil.unwrap(resource);
   }
 

@@ -1,0 +1,73 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Breadcrumb (v3)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/breadcrumb/v3/breadcrumb",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Hide start level parameter; it's detected automatically */
+                        "startLevel": {
+                          "sling:hideResource": true
+                        },
+
+                        /*
+                         * Hide disableShadowing, it has no meaning with link handler underneath. 
+                         */
+                        "disableShadowing": {
+                          "sling:hideResource": true
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+
+                /* Hide start level parameter; it's detected automatically */
+                "startLevel": {
+                  "sling:hideResource": true
+                },
+
+                /*
+                 * Hide disableShadowing, it has no meaning with link handler underneath. 
+                 */
+                "disableShadowing": {
+                  "sling:hideResource": true
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}

@@ -1,0 +1,40 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Download (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/download/v2/download",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            
+            "asset": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Use wcm.io Media Handler FileUpload, filtered by download media formats */
+                        "file": {
+                          "sling:resourceType": "wcm-io/handler/link/components/granite/form/mediaLinkFileUpload",
+                          "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

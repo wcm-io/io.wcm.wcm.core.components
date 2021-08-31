@@ -193,7 +193,7 @@ execute_deploy() {
   echo "Deploy Core Components examples..."
   echo ""
   mvn -f examples/content-packages/examples \
-      -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.examples.ui.apps.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.content.zip' \
+      -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.examples.ui.config.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.apps.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.content.zip' \
       -Dvault.force=true \
       ${JVM_ARGS} \
       -Dsling.url=${SLING_URL} \

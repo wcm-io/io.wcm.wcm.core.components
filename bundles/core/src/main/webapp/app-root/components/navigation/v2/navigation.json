@@ -1,0 +1,83 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io Navigation (v2)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/navigation/v2/navigation",
+
+  "cq:dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        /* Navigation root is detected automatically, optionally support a relative or absolute path */
+                        "navigationRoot": {
+                          "rootPath": "/content",
+                          "name": "./navigationRoot",
+                          "fieldLabel": "Navigation Root (relative or absolute path)",
+                          "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/pathfield",
+                          "fieldDescription": "Site root is used by default. Relative path is resovled relative to site root, absolute path is rewritten to current context.",
+                          "required": false
+                        },
+
+                        /*
+                         * Hide flag, it has no meaning with link handler underneath. 
+                         */
+                        "disableShadowing": {
+                          "sling:hideResource": true
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "cq:design_dialog": {
+    "jcr:primaryType": "nt:unstructured",
+    "content": {
+      "items": {
+        "tabs": {
+          "items": {
+            "properties": {
+              "items": {
+
+                /* Navigation root is detected automatically, optionally support a relative or absolute path */
+                "navigationRoot": {
+                  "rootPath": "/content",
+                  "name": "./navigationRoot",
+                  "fieldLabel": "Navigation Root (relative or absolute path)",
+                  "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/pathfield",
+                  "fieldDescription": "Site root is used by default. Relative path is resovled relative to site root, absolute path is rewritten to current context.",
+                  "required": false
+                },
+
+                /*
+                 * Hide flag, it has no meaning with link handler underneath. 
+                 */
+                "disableShadowing": {
+                  "sling:hideResource": true
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

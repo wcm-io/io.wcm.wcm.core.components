@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.8.4-2.15.0</version>
+    <version>1.9.0-2.17.2</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>  
   <artifactId>io.wcm.wcm.core.components.examples</artifactId>
-  <version>1.8.4-2.15.0</version>
+  <version>1.9.0-2.17.2</version>
   <packaging>content-package</packaging>
 
   <name>WCM Core Components Examples</name>
@@ -42,13 +42,13 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.wcm.core.components</artifactId>
-      <version>1.8.4-2.15.0</version>
+      <version>1.9.0-2.17.2</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.wcm.samples</groupId>  
       <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
-      <version>1.8.4-2.15.0</version>
+      <version>1.9.0-2.17.2</version>
       <scope>compile</scope>
     </dependency>
 
@@ -118,6 +118,12 @@
     </dependency>
     <dependency>
       <groupId>com.adobe.cq</groupId>
+      <artifactId>core.wcm.components.examples.ui.config</artifactId>
+      <type>zip</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.cq</groupId>
       <artifactId>core.wcm.components.examples.ui.apps</artifactId>
       <type>zip</type>
       <scope>provided</scope>
@@ -138,12 +144,12 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.caconfig.extensions</artifactId>
-        <version>1.8.2</version>
+        <version>1.8.6</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.caconfig.editor</artifactId>
-        <version>1.8.2</version>
+        <version>1.8.6</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -168,12 +174,12 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.6.4</version>
+        <version>1.7.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.13.0</version>
+        <version>1.13.2</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -242,6 +248,7 @@
               <includeGroupIds>com.adobe.cq</includeGroupIds>
               <includeArtifactIds>
                 core.wcm.components.all,
+                core.wcm.components.examples.ui.config,
                 core.wcm.components.examples.ui.apps,
                 core.wcm.components.examples.ui.content
               </includeArtifactIds>

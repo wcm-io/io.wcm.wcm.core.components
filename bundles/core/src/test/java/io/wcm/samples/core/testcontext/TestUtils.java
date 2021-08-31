@@ -34,10 +34,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
+import org.skyscreamer.jsonassert.JSONAssert;
 
+import com.adobe.cq.wcm.core.components.commons.link.Link;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -48,6 +53,8 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
  * Test helpers.
  */
 public final class TestUtils {
+
+  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
   private TestUtils() {
     // static methods only
@@ -61,6 +68,26 @@ public final class TestUtils {
     catch (IOException ex) {
       throw new RuntimeException("Unable to load component definition for " + resourceType, ex);
     }
+  }
+
+  public static void assertValidLink(Link link, String href) {
+    assertTrue(link.isValid());
+    assertEquals(href, link.getURL());
+    assertEquals(href, link.getMappedURL());
+    assertEquals(href, link.getExternalizedURL());
+    assertEquals(ImmutableMap.of("href", href), link.getHtmlAttributes());
+  }
+
+  public static void assertValidLink(Link link, String href, String target) {
+    assertTrue(link.isValid());
+    assertEquals(href, link.getURL());
+    assertEquals(href, link.getMappedURL());
+    assertEquals(href, link.getExternalizedURL());
+    assertEquals(ImmutableMap.of("href", href, "target", target), link.getHtmlAttributes());
+  }
+
+  public static void assertInvalidLink(Link link) {
+    assertNull(link);
   }
 
   public static void assertValidLink(Object object, String href) {
@@ -117,7 +144,22 @@ public final class TestUtils {
     assertEquals(expected, actual);
 
     for (ListItem item : items) {
-      assertTrue(item instanceof LinkMixin, item.getPath() + " is LinkMixin");
+      if (item instanceof LinkMixin) {
+        assertTrue(((LinkMixin)item).isLinkValid());
+      }
+      else {
+        assertNotNull(item.getLink());
+      }
+    }
+  }
+
+  public static void assertJson(String expectedJson, Object actual) {
+    try {
+      String actualJson = OBJECT_MAPPER.writeValueAsString(actual);
+      JSONAssert.assertEquals(expectedJson, actualJson, true);
+    }
+    catch (JsonProcessingException | JSONException ex) {
+      throw new RuntimeException(ex);
     }
   }
 

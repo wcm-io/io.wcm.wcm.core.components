@@ -26,6 +26,7 @@ import org.apache.sling.api.resource.Resource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.adobe.cq.wcm.core.components.commons.link.Link;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
@@ -68,12 +69,13 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl impleme
   }
 
   @Override
+  @SuppressWarnings("null")
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData())
         .asComponent()
         .withType(() -> Optional.ofNullable(this.dataLayerType).orElseGet(() -> super.getComponentData().getType()))
         .withTitle(this::getTitle)
-        .withLinkUrl(this::getURL)
+        .withLinkUrl(() -> Optional.ofNullable(this.getLink()).map(Link::getURL).orElse(null))
         .build();
   }
 

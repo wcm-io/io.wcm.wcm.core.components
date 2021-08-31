@@ -30,7 +30,7 @@ mvn --non-recursive wcmio-content-package:install \
     -Dvault.delayAfterInstallSec=30 \
     -Dsling.url=${SLING_URL}
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=adobe.binary.aem.64.cumulativefixpack:aem-6.4.8-cfp:zip:1.0 \
+    -Dvault.artifact=adobe.binary.aem.64.cumulativefixpack:aem-6.4.8-cfp:zip:4.0 \
     -Dvault.delayAfterInstallSec=30 \
     -Dsling.url=${SLING_URL}
 
