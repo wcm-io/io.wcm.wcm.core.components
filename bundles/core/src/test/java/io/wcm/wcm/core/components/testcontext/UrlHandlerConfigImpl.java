@@ -2,7 +2,7 @@
  * #%L
  * wcm.io
  * %%
- * Copyright (C) 2021 wcm.io
+ * Copyright (C) 2019 wcm.io
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,20 +17,22 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.samples.core.testcontext;
+package io.wcm.wcm.core.components.testcontext;
 
-import io.wcm.handler.media.spi.MediaFormatProvider;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.ROOT_LEVEL;
+
+import org.apache.sling.api.resource.Resource;
+
+import io.wcm.handler.url.spi.UrlHandlerConfig;
 
 /**
- * Media format provider.
+ * URL handler configuration.
  */
-public class MediaFormatProviderImpl extends MediaFormatProvider {
+class UrlHandlerConfigImpl extends UrlHandlerConfig {
 
-  /**
-   * Constructor
-   */
-  public MediaFormatProviderImpl() {
-    super(MediaFormats.class);
+  @Override
+  public int getSiteRootLevel(Resource contextResource) {
+    return ROOT_LEVEL;
   }
 
 }

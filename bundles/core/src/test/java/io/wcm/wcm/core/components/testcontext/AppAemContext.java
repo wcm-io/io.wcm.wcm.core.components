@@ -17,13 +17,14 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.samples.core.testcontext;
+package io.wcm.wcm.core.components.testcontext;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_LANGUAGE;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static io.wcm.testing.mock.wcmio.caconfig.ContextPlugins.WCMIO_CACONFIG;
 import static io.wcm.testing.mock.wcmio.handler.ContextPlugins.WCMIO_HANDLER;
 import static io.wcm.testing.mock.wcmio.sling.ContextPlugins.WCMIO_SLING;
+import static io.wcm.testing.mock.wcmio.wcm.ContextPlugins.WCMIO_WCM;
 import static org.apache.sling.testing.mock.caconfig.ContextPlugins.CACONFIG;
 
 import java.io.IOException;
@@ -61,7 +62,7 @@ public final class AppAemContext {
   public static AemContext newAemContext() {
     return new AemContextBuilder()
         .plugin(CACONFIG)
-        .plugin(WCMIO_SLING, WCMIO_CACONFIG, WCMIO_HANDLER)
+        .plugin(WCMIO_SLING, WCMIO_WCM, WCMIO_CACONFIG, WCMIO_HANDLER)
         .afterSetUp(SETUP_CALLBACK)
         .build();
   }

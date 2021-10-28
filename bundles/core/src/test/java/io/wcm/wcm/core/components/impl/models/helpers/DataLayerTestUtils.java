@@ -19,7 +19,7 @@
  */
 package io.wcm.wcm.core.components.impl.models.helpers;
 
-import static io.wcm.samples.core.testcontext.AppAemContext.LANGUAGE_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.LANGUAGE_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

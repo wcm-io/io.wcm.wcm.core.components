@@ -22,9 +22,9 @@ package io.wcm.wcm.core.components.impl.link;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_WINDOW_TARGET;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
-import static io.wcm.samples.core.testcontext.TestUtils.assertJson;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertJson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -43,11 +43,11 @@ import com.google.common.collect.ImmutableMap;
 import ch.randelshofer.io.ByteArrayImageInputStream;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.link.type.ExternalLinkType;
-import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
 class LinkWrapperTest {
