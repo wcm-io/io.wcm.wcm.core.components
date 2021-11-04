@@ -1,0 +1,78 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "jcr:title": "Asset",
+  "margin": true,
+  "sling:resourceType": "granite/ui/components/coral/foundation/container",
+  "items": {
+    "columns": {
+      "margin": true,
+      "sling:resourceType": "granite/ui/components/coral/foundation/fixedcolumns",
+      "items": {
+        "column": {
+          "sling:resourceType": "granite/ui/components/coral/foundation/container",
+          "items": {
+            "imageFromPageImage": {
+              "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/checkbox",
+              "name": "./imageFromPageImage",
+              "text": "Inherit featured image from page",
+              "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined.",
+              "granite:class": "wcmio-dialog-showhide",
+              "granite:data": {
+                "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage"
+              }
+            },
+            "file": {
+              "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+              "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage",
+              "granite:data": {
+                "showhidetargetvalue": "false"
+              },
+              "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
+            },
+            "alternativeGroup": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/well",
+              "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-decorative",
+              "granite:data": {
+                "showhidetargetvalue": "false"
+              },
+              "items": {
+                "alt": {
+                  "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
+                  "required": true,
+                  "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-altvaluefromdamorpage",
+                  "granite:data": {
+                    "showhidetargetvalue": "false"
+                  },
+                  "name": "./alt",
+                  "fieldLabel": "Alternative text for accessibility",
+                  "fieldDescription": "Textual alternative of the meaning or function of the image, for visually impaired readers."
+                },
+                "altValueFromDAM": {
+                  "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/checkbox",
+                  "name": "./altValueFromDAM",
+                  "text": "Inherit from description of asset or page",
+                  "fieldDescription": "When checked, populate the image's alt attribute with the value of the dc:description metadata in DAM, or the alternative text defined in the page properties of the linked page.",
+                  "granite:class": "wcmio-dialog-showhide",
+                  "granite:data": {
+                    "showhidetargetvalue": "false",
+                    "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-altvaluefromdamorpage"
+                  }
+                }
+              }
+            },
+            "decorative": {
+              "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/checkbox",
+              "name": "./isDecorative",
+              "text": "Don’t provide an alternative text",
+              "fieldDescription": "If the image is mostly decorative and doesn't convey additional meaning to a visitor, then it might be acceptable to not provide an alternative text, which will make the image ignored by assistive technology like screen readers.",
+              "granite:class": "wcmio-dialog-showhide",
+              "granite:data": {
+                "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-decorative"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -40,7 +40,7 @@ import com.day.cq.wcm.api.Page;
 
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterImpl;
+import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 
 /**
  * wcm.io-based enhancements for {@link Container}:
@@ -54,7 +54,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentExporterI
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class ContainerV2Impl extends AbstractComponentExporterImpl implements Container {
+public class ContainerV2Impl extends AbstractComponentImpl implements Container {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/form/container/v2/container";
 
@@ -96,7 +96,7 @@ public class ContainerV2Impl extends AbstractComponentExporterImpl implements Co
   }
 
   @Override
-  public String getId() {
+  public @NotNull String getId() {
     return this.delegate.getId();
   }
 

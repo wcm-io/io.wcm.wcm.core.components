@@ -77,7 +77,7 @@ public class TeaserV1Impl extends TeaserV2Impl implements LinkMixin {
   @Override
   protected ListItem newLinkListItem(@NotNull String newTitle, @NotNull LinkWrapper newLink, @NotNull String itemIdPrefix) {
     return new LinkListItemV1Impl(newTitle, newLink, itemIdPrefix,
-        getId(), this.componentContext.getComponent(), this.resource);
+        getId(), getParentComponent(), this.resource);
   }
 
 }

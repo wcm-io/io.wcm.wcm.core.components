@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.9.1-2.17.2-SNAPSHOT</version>
+    <version>1.9.1-2.17.12-SNAPSHOT</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>  
   <artifactId>io.wcm.wcm.core.components.examples</artifactId>
-  <version>1.9.1-2.17.2-SNAPSHOT</version>
+  <version>1.9.1-2.17.12-SNAPSHOT</version>
   <packaging>content-package</packaging>
 
   <name>WCM Core Components Examples</name>
@@ -42,13 +42,13 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.wcm.core.components</artifactId>
-      <version>1.9.1-2.17.2-SNAPSHOT</version>
+      <version>1.9.1-2.17.12-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.wcm.samples</groupId>  
       <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
-      <version>1.9.1-2.17.2-SNAPSHOT</version>
+      <version>1.9.1-2.17.12-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
 
@@ -174,12 +174,12 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.7.2</version>
+        <version>1.7.3-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.13.4</version>
+        <version>1.13.5-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -194,7 +194,7 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.wcm.ui.granite</artifactId>
-        <version>1.7.8</version>
+        <version>1.7.9-SNAPSHOT</version>
       </dependency>
       
     </dependencies>

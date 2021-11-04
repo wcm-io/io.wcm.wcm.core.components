@@ -38,6 +38,7 @@ import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.wcm.core.components.impl.link.LinkWrapper;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
@@ -89,7 +90,9 @@ public class TitleV3Impl extends AbstractComponentImpl implements Title {
   // --- delegated methods ---
 
   @Override
-  public @Nullable String getId() {
+  @SuppressWarnings("null")
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+  public @NotNull String getId() {
     return this.delegate.getId();
   }
 

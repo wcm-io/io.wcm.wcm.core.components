@@ -29,7 +29,6 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -37,6 +36,7 @@ import com.adobe.cq.wcm.core.components.models.LayoutContainer;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractContainerImpl;
 
 /**
@@ -62,7 +62,9 @@ public class LayoutContainerV1Impl extends AbstractContainerImpl implements Layo
   // --- delegated methods ---
 
   @Override
-  public @Nullable String getId() {
+  @SuppressWarnings("null")
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+  public @NotNull String getId() {
     return this.delegate.getId();
   }
 

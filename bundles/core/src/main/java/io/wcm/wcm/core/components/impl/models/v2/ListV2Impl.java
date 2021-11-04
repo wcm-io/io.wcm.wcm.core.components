@@ -53,7 +53,7 @@ public class ListV2Impl extends ListV3Impl {
   @Override
   protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link) {
     return new PageListItemV1Impl(page, link,
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
 }

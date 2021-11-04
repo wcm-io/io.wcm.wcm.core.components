@@ -37,6 +37,7 @@ import com.adobe.cq.wcm.core.components.models.LanguageNavigation;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
@@ -87,15 +88,22 @@ public class LanguageNavigationV2Impl extends AbstractComponentImpl implements L
   // --- delegated methods ---
 
   @Override
-  public @Nullable String getId() {
+  @SuppressWarnings("null")
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+  public @NotNull String getId() {
     return this.delegate.getId();
+  }
+
+  @Override
+  public String getAccessibilityLabel() {
+    return this.delegate.getAccessibilityLabel();
   }
 
   protected NavigationItem newLanguageNavigationItem(@NotNull Page page, @NotNull Link link,
       int level, boolean active, boolean current, @NotNull List<NavigationItem> children, @Nullable String title) {
     return new LanguageNavigationItemV2Impl(page, link,
         level, active, current, children, title,
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
 }

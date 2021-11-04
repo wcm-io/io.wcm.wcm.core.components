@@ -92,9 +92,9 @@ public class BreadcrumbV3Impl extends AbstractComponentImpl implements Breadcrum
 
   private List<NavigationItem> createItems() {
     List<NavigationItem> result = new LinkedList<>();
-    Page page = currentPage;
+    Page page = getCurrentPage();
     while (page != null) {
-      boolean isCurrentPage = StringUtils.equals(page.getPath(), currentPage.getPath());
+      boolean isCurrentPage = StringUtils.equals(page.getPath(), getCurrentPage().getPath());
       if (!(isCurrentPage && hideCurrent)) {
         if (checkIfNotHidden(page)) {
           Link link = linkHandler.get(page).build();
@@ -117,7 +117,7 @@ public class BreadcrumbV3Impl extends AbstractComponentImpl implements Breadcrum
   protected NavigationItem newNavigationItem(@NotNull Page page, @NotNull Link link, boolean current) {
     return new BreadcrumbV3ItemImpl(page, link, page.getDepth(),
         current, Collections.emptyList(),
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
 }

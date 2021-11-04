@@ -18,6 +18,7 @@ wcm-io/wcm/core/components/wcmio/responsiveimage/v1/responsiveimage
 * Uses the enhanced Media Handler File Upload dialog widget with path field and media format validation
 * Uses [wcm.io Link Handler][wcmio-handler-link] for processing the image link
 * Uses the Link Handler dialog widget for defining link type and link target
+* Support to get feature image from linked page
 
 [image-component]: https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/image/v2/image
 [wcmio-handler-media]: https://wcm.io/handler/media/

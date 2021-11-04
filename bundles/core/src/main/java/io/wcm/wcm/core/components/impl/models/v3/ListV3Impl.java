@@ -30,7 +30,6 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -39,6 +38,7 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
@@ -80,7 +80,9 @@ public class ListV3Impl extends AbstractComponentImpl implements List {
   // --- delegated methods ---
 
   @Override
-  public @Nullable String getId() {
+  @SuppressWarnings("null")
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+  public @NotNull String getId() {
     return this.delegate.getId();
   }
 
@@ -117,7 +119,7 @@ public class ListV3Impl extends AbstractComponentImpl implements List {
 
   protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link) {
     return new PageListItemV2Impl(page, link,
-        getId(), this.componentContext.getComponent(), showDescription(), linkItems());
+        getId(), getParentComponent(), showDescription(), linkItems());
   }
 
 }

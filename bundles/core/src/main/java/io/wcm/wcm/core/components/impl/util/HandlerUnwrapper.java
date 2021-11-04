@@ -64,6 +64,16 @@ public final class HandlerUnwrapper {
     return linkHandler.get(unwrapResource(resource));
   }
 
+  /**
+   * Get original resource type before wrapping the resource.
+   * @param resource Resource
+   * @return Original resource type
+   */
+  public static @NotNull String getResourceType(@NotNull Resource resource) {
+    Resource unwrappedResource = unwrapResource(resource);
+    return unwrappedResource.getResourceType();
+  }
+
   private static @NotNull Resource unwrapResource(@NotNull Resource resource) {
     // do not unwrap CoreResourceWrapper which is used for embedding components into each other
     if (resource instanceof CoreResourceWrapper) {

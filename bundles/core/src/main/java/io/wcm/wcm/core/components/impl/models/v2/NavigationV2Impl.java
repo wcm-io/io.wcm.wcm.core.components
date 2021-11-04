@@ -255,23 +255,23 @@ public class NavigationV2Impl extends AbstractComponentImpl implements Navigatio
 
   private boolean isActive(@NotNull Page page, @NotNull Link link) {
     return isCurrent(page, link) ||
-        StringUtils.startsWith(currentPage.getPath(), page.getPath() + "/");
+        StringUtils.startsWith(getCurrentPage().getPath(), page.getPath() + "/");
   }
 
   private boolean isCurrent(@NotNull Page page, @NotNull Link link) {
-    return StringUtils.equals(page.getPath(), currentPage.getPath()) ||
+    return StringUtils.equals(page.getPath(), getCurrentPage().getPath()) ||
         currentPageIsRedirectTarget(link);
   }
 
   private boolean currentPageIsRedirectTarget(@NotNull Link link) {
     return link.getTargetPage() != null
-        && StringUtils.equals(currentPage.getPath(), link.getTargetPage().getPath());
+        && StringUtils.equals(getCurrentPage().getPath(), link.getTargetPage().getPath());
   }
 
   protected NavigationItem newNavigationItem(@NotNull Page page, @NotNull Link link,
       int level, boolean active, boolean current, @NotNull List<NavigationItem> children) {
     return new NavigationItemV2Impl(page, link, level, active, current, children,
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
   private static final class NavigationRoot {

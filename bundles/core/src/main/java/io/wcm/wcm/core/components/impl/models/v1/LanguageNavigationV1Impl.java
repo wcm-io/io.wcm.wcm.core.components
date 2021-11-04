@@ -58,7 +58,7 @@ public class LanguageNavigationV1Impl extends LanguageNavigationV2Impl {
       int level, boolean active, boolean current, @NotNull List<NavigationItem> children, @Nullable String title) {
     return new LanguageNavigationItemV1Impl(page, link,
         level, active, current, children, title,
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
 }

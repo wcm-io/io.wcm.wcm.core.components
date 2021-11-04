@@ -56,7 +56,7 @@ public class BreadcrumbV2Impl extends BreadcrumbV3Impl {
   protected NavigationItem newNavigationItem(@NotNull Page page, @NotNull Link link, boolean current) {
     return new BreadcrumbV2ItemImpl(page, link, page.getDepth(),
         current, Collections.emptyList(),
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
 }

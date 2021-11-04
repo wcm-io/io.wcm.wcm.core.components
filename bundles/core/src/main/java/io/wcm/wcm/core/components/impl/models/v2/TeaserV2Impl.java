@@ -45,7 +45,6 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.Teaser;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
-import com.adobe.cq.wcm.core.components.util.ComponentUtils;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -59,6 +58,7 @@ import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.link.LinkWrapper;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemV2Impl;
+import io.wcm.wcm.core.components.impl.util.ComponentFeatureImageResolver;
 import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
 
@@ -148,20 +148,11 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
       targetPage = link.getLinkObject().getTargetPage();
     }
 
-    // resolve teaser media
-    media = HandlerUnwrapper.get(mediaHandler, resource)
-        .property(PROP_CSS_CLASS, "cmp-image__image")
-        .build();
-
-    // if no valid media is present in this component, try to get featured image from target page
-    if (!media.isValid() && targetPage != null) {
-      Resource featuredImageResource = ComponentUtils.getFeaturedImage(targetPage);
-      if (featuredImageResource != null) {
-        media = HandlerUnwrapper.get(mediaHandler, featuredImageResource)
-            .property(PROP_CSS_CLASS, "cmp-image__image")
-            .build();
-      }
-    }
+    // resolve teaser image and alt. text
+    media = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
+        .targetPage(targetPage)
+        .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
+        .buildMedia();
 
     // read title and description
     if (!pretitleHidden) {
@@ -191,7 +182,6 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
         description = richTextHandler.get(description).textMode(TextMode.XHTML).buildMarkup();
       }
     }
-
 
   }
 
@@ -269,7 +259,7 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
 
   protected ListItem newLinkListItem(@NotNull String newTitle, @NotNull LinkWrapper newLink, @NotNull String itemIdPrefix) {
     return new LinkListItemV2Impl(newTitle, newLink, itemIdPrefix,
-        getId(), this.componentContext.getComponent(), this.resource);
+        getId(), getParentComponent(), this.resource);
   }
 
 }

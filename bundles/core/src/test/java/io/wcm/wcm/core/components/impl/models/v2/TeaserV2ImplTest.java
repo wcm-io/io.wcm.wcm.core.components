@@ -19,6 +19,8 @@
  */
 package io.wcm.wcm.core.components.impl.models.v2;
 
+import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_PAGE_IMAGE;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_IMAGE_FROM_PAGE_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.NN_ACTIONS;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTIONS_DISABLED;
@@ -188,7 +190,9 @@ class TeaserV2ImplTest {
         PN_LINK_TYPE, InternalLinkType.ID,
         PN_LINK_CONTENT_REF, targetPage.getPath(),
         PN_TITLE_FROM_PAGE, true,
-        PN_DESCRIPTION_FROM_PAGE, true));
+        PN_DESCRIPTION_FROM_PAGE, true,
+        PN_IMAGE_FROM_PAGE_IMAGE, true,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true));
 
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
@@ -320,7 +324,9 @@ class TeaserV2ImplTest {
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_ACTIONS_ENABLED, true,
         PN_TITLE_FROM_PAGE, true,
-        PN_DESCRIPTION_FROM_PAGE, true);
+        PN_DESCRIPTION_FROM_PAGE, true,
+        PN_IMAGE_FROM_PAGE_IMAGE, true,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true);
     context.currentResource(resource);
     context.create().resource(resource, NN_ACTIONS + "/action1",
         PN_ACTION_TEXT, "Action 1",
