@@ -33,6 +33,8 @@ import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilde
 import com.adobe.cq.wcm.core.components.util.ComponentUtils;
 import com.day.cq.wcm.api.components.Component;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Abstract helper class for ListItem implementations.
  * Generates an ID for the item, using the ID of its parent as a prefix
@@ -61,9 +63,11 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl impleme
   }
 
   @Override
-  public @Nullable String getId() {
+  @SuppressWarnings("null")
+  @SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
+  public @NotNull String getId() {
     if (this.resource == null) {
-      return null;
+      return null; // public Component interface allows null for id
     }
     return ComponentUtils.generateId(StringUtils.join(parentId, ComponentUtils.ID_SEPARATOR, getItemIdPrefix()), resource.getPath());
   }

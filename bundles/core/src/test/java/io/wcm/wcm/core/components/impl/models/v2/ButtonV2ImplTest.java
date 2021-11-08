@@ -23,12 +23,12 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_WINDOW_TARGET;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidLink;
-import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
-import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.ButtonV2Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidLink;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidLink;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.loadComponentDefinition;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -43,10 +43,10 @@ import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.Page;
 
 import io.wcm.handler.link.type.ExternalLinkType;
-import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
 class ButtonV2ImplTest {

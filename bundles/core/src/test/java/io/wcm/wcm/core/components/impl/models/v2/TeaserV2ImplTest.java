@@ -19,6 +19,8 @@
  */
 package io.wcm.wcm.core.components.impl.models.v2;
 
+import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_PAGE_IMAGE;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_IMAGE_FROM_PAGE_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.NN_ACTIONS;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTIONS_DISABLED;
@@ -42,15 +44,15 @@ import static io.wcm.handler.link.LinkNameConstants.PN_LINK_WINDOW_TARGET;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
-import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidLink;
-import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidMedia;
-import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
-import static io.wcm.samples.core.testcontext.TestUtils.assertValidMedia;
-import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.TeaserV2Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidLink;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidMedia;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidLink;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidMedia;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.loadComponentDefinition;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -71,14 +73,14 @@ import com.day.cq.wcm.api.Page;
 
 import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.handler.link.type.InternalLinkType;
-import io.wcm.samples.core.testcontext.AppAemContext;
-import io.wcm.samples.core.testcontext.MediaFormats;
-import io.wcm.samples.core.testcontext.ResourceTypeForcingResourceWrapper;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
 import io.wcm.wcm.core.components.models.ResponsiveImage;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
+import io.wcm.wcm.core.components.testcontext.MediaFormats;
+import io.wcm.wcm.core.components.testcontext.ResourceTypeForcingResourceWrapper;
 
 @ExtendWith(AemContextExtension.class)
 class TeaserV2ImplTest {
@@ -188,7 +190,9 @@ class TeaserV2ImplTest {
         PN_LINK_TYPE, InternalLinkType.ID,
         PN_LINK_CONTENT_REF, targetPage.getPath(),
         PN_TITLE_FROM_PAGE, true,
-        PN_DESCRIPTION_FROM_PAGE, true));
+        PN_DESCRIPTION_FROM_PAGE, true,
+        PN_IMAGE_FROM_PAGE_IMAGE, true,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true));
 
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
@@ -320,7 +324,9 @@ class TeaserV2ImplTest {
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_ACTIONS_ENABLED, true,
         PN_TITLE_FROM_PAGE, true,
-        PN_DESCRIPTION_FROM_PAGE, true);
+        PN_DESCRIPTION_FROM_PAGE, true,
+        PN_IMAGE_FROM_PAGE_IMAGE, true,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true);
     context.currentResource(resource);
     context.create().resource(resource, NN_ACTIONS + "/action1",
         PN_ACTION_TEXT, "Action 1",

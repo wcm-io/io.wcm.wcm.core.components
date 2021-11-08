@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.samples.core.testcontext;
+package io.wcm.wcm.core.components.testcontext;
 
 import java.util.List;
 

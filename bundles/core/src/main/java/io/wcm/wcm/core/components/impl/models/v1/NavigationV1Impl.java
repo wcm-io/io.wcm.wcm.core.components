@@ -57,7 +57,7 @@ public class NavigationV1Impl extends NavigationV2Impl {
   protected NavigationItem newNavigationItem(@NotNull Page page, @NotNull Link link, int level, boolean active, boolean current,
       @NotNull List<NavigationItem> children) {
     return new NavigationItemV1Impl(page, link, level, active, current, children,
-        getId(), this.componentContext.getComponent());
+        getId(), getParentComponent());
   }
 
 }

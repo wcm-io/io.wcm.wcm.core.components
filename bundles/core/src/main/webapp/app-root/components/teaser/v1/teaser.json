@@ -231,7 +231,7 @@
                       "items": {
 
                         "linkURL": {
-                          /* Hide LInkURL field - use separate tab for link instead */
+                          /* Hide LinkURL field - use separate tab for link instead */
                           "sling:hideResource": true
                         },
 

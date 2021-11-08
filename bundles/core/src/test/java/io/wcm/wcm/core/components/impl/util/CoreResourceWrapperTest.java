@@ -42,10 +42,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.google.common.collect.ImmutableSet;
 
-import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
 class CoreResourceWrapperTest {

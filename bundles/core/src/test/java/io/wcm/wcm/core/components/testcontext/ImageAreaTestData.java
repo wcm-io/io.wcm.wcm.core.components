@@ -17,9 +17,9 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.samples.core.testcontext;
+package io.wcm.wcm.core.components.testcontext;
 
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
 
 import java.util.List;
 

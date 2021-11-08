@@ -39,15 +39,15 @@ import static io.wcm.handler.media.MediaNameConstants.NN_MEDIA_INLINE_STANDARD;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
-import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidLink;
-import static io.wcm.samples.core.testcontext.TestUtils.assertInvalidMedia;
-import static io.wcm.samples.core.testcontext.TestUtils.assertValidLink;
-import static io.wcm.samples.core.testcontext.TestUtils.assertValidMedia;
-import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.ImageV2Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidLink;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidMedia;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidLink;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidMedia;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.loadComponentDefinition;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,14 +70,14 @@ import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
 
 import io.wcm.handler.link.type.ExternalLinkType;
-import io.wcm.samples.core.testcontext.AppAemContext;
-import io.wcm.samples.core.testcontext.ImageAreaTestData;
-import io.wcm.samples.core.testcontext.MediaFormats;
-import io.wcm.samples.core.testcontext.ResourceTypeForcingResourceWrapper;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
+import io.wcm.wcm.core.components.testcontext.ImageAreaTestData;
+import io.wcm.wcm.core.components.testcontext.MediaFormats;
+import io.wcm.wcm.core.components.testcontext.ResourceTypeForcingResourceWrapper;
 
 @ExtendWith(AemContextExtension.class)
 class ImageV2ImplTest {

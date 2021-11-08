@@ -96,28 +96,11 @@
           "maximized": true,
           "items": {
 
+            // use wcm.io tab for defining media reference and alt. text (with feature image support)
             "asset": {
-              "sling:resourceType": "granite/ui/components/coral/foundation/container",
-              "jcr:title": "Asset",
-              "margin": true,
-              "items": {
-                "columns": {
-                  "sling:resourceType": "granite/ui/components/coral/foundation/fixedcolumns",
-                  "margin": true,
-                  "items": {
-                    "column": {
-                      "sling:resourceType": "granite/ui/components/coral/foundation/container",
-                      "items": {
-                        "file": {
-                          "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
-                          "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/wcm/core/components/wcmio/commons/mediaAltTextInclude/v1/mediaAltTextInclude" 
+            }, 
 
             "metadata": {
               "sling:resourceType": "granite/ui/components/coral/foundation/container",
@@ -131,21 +114,6 @@
                     "column": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/container",
                       "items": {
-                        "decorative": {
-                          "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
-                          "uncheckedValue": "false",
-                          "name": "./isDecorative",
-                          "text": "Image is decorative",
-                          "value": true,
-                          "checked": "${not empty cqDesign.isDecorative ? cqDesign.isDecorative : false}",
-                          "fieldDescription": "Check if the image should be ignored by assistive technology and therefore does not require an alternative text. This applies to decorative images only."
-                        },
-                        "alt": {
-                          "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
-                          "name": "./alt",
-                          "fieldLabel": "Alternative Text",
-                          "fieldDescription": "Textual alternative of the meaning or function of the image, for visually impaired readers."
-                        },
                         "captionGroup": {
                           "sling:resourceType": "granite/ui/components/coral/foundation/well",
                           "items": {
@@ -153,7 +121,11 @@
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
                               "name": "./jcr:title",
                               "fieldLabel": "Caption",
-                              "fieldDescription": "Additional information about the image."
+                              "fieldDescription": "Additional information about the image.",
+                              "granite:class": "wcmio-wcm-core-components-responsiveimage-titlevaluefromdam",
+                              "granite:data": {
+                                "showhidetargetvalue": "false"
+                              }
                             },
                             "titleValueFromDAM": {
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
@@ -162,7 +134,11 @@
                               "text": "Get caption from DAM",
                               "value": true,
                               "checked": "${not empty cqDesign.titleValueFromDAM ? cqDesign.titleValueFromDAM : true}",
-                              "fieldDescription": "When checked, populate the image's caption with the value of the dc:title metadata in DAM."
+                              "fieldDescription": "When checked, populate the image's caption with the value of the dc:title metadata in DAM.",
+                              "granite:class": "wcmio-dialog-showhide",
+                              "granite:data": {
+                                "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-responsiveimage-titlevaluefromdam"
+                              }
                             },
                             "displayPopupTitle": {
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",

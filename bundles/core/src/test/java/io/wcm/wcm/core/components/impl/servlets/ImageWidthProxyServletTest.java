@@ -20,9 +20,9 @@
 package io.wcm.wcm.core.components.impl.servlets;
 
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
 import static io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet.SELECTOR;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -46,11 +46,11 @@ import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
 import com.day.image.Layer;
 
-import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
 import io.wcm.wcm.commons.contenttype.FileExtension;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
 @ExtendWith(MockitoExtension.class)

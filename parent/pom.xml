@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.9.0-2.17.2</version>
+  <version>1.9.2-2.17.12</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
@@ -43,13 +43,13 @@
   </ciManagement>
 
   <properties>
-    <core.wcm.components.version>2.17.2</core.wcm.components.version>
+    <core.wcm.components.version>2.17.12</core.wcm.components.version>
 
     <sling.url>http://localhost:4502</sling.url>
     <sling.publish.url>http://localhost:4503</sling.publish.url>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2021-08-31T18:27:35Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2021-11-08T15:13:43Z</project.build.outputTimestamp>
   </properties>
 
   <dependencyManagement>
@@ -115,17 +115,17 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.url</artifactId>
-        <version>1.5.0</version>
+        <version>1.5.4</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.7.0</version>
+        <version>1.7.4</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.13.2</version>
+        <version>1.13.6</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -135,19 +135,19 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.wcm.commons</artifactId>
-        <version>1.8.0</version>
+        <version>1.9.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.wcm.ui.granite</artifactId>
-        <version>1.7.0</version>
+        <version>1.8.0</version>
       </dependency>
   
       <!-- wcm.io Testing -->
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.testing.aem-mock.junit5</artifactId>
-        <version>4.1.0</version>
+        <version>4.1.4</version>
       </dependency>
       <dependency>
         <groupId>org.apache.sling</groupId>
@@ -163,6 +163,11 @@
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.testing.wcm-io-mock.sling</artifactId>
         <version>1.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>io.wcm</groupId>
+        <artifactId>io.wcm.testing.wcm-io-mock.wcm</artifactId>
+        <version>1.2.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>

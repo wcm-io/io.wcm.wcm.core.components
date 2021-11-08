@@ -76,28 +76,17 @@
   "cq:dialog": {
     "jcr:primaryType": "nt:unstructured",
     "content": {
+      "granite:class": "cmp-teaser__editor",   /* remove cmp-image__editor, does not work together with link/media handler */
       "items": {
         "tabs": {
           "items": {
+          
+            // use wcm.io tab for defining media reference and alt. text (with feature image support)
             "image": {
-              "items": {
-                "columns": {
-                  "items": {
-                    "column": {
-                      "items": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/wcm/core/components/wcmio/commons/mediaAltTextInclude/v1/mediaAltTextInclude" 
+            }, 
 
-                        /* Use wcm.io Media Handler FileUpload */
-                        "file": {
-                          "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
-                          "allowUpload": false
-                        }
-
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "text": {
               "items": {
                 "columns": {
@@ -231,7 +220,7 @@
                       "items": {
 
                         "linkURL": {
-                          /* Hide LInkURL field - use separate tab for link instead */
+                          /* Hide LinkURL field - use separate tab for link instead */
                           "sling:hideResource": true
                         },
 

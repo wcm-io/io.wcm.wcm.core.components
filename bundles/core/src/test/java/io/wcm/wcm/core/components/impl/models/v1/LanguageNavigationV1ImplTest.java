@@ -21,13 +21,13 @@ package io.wcm.wcm.core.components.impl.models.v1;
 
 import static com.adobe.cq.wcm.core.components.models.LanguageNavigation.PN_NAVIGATION_ROOT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_LANGUAGE;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.AppAemContext.LANGUAGE_ROOT;
-import static io.wcm.samples.core.testcontext.TestUtils.assertNavigationItems;
-import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.assertNavigationItems_DataLayer;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v1.LanguageNavigationV1Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.LANGUAGE_ROOT;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertNavigationItems;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.loadComponentDefinition;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -45,11 +45,11 @@ import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.day.cq.wcm.api.Page;
 
-import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
 class LanguageNavigationV1ImplTest {

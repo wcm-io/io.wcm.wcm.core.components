@@ -28,13 +28,13 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_CONTENT_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
-import static io.wcm.samples.core.testcontext.AppAemContext.CONTENT_ROOT;
-import static io.wcm.samples.core.testcontext.AppAemContext.DAM_ROOT;
-import static io.wcm.samples.core.testcontext.TestUtils.assertListItems;
-import static io.wcm.samples.core.testcontext.TestUtils.loadComponentDefinition;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.assertListItems_DataLayer;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v3.ListV3Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
+import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.assertListItems;
+import static io.wcm.wcm.core.components.testcontext.TestUtils.loadComponentDefinition;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -56,11 +56,11 @@ import com.day.cq.wcm.api.Page;
 import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.link.type.InternalLinkType;
-import io.wcm.samples.core.testcontext.AppAemContext;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
+import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
 class ListV3ImplTest {
