@@ -120,12 +120,12 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.7.3-SNAPSHOT</version>
+        <version>1.7.4</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.13.5-SNAPSHOT</version>
+        <version>1.13.6</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -140,7 +140,7 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.wcm.ui.granite</artifactId>
-        <version>1.7.9-SNAPSHOT</version>
+        <version>1.8.0</version>
       </dependency>
   
       <!-- wcm.io Testing -->
