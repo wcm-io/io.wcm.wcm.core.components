@@ -53,6 +53,18 @@
           <group>wcm-io-samples</group>
           <packageType>content</packageType>
           <acHandling>merge</acHandling>
+
+          <validatorsSettings>
+            <jackrabbit-filter>
+              <options>
+                <validRoots>
+                  /conf,
+                  /content
+                </validRoots>
+                <severityForUncoveredAncestorNodes>debug</severityForUncoveredAncestorNodes>
+              </options>
+            </jackrabbit-filter>
+          </validatorsSettings>
         </configuration>
       </plugin>
 

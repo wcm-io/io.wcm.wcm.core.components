@@ -36,6 +36,7 @@
 
   <modules>
     <module>bundles/examples-core</module>
+    <module>content-packages/examples-libs</module>
     <module>content-packages/examples</module>
     <module>content-packages/examples-sample-content</module>
   </modules>
