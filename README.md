@@ -2,6 +2,7 @@
 ======
 [![Build](https://github.com/wcm-io/wcm-io-wcm-core-components/workflows/Build/badge.svg?branch=develop)](https://github.com/wcm-io/wcm-io-wcm-core-components/actions?query=workflow%3ABuild+branch%3Adevelop)
 [![Code Coverage](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components/branch/develop/graph/badge.svg)](https://codecov.io/gh/wcm-io/wcm-io-wcm-core-components)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.wcm.core.components)
 
 Enhances [AEM WCM Core Components][adobe-core-components] with wcm.io functionality.
 
