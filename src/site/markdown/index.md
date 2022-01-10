@@ -73,6 +73,11 @@ To use this module you have to deploy also:
 * [adaptTo() 2019 Talk: Assets and Links in AEM Projects][adaptto-talk-2019-assets-links-in-aem-projects]
 
 
+### GitHub Repository
+
+Sources: https://github.com/wcm-io/io.wcm.wcm.core.components
+
+
 [apidocs]: core/apidocs/
 [changelog]: changes-report.html
 [adobe-core-components]: https://github.com/adobe/aem-core-wcm-components

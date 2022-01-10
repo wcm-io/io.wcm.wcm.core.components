@@ -39,9 +39,9 @@
   <description>Enhances AEM WCM Core Components with wcm.io functionality.</description>
   
   <scm>
-    <connection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</connection>
-    <developerConnection>scm:git:https://github.com/wcm-io/wcm-io-wcm-core-components.git</developerConnection>
-    <url>https://github.com/wcm-io/wcm-io-wcm-core-components</url>
+    <connection>scm:git:https://github.com/wcm-io/io.wcm.wcm.core.components.git</connection>
+    <developerConnection>scm:git:https://github.com/wcm-io/io.wcm.wcm.core.components.git</developerConnection>
+    <url>https://github.com/wcm-io/io.wcm.wcm.core.components</url>
     <tag>HEAD</tag>
   </scm>
 
