@@ -48,10 +48,10 @@
       <scope>compile</scope>
     </dependency>
 
-    <!-- For build compatibility with Java 11 -->
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-annotation_1.3_spec</artifactId>
+      <groupId>com.adobe.aem</groupId>
+      <artifactId>uber-jar</artifactId>
+      <classifier>apis</classifier>
       <scope>provided</scope>
     </dependency>
 
