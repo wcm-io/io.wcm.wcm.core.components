@@ -55,6 +55,10 @@ public class LinkListItemV1Impl extends LinkListItemV2Impl implements LinkMixin 
   }
 
   // overwrite to add @JsonIgnore
+  /**
+   * @deprecated Deprecated in API
+   */
+  @Deprecated
   @Override
   @JsonIgnore
   public com.adobe.cq.wcm.core.components.commons.link.Link getLink() {
@@ -62,6 +66,9 @@ public class LinkListItemV1Impl extends LinkListItemV2Impl implements LinkMixin 
   }
 
   // overwrite to add @JsonIgnore(false)
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore(false)

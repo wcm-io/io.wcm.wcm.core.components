@@ -71,6 +71,9 @@ public class LinkListItemV2Impl extends AbstractListItemImpl implements ListItem
     return link.orNull();
   }
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore

@@ -63,7 +63,7 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl impleme
   }
 
   @Override
-  @SuppressWarnings("null")
+  @SuppressWarnings({ "null", "java:S2637" })
   @SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
   public @NotNull String getId() {
     if (this.resource == null) {
