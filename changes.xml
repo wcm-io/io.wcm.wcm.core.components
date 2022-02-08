@@ -27,6 +27,9 @@
       <action type="update" dev="sseifert">
         Switch to AEM 6.5 as minimum version.
       </action>
+      <action type="update" dev="sseifert">
+        RTE config: Disable "paste-default" edit feature (discouraged because it is browser-dependent) and switch default paste mode to "wordhtml".
+      </action>
     </release>
 
     <release version="1.9.2-2.17.12" date="2021-11-08">

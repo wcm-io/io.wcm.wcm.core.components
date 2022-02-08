@@ -153,7 +153,8 @@
                                   ]
                                 },
                                 "edit": {
-                                  "features": "*",
+                                  "features": ["cut","copy","paste-plaintext","paste-wordhtml"],
+                                  "defaultPasteMode": "wordhtml",
                                   "htmlPasteRules": {
                                     "allowedAttributes": {
                                       "a": [
