@@ -25,7 +25,7 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.parent_toplevel</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.1-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -220,6 +220,41 @@
       </plugin>
 
     </plugins>
+    <pluginManagement>
+      <plugins>
+
+        <!-- Set version policy for managing main version with a suffixed core components version properly -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <projectVersionPolicyId>VersionWithSuffixVersionVersionPolicy</projectVersionPolicyId>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.release</groupId>
+              <artifactId>maven-release-oddeven-policy</artifactId>
+              <version>${maven-release-plugin.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>com.amashchenko.maven.plugin</groupId>
+          <artifactId>gitflow-maven-plugin</artifactId>
+          <configuration>
+            <projectVersionPolicyId>VersionWithSuffixVersionVersionPolicy</projectVersionPolicyId>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>io.wcm.maven.release-policies</groupId>
+              <artifactId>io.wcm.maven.release-policies.oddeven-with-suffix-version</artifactId>
+              <version>1.0.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
   </build>
 
 </project>
