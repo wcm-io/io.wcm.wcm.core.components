@@ -26,7 +26,7 @@ fi
 
 # install AEM 6.5 with service pack
 mvn --non-recursive wcmio-content-package:install \
-    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.11 \
+    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.12.0 \
     -Dvault.delayAfterInstallSec=30 \
     -Dsling.url=${SLING_URL}
 
