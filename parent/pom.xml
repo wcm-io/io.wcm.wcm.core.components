@@ -232,9 +232,9 @@
           </configuration>
           <dependencies>
             <dependency>
-              <groupId>org.apache.maven.release</groupId>
-              <artifactId>maven-release-oddeven-policy</artifactId>
-              <version>${maven-release-plugin.version}</version>
+              <groupId>io.wcm.maven.release-policies</groupId>
+              <artifactId>io.wcm.maven.release-policies.oddeven-with-suffix-version</artifactId>
+              <version>1.0.2</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -248,7 +248,7 @@
             <dependency>
               <groupId>io.wcm.maven.release-policies</groupId>
               <artifactId>io.wcm.maven.release-policies.oddeven-with-suffix-version</artifactId>
-              <version>1.0.0</version>
+              <version>1.0.2</version>
             </dependency>
           </dependencies>
         </plugin>
