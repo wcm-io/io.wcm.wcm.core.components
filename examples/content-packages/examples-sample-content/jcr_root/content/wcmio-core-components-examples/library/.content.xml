@@ -45,8 +45,10 @@
                     <title_153929503
                         cq:styleIds="[1544759664489]"
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Templating"
+                        jcr:title="Core Structure"
                         sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
+                        linkType="internal"
+                        linkWindowTarget="_self"
                         type="h2"/>
                     <teaser_7603064014
                         cq:styleIds="[1547060090076]"
@@ -55,7 +57,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/navigation.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/templating/navigation"
+                        linkURL="/content/wcmio-core-components-examples/library/core-structure/navigation"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -77,7 +79,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/language-navigation.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/templating/language-navigation/language-structure/us/en/language-navigation"
+                        linkURL="/content/wcmio-core-components-examples/library/core-structure/language-navigation/language-structure/us/en/language-navigation"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -99,7 +101,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/breadcrumb.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/templating/breadcrumb/hidden/level-1/level-2/breadcrumb"
+                        linkURL="/content/wcmio-core-components-examples/library/core-structure/breadcrumb/hidden/level-1/level-2/breadcrumb"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -123,9 +125,126 @@
                     <title_153929502
                         cq:styleIds="[1544759664489]"
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Page Authoring"
+                        jcr:title="Core Content"
                         sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
+                        linkType="internal"
+                        linkWindowTarget="_self"
                         type="h2"/>
+                    <teaser_1837085907
+                        cq:styleIds="[1547060090076]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="core-components-examples/components/teaser"
+                        actionsEnabled="false"
+                        descriptionFromPage="true"
+                        fileReference="/content/dam/core-components-examples/library/components/container.svg"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/container"
+                        textIsRich="true"
+                        titleFromPage="true">
+                        <cq:responsive jcr:primaryType="nt:unstructured">
+                            <default
+                                jcr:primaryType="nt:unstructured"
+                                width="3"/>
+                            <small
+                                jcr:primaryType="nt:unstructured"
+                                width="4"/>
+                            <extrasmall
+                                jcr:primaryType="nt:unstructured"
+                                width="12"/>
+                        </cq:responsive>
+                    </teaser_1837085907>
+                    <teaser_888856758
+                        cq:styleIds="[1547060090076]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="core-components-examples/components/teaser"
+                        actionsEnabled="false"
+                        descriptionFromPage="true"
+                        fileReference="/content/dam/core-components-examples/library/components/carousel.svg"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/carousel"
+                        textIsRich="true"
+                        titleFromPage="true">
+                        <cq:responsive jcr:primaryType="nt:unstructured">
+                            <default
+                                jcr:primaryType="nt:unstructured"
+                                width="3"/>
+                            <small
+                                jcr:primaryType="nt:unstructured"
+                                width="4"/>
+                            <extrasmall
+                                jcr:primaryType="nt:unstructured"
+                                width="12"/>
+                        </cq:responsive>
+                    </teaser_888856758>
+                    <teaser_1767983946
+                        cq:styleIds="[1547060090076]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="core-components-examples/components/teaser"
+                        actionsEnabled="false"
+                        descriptionFromPage="true"
+                        fileReference="/content/dam/core-components-examples/library/components/tabs.svg"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/tabs"
+                        textIsRich="true"
+                        titleFromPage="true">
+                        <cq:responsive jcr:primaryType="nt:unstructured">
+                            <default
+                                jcr:primaryType="nt:unstructured"
+                                width="3"/>
+                            <small
+                                jcr:primaryType="nt:unstructured"
+                                width="4"/>
+                            <extrasmall
+                                jcr:primaryType="nt:unstructured"
+                                width="12"/>
+                        </cq:responsive>
+                    </teaser_1767983946>
+                    <teaser_1837085907_935999517
+                        cq:styleIds="[1547060090076]"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Core Form Container"
+                        sling:resourceType="core-components-examples/components/teaser"
+                        actionsEnabled="false"
+                        altValueFromPageImage="true"
+                        descriptionFromPage="true"
+                        fileReference="/content/dam/core-components-examples/library/components/form-container.svg"
+                        imageFromPageImage="true"
+                        isDecorative="false"
+                        linkTarget="_self"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/form-container"
+                        textIsRich="true"
+                        titleFromPage="false">
+                        <cq:responsive jcr:primaryType="nt:unstructured">
+                            <default
+                                jcr:primaryType="nt:unstructured"
+                                width="3"/>
+                            <small
+                                jcr:primaryType="nt:unstructured"
+                                width="4"/>
+                            <extrasmall
+                                jcr:primaryType="nt:unstructured"
+                                width="12"/>
+                        </cq:responsive>
+                    </teaser_1837085907_935999517>
+                    <teaser_1276818309
+                        cq:styleIds="[1547060090076]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="core-components-examples/components/teaser"
+                        actionsEnabled="false"
+                        descriptionFromPage="true"
+                        fileReference="/content/dam/core-components-examples/library/components/accordion.svg"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/accordion"
+                        textIsRich="true"
+                        titleFromPage="true">
+                        <cq:responsive jcr:primaryType="nt:unstructured">
+                            <default
+                                jcr:primaryType="nt:unstructured"
+                                width="3"/>
+                            <small
+                                jcr:primaryType="nt:unstructured"
+                                width="4"/>
+                            <extrasmall
+                                jcr:primaryType="nt:unstructured"
+                                width="12"/>
+                        </cq:responsive>
+                    </teaser_1276818309>
                     <teaser_1276818308
                         cq:styleIds="[1547060090076]"
                         jcr:primaryType="nt:unstructured"
@@ -133,7 +252,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/title.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/title"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/title"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -155,7 +274,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/text.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/text"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/text"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -177,7 +296,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/image.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/image"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/image"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -199,7 +318,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/image.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/responsiveimage"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/responsiveimage"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -221,7 +340,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/button.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/button"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/button"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -243,7 +362,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/teaser.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/teaser"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/teaser"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -265,7 +384,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/download.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/download"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/download"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -287,7 +406,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/list.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/list"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/list"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -309,7 +428,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/experience-fragment.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/experience-fragment"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/experience-fragment"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -331,7 +450,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/content-fragment.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/content-fragment"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/content-fragment"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -354,7 +473,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/content-fragment-list.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/content-fragment-list"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/content-fragment-list"
                         textIsRich="true"
                         titleFromPage="false">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -376,7 +495,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/embed.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/embed"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/embed"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -398,7 +517,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/component.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/pdf-viewer"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/pdf-viewer"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -420,7 +539,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/progressbar.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/progressbar"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/progressbar"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -443,7 +562,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/separator.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/page-authoring/separator"
+                        linkURL="/content/wcmio-core-components-examples/library/core-content/separator"
                         textIsRich="true"
                         titleFromPage="true">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -459,106 +578,6 @@
                         </cq:responsive>
                     </teaser_803940090>
                 </container_40754488>
-                <container_1589240805
-                    cq:styleIds="[1579016386576]"
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm-io/wcm/core/components/container/v1/container"
-                    layout="responsiveGrid">
-                    <title_153929501
-                        cq:styleIds="[1544759664489]"
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Container"
-                        sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
-                        type="h2"/>
-                    <teaser_1837085907
-                        cq:styleIds="[1547060090076]"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core-components-examples/components/teaser"
-                        actionsEnabled="false"
-                        descriptionFromPage="true"
-                        fileReference="/content/dam/core-components-examples/library/components/container.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/container/container"
-                        textIsRich="true"
-                        titleFromPage="true">
-                        <cq:responsive jcr:primaryType="nt:unstructured">
-                            <default
-                                jcr:primaryType="nt:unstructured"
-                                width="3"/>
-                            <small
-                                jcr:primaryType="nt:unstructured"
-                                width="4"/>
-                            <extrasmall
-                                jcr:primaryType="nt:unstructured"
-                                width="12"/>
-                        </cq:responsive>
-                    </teaser_1837085907>
-                    <teaser
-                        cq:styleIds="[1547060090076]"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core-components-examples/components/teaser"
-                        actionsEnabled="false"
-                        descriptionFromPage="true"
-                        fileReference="/content/dam/core-components-examples/library/components/carousel.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/container/carousel"
-                        textIsRich="true"
-                        titleFromPage="true">
-                        <cq:responsive jcr:primaryType="nt:unstructured">
-                            <default
-                                jcr:primaryType="nt:unstructured"
-                                width="3"/>
-                            <small
-                                jcr:primaryType="nt:unstructured"
-                                width="4"/>
-                            <extrasmall
-                                jcr:primaryType="nt:unstructured"
-                                width="12"/>
-                        </cq:responsive>
-                    </teaser>
-                    <teaser_1767983946
-                        cq:styleIds="[1547060090076]"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core-components-examples/components/teaser"
-                        actionsEnabled="false"
-                        descriptionFromPage="true"
-                        fileReference="/content/dam/core-components-examples/library/components/tabs.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/container/tabs"
-                        textIsRich="true"
-                        titleFromPage="true">
-                        <cq:responsive jcr:primaryType="nt:unstructured">
-                            <default
-                                jcr:primaryType="nt:unstructured"
-                                width="3"/>
-                            <small
-                                jcr:primaryType="nt:unstructured"
-                                width="4"/>
-                            <extrasmall
-                                jcr:primaryType="nt:unstructured"
-                                width="12"/>
-                        </cq:responsive>
-                    </teaser_1767983946>
-                    <teaser_1276818309
-                        cq:styleIds="[1547060090076]"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core-components-examples/components/teaser"
-                        actionsEnabled="false"
-                        descriptionFromPage="true"
-                        fileReference="/content/dam/core-components-examples/library/components/accordion.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/container/accordion"
-                        textIsRich="true"
-                        titleFromPage="true">
-                        <cq:responsive jcr:primaryType="nt:unstructured">
-                            <default
-                                jcr:primaryType="nt:unstructured"
-                                width="3"/>
-                            <small
-                                jcr:primaryType="nt:unstructured"
-                                width="4"/>
-                            <extrasmall
-                                jcr:primaryType="nt:unstructured"
-                                width="12"/>
-                        </cq:responsive>
-                    </teaser_1276818309>
-                </container_1589240805>
                 <container_1589240806
                     cq:styleIds="[1579016386576]"
                     jcr:primaryType="nt:unstructured"
@@ -567,32 +586,11 @@
                     <title_153929501
                         cq:styleIds="[1544759664489]"
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Form"
+                        jcr:title="Core Form"
                         sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
+                        linkType="internal"
+                        linkWindowTarget="_self"
                         type="h2"/>
-                    <teaser_1837085907
-                        cq:styleIds="[1547060090076]"
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Container"
-                        sling:resourceType="core-components-examples/components/teaser"
-                        actionsEnabled="false"
-                        descriptionFromPage="true"
-                        fileReference="/content/dam/core-components-examples/library/components/form-container.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/form/container"
-                        textIsRich="true"
-                        titleFromPage="false">
-                        <cq:responsive jcr:primaryType="nt:unstructured">
-                            <default
-                                jcr:primaryType="nt:unstructured"
-                                width="3"/>
-                            <small
-                                jcr:primaryType="nt:unstructured"
-                                width="4"/>
-                            <extrasmall
-                                jcr:primaryType="nt:unstructured"
-                                width="12"/>
-                        </cq:responsive>
-                    </teaser_1837085907>
                     <teaser
                         cq:styleIds="[1547060090076]"
                         jcr:primaryType="nt:unstructured"
@@ -601,7 +599,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/form-input.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/form/input"
+                        linkURL="/content/wcmio-core-components-examples/library/core-form/input"
                         textIsRich="true"
                         titleFromPage="false">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -624,7 +622,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/form-options.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/form/options"
+                        linkURL="/content/wcmio-core-components-examples/library/core-form/options"
                         textIsRich="true"
                         titleFromPage="false">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -647,7 +645,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/form-hidden.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/form/hidden"
+                        linkURL="/content/wcmio-core-components-examples/library/core-form/hidden"
                         textIsRich="true"
                         titleFromPage="false">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -670,7 +668,7 @@
                         actionsEnabled="false"
                         descriptionFromPage="true"
                         fileReference="/content/dam/core-components-examples/library/components/form-button.svg"
-                        linkURL="/content/wcmio-core-components-examples/library/form/button"
+                        linkURL="/content/wcmio-core-components-examples/library/core-form/button"
                         textIsRich="true"
                         titleFromPage="false">
                         <cq:responsive jcr:primaryType="nt:unstructured">
@@ -695,8 +693,7 @@
             </responsivegrid>
         </root>
     </jcr:content>
-    <templating/>
-    <page-authoring/>
-    <container/>
-    <form/>
+    <core-structure/>
+    <core-content/>
+    <core-form/>
 </jcr:root>

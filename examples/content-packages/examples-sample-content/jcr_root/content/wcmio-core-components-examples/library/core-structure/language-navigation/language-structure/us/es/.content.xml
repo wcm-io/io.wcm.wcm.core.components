@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:redirectTarget="/content/wcmio-core-components-examples/library/core-structure/language-navigation/language-structure/us/es/language-navigation"
+        cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
+        jcr:language="es_ES"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Spanish"
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page"
+        navTitle="Español"/>
+    <language-navigation/>
+</jcr:root>
