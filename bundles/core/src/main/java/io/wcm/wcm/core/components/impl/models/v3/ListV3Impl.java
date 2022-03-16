@@ -119,7 +119,7 @@ public class ListV3Impl extends AbstractComponentImpl implements List {
 
   protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link) {
     return new PageListItemV2Impl(page, link,
-        getId(), getParentComponent(), showDescription(), linkItems());
+        getId(), getParentComponent(), showDescription(), linkItems() || displayItemAsTeaser());
   }
 
 }
