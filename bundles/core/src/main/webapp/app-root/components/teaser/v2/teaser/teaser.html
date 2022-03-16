@@ -12,13 +12,18 @@
      id="${teaser.id}"
      class="cmp-teaser${!wcmmode.disabled && teaser.mediaValid ? ' cq-dd-image' : ''}"
      data-cmp-data-layer="${teaser.data.json}">
-    <sly data-sly-call="${imageTemplate.image @ teaser=teaser}"></sly>
+  <a class="cmp-image__link"
+     data-sly-unwrap="${!teaser.link.valid || !teaser.actions.empty}"
+     data-sly-attribute="${teaser.link.htmlAttributes}"
+     data-cmp-clickable="${teaser.data ? true : false}">
     <div class="cmp-teaser__content">
-        <sly data-sly-call="${pretitleTemplate.pretitle @ teaser=teaser}"></sly>
-        <sly data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
-        <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
-        <sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
+      <sly data-sly-call="${pretitleTemplate.pretitle @ teaser=teaser}"></sly>
+      <sly data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
+      <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
+      <sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
     </div>
+    <sly data-sly-call="${imageTemplate.image @ teaser=teaser}"></sly>
+  </a>
 </div>
 <sly data-sly-use.template="wcm-io/handler/media/components/placeholder/mediaPlaceholder.html"
     data-sly-call="${template.placeholder @ isEmpty=!hasContent, media=teaser.mediaObject, classAppend='cmp-teaser cq-dd-image'}"></sly>
