@@ -25,6 +25,9 @@
 
     <release version="1.10.0-2.18.6" date="not released">
       <action type="update" dev="sseifert">
+        Update to AEM WCM Core Components 2.18.6.
+      </action>
+      <action type="update" dev="sseifert">
         Switch to AEM 6.5 as minimum version.
       </action>
       <action type="update" dev="sseifert">
