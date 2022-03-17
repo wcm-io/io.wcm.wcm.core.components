@@ -31,6 +31,7 @@
 
             /* wcm.io Link Handler Tab */
             "link": {
+              "sling:orderBefore": "accessibility",
               "sling:resourceType": "granite/ui/components/coral/foundation/include",
               "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab"
             }

@@ -147,6 +147,7 @@ public class PageListItemV2Impl extends AbstractListItemImpl implements ListItem
   }
 
   @Override
+  @JsonIgnore
   public @Nullable Resource getTeaserResource() {
     if (teaserResource == null && parentComponent != null) {
       String delegateResourceType = parentComponent.getProperties().get(PN_TEASER_DELEGATE, String.class);
