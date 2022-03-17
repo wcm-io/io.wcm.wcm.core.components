@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:wcmio="http://wcm.io/ns" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <rep:policy/>
@@ -129,6 +129,42 @@
                         <v1 jcr:primaryType="nt:unstructured">
                             <title jcr:primaryType="nt:unstructured"/>
                         </v1>
+                        <v3 jcr:primaryType="nt:unstructured">
+                            <title jcr:primaryType="nt:unstructured">
+                                <policy_1647532852684
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Core Components Examples - Title"
+                                    sling:resourceType="wcm/core/components/policy/policy"
+                                    allowedTypes="[h1,h2,h3,h4,h5,h6]"
+                                    linkDisabled="false"
+                                    type="h1">
+                                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                                        <item0
+                                            cq:styleGroupLabel="Heading"
+                                            jcr:primaryType="nt:unstructured">
+                                            <cq:styles jcr:primaryType="nt:unstructured">
+                                                <item0
+                                                    cq:styleClasses="cmp-examples-title--heading1"
+                                                    cq:styleId="1647532862427"
+                                                    cq:styleLabel="Heading 1"
+                                                    jcr:primaryType="nt:unstructured"/>
+                                                <item1
+                                                    cq:styleClasses="cmp-examples-title--heading2"
+                                                    cq:styleId="1647532868102"
+                                                    cq:styleLabel="Heading 2"
+                                                    jcr:primaryType="nt:unstructured"/>
+                                                <item2
+                                                    cq:styleClasses="cmp-examples-title--heading3"
+                                                    cq:styleId="1647532874373"
+                                                    cq:styleLabel="Heading 3"
+                                                    jcr:primaryType="nt:unstructured"/>
+                                            </cq:styles>
+                                        </item0>
+                                    </cq:styleGroups>
+                                </policy_1647532852684>
+                            </title>
+                        </v3>
                     </title>
                     <text jcr:primaryType="nt:unstructured">
                         <v2 jcr:primaryType="nt:unstructured">
@@ -353,6 +389,39 @@
                             </container>
                         </v1>
                     </container>
+                    <teaser jcr:primaryType="nt:unstructured">
+                        <v2 jcr:primaryType="nt:unstructured">
+                            <teaser jcr:primaryType="nt:unstructured">
+                                <policy_1647532922555
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Core Components Examples - Teaser"
+                                    sling:resourceType="wcm/core/components/policy/policy"
+                                    wcmio:mediaResponsiveType="none"
+                                    showTitleType="false">
+                                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                                    <wcmio:mediaResponsiveImageSizes jcr:primaryType="nt:unstructured"/>
+                                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                                        <item0
+                                            cq:styleGroupLabel="Variant"
+                                            jcr:primaryType="nt:unstructured">
+                                            <cq:styles jcr:primaryType="nt:unstructured">
+                                                <item0
+                                                    cq:styleClasses="cmp-examples-teaser--component"
+                                                    cq:styleId="1647532945436"
+                                                    cq:styleLabel="Component"
+                                                    jcr:primaryType="nt:unstructured"/>
+                                                <item1
+                                                    cq:styleClasses="cmp-examples-teaser--document"
+                                                    cq:styleId="1647532952274"
+                                                    cq:styleLabel="Document"
+                                                    jcr:primaryType="nt:unstructured"/>
+                                            </cq:styles>
+                                        </item0>
+                                    </cq:styleGroups>
+                                </policy_1647532922555>
+                            </teaser>
+                        </v2>
+                    </teaser>
                 </components>
             </core>
         </wcm>
