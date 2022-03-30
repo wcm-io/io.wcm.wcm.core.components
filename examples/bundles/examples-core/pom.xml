@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.10.0-2.18.6</version>
+    <version>1.10.1-2.18.6-SNAPSHOT</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>
   <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
-  <version>1.10.0-2.18.6</version>
+  <version>1.10.1-2.18.6-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>WCM Core Components Examples Core</name>
@@ -44,7 +44,7 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.wcm.core.components</artifactId>
-      <version>1.10.0-2.18.6</version>
+      <version>1.10.1-2.18.6-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
 
