@@ -66,6 +66,9 @@ public class TeaserV1Impl extends TeaserV2Impl implements LinkMixin {
   }
 
   // overwrite to add @JsonIgnore(false)
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore(false)

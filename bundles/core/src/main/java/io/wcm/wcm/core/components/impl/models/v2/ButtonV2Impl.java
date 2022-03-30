@@ -89,6 +89,9 @@ public class ButtonV2Impl extends AbstractComponentImpl implements Button {
 
   // --- fallback implementations ---
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore

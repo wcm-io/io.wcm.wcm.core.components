@@ -43,38 +43,33 @@
                 <accordion
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="core-components-examples/components/accordion"
-                    expandedItems="[item_1579021121673,item_1579021131667,item_1579021109267,item_1579021109268]"
+                    expandedItems="[item_1579021121673,item_1579021131667,item_1579021109268]"
                     singleExpansion="false">
                     <item_1579021121673
-                        cq:panelTitle="Templating"
+                        cq:panelTitle="Core Structure"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="core/wcm/components/navigation/v1/navigation"
                         collectAllPages="false"
-                        navigationRoot="/content/wcmio-core-components-examples/library/templating"
+                        disableShadowing="false"
+                        navigationRoot="/content/wcmio-core-components-examples/library/core-structure"
                         structureDepth="1"
                         structureStart="1"/>
                     <item_1579021131667
-                        cq:panelTitle="Page Authoring"
+                        cq:panelTitle="Core Content"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="core/wcm/components/navigation/v1/navigation"
                         collectAllPages="false"
-                        navigationRoot="/content/wcmio-core-components-examples/library/page-authoring"
-                        structureDepth="1"
-                        structureStart="1"/>
-                    <item_1579021109267
-                        cq:panelTitle="Container"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core/wcm/components/navigation/v1/navigation"
-                        collectAllPages="false"
-                        navigationRoot="/content/wcmio-core-components-examples/library/container"
+                        disableShadowing="false"
+                        navigationRoot="/content/wcmio-core-components-examples/library/core-content"
                         structureDepth="1"
                         structureStart="1"/>
                     <item_1579021109268
-                        cq:panelTitle="Form"
+                        cq:panelTitle="Core Form"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="core/wcm/components/navigation/v1/navigation"
                         collectAllPages="false"
-                        navigationRoot="/content/wcmio-core-components-examples/library/form"
+                        disableShadowing="false"
+                        navigationRoot="/content/wcmio-core-components-examples/library/core-form"
                         structureDepth="1"
                         structureStart="1"/>
                 </accordion>

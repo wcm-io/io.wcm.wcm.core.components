@@ -25,17 +25,18 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.9.2-2.17.12</version>
+    <version>1.10.0-2.18.6</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>
   <artifactId>io.wcm.wcm.core.components.examples.root</artifactId>
-  <version>1.9.2-2.17.12</version>
+  <version>1.10.0-2.18.6</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>bundles/examples-core</module>
+    <module>content-packages/examples-libs</module>
     <module>content-packages/examples</module>
     <module>content-packages/examples-sample-content</module>
   </modules>

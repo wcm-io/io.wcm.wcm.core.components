@@ -81,6 +81,60 @@
         "tabs": {
           "items": {
           
+            /* wcm.io Link Handler Tab */
+            "link": {
+              "sling:resourceType": "granite/ui/components/coral/foundation/include",
+              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab"
+            },
+
+            "actions": {
+              "jcr:title": "Actions",
+              "items": {
+                "columns": {
+                  "items": {
+                    "column": {
+                      "items": {
+
+                        "link": {
+                          /* Hide link field - use separate tab for link instead */
+                          "sling:hideResource": true
+                        },
+
+                        /* Use Link dialog fields for actions  */
+                        "actions": {
+                          "granite:class": "foundation-toggleable",
+                          "field": {
+                            "granite:class": "",
+                            "items": {
+                              "link": {
+                                "sling:hideResource": true
+                              },
+                              "target": {
+                                "sling:hideResource": true
+                              },
+                              "text": {
+                                "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
+                                "name": "./text",
+                                "required": true,
+                                "fieldLabel": "Text",
+                                "emptyText": "",
+                                "granite:class": ""
+                              },
+                              "linkRefContainer": {
+                                "sling:resourceType": "wcm-io/handler/link/components/granite/form/linkRefContainer",
+                                "showLinkTitle": false
+                              }
+                            }
+                          }
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
             // use wcm.io tab for defining media reference and alt. text (with feature image support)
             "image": {
               "sling:resourceType": "granite/ui/components/coral/foundation/include",
@@ -142,7 +196,8 @@
                                   ]
                                 },
                                 "edit": {
-                                  "features": "*",
+                                  "features": ["cut","copy","paste-plaintext","paste-wordhtml"],
+                                  "defaultPasteMode": "wordhtml",
                                   "htmlPasteRules": {
                                     "allowedAttributes": {
                                       "a": [
@@ -204,57 +259,7 @@
               }
             },
 
-            /* wcm.io Link Handler Tab */
-            "link": {
-              "sling:resourceType": "granite/ui/components/coral/foundation/include",
-              "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab",
-              "sling:orderBefore": "actions"
-            },
-
-            "actions": {
-              "jcr:title": "Actions",
-              "items": {
-                "columns": {
-                  "items": {
-                    "column": {
-                      "items": {
-
-                        "linkURL": {
-                          /* Hide LinkURL field - use separate tab for link instead */
-                          "sling:hideResource": true
-                        },
-
-                        /* Use Link dialog fields for actions  */
-                        "actions": {
-                          "granite:class": "foundation-toggleable",
-                          "field": {
-                            "granite:class": "",
-                            "items": {
-                              "link": {
-                                "sling:hideResource": true
-                              },
-                              "text": {
-                                "sling:resourceType": "granite/ui/components/coral/foundation/form/textfield",
-                                "name": "./text",
-                                "required": true,
-                                "fieldLabel": "Text",
-                                "emptyText": "",
-                                "granite:class": ""
-                              },
-                              "linkRefContainer": {
-                                "sling:resourceType": "wcm-io/handler/link/components/granite/form/linkRefContainer",
-                                "showLinkTitle": false
-                              }
-                            }
-                          }
-                        }
-
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            "styletab": {}
 
           }
         }
@@ -289,6 +294,7 @@
 
             /* Responsive Image settings */
             "responsiveImageTab": {
+              "sling:orderBefore": "styletab",
               "sling:resourceType": "granite/ui/components/coral/foundation/include",
               "path": "wcm-io/handler/media/components/global/include/responsiveImageSettings"
             }

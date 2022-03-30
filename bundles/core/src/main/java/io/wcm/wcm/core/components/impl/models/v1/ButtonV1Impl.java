@@ -55,6 +55,10 @@ public class ButtonV1Impl extends ButtonV2Impl implements LinkMixin {
   }
 
   // overwrite to add @JsonIgnore
+  /**
+   * @deprecated Deprecated in API
+   */
+  @Deprecated
   @Override
   @JsonIgnore
   public com.adobe.cq.wcm.core.components.commons.link.Link getButtonLink() {
@@ -62,6 +66,9 @@ public class ButtonV1Impl extends ButtonV2Impl implements LinkMixin {
   }
 
   // overwrite to add @JsonIgnore(false)
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore(false)

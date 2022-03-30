@@ -19,9 +19,8 @@
                   "items": {
                     "column": {
                       "items": {
-                        /* hide link-related fields and replace it with wcm.io Link dialog
-                           hide also accesibility label/title attribute as they are disabled by default with link dialog */
-                        "sling:hideChildren": ["linkURL","linkAccessibilityLabel","linkTitleAttribute"]
+                        /* hide link and replace it with wcm.io Link dialog */
+                        "sling:hideChildren": ["link"]
                       }
                     }
                   }
@@ -31,6 +30,7 @@
 
             /* wcm.io Link Handler Tab */
             "link": {
+              "sling:orderBefore": "styletab",
               "sling:resourceType": "granite/ui/components/coral/foundation/include",
               "path": "wcm-io/handler/link/components/global/include/linkRefNoTitleTab",
               "granite:rendercondition": {

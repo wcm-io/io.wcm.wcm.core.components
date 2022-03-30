@@ -59,6 +59,9 @@ public class PageListItemV1Impl extends PageListItemV2Impl implements LinkMixin 
   }
 
   // overwrite to add @JsonIgnore(false)
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore(false)

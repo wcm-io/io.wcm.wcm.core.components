@@ -4,7 +4,7 @@
 
 _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler,_ <span class="marker-label">LINK</span>&nbsp;_Link&nbsp;Handler,_ <span class="marker-label">RICHTEXT</span>&nbsp;_RichText&nbsp;Handler,_ <span class="marker-label">URL</span>&nbsp;_URL&nbsp;Handler._
 
-**Template components**
+**Template Components**
 
 * [Page (v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/page/v3) | [(v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/page/v2) <span class="marker-label">MEDIA</span>
 * [Navigation (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/navigation/v2) | [(v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/navigation/v1) <span class="marker-label">LINK</span> <span class="marker-label">URL</span>
@@ -12,7 +12,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 * [Breadcrumb (v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v3) | [(v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v2) <span class="marker-label">LINK</span> <span class="marker-label">URL</span>
 * [Quick Search (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/search/v1)
 
-**Page authoring components**
+**Page Authoring Components**
 
 * [Title (v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v3) | [v2](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v2) <span class="marker-label">LINK</span>
 * [Text (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/text/v2) <span class="marker-label">RICHTEXT</span> <span class="marker-label">LINK</span>
@@ -29,14 +29,14 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 * [Content Fragment (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/contentfragment/v1)
 * [Content Fragment List (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/contentfragmentlist/v2) | [(v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/contentfragmentlist/v1)
 
-**Container components**
+**Container Components**
 
 * [Container (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/container/v1) <span class="marker-label">MEDIA</span>
 * [Carousel (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/carousel/v1)
 * [Tabs (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/tabs/v1)
 * [Accordion (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/accordion/v1)
 
-**Form components**
+**Form Components**
 
 * [Form container (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/container/v2) <span class="marker-label">LINK</span>
 * [Form text field (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/text/v2)
@@ -48,14 +48,14 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 ### New wcm.io Core Components
 
 
-**Page authoring components**
+**Page Authoring Components**
 
 * [wcm.io Responsive Image (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/wcmio/responsiveimage/v1) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
 
 
 ### Unsupported AEM WCM Core Components
 
-**Page authoring components**
+**Page Authoring Components**
 
 * Sharing (v1)
 * Image (v3)

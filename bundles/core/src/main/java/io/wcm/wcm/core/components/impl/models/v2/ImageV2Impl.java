@@ -230,7 +230,11 @@ public class ImageV2Impl extends AbstractComponentImpl implements Image, MediaMi
     return uuid;
   }
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
+  @Deprecated
   public String getLink() {
     return link.getUrl();
   }
@@ -277,7 +281,11 @@ public class ImageV2Impl extends AbstractComponentImpl implements Image, MediaMi
     return isDecorative;
   }
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
+  @Deprecated
   public String getJson() {
     // not required for image v2
     return null;
@@ -294,7 +302,7 @@ public class ImageV2Impl extends AbstractComponentImpl implements Image, MediaMi
     long maxWidth = rendition.getWidth();
     String[] configuredWidths = currentStyle.get(PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[0]);
     return Arrays.stream(configuredWidths)
-        .map(width -> NumberUtils.toLong(width))
+        .map(NumberUtils::toLong)
         .filter(width -> width > 0 && width <= maxWidth)
         .sorted()
         .collect(Collectors.toList());
@@ -317,8 +325,8 @@ public class ImageV2Impl extends AbstractComponentImpl implements Image, MediaMi
    * @return Url pattern
    */
   private String buildSrcPattern(String mediaUrl) {
-    String extension = StringUtils.substringAfterLast(media.getUrl(), ".");
-    String fileName = StringUtils.substringAfterLast(media.getUrl(), "/");
+    String extension = StringUtils.substringAfterLast(mediaUrl, ".");
+    String fileName = StringUtils.substringAfterLast(mediaUrl, "/");
 
     // build suffix containing file name and crop/rotation parameters as "cache killers"
     StringBuilder suffix = new StringBuilder();

@@ -91,7 +91,7 @@ public class LayoutContainerV1Impl extends AbstractContainerImpl implements Layo
 
   @Override
   @JsonIgnore
-  @SuppressWarnings("PMD.ReturnEmptyArrayRatherThanNull")
+  @SuppressWarnings({ "PMD.ReturnEmptyCollectionRatherThanNull", "java:S1168" })
   public String[] getDataLayerShownItems() {
     return null;
   }

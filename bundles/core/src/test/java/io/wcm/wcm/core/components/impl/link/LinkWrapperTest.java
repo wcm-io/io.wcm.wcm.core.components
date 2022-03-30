@@ -65,6 +65,7 @@ class LinkWrapperTest {
   }
 
   @Test
+  @SuppressWarnings("unused")
   void testInvalid() {
     LinkWrapper underTest = new LinkWrapper(linkHandler.invalid());
 

@@ -140,7 +140,7 @@ public class NavigationV2Impl extends AbstractComponentImpl implements Navigatio
   }
 
   private List<NavigationItem> createItems() {
-    List<NavigationItem> result = new ArrayList<>();
+    List<NavigationItem> result;
     Page rootPage = getNavigationRootPage();
     if (rootPage != null) {
       NavigationRoot navigationRoot = new NavigationRoot(rootPage, structureDepth);

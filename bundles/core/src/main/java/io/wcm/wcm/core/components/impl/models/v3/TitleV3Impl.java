@@ -80,6 +80,9 @@ public class TitleV3Impl extends AbstractComponentImpl implements Title {
 
   // --- fallback implementations ---
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore

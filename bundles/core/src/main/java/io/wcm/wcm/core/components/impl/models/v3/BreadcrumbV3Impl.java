@@ -95,12 +95,10 @@ public class BreadcrumbV3Impl extends AbstractComponentImpl implements Breadcrum
     Page page = getCurrentPage();
     while (page != null) {
       boolean isCurrentPage = StringUtils.equals(page.getPath(), getCurrentPage().getPath());
-      if (!(isCurrentPage && hideCurrent)) {
-        if (checkIfNotHidden(page)) {
-          Link link = linkHandler.get(page).build();
-          NavigationItem navigationItem = newNavigationItem(page, link, isCurrentPage);
-          result.add(0, navigationItem);
-        }
+      if (!(isCurrentPage && hideCurrent) && checkIfNotHidden(page)) {
+        Link link = linkHandler.get(page).build();
+        NavigationItem navigationItem = newNavigationItem(page, link, isCurrentPage);
+        result.add(0, navigationItem);
       }
       if (siteRoot.isRootPage(page)) {
         break;

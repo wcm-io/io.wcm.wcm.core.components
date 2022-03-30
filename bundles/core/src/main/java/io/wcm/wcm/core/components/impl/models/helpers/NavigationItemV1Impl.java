@@ -63,6 +63,9 @@ public class NavigationItemV1Impl extends PageListItemV1Impl implements Navigati
     this.children = children;
   }
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore

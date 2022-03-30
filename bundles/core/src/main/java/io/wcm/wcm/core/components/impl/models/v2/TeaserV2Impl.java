@@ -205,6 +205,9 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
     return link.orNull();
   }
 
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore

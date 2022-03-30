@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.9.2-2.17.12</version>
+    <version>1.10.0-2.18.6</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>  
   <artifactId>io.wcm.wcm.core.components.examples</artifactId>
-  <version>1.9.2-2.17.12</version>
+  <version>1.10.0-2.18.6</version>
   <packaging>content-package</packaging>
 
   <name>WCM Core Components Examples</name>
@@ -40,165 +40,13 @@
   <dependencies>
 
     <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.wcm.core.components</artifactId>
-      <version>1.9.2-2.17.12</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>io.wcm.samples</groupId>  
       <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
-      <version>1.9.2-2.17.12</version>
+      <version>1.10.0-2.18.6</version>
       <scope>compile</scope>
-    </dependency>
-
-    <!-- wcm.io -->
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.sling.models</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.caconfig.extensions</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.caconfig.editor</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.sling.commons</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.handler.commons</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.handler.url</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.handler.link</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.handler.media</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.handler.richtext</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.wcm.commons</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.wcm</groupId>
-      <artifactId>io.wcm.wcm.ui.granite</artifactId>
-      <scope>compile</scope>
-    </dependency>
-
-    <!-- AEM Core WCM Components -->
-    <dependency>
-      <groupId>com.adobe.cq</groupId>
-      <artifactId>core.wcm.components.all</artifactId>
-      <type>zip</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.cq</groupId>
-      <artifactId>core.wcm.components.examples.ui.config</artifactId>
-      <type>zip</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.cq</groupId>
-      <artifactId>core.wcm.components.examples.ui.apps</artifactId>
-      <type>zip</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.cq</groupId>
-      <artifactId>core.wcm.components.examples.ui.content</artifactId>
-      <type>zip</type>
-      <scope>provided</scope>
     </dependency>
 
   </dependencies>
-  <dependencyManagement>
-    <dependencies>
-    
-      <!-- wcm.io -->
-      <!-- Use LATEST version in example, whereas in the parent POM we only define the minimal versions required -->
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.caconfig.extensions</artifactId>
-        <version>1.8.6</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.caconfig.editor</artifactId>
-        <version>1.8.6</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.sling.models</artifactId>
-        <version>1.6.0</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.sling.commons</artifactId>
-        <version>1.4.0</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.handler.commons</artifactId>
-        <version>1.4.2</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.handler.url</artifactId>
-        <version>1.5.4</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.handler.link</artifactId>
-        <version>1.7.4</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.handler.media</artifactId>
-        <version>1.13.6</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.handler.richtext</artifactId>
-        <version>1.5.4</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.wcm.commons</artifactId>
-        <version>1.9.0</version>
-      </dependency>
-      <dependency>
-        <groupId>io.wcm</groupId>
-        <artifactId>io.wcm.wcm.ui.granite</artifactId>
-        <version>1.8.0</version>
-      </dependency>
-      
-    </dependencies>
-  </dependencyManagement>
 
   <build>
     <plugins>
@@ -223,7 +71,6 @@
             <!-- Include application bundles from io.wcm.samples and their dependencies from io.wcm -->
             <embedded>
               <groupId>
-                io.wcm,
                 io.wcm.samples
               </groupId>
               <type>jar</type>
@@ -231,32 +78,6 @@
           </embeddeds>
 
         </configuration>
-      </plugin>
-
-      <!-- Copy Core Components examples content for deployment script -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <includeGroupIds>com.adobe.cq</includeGroupIds>
-              <includeArtifactIds>
-                core.wcm.components.all,
-                core.wcm.components.examples.ui.config,
-                core.wcm.components.examples.ui.apps,
-                core.wcm.components.examples.ui.content
-              </includeArtifactIds>
-              <stripVersion>true</stripVersion>
-              <outputDirectory>${project.build.directory}/dependency</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
 
       <!-- Do not generate eclipse project files -->

@@ -36,7 +36,7 @@ import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
-public class IdGenerationTest {
+class IdGenerationTest {
 
   public static final String RESOURCE_TYPE = "app1/components/mycomp";
   public static final String PAGE_PATH = "/content/mypath";
@@ -52,14 +52,14 @@ public class IdGenerationTest {
   }
 
   @Test
-  public void testGenerateIdForComponent_OnlyResource() {
+  void testGenerateIdForComponent_OnlyResource() {
     Resource resource = context.create().resource(RESOURCE_PATH,
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
     assertEquals(EXPECTED_ID, ComponentUtils.getId(resource, null, null));
   }
 
   @Test
-  public void testGenerateIdForComponent_ComponentContext() {
+  void testGenerateIdForComponent_ComponentContext() {
     Page page = context.create().page(PAGE_PATH);
     Resource resource = context.create().resource(page, RESOURCE_NAME,
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);

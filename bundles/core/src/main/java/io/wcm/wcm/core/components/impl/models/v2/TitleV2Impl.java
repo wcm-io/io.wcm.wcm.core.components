@@ -63,6 +63,9 @@ public class TitleV2Impl extends TitleV3Impl implements LinkMixin {
   }
 
   // overwrite to add @JsonIgnore(false)
+  /**
+   * @deprecated Deprecated in API
+   */
   @Override
   @Deprecated
   @JsonIgnore(false)

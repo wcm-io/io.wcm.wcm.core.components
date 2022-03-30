@@ -22,7 +22,7 @@
 <project name="WCM Core Components"
   xmlns="http://maven.apache.org/DECORATION/1.8.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <body>
     <head><![CDATA[
@@ -39,6 +39,13 @@
       }
       </style>
     ]]></head>
+
+    <breadcrumbs>
+      <item name="wcm.io" href="https://wcm.io" />
+      <item name="WCM" href="https://wcm.io/wcm/" />
+      <item name="WCM Core Components" href="https://wcm.io/wcm/core-components/" />
+    </breadcrumbs>
+
   </body>
 
 </project>
