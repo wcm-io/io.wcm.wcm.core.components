@@ -28,7 +28,7 @@
         Update to AEM WCM Core Components 2.18.6.
       </action>
       <action type="update" dev="sseifert">
-        Switch to AEM 6.5 as minimum version.
+        Switch to AEM 6.5.7 as minimum version.
       </action>
       <action type="update" dev="sseifert">
         RTE config: Disable "paste-default" edit feature (discouraged because it is browser-dependent) and switch default paste mode to "wordhtml".
