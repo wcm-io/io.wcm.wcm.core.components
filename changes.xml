@@ -24,6 +24,9 @@
   <body>
 
     <release version="1.11.0-2.19.0" date="not released">
+      <action type="add" dev="sseifert">
+        Add Quick Search (v2).
+      </action>
       <action type="update" dev="sseifert">
         Update to AEM WCM Core Components 2.19.0.
       </action>
