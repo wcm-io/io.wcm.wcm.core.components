@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.11.1-2.19.0-SNAPSHOT</version>
+  <version>1.12.0-2.20.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
@@ -43,17 +43,25 @@
   </ciManagement>
 
   <properties>
-    <core.wcm.components.version>2.19.0</core.wcm.components.version>
+    <core.wcm.components.version>2.20.0</core.wcm.components.version>
 
     <sling.url>http://localhost:4502</sling.url>
     <sling.publish.url>http://localhost:4503</sling.publish.url>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2022-05-12T09:49:15Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2022-06-14T14:22:49Z</project.build.outputTimestamp>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>io.wcm.maven</groupId>
+        <artifactId>io.wcm.maven.aem-dependencies</artifactId>
+        <version>6.5.13.0000</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
 
       <!-- AEM Core WCM Components -->
       <dependency>
@@ -256,5 +264,19 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <profiles>
+
+    <!-- Deployment to AEM 6.5 -->
+    <profile>
+      <id>aem65</id>
+      <properties>
+        <!-- AEM instance parameters -->
+        <sling.url>http://localhost:45025</sling.url>
+        <sling.publish.url>http://localhost:45035</sling.publish.url>
+      </properties>
+    </profile>
+
+  </profiles>
 
 </project>

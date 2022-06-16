@@ -20,9 +20,10 @@
 # Call with "help" parameter to display syntax information
 
 # defaults
-SLING_URL="http://localhost:4502"
-SLING_USER="admin"
-SLING_PASSWORD="admin"
+MAVEN_PROFILES="fast"
+SLING_URL=""
+SLING_USER=""
+SLING_PASSWORD=""
 JVM_ARGS=""
 
 # display pause message only when script was executed via double-click on windows
@@ -42,10 +43,11 @@ help_message_exit() {
   echo "  Syntax <parameters> <commands>"
   echo ""
   echo "  Parameters:"
-  echo "    --sling.url=${SLING_URL}"
-  echo "    --sling.user=${SLING_USER}"
-  echo "    --sling.password=${SLING_PASSWORD}"
-  echo "    --jvm.args=${JVM_ARGS}"
+  echo "    --maven.profiles=${MAVEN_PROFILES}       or -P${MAVEN_PROFILES}"
+  echo "    --sling.url=${SLING_URL}                 or -Dsling.url=${SLING_URL}"
+  echo "    --sling.user=${SLING_USER}               or -Dsling.user=${SLING_USER}"
+  echo "    --sling.password=${SLING_PASSWORD}       or -Dsling.password=${SLING_PASSWORD}"
+  echo "    --jvm.args=${JVM_ARGS}                   or -Djvm.args=${JVM_ARGS}"
   echo ""
   echo "  Commands:"
   echo "    build  - Clean and install maven project"
@@ -61,6 +63,10 @@ parse_parameters() {
   for i in "$@"
   do
   case $i in
+      --maven\.profiles=*|-P*)
+      MAVEN_PROFILES="${i#*=}"
+      shift # past argument=value
+      ;;
       --sling\.url=*|-Dsling\.url=*)
       SLING_URL="${i#*=}"
       shift # past argument=value
@@ -112,25 +118,25 @@ parse_parameters() {
 }
 
 welcome_message() {
-  echo -e "********************************************************************\e[96m"
+  echo "********************************************************************"
   if ([ "$BUILD" = true ] && [ "$DEPLOY" = true ]) || [ "$HELP" = true ]; then
-    echo "   ___ _   _ ___ _    ___      _     ___  ___ ___ _    _____   __"
-    echo "  | _ ) | | |_ _| |  |   \   _| |_  |   \| __| _ \ |  / _ \ \ / /"
-    echo "  | _ \ |_| || || |__| |) | |_   _| | |) | _||  _/ |_| (_) \ V /"
-    echo "  |___/\___/|___|____|___/    |_|   |___/|___|_| |____\___/ |_|"
+    echo -e "\e[96m   ___ _   _ ___ _    ___      _     ___  ___ ___ _    _____   __\e[0m"
+    echo -e "\e[96m  | _ ) | | |_ _| |  |   \   _| |_  |   \| __| _ \ |  / _ \ \ / /\e[0m"
+    echo -e "\e[96m  | _ \ |_| || || |__| |) | |_   _| | |) | _||  _/ |_| (_) \ V /\e[0m"
+    echo -e "\e[96m  |___/\___/|___|____|___/    |_|   |___/|___|_| |____\___/ |_|\e[0m"
   elif [ "$BUILD" = true ]; then
-    echo "   ___ _   _ ___ _    ___ "
-    echo "  | _ ) | | |_ _| |  |   \\"
-    echo "  | _ \ |_| || || |__| |) |"
-    echo "  |___/\___/|___|____|___/"
+    echo -e "\e[96m   ___ _   _ ___ _    ___ \e[0m"
+    echo -e "\e[96m  | _ ) | | |_ _| |  |   \\ \e[0m"
+    echo -e "\e[96m  | _ \ |_| || || |__| |) |\e[0m"
+    echo -e "\e[96m  |___/\___/|___|____|___/\e[0m"
   elif [ "$DEPLOY" = true ]; then
-    echo "   ___  ___ ___ _    _____   __"
-    echo "  |   \| __| _ \ |  / _ \ \ / /"
-    echo "  | |) | _||  _/ |_| (_) \ V /"
-    echo "  |___/|___|_| |____\___/ |_|"
+    echo -e "\e[96m   ___  ___ ___ _    _____   __\e[0m"
+    echo -e "\e[96m  |   \| __| _ \ |  / _ \ \ / /\e[0m"
+    echo -e "\e[96m  | |) | _||  _/ |_| (_) \ V /\e[0m"
+    echo -e "\e[96m  |___/|___|_| |____\___/ |_|\e[0m"
   fi
-  echo -e "\e[0m"
-  echo -e "  Destination: \e[1m${SLING_URL}\e[0m"
+  echo ""
+  echo -e "  Profiles: \e[1m${MAVEN_PROFILES}\e[0m"
   echo ""
   echo "********************************************************************"
 }
@@ -156,8 +162,15 @@ execute_build() {
   echo -e "*** \e[1mBuild application\e[0m ***"
   echo ""
 
-  mvn ${JVM_ARGS} \
-      -Pfast clean install eclipse:eclipse
+  MAVEN_ARGS=""
+  if [ -n "$JVM_ARGS" ]; then
+    MAVEN_ARGS+="${JVM_ARGS} "
+  fi
+  if [ -n "${MAVEN_PROFILES}" ]; then
+    MAVEN_ARGS+="--activate-profiles ${MAVEN_PROFILES} "
+  fi
+
+  mvn $MAVEN_ARGS clean install eclipse:eclipse
 
   if [ "$?" -ne "0" ]; then
     exit_with_error "*** BUILD FAILED ***"
@@ -171,17 +184,30 @@ execute_deploy() {
   echo -e "*** \e[1mDeploy to AEM\e[0m ***"
   echo ""
 
+  MAVEN_ARGS=""
+  if [ -n "$JVM_ARGS" ]; then
+    MAVEN_ARGS+="${JVM_ARGS} "
+  fi
+  if [ -n "${MAVEN_PROFILES}" ]; then
+    MAVEN_ARGS+="--activate-profiles=${MAVEN_PROFILES} "
+  fi
+  if [ -n "${SLING_URL}" ]; then
+    MAVEN_ARGS+="-Dsling.url=${SLING_URL} "
+  fi
+  if [ -n "${SLING_USER}" ]; then
+    MAVEN_ARGS+="-Dsling.user=${SLING_USER} "
+  fi
+  if [ -n "${SLING_PASSWORD}" ]; then
+    MAVEN_ARGS+="-Dsling.password=${SLING_PASSWORD} "
+  fi
+
   if [ "$DEPLOY_CORE_COMPONENTS" = true ]; then
     echo ""
     echo "Deploy Core Components..."
     echo ""
-    mvn -f examples/content-packages/examples-libs \
+    mvn $MAVEN_ARGS -f examples/content-packages/examples-libs \
         -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.all.zip' \
         -Dvault.force=true \
-        ${JVM_ARGS} \
-        -Dsling.url=${SLING_URL} \
-        -Dsling.user=${SLING_USER} \
-        -Dsling.password=${SLING_PASSWORD} \
         wcmio-content-package:install
 
     if [ "$?" -ne "0" ]; then
@@ -192,13 +218,9 @@ execute_deploy() {
   echo ""
   echo "Deploy Core Components examples..."
   echo ""
-  mvn -f examples/content-packages/examples-libs \
+  mvn $MAVEN_ARGS -f examples/content-packages/examples-libs \
       -Dvault.fileList='${project.build.directory}/dependency/core.wcm.components.examples.ui.config.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.apps.zip,${project.build.directory}/dependency/core.wcm.components.examples.ui.content.zip' \
       -Dvault.force=true \
-      ${JVM_ARGS} \
-      -Dsling.url=${SLING_URL} \
-      -Dsling.user=${SLING_USER} \
-      -Dsling.password=${SLING_PASSWORD} \
       wcmio-content-package:install
 
   if [ "$?" -ne "0" ]; then
@@ -208,11 +230,7 @@ execute_deploy() {
   echo ""
   echo "Deploy wcm.io Libraries ..."
   echo ""
-  mvn -f examples/content-packages/examples-libs \
-      ${JVM_ARGS} \
-      -Dsling.url=${SLING_URL} \
-      -Dsling.user=${SLING_USER} \
-      -Dsling.password=${SLING_PASSWORD} \
+  mvn $MAVEN_ARGS -f examples/content-packages/examples-libs \
       wcmio-content-package:install
 
   if [ "$?" -ne "0" ]; then
@@ -222,11 +240,7 @@ execute_deploy() {
   echo ""
   echo "Deploy wcm.io WCM Core Components examples application..."
   echo ""
-  mvn -f examples/content-packages/examples \
-      ${JVM_ARGS} \
-      -Dsling.url=${SLING_URL} \
-      -Dsling.user=${SLING_USER} \
-      -Dsling.password=${SLING_PASSWORD} \
+  mvn $MAVEN_ARGS -f examples/content-packages/examples \
       wcmio-content-package:install
 
   if [ "$?" -ne "0" ]; then
@@ -236,11 +250,7 @@ execute_deploy() {
   echo ""
   echo "Deploy wcm.io WCM Core Components examples content..."
   echo ""
-  mvn -f examples/content-packages/examples-sample-content \
-      ${JVM_ARGS} \
-      -Dsling.url=${SLING_URL} \
-      -Dsling.user=${SLING_USER} \
-      -Dsling.password=${SLING_PASSWORD} \
+  mvn $MAVEN_ARGS -f examples/content-packages/examples-sample-content \
       wcmio-content-package:install
 
   if [ "$?" -ne "0" ]; then

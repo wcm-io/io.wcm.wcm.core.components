@@ -11,24 +11,24 @@
         sling:redirectStatus="{Long}302"
         sling:resourceType="wcm-io-samples/wcm-core-components/components/page"
         redirectTarget="/content/wcmio-core-components-examples/library"/>
-    <container/>
-    <carousel/>
-    <tabs/>
     <accordion/>
-    <form-container/>
-    <title/>
-    <text/>
-    <image/>
-    <responsiveimage/>
     <button/>
-    <teaser/>
-    <download/>
-    <list/>
-    <experience-fragment/>
+    <carousel/>
+    <container/>
     <content-fragment/>
     <content-fragment-list/>
+    <form-container/>
+    <download/>
     <embed/>
+    <experience-fragment/>
+    <image/>
+    <responsiveimage/>
+    <list/>
     <pdf-viewer/>
     <progressbar/>
     <separator/>
+    <tabs/>
+    <teaser/>
+    <text/>
+    <title/>
 </jcr:root>

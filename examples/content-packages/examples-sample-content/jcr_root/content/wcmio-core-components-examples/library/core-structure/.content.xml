@@ -14,4 +14,6 @@
     <navigation/>
     <language-navigation/>
     <breadcrumb/>
+    <page/>
+    <table-of-contents/>
 </jcr:root>
