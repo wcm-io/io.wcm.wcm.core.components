@@ -7,6 +7,7 @@ Steps to update sample content when syncing with new features
 4. replace everywhere:
 ```
 core/wcm/components/ -> wcm-io/wcm/core/components/
+core-components-examples/components/<component> -> wcm-io/wcm/core/components/<component>/<version>/<component>
 /content/core-components-examples/ -> /content/wcmio-core-components-examples/
 /conf/core-components-examples/settings/wcm/templates/ -> /conf/wcmio-core-components-examples/settings/wcm/templates/
 ``` 

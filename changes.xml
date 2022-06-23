@@ -23,7 +23,19 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="1.11.0-2.19.0" date="not released">
+    <release version="1.12.0-2.20.0" date="2022-06-23">
+      <action type="add" dev="sseifert">
+        Add Table of Contents (v1).
+      </action>
+      <action type="update" dev="sseifert">
+        Update to AEM WCM Core Components 2.20.0.
+      </action>
+      <action type="update" dev="sseifert">
+        Switch to AEM 6.5.13 as minimum version.
+      </action>
+    </release>
+
+    <release version="1.11.0-2.19.0" date="2022-05-12">
       <action type="add" dev="sseifert">
         Add Quick Search (v2).
       </action>

@@ -11,6 +11,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 * [Language Navigation (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/languagenavigation/v2) | [(v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/languagenavigation/v1) <span class="marker-label">LINK</span>
 * [Breadcrumb (v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v3) | [(v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v2) <span class="marker-label">LINK</span> <span class="marker-label">URL</span>
 * [Quick Search (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/search/v2) | [(v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/search/v1)
+* [Table of Contents (v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/tableofcontents/v1)
 
 **Page Authoring Components**
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:tags="[core-components-examples:component-type/templating]"
+        cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Page"
+        sling:resourceType="wcm-io-samples/wcm-core-components/components/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <text_1740702241
+                    cq:styleIds="[1644862132301]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
+                    text="&lt;h1&gt;Page&lt;sub&gt;v3&lt;/sub&gt;&lt;/h1&gt;"
+                    textIsRich="true"/>
+                <text
+                    cq:styleIds="[1544762734201]"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
+                    text="&lt;p&gt;All pages in this library are showcasing the page component.&lt;/p&gt;"
+                    textIsRich="true"/>
+                <teaser_github_wcmio
+                    cq:styleIds="[1550165685463]"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="wcm.io Documentation"
+                    sling:resourceType="core-components-examples/components/teaser"
+                    fileReference="/content/dam/core-components-examples/library/github-logo.svg"
+                    linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/page/v3"/>
+                <teaser_github_adobe
+                    cq:styleIds="[1550165685463]"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Adobe Documentation"
+                    sling:resourceType="core-components-examples/components/teaser"
+                    fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
+                    linkURL="https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/page/v3/page"
+                    textIsRich="true"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
