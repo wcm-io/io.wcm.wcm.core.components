@@ -29,7 +29,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import com.google.common.collect.ImmutableSet;
 
 /**
  * Serialized map of link attributes, omitting the "href" property.
@@ -40,7 +39,7 @@ public class LinkHtmlAttributesSerializer extends StdSerializer<Map<String, Stri
   /**
    * List of the link's ignored html attributes from the Json export.
    */
-  private static final Set<String> IGNORED_HTML_ATTRIBUTES = ImmutableSet.of("href");
+  private static final Set<String> IGNORED_HTML_ATTRIBUTES = Set.of("href");
 
   /**
    * Constructor.

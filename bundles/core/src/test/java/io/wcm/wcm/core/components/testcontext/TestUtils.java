@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -43,7 +44,6 @@ import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableMap;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
@@ -75,7 +75,7 @@ public final class TestUtils {
     assertEquals(href, link.getURL());
     assertEquals(href, link.getMappedURL());
     assertEquals(href, link.getExternalizedURL());
-    assertEquals(ImmutableMap.of("href", href), link.getHtmlAttributes());
+    assertEquals(Map.of("href", href), link.getHtmlAttributes());
   }
 
   public static void assertValidLink(Link link, String href, String target) {
@@ -83,7 +83,7 @@ public final class TestUtils {
     assertEquals(href, link.getURL());
     assertEquals(href, link.getMappedURL());
     assertEquals(href, link.getExternalizedURL());
-    assertEquals(ImmutableMap.of("href", href, "target", target), link.getHtmlAttributes());
+    assertEquals(Map.of("href", href, "target", target), link.getHtmlAttributes());
   }
 
   public static void assertInvalidLink(Link link) {
@@ -94,14 +94,14 @@ public final class TestUtils {
     assertTrue(object instanceof LinkMixin, "is LinkMixin");
     LinkMixin linkMixin = (LinkMixin)object;
     assertTrue(linkMixin.isLinkValid());
-    assertEquals(ImmutableMap.of("href", href), linkMixin.getLinkAttributes());
+    assertEquals(Map.of("href", href), linkMixin.getLinkAttributes());
   }
 
   public static void assertValidLink(Object object, String href, String target) {
     assertTrue(object instanceof LinkMixin, "is LinkMixin");
     LinkMixin linkMixin = (LinkMixin)object;
     assertTrue(linkMixin.isLinkValid());
-    assertEquals(ImmutableMap.of("href", href, "target", target), linkMixin.getLinkAttributes());
+    assertEquals(Map.of("href", href, "target", target), linkMixin.getLinkAttributes());
   }
 
   public static void assertInvalidLink(Object object) {

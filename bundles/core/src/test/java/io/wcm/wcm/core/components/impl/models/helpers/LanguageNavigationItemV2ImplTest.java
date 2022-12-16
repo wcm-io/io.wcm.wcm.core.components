@@ -25,6 +25,7 @@ import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collections;
 import java.util.Locale;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.LanguageNavigationItem;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -63,12 +63,12 @@ class LanguageNavigationItemV2ImplTest {
             JCR_LANGUAGE, "fr_CA"));
     Link link = linkHandler.get(page).build();
     LanguageNavigationItem underTest = new LanguageNavigationItemV2Impl(page, link,
-        5, true, true, ImmutableList.of(), "My Title", "p-id", null);
+        5, true, true, Collections.emptyList(), "My Title", "p-id", null);
 
     assertEquals(page.getPath(), underTest.getPage().getPath());
     assertTrue(underTest.isActive());
     assertTrue(underTest.isCurrent());
-    assertEquals(ImmutableList.of(), underTest.getChildren());
+    assertEquals(Collections.emptyList(), underTest.getChildren());
     assertEquals(5, underTest.getLevel());
 
     assertEquals("My Title", underTest.getTitle());

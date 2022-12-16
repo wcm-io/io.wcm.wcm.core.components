@@ -40,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.sling.api.resource.ResourceUtil;
@@ -53,7 +54,6 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.link.type.InternalLinkType;
 import io.wcm.sling.commons.adapter.AdaptTo;
@@ -132,7 +132,7 @@ class ListV3ImplTest {
         PN_LINK_ITEMS, true));
     List underTest = AdaptTo.notNull(context.request(), List.class);
 
-    java.util.List<ListItem> items = ImmutableList.copyOf(underTest.getListItems());
+    java.util.List<ListItem> items = new ArrayList<>(underTest.getListItems());
     assertListItems(items, page1, page2, page3);
 
     ValueMap props1 = ResourceUtil.getValueMap(items.get(0).getTeaserResource());
@@ -164,7 +164,7 @@ class ListV3ImplTest {
         PN_SOURCE, "children"));
     List underTest = AdaptTo.notNull(context.request(), List.class);
 
-    java.util.List<ListItem> items = ImmutableList.copyOf(underTest.getListItems());
+    java.util.List<ListItem> items = new ArrayList<>(underTest.getListItems());
     assertListItems(items, page1, page2, page3);
 
     ValueMap props1 = ResourceUtil.getValueMap(items.get(0).getTeaserResource());
