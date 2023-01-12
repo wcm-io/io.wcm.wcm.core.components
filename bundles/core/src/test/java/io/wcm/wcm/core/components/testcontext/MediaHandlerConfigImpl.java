@@ -23,8 +23,6 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.google.common.collect.ImmutableList;
-
 import io.wcm.handler.media.spi.MediaHandlerConfig;
 import io.wcm.handler.media.spi.MediaSource;
 import io.wcm.handler.mediasource.dam.DamMediaSource;
@@ -35,7 +33,7 @@ import io.wcm.handler.mediasource.inline.InlineMediaSource;
  */
 public class MediaHandlerConfigImpl extends MediaHandlerConfig {
 
-  private static final List<Class<? extends MediaSource>> MEDIA_SOURCES = ImmutableList.<Class<? extends MediaSource>>of(
+  private static final List<Class<? extends MediaSource>> MEDIA_SOURCES = List.of(
       DamMediaSource.class,
       InlineMediaSource.class);
 

@@ -39,7 +39,6 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 
@@ -75,7 +74,6 @@ public final class DataLayerTestUtils {
     assertListItems_DataLayer((Collection)items, pages);
   }
 
-  @SuppressWarnings("null")
   public static void assertListItems_DataLayer(Collection<ListItem> items, Page... pages) {
     List<String> expected = Arrays.stream(pages)
         .map(Page::getPath)
@@ -85,7 +83,7 @@ public final class DataLayerTestUtils {
         .collect(Collectors.toList());
     assertEquals(expected, actual);
 
-    List<ListItem> itemsList = ImmutableList.copyOf(items);
+    List<ListItem> itemsList = List.copyOf(items);
     for (int i = 0; i < items.size(); i++) {
       Page page = pages[i];
       ListItem item = itemsList.get(i);

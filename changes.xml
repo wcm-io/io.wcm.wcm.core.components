@@ -23,6 +23,18 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="1.12.2-2.21.2" date="2023-01-12">
+      <action type="update" dev="sseifert">
+        Update to AEM WCM Core Components 2.21.2.
+      </action>
+      <action type="update" dev="sseifert">
+        Switch to Java 11 as minimum version.
+      </action>
+      <action type="update" dev="sseifert">
+        Eliminate dependency to Guava.
+      </action>
+    </release>
+
     <release version="1.12.0-2.20.0" date="2022-06-23">
       <action type="add" dev="sseifert">
         Add Table of Contents (v1).

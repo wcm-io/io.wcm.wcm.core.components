@@ -24,13 +24,14 @@ import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -59,12 +60,12 @@ class NavigationItemV1ImplTest {
         ImmutableValueMap.of(JCR_DESCRIPTION, "My Description"));
     Link link = linkHandler.get(page).build();
     NavigationItem underTest = new NavigationItemV1Impl(page, link,
-        5, true, true, ImmutableList.of(), "p-id", null);
+        5, true, true, Collections.emptyList(), "p-id", null);
 
     assertEquals(page.getPath(), underTest.getPage().getPath());
     assertTrue(underTest.isActive());
     assertTrue(underTest.isCurrent());
-    assertEquals(ImmutableList.of(), underTest.getChildren());
+    assertEquals(Collections.emptyList(), underTest.getChildren());
     assertEquals(5, underTest.getLevel());
   }
 

@@ -32,6 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -39,8 +40,6 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import com.google.common.collect.ImmutableSet;
 
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -75,7 +74,7 @@ class CoreResourceWrapperTest {
         "a", 1,
         "b", 2,
         ResourceResolver.PROPERTY_RESOURCE_TYPE, "a/b/c");
-    Resource wrappedResource = new CoreResourceWrapper(resource, "d/e/f", null, ImmutableSet.of("b"));
+    Resource wrappedResource = new CoreResourceWrapper(resource, "d/e/f", null, Set.of("b"));
 
     Map<String, Object> expectedProperties = new HashMap<>(resource.getValueMap());
     expectedProperties.put(ResourceResolver.PROPERTY_RESOURCE_TYPE, "d/e/f");

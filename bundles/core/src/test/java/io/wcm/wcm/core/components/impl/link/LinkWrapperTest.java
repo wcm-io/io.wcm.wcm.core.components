@@ -31,6 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Map;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +40,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableMap;
 
 import ch.randelshofer.io.ByteArrayImageInputStream;
 import io.wcm.handler.link.LinkHandler;
@@ -89,7 +90,7 @@ class LinkWrapperTest {
     assertEquals(url, underTest.getURL());
     assertEquals(url, underTest.getMappedURL());
     assertEquals(url, underTest.getExternalizedURL());
-    assertEquals(ImmutableMap.of("href", url), underTest.getHtmlAttributes());
+    assertEquals(Map.of("href", url), underTest.getHtmlAttributes());
     assertEquals(page, underTest.getReference());
     assertNotNull(underTest.getLinkObject());
 
@@ -107,7 +108,7 @@ class LinkWrapperTest {
     assertEquals(url, underTest.getURL());
     assertEquals(url, underTest.getMappedURL());
     assertEquals(url, underTest.getExternalizedURL());
-    assertEquals(ImmutableMap.of("href", url), underTest.getHtmlAttributes());
+    assertEquals(Map.of("href", url), underTest.getHtmlAttributes());
     assertTrue(underTest.getReference() instanceof io.wcm.handler.media.Asset);
     assertEquals(asset.getPath(), ((io.wcm.handler.media.Asset)underTest.getReference()).getPath());
     assertNotNull(underTest.getLinkObject());
@@ -130,7 +131,7 @@ class LinkWrapperTest {
     assertEquals(url, underTest.getURL());
     assertEquals(url, underTest.getMappedURL());
     assertEquals(url, underTest.getExternalizedURL());
-    assertEquals(ImmutableMap.of("href", url, "target", target), underTest.getHtmlAttributes());
+    assertEquals(Map.of("href", url, "target", target), underTest.getHtmlAttributes());
     assertNull(underTest.getReference());
     assertNotNull(underTest.getLinkObject());
 

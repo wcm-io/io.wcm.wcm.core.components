@@ -24,8 +24,6 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 
-import com.google.common.collect.ImmutableList;
-
 import io.wcm.handler.media.spi.MediaHandlerConfig;
 import io.wcm.handler.media.spi.MediaSource;
 import io.wcm.handler.mediasource.dam.DamMediaSource;
@@ -37,7 +35,7 @@ import io.wcm.handler.mediasource.inline.InlineMediaSource;
 @Component(service = MediaHandlerConfig.class)
 public class MediaHandlerConfigImpl extends MediaHandlerConfig {
 
-  private static final List<Class<? extends MediaSource>> MEDIA_SOURCES = ImmutableList.<Class<? extends MediaSource>>of(
+  private static final List<Class<? extends MediaSource>> MEDIA_SOURCES = List.of(
       DamMediaSource.class,
       InlineMediaSource.class);
 

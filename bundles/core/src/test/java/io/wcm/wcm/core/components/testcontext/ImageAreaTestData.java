@@ -27,7 +27,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.models.ImageArea;
-import com.google.common.collect.ImmutableList;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.handler.link.Link;
@@ -55,7 +54,7 @@ public final class ImageAreaTestData {
   @SuppressFBWarnings("NP_NULL_ON_SOME_PATH")
   public static List<ImageArea> getExpectedAreasV1(AemContext context) {
     ImageMapLinkResolver<Link> imageMapLinkResolver = context.getService(ImageMapLinkResolver.class);
-    return ImmutableList.of(
+    return List.of(
         areaV1("circle", "256,256,256", "0.2000,0.3001,0.2000",
             imageMapLinkResolver.resolveLink("http://myhost", null, context.currentResource()),
             "http://myhost", null, null),
