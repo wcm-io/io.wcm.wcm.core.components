@@ -226,7 +226,7 @@
             <dependency>
               <groupId>io.wcm.maven.release-policies</groupId>
               <artifactId>io.wcm.maven.release-policies.oddeven-with-suffix-version</artifactId>
-              <version>1.0.2</version>
+              <version>1.0.4</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -240,7 +240,7 @@
             <dependency>
               <groupId>io.wcm.maven.release-policies</groupId>
               <artifactId>io.wcm.maven.release-policies.oddeven-with-suffix-version</artifactId>
-              <version>1.0.2</version>
+              <version>1.0.4</version>
             </dependency>
           </dependencies>
         </plugin>
