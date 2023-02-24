@@ -36,11 +36,16 @@
   
   <name>WCM Core Components</name>
   <description>Enhances AEM WCM Core Components with wcm.io functionality.</description>
-  
+
   <ciManagement>
     <system>GitHub Actions</system>
-    <url>https://github.com/wcm-io/wcm-io-wcm-core-components/actions</url>
+    <url>https://github.com/wcm-io/io.wcm.wcm.core.components/actions</url>
   </ciManagement>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/wcm-io/io.wcm.wcm.core.components/issues/</url>
+  </issueManagement>
 
   <properties>
     <core.wcm.components.version>2.21.2</core.wcm.components.version>
