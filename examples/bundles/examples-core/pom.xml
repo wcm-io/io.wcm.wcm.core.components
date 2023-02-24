@@ -70,6 +70,12 @@
               SLING-INF/app-root/templates;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/templates, \
               SLING-INF/app-root/clientlibs;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io-samples/wcm-core-components/clientlibs
 
+            Sling-Namespaces: \
+              wcmio=http://wcm.io/ns,\
+              cq=http://www.day.com/jcr/cq/1.0,\
+              granite=http://www.adobe.com/jcr/granite/1.0,\
+              sling=http://sling.apache.org/jcr/sling/1.0
+
             <!-- For build compatibility with Java 11 -->
             Import-Package: \
               javax.annotation;version="[0.0,2)",\
