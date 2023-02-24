@@ -31,16 +31,21 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.12.2-2.21.2</version>
+  <version>1.12.4-2.21.2</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
   <description>Enhances AEM WCM Core Components with wcm.io functionality.</description>
-  
+
   <ciManagement>
     <system>GitHub Actions</system>
-    <url>https://github.com/wcm-io/wcm-io-wcm-core-components/actions</url>
+    <url>https://github.com/wcm-io/io.wcm.wcm.core.components/actions</url>
   </ciManagement>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/wcm-io/io.wcm.wcm.core.components/issues/</url>
+  </issueManagement>
 
   <properties>
     <core.wcm.components.version>2.21.2</core.wcm.components.version>
@@ -49,7 +54,7 @@
     <sling.publish.url>http://localhost:4503</sling.publish.url>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2023-01-12T21:29:46Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-02-24T15:12:45Z</project.build.outputTimestamp>
   </properties>
 
   <dependencyManagement>

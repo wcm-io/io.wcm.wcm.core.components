@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>1.12.2-2.21.2</version>
+    <version>1.12.4-2.21.2</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components</artifactId>
-  <version>1.12.2-2.21.2</version>
+  <version>1.12.4-2.21.2</version>
   <packaging>jar</packaging>
 
   <name>WCM Core Components</name>
@@ -204,7 +204,12 @@
           <bnd>
             Sling-Initial-Content: \
               SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/wcm/core
-            Sling-Namespaces: wcmio=http://wcm.io/ns
+
+            Sling-Namespaces: \
+              wcmio=http://wcm.io/ns,\
+              cq=http://www.day.com/jcr/cq/1.0,\
+              granite=http://www.adobe.com/jcr/granite/1.0,\
+              sling=http://sling.apache.org/jcr/sling/1.0
 
             <!-- For build compatibility with Java 11 -->
             Import-Package: \
