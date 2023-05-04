@@ -23,6 +23,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -51,7 +52,7 @@ public class ListV2Impl extends ListV3Impl {
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/list/v2/list";
 
   @Override
-  protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link) {
+  protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link, @Nullable String linkText) {
     return new PageListItemV1Impl(page, link,
         getId(), getParentComponent());
   }

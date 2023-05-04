@@ -20,16 +20,12 @@
 package io.wcm.wcm.core.components.impl.models.v3;
 
 import java.util.Collection;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Via;
-import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
@@ -38,11 +34,9 @@ import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.handler.link.Link;
-import io.wcm.handler.link.LinkHandler;
-import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.PageListItemV2Impl;
+import io.wcm.wcm.core.components.impl.models.v4.ListV4Impl;
 
 /**
  * wcm.io-based enhancements for {@link List}:
@@ -56,68 +50,18 @@ import io.wcm.wcm.core.components.impl.models.helpers.PageListItemV2Impl;
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class ListV3Impl extends AbstractComponentImpl implements List {
+public class ListV3Impl extends ListV4Impl {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/list/v3/list";
 
-  @Self
-  @Via(type = ResourceSuperType.class)
-  private List delegate;
-
-  @Self
-  private LinkHandler linkHandler;
-
   @Override
   @JsonProperty("items")
-  @SuppressWarnings("null")
   public @NotNull Collection<ListItem> getListItems() {
-    return getItems().stream()
-        .filter(Objects::nonNull)
-        .map(page -> newPageListItem(page, linkHandler.get(page).build()))
-        .collect(Collectors.toList());
-  }
-
-  // --- delegated methods ---
-
-  @Override
-  @SuppressWarnings("null")
-  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
-  public @NotNull String getId() {
-    return this.delegate.getId();
+    return transformToPageListItems(getItems());
   }
 
   @Override
-  @SuppressWarnings("deprecation")
-  public Collection<Page> getItems() {
-    return this.delegate.getItems();
-  }
-
-  @Override
-  public boolean linkItems() {
-    return this.delegate.linkItems();
-  }
-
-  @Override
-  public boolean showDescription() {
-    return this.delegate.showDescription();
-  }
-
-  @Override
-  public boolean showModificationDate() {
-    return this.delegate.showModificationDate();
-  }
-
-  @Override
-  public String getDateFormatString() {
-    return this.delegate.getDateFormatString();
-  }
-
-  @Override
-  public boolean displayItemAsTeaser() {
-    return this.delegate.displayItemAsTeaser();
-  }
-
-  protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link) {
+  protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link, @Nullable String linkText) {
     return new PageListItemV2Impl(page, link,
         getId(), getParentComponent(), showDescription(), linkItems() || displayItemAsTeaser());
   }
