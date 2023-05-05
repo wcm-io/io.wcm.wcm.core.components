@@ -19,21 +19,25 @@
  */
 package io.wcm.wcm.core.components.impl.models.v4;
 
+import java.text.Collator;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
-import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -70,6 +74,9 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/list/v4/list";
 
   private static final String SOURCE_STAITC = "static";
+  private static final String ORDERBY_TITLE = "title";
+  private static final String ORDERBY_MODIFIED = "modified";
+  private static final String SORTORDER_DESC = "desc";
 
   private Collection<ListItem> staticListItems;
 
@@ -80,16 +87,13 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
   @Self
   private LinkHandler linkHandler;
 
-  @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL, name = PN_SOURCE)
-  private String source;
-
   @Override
   @JsonProperty("items")
   public @NotNull Collection<ListItem> getListItems() {
     if (this.staticListItems != null) {
       return staticListItems;
     }
-    if (StringUtils.equals(source, SOURCE_STAITC)) {
+    if (isListSourceStatic()) {
       Resource staticItems = this.resource.getChild(NN_STATIC);
       if (staticItems != null) {
         this.staticListItems = getStaticListItems(staticItems);
@@ -139,33 +143,54 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
     return this.delegate.displayItemAsTeaser();
   }
 
+  // --- internal methods ---
+
+  private boolean isListSourceStatic() {
+    String source = resource.getValueMap().get(PN_SOURCE, String.class);
+    return StringUtils.equals(source, SOURCE_STAITC);
+  }
+
   private Collection<ListItem> getStaticListItems(@NotNull Resource staticItemsResource) {
     Stream<Resource> itemResources = StreamSupport.stream(staticItemsResource.getChildren().spliterator(), false);
     Stream<ListItem> listItems = itemResources
         .map(this::toLinkListItem)
         .filter(Objects::nonNull);
 
-    /*
-    TODO: implement sorting
     // apply sorting
     ValueMap properties = resource.getValueMap();
-    OrderBy orderBy = OrderBy.fromString(properties.get(PN_ORDER_BY, StringUtils.EMPTY));
-    SortOrder sortOrder = SortOrder.fromString(properties.get(PN_SORT_ORDER, SortOrder.ASC.value));
-    int direction = sortOrder.equals(SortOrder.ASC) ? 1 : -1;
-    if (OrderBy.TITLE.equals(orderBy)) {
-      Collator collator = Collator.getInstance(currentPage.getLanguage());
-      collator.setStrength(Collator.PRIMARY);
+    String orderBy = properties.get(PN_ORDER_BY, String.class);
+    String sortOrder = properties.get(PN_SORT_ORDER, String.class);
+    int direction = StringUtils.equalsIgnoreCase(sortOrder, SORTORDER_DESC) ? -1 : 1;
+    if (StringUtils.equals(orderBy, ORDERBY_TITLE)) {
       // getTitle may return null, define null to be greater than nonnull values
-      Comparator<String> titleComparator = Comparator.nullsLast(collator);
+      Comparator<String> titleComparator = Comparator.nullsLast(getCollator());
       listItems = listItems.sorted((item1, item2) -> direction * titleComparator.compare(item1.getTitle(), item2.getTitle()));
     }
-    else if (OrderBy.MODIFIED.equals(orderBy)) {
+    else if (StringUtils.equals(orderBy, ORDERBY_MODIFIED)) {
       // getLastModified may return null, define null to be after nonnull values
-      listItems = listItems.sorted((item1, item2) -> direction * ObjectUtils.compare(item1.getLastModified(), item2.getLastModified(), true));
+      listItems = listItems.sorted((item1, item2) -> direction * ObjectUtils.compare(getLastModifiedDate(item1),
+          getLastModifiedDate(item2), true));
     }
-    */
 
     return listItems.collect(Collectors.toList());
+  }
+
+  private Collator getCollator() {
+    Locale locale = Locale.US;
+    Page currentPage = getCurrentPage();
+    if (currentPage != null) {
+      locale = currentPage.getLanguage();
+    }
+    Collator collator = Collator.getInstance(locale);
+    collator.setStrength(Collator.PRIMARY);
+    return collator;
+  }
+
+  private Calendar getLastModifiedDate(ListItem item) {
+    if (item instanceof PageListItemV4Impl) {
+      return ((PageListItemV4Impl)item).getPage().getLastModified();
+    }
+    return null;
   }
 
   @SuppressWarnings("null")

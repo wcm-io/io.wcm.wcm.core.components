@@ -195,6 +195,11 @@ public class PageListItemV4Impl extends AbstractListItemImpl implements ListItem
     return new CoreResourceWrapper(resourceToBeWrapped, delegateResourceType, overriddenProperties, hiddenProperties);
   }
 
+  @JsonIgnore
+  public Page getPage() {
+    return page;
+  }
+
   // --- data layer ---
 
   @Override
