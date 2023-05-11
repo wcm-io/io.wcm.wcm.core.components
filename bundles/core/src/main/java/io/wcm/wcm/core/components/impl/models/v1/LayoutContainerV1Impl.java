@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
+import com.adobe.cq.wcm.core.components.models.ContainerItem;
 import com.adobe.cq.wcm.core.components.models.LayoutContainer;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -68,10 +69,19 @@ public class LayoutContainerV1Impl extends AbstractContainerImpl implements Layo
     return this.delegate.getId();
   }
 
+  /**
+   * @deprecated since 1.13.0-2.22.6- use {@link #getChildren()}
+   */
   @Override
   @JsonIgnore
+  @Deprecated(since = "1.13.0-2.22.6")
   public @NotNull List<ListItem> getItems() {
     return delegate.getItems();
+  }
+
+  @Override
+  public @NotNull List<? extends ContainerItem> getChildren() {
+    return delegate.getChildren();
   }
 
   @Override

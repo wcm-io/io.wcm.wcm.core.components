@@ -153,6 +153,15 @@ public final class TestUtils {
     }
   }
 
+  public static void assertListItem(ListItem item, String url, String target, String title) {
+    Link link = item.getLink();
+    assertNotNull(link);
+    assertTrue(link.isValid());
+    assertEquals(url, link.getURL());
+    assertEquals(target, link.getHtmlAttributes().get("target"));
+    assertEquals(title, item.getTitle());
+  }
+
   public static void assertJson(String expectedJson, Object actual) {
     try {
       String actualJson = OBJECT_MAPPER.writeValueAsString(actual);

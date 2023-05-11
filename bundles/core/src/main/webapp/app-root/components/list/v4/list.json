@@ -1,0 +1,11 @@
+{
+  "jcr:primaryType": "cq:Component",
+  "jcr:title": "wcm.io List (v4)",
+  "componentGroup": ".wcmio-core-wcm",
+  "sling:resourceSuperType": "core/wcm/components/list/v4/list",
+  "teaserDelegate": "wcm-io/wcm/core/components/teaser/v2/teaser",
+
+  /* Fallback mode for Link Handler to support existing content that uses a single property name */
+  "wcmio:linkTargetUrlFallbackProperty": "linkURL",
+  "wcmio:linkTargetWindowTargetFallbackProperty": "linkTarget"
+}
