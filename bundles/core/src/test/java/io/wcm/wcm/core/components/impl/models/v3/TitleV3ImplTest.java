@@ -80,7 +80,6 @@ class TitleV3ImplTest {
   }
 
   @Test
-  @SuppressWarnings("null")
   void testProperties() {
     enableDataLayer(context, true);
 

@@ -73,10 +73,10 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
 
   static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/list/v4/list";
 
-  private static final String SOURCE_STAITC = "static";
-  private static final String ORDERBY_TITLE = "title";
-  private static final String ORDERBY_MODIFIED = "modified";
-  private static final String SORTORDER_DESC = "desc";
+  static final String SOURCE_STATIC = "static";
+  static final String ORDERBY_TITLE = "title";
+  static final String ORDERBY_MODIFIED = "modified";
+  static final String SORTORDER_DESC = "desc";
 
   private Collection<ListItem> staticListItems;
 
@@ -147,7 +147,7 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
 
   private boolean isListSourceStatic() {
     String source = resource.getValueMap().get(PN_SOURCE, String.class);
-    return StringUtils.equals(source, SOURCE_STAITC);
+    return StringUtils.equals(source, SOURCE_STATIC);
   }
 
   private Collection<ListItem> getStaticListItems(@NotNull Resource staticItemsResource) {

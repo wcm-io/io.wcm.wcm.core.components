@@ -34,6 +34,7 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import com.adobe.cq.wcm.core.components.models.ContainerItem;
 import com.adobe.cq.wcm.core.components.models.LayoutContainer;
+import com.adobe.cq.wcm.core.components.models.LayoutContainer.LayoutType;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
