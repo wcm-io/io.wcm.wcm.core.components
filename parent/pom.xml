@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.12.4-2.21.2</version>
+  <version>1.13.0-2.22.6</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
@@ -48,13 +48,13 @@
   </issueManagement>
 
   <properties>
-    <core.wcm.components.version>2.21.2</core.wcm.components.version>
+    <core.wcm.components.version>2.22.6</core.wcm.components.version>
 
     <sling.url>http://localhost:4502</sling.url>
     <sling.publish.url>http://localhost:4503</sling.publish.url>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2023-02-24T15:12:45Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-05-19T11:52:19Z</project.build.outputTimestamp>
   </properties>
 
   <dependencyManagement>
@@ -63,7 +63,7 @@
       <dependency>
         <groupId>io.wcm.maven</groupId>
         <artifactId>io.wcm.maven.aem-dependencies</artifactId>
-        <version>6.5.13.0000</version>
+        <version>6.5.14.0000</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -160,7 +160,7 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.testing.aem-mock.junit5</artifactId>
-        <version>5.1.2</version>
+        <version>5.2.2</version>
       </dependency>
       <dependency>
         <groupId>org.apache.sling</groupId>
@@ -170,12 +170,12 @@
       <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.testing.wcm-io-mock.sling</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.0</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>

@@ -86,7 +86,6 @@ class BreadcrumbV3ImplTest {
   }
 
   @Test
-  @SuppressWarnings("null")
   void testDefault_DataLayer() {
     enableDataLayer(context, true);
 
