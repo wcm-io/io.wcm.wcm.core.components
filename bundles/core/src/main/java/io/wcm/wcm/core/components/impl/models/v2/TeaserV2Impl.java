@@ -118,7 +118,7 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
     boolean actionsDisabled = currentStyle.get(PN_ACTIONS_DISABLED, false);
 
     // read component properties
-    actionsEnabled = properties.get(PN_ACTIONS_ENABLED, false) && !actionsDisabled;
+    actionsEnabled = properties.get(PN_ACTIONS_ENABLED, getActionsEnabledDefault()) && !actionsDisabled;
     boolean titleFromPage = properties.get(PN_TITLE_FROM_PAGE, false);
     boolean descriptionFromPage = properties.get(PN_DESCRIPTION_FROM_PAGE, false);
 
@@ -138,11 +138,13 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
           }
         }
       }
-      // primary link is not enabled when actions are enabled
-      link = new LinkWrapper(linkHandler.invalid());
     }
 
-    // if no actions enabled, resolve primary teaser link
+    // if actions are enabled and present, primary link is not enabled
+    if (actionsEnabled && !this.actions.isEmpty()) {
+      link = new LinkWrapper(linkHandler.invalid());
+    }
+    // otherwise resolve primary teaser link
     else {
       link = new LinkWrapper(HandlerUnwrapper.get(linkHandler, resource).build());
       targetPage = link.getLinkObject().getTargetPage();
@@ -183,6 +185,10 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
       }
     }
 
+  }
+
+  protected boolean getActionsEnabledDefault() {
+    return true;
   }
 
   @Override
