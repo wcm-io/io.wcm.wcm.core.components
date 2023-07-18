@@ -83,4 +83,9 @@ public class TeaserV1Impl extends TeaserV2Impl implements LinkMixin {
         getId(), getParentComponent(), this.resource);
   }
 
+  @Override
+  protected boolean getActionsEnabledDefault() {
+    return false;
+  }
+
 }
