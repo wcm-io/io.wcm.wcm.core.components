@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-  <version>1.13.0-2.22.6</version>
+  <version>1.13.2-2.22.6</version>
   <packaging>pom</packaging>
   
   <name>WCM Core Components</name>
@@ -54,7 +54,7 @@
     <sling.publish.url>http://localhost:4503</sling.publish.url>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2023-05-19T11:52:19Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2023-08-21T09:23:27Z</project.build.outputTimestamp>
   </properties>
 
   <dependencyManagement>

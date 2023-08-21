@@ -24,7 +24,6 @@ import static com.adobe.cq.wcm.core.components.models.Image.PN_IMAGE_FROM_PAGE_I
 import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.NN_ACTIONS;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTIONS_DISABLED;
-import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTIONS_ENABLED;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_ACTION_TEXT;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_DESCRIPTION_FROM_PAGE;
 import static com.adobe.cq.wcm.core.components.models.Teaser.PN_DESCRIPTION_HIDDEN;
@@ -109,7 +108,7 @@ class TeaserV2ImplTest {
 
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
-    assertFalse(underTest.isActionsEnabled());
+    assertTrue(underTest.isActionsEnabled());
     assertTrue(underTest.getActions().isEmpty());
     assertFalse(underTest.isImageLinkHidden());
     assertNull(underTest.getTitle());
@@ -125,7 +124,6 @@ class TeaserV2ImplTest {
   }
 
   @Test
-  @SuppressWarnings("null")
   void testWithImageAndPrimaryLink() {
     enableDataLayer(context, true);
 
@@ -140,7 +138,7 @@ class TeaserV2ImplTest {
 
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
-    assertFalse(underTest.isActionsEnabled());
+    assertTrue(underTest.isActionsEnabled());
     assertTrue(underTest.getActions().isEmpty());
     assertFalse(underTest.isImageLinkHidden());
     assertEquals("Teaser Title", underTest.getTitle());
@@ -261,8 +259,7 @@ class TeaserV2ImplTest {
     Resource resource = context.create().resource(page, "teaser",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_LINK_TYPE, ExternalLinkType.ID,
-        PN_LINK_EXTERNAL_REF, "http://host",
-        PN_ACTIONS_ENABLED, true);
+        PN_LINK_EXTERNAL_REF, "http://host");
     context.currentResource(resource);
     context.create().resource(resource, NN_ACTIONS + "/action1",
         PN_ACTION_TEXT, "Action 1",
@@ -297,8 +294,7 @@ class TeaserV2ImplTest {
     Resource resource = context.create().resource(page, "teaser",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_LINK_TYPE, ExternalLinkType.ID,
-        PN_LINK_EXTERNAL_REF, "http://host",
-        PN_ACTIONS_ENABLED, true);
+        PN_LINK_EXTERNAL_REF, "http://host");
     context.currentResource(resource);
     context.create().resource(resource, NN_ACTIONS + "/action1",
         PN_ACTION_TEXT, "Action 1",
@@ -322,7 +318,6 @@ class TeaserV2ImplTest {
         PN_MEDIA_REF_STANDARD, asset.getPath());
     Resource resource = context.create().resource(page, "teaser",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
-        PN_ACTIONS_ENABLED, true,
         PN_TITLE_FROM_PAGE, true,
         PN_DESCRIPTION_FROM_PAGE, true,
         PN_IMAGE_FROM_PAGE_IMAGE, true,
