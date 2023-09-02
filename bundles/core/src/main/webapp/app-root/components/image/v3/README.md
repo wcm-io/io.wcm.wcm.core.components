@@ -1,4 +1,4 @@
-Image (v2)
+Image (v3)
 ====
 Image component written in HTL that renders an adaptive image.
 
@@ -6,7 +6,7 @@ Extends the [Image AEM Sites Core Component][extends-component]
 
 ## Resource Type
 ```
-wcm-io/wcm/core/components/image/v2/image
+wcm-io/wcm/core/components/image/v3/image
 ```
 
 ## Enhanced Features
@@ -20,12 +20,7 @@ wcm-io/wcm/core/components/image/v2/image
 * Uses [wcm.io Link Handler][wcmio-handler-link] for processing the image link
 * Uses the Link Handler dialog widget for defining link type and link target
 
-Please note: This component does not support all features from the wcm.io Media Handler, especially not its responsive image handling. It emulates the markup and adaptive image handling from the [Image AEM Sites Core Component][extends-component], and only uses the Media Handler internally.
 
-For HTML5 standards-based reponsive image handling use the [wcm.io Reponsive Image][wcmio-core-component-responsive-image] core component.
-
-
-[extends-component]: https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/image/v2/image
+[extends-component]: https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/image/v3/image
 [wcmio-handler-media]: https://wcm.io/handler/media/
 [wcmio-handler-link]: https://wcm.io/handler/link/
-[wcmio-core-component-responsive-image]: https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/wcmio/responsiveimage/v1
