@@ -240,6 +240,9 @@ public class NavigationV2Impl extends AbstractComponentImpl implements Navigatio
         Page page = it.next();
         int pageLevel = page.getDepth();
         int level = pageLevel - navigationRoot.startLevel;
+        if (structureStart == 0) {
+          level++;
+        }
         List<NavigationItem> children = getItems(navigationRoot, page);
         Link link = linkHandler.get(page).build();
         boolean active = isActive(page, link);

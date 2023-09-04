@@ -33,6 +33,9 @@
       <action type="fix" dev="sseifert">
         ComponentFeatureImageResolver: Switch to image from page by default if no image reference is given in image/teaser resource.
       </action>
+      <action type="fix" dev="sseifert">
+        Navigation: Fix navigation item level numbering when structureStart = 0.
+      </action>
     </release>
 
     <release version="1.13.2-2.22.6" date="2023-08-21">
