@@ -42,6 +42,7 @@ import com.day.cq.wcm.api.designer.Style;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaBuilder;
 import io.wcm.handler.media.MediaHandler;
+import io.wcm.handler.media.MediaInvalidReason;
 
 /**
  * Resolves images and alt. texts for components either from the component resource,
@@ -128,7 +129,16 @@ public class ComponentFeatureImageResolver {
    * @return Media
    */
   public @NotNull Media buildMedia() {
-    Media media;
+    Media media = mediaHandler.invalid();
+
+    if (!imageFromPageImage) {
+      // image from resource properties
+      media = buildMedia(componentResource);
+      if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING) {
+        // fallback to image from page if no reference was given
+        imageFromPageImage = true;
+      }
+    }
 
     if (imageFromPageImage) {
       // try to get feature image from target page
@@ -144,10 +154,6 @@ public class ComponentFeatureImageResolver {
         Resource featuredImageResource = ComponentUtils.getFeaturedImage(currentPage);
         media = buildMedia(wrapFeatureImageResource(featuredImageResource));
       }
-    }
-    else {
-      // image from teaser resource
-      media = buildMedia(componentResource);
     }
 
     return media;

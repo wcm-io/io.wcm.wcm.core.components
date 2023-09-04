@@ -27,8 +27,11 @@
       <action type="add" dev="sseifert" issue="13">
         Add Image (v3).
       </action>
-      <action type="update" dev="sseifert" issue="11">
+      <action type="update" dev="sseifert" issue="14">
         Update to AEM WCM Core Components 2.23.2.
+      </action>
+      <action type="fix" dev="sseifert">
+        ComponentFeatureImageResolver: Switch to image from page by default if no image reference is given in image/teaser resource.
       </action>
     </release>
 

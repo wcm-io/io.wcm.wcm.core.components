@@ -68,7 +68,7 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
   public static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/image/v2/image";
 
   @Override
-  protected Media buildMedia(boolean altFromAsset, boolean imageFromPageImage) {
+  protected Media buildMedia(boolean altFromAsset) {
     return HandlerUnwrapper.get(mediaHandler, resource)
         // disable dynamic media support as it is not compatible with the "src-pattern" concept
         .dynamicMediaDisabled(true)
