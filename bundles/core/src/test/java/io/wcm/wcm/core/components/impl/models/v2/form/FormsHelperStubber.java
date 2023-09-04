@@ -60,7 +60,7 @@ final class FormsHelperStubber {
       // remove the static initializer block calling new on impl class.
       ctClass.removeConstructor(ctClass.getClassInitializer());
       // load the stubbed class
-      ctClass.toClass();
+      ctClass.toClass(com.day.cq.wcm.foundation.forms.FormsConstants.class);
     }
     catch (NotFoundException | CannotCompileException ex) {
       throw new RuntimeException(ex);
