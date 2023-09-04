@@ -1,4 +1,4 @@
-Image (v2) - deprecated
+Image (v2)
 ====
 Image component written in HTL that renders an adaptive image.
 

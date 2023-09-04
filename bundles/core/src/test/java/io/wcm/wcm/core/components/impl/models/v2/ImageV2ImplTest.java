@@ -102,7 +102,7 @@ class ImageV2ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testNoImage() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -132,7 +132,7 @@ class ImageV2ImplTest {
 
   @Test
   void testInvalidAssetReference() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, "/content/dam/invalid"));
 
@@ -145,7 +145,7 @@ class ImageV2ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testWithAssetImage() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
@@ -174,7 +174,7 @@ class ImageV2ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testWithUploadedImage() {
-    Resource imageResource = context.create().resource(page.getContentResource().getPath() + "/image",
+    Resource imageResource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         NN_MEDIA_INLINE_STANDARD + "Name", "file1.png");
     context.load().binaryFile("/files/test.png", imageResource.getPath() + "/" + NN_MEDIA_INLINE_STANDARD, ContentType.PNG);
@@ -201,11 +201,11 @@ class ImageV2ImplTest {
   }
 
   @Test
-  @SuppressWarnings({ "null", "deprecation" })
+  @SuppressWarnings("deprecation")
   void testWithImageAndLink() {
     enableDataLayer(context, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
@@ -233,7 +233,7 @@ class ImageV2ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testWithImageAndLink_Decorative() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
@@ -257,7 +257,7 @@ class ImageV2ImplTest {
         PN_IS_DECORATIVE, true,
         PN_DESIGN_LAZY_THRESHOLD, 10);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
@@ -275,7 +275,7 @@ class ImageV2ImplTest {
 
   @Test
   void testWithImage_TitleAltNotFormAsset() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
@@ -295,7 +295,7 @@ class ImageV2ImplTest {
         PN_TITLE_VALUE_FROM_DAM, false,
         PN_ALT_VALUE_FROM_DAM, false);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
@@ -311,7 +311,7 @@ class ImageV2ImplTest {
   void testWithNoImageAsset() {
     Asset pdfAsset = context.create().asset(DAM_ROOT + "/file1.pdf", "/files/test.pdf", ContentType.PDF);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, pdfAsset.getPath()));
 
@@ -322,7 +322,7 @@ class ImageV2ImplTest {
 
   @Test
   void testDisplayPopupTitle() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_DISPLAY_POPUP_TITLE, false));
@@ -337,7 +337,7 @@ class ImageV2ImplTest {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_DISPLAY_POPUP_TITLE, false);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -351,7 +351,7 @@ class ImageV2ImplTest {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_DESIGN_LAZY_LOADING_ENABLED, false); // property is internally named "disabled", value is inverted
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -366,7 +366,7 @@ class ImageV2ImplTest {
     ModifiableValueMap props = AdaptTo.notNull(resource, ModifiableValueMap.class);
     props.put(JCR_UUID, "test-uuid");
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -384,7 +384,7 @@ class ImageV2ImplTest {
     ModifiableValueMap props = AdaptTo.notNull(resource, ModifiableValueMap.class);
     props.put(JCR_UUID, "test-uuid");
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -398,7 +398,7 @@ class ImageV2ImplTest {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[] { "100", "50", "200", "-123", "0", "junk" });
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -414,7 +414,7 @@ class ImageV2ImplTest {
 
   @Test
   void testAreas() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_MAP, ImageAreaTestData.MAP_STRING));
@@ -430,7 +430,7 @@ class ImageV2ImplTest {
         PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -451,7 +451,7 @@ class ImageV2ImplTest {
         PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    Resource resource = context.create().resource(page.getContentResource().getPath() + "/image",
+    Resource resource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, DELEGATE_RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath());
 

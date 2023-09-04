@@ -2,7 +2,7 @@
  * #%L
  * wcm.io
  * %%
- * Copyright (C) 2019 wcm.io
+ * Copyright (C) 2023 wcm.io
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,18 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.models.wcmio.v1;
+package io.wcm.wcm.core.components.impl.models.v3;
 
 import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DAM;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_LOADING_ENABLED;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_THRESHOLD;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_IMAGE_FROM_PAGE_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_IS_DECORATIVE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_MAP;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_TITLE_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_UUID_DISABLED;
+import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
 import static com.day.cq.commons.ImageResource.PN_ALT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_UUID;
@@ -32,12 +36,14 @@ import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TITLE;
+import static io.wcm.handler.media.MediaNameConstants.NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES;
 import static io.wcm.handler.media.MediaNameConstants.NN_MEDIA_INLINE_STANDARD;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_RESPONSIVE_TYPE;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
-import static io.wcm.wcm.core.components.impl.models.wcmio.v1.ResponsiveImageV1Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v3.ImageV3Impl.RESOURCE_TYPE;
 import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
 import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidLink;
@@ -46,11 +52,14 @@ import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidLink;
 import static io.wcm.wcm.core.components.testcontext.TestUtils.assertValidMedia;
 import static io.wcm.wcm.core.components.testcontext.TestUtils.loadComponentDefinition;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Map;
 
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
@@ -58,6 +67,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
@@ -69,14 +79,13 @@ import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.commons.contenttype.ContentType;
-import io.wcm.wcm.core.components.models.ResponsiveImage;
 import io.wcm.wcm.core.components.testcontext.AppAemContext;
 import io.wcm.wcm.core.components.testcontext.ImageAreaTestData;
 import io.wcm.wcm.core.components.testcontext.MediaFormats;
 import io.wcm.wcm.core.components.testcontext.ResourceTypeForcingResourceWrapper;
 
 @ExtendWith(AemContextExtension.class)
-class ResponsiveImageV1ImplTest {
+class ImageV3ImplTest {
 
   private final AemContext context = AppAemContext.newAemContext();
 
@@ -88,7 +97,6 @@ class ResponsiveImageV1ImplTest {
     loadComponentDefinition(context, RESOURCE_TYPE);
 
     page = context.create().page(CONTENT_ROOT + "/page1");
-
     asset = context.create().asset(DAM_ROOT + "/sample.jpg", 160, 90, ContentType.JPEG,
         DC_TITLE, "Asset Title",
         DC_DESCRIPTION, "Asset Description");
@@ -97,102 +105,183 @@ class ResponsiveImageV1ImplTest {
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   void testNoImage() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
+    assertNull(underTest.getSrc());
     assertNull(underTest.getTitle());
     assertNull(underTest.getAlt());
     assertNull(underTest.getUuid());
+    assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertNull(underTest.getFileReference());
+    assertNull(underTest.getJson());
+    assertArrayEquals(new int[0], underTest.getWidths());
+    assertNull(underTest.getSrcUriTemplate());
+    assertFalse(underTest.isLazyEnabled());
+    assertEquals(0, underTest.getLazyThreshold());
     assertNull(underTest.getAreas());
+    assertFalse(underTest.isDecorative());
+    assertNotNull(underTest.getId());
 
     assertInvalidMedia(underTest);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
+    assertNull(underTest.getData());
+
+    assertNull(underTest.getWidth());
+    assertNull(underTest.getHeight());
+    assertNull(underTest.getSizes());
+    assertNull(underTest.getSrcset());
+    assertNull(underTest.getSmartCropRendition());
+    assertFalse(underTest.isDmImage());
 
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
-    assertNotNull(underTest.getId());
-    assertNull(underTest.getData());
   }
 
   @Test
   void testInvalidAssetReference() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, "/content/dam/invalid"));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertInvalidMedia(underTest);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   void testWithAssetImage() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt"));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg";
 
+    assertEquals(expectedMediaUrl, underTest.getSrc());
     assertEquals("Asset Title", underTest.getTitle());
-    assertEquals("Resource Alt", underTest.getAlt());
+    assertEquals("Asset Description", underTest.getAlt());
     assertEquals("", underTest.getUuid());
+    assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertEquals(asset.getPath(), underTest.getFileReference());
+    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
+    assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
-    assertEquals("Asset Title", underTest.getMediaObject().getElement().getAttributeValue("title"));
 
     assertValidMedia(underTest, expectedMediaUrl);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
-  void testWithUploadedImage() {
-    Resource imageResource = context.create().resource(page.getContentResource().getPath() + "/image",
+  void testWithAssetImage_SVG() {
+    Asset svgAsset = context.create().asset(DAM_ROOT + "/sample.svg", 160, 90, ContentType.SVG);
+
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, svgAsset.getPath()));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    String expectedMediaUrl = DAM_ROOT + "/sample.svg/_jcr_content/renditions/original./sample.svg";
+
+    assertEquals(expectedMediaUrl, underTest.getSrc());
+    assertNull(underTest.getSrcUriTemplate());
+  }
+
+  @Test
+  @SuppressWarnings({ "deprecation", "null" })
+  void testWithAssetImageFromPage() {
+    Page page1 = context.currentPage(context.create().page(page, "page1", null,
+        NN_PAGE_FEATURED_IMAGE, Map.of(
+            PN_MEDIA_REF_STANDARD, asset.getPath())));
+
+    context.currentResource(context.create().resource(page1, "image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        JCR_TITLE, "Resource Title",
+        PN_ALT, "Resource Alt"));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg";
+
+    assertEquals(expectedMediaUrl, underTest.getSrc());
+    assertEquals("Asset Title", underTest.getTitle());
+    assertEquals("Asset Description", underTest.getAlt());
+    assertEquals("", underTest.getUuid());
+    assertNull(underTest.getLink());
+    assertTrue(underTest.displayPopupTitle());
+    assertEquals(asset.getPath(), underTest.getFileReference());
+    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
+    assertFalse(underTest.isLazyEnabled());
+    assertNull(underTest.getAreas());
+
+    assertValidMedia(underTest, expectedMediaUrl);
+    assertInvalidLink(underTest.getImageLink());
+  }
+
+  @Test
+  @SuppressWarnings("deprecation")
+  void testWithUploadedImage() {
+    Resource imageResource = context.create().resource(page, "image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         NN_MEDIA_INLINE_STANDARD + "Name", "file1.png");
     context.load().binaryFile("/files/test.png", imageResource.getPath() + "/" + NN_MEDIA_INLINE_STANDARD, ContentType.PNG);
     context.currentResource(imageResource);
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     String expectedMediaUrl = "/content/sample/en/page1/_jcr_content/image/file./file1.png";
 
+    assertEquals(expectedMediaUrl, underTest.getSrc());
     assertNull(underTest.getTitle());
     assertNull(underTest.getAlt());
     assertNull(underTest.getUuid());
+    assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertNull(underTest.getFileReference());
+    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertEquals("/content/sample/en/page1/_jcr_content/image/file.image_file.{.width}.0.file/file1.png", underTest.getSrcUriTemplate());
+    assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
 
     assertValidMedia(underTest, expectedMediaUrl);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   void testWithImageAndLink() {
     enableDataLayer(context, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://myhost"));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Asset Title", underTest.getTitle());
     assertEquals("Asset Description", underTest.getAlt());
+    assertEquals("http://myhost", underTest.getLink());
 
-    assertValidLink(underTest, "http://myhost");
+    assertValidLink(underTest.getImageLink(), "http://myhost");
 
     ComponentData data = underTest.getData();
     assertNotNull(data);
@@ -206,52 +295,62 @@ class ResponsiveImageV1ImplTest {
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   void testWithImageAndLink_Decorative() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://myhost",
         PN_IS_DECORATIVE, true));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Asset Title", underTest.getTitle());
     assertEquals("", underTest.getAlt());
+    assertNull(underTest.getLink());
+    assertTrue(underTest.isDecorative());
 
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   void testWithImageAndLink_Decorative_ContentPolicy() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_IS_DECORATIVE, true);
+        PN_IS_DECORATIVE, true,
+        PN_DESIGN_LAZY_THRESHOLD, 10);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://myhost"));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Asset Title", underTest.getTitle());
     assertEquals("", underTest.getAlt());
+    assertNull(underTest.getLink());
+    assertEquals(10, underTest.getLazyThreshold());
 
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
   void testWithImage_TitleAltNotFormAsset() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt",
         PN_TITLE_VALUE_FROM_DAM, false,
         PN_ALT_VALUE_FROM_DAM, false));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Resource Title", underTest.getTitle());
     assertEquals("Resource Alt", underTest.getAlt());
@@ -263,13 +362,14 @@ class ResponsiveImageV1ImplTest {
         PN_TITLE_VALUE_FROM_DAM, false,
         PN_ALT_VALUE_FROM_DAM, false);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt"));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("Resource Title", underTest.getTitle());
     assertEquals("Resource Alt", underTest.getAlt());
@@ -279,26 +379,27 @@ class ResponsiveImageV1ImplTest {
   void testWithNoImageAsset() {
     Asset pdfAsset = context.create().asset(DAM_ROOT + "/file1.pdf", "/files/test.pdf", ContentType.PDF);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, pdfAsset.getPath()));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertInvalidMedia(underTest);
   }
 
   @Test
   void testDisplayPopupTitle() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
-        JCR_TITLE, "Resource Title",
         PN_DISPLAY_POPUP_TITLE, false));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
     assertFalse(underTest.displayPopupTitle());
-    assertNull(underTest.getMediaObject().getElement().getAttributeValue("title"));
   }
 
   @Test
@@ -306,13 +407,29 @@ class ResponsiveImageV1ImplTest {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_DISPLAY_POPUP_TITLE, false);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertFalse(underTest.displayPopupTitle());
+  }
+
+  @Test
+  void testLazyEnabled_ContentPolicy() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_DESIGN_LAZY_LOADING_ENABLED, false); // property is internally named "disabled", value is inverted
+
+    context.currentResource(context.create().resource(page, "image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, asset.getPath()));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    assertTrue(underTest.isLazyEnabled());
   }
 
   @Test
@@ -321,11 +438,12 @@ class ResponsiveImageV1ImplTest {
     ModifiableValueMap props = AdaptTo.notNull(resource, ModifiableValueMap.class);
     props.put(JCR_UUID, "test-uuid");
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertEquals("test-uuid", underTest.getUuid());
   }
@@ -339,52 +457,71 @@ class ResponsiveImageV1ImplTest {
     ModifiableValueMap props = AdaptTo.notNull(resource, ModifiableValueMap.class);
     props.put(JCR_UUID, "test-uuid");
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertNull(underTest.getUuid());
   }
 
   @Test
-  void testAreas() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+  void testWidths() {
+    context.contentPolicyMapping(RESOURCE_TYPE,
+        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.LANDSCAPE.getName() },
+        PN_COMPONENT_MEDIA_RESPONSIVE_TYPE, "imageSizes",
+        NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES, Map.of("sizes", "100vw", "widths", "100,50"),
+        PN_COMPONENT_MEDIA_AUTOCROP, true);
+
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
-        PN_MEDIA_REF_STANDARD, asset.getPath(),
-        JCR_TITLE, "Resource Title",
-        PN_MAP, ImageAreaTestData.MAP_STRING));
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, asset.getPath()));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
-    assertEquals(ImageAreaTestData.getExpectedAreasV1(context), underTest.getAreas());
-    // image is wrapped in wrapper element when sibling with map areas is present
-    assertEquals("Asset Title", underTest.getMediaObject().getElement().getChild("img").getAttributeValue("title"));
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original./sample.jpg", underTest.getSrc());
+    assertEquals(asset.getPath(), underTest.getFileReference());
+    assertArrayEquals(new int[] { 50, 100, 160 }, underTest.getWidths());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
+
+    assertValidMedia(underTest, DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg");
   }
 
   @Test
-  void testWithAssetImage_AutoCropping_ContentPolicy() {
+  void testAreas() {
+    context.currentResource(context.create().resource(page, "image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, asset.getPath(),
+        PN_MAP, ImageAreaTestData.MAP_STRING));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    assertEquals(ImageAreaTestData.getExpectedAreasV1(context), underTest.getAreas());
+  }
+
+  @Test
+  void testWithImageAutoCropping_ContentPolicy() {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
-        PN_MEDIA_REF_STANDARD, asset.getPath(),
-        JCR_TITLE, "Resource Title",
-        PN_ALT, "Resource Alt"));
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, asset.getPath()));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
-    String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg";
-
-    assertValidMedia(underTest, expectedMediaUrl);
-    assertInvalidLink(underTest);
+    assertEquals("Asset Title", underTest.getTitle());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg", underTest.getSrc());
   }
 
   @Test
-  void testWithAssetImage_AutoCropping_ContentPolicy_WrappedResource() {
+  void testWithImageAutoCropping_ContentPolicy_WrappedResource() {
     // prepare dummy component that delegates to the component under test
     final String DELEGATE_RESOURCE_TYPE = "myapp/components/delegate";
     context.create().resource("/apps/" + DELEGATE_RESOURCE_TYPE,
@@ -394,21 +531,18 @@ class ResponsiveImageV1ImplTest {
         PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    Resource resource = context.create().resource(page.getContentResource().getPath() + "/image",
+    Resource resource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, DELEGATE_RESOURCE_TYPE,
-        PN_MEDIA_REF_STANDARD, asset.getPath(),
-        JCR_TITLE, "Resource Title",
-        PN_ALT, "Resource Alt");
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, asset.getPath());
 
     // set context resource to wrapped resource
     context.currentResource(new ResourceTypeForcingResourceWrapper(resource, RESOURCE_TYPE));
 
-    ResponsiveImage underTest = AdaptTo.notNull(context.request(), ResponsiveImage.class);
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
-    String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg";
-
-    assertValidMedia(underTest, expectedMediaUrl);
-    assertInvalidLink(underTest);
+    assertEquals("Asset Title", underTest.getTitle());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg", underTest.getSrc());
   }
 
 }
