@@ -229,7 +229,11 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
    * @return Url pattern
    */
   protected String buildSrcPattern() {
-    UriTemplate uriTempalte = media.getRendition().getUriTemplate(UriTemplateType.SCALE_WIDTH);
+    Rendition rendition = media.getRendition();
+    if (!rendition.isImage() || rendition.isVectorImage()) {
+      return null;
+    }
+    UriTemplate uriTempalte = rendition.getUriTemplate(UriTemplateType.SCALE_WIDTH);
     return StringUtils.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
   }
 

@@ -185,6 +185,23 @@ class ImageV3ImplTest {
   }
 
   @Test
+  void testWithAssetImage_SVG() {
+    Asset svgAsset = context.create().asset(DAM_ROOT + "/sample.svg", 160, 90, ContentType.SVG);
+
+    context.currentResource(context.create().resource(page, "image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_MEDIA_REF_STANDARD, svgAsset.getPath()));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    String expectedMediaUrl = DAM_ROOT + "/sample.svg/_jcr_content/renditions/original./sample.svg";
+
+    assertEquals(expectedMediaUrl, underTest.getSrc());
+    assertNull(underTest.getSrcUriTemplate());
+  }
+
+  @Test
   @SuppressWarnings({ "deprecation", "null" })
   void testWithAssetImageFromPage() {
     Page page1 = context.currentPage(context.create().page(page, "page1", null,
