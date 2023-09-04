@@ -2,7 +2,7 @@
  * #%L
  * wcm.io
  * %%
- * Copyright (C) 2019 wcm.io
+ * Copyright (C) 2023 wcm.io
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,9 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.models.v2;
+package io.wcm.wcm.core.components.impl.models.v3;
 
 import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DAM;
-import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_ALLOWED_RENDITION_WIDTHS;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_LOADING_ENABLED;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_THRESHOLD;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
@@ -35,12 +34,14 @@ import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 import static com.day.cq.dam.api.DamConstants.DC_TITLE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TITLE;
+import static io.wcm.handler.media.MediaNameConstants.NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES;
 import static io.wcm.handler.media.MediaNameConstants.NN_MEDIA_INLINE_STANDARD;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_RESPONSIVE_TYPE;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
-import static io.wcm.wcm.core.components.impl.models.v2.ImageV2Impl.RESOURCE_TYPE;
+import static io.wcm.wcm.core.components.impl.models.v3.ImageV3Impl.RESOURCE_TYPE;
 import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
 import static io.wcm.wcm.core.components.testcontext.AppAemContext.DAM_ROOT;
 import static io.wcm.wcm.core.components.testcontext.TestUtils.assertInvalidLink;
@@ -55,6 +56,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Map;
 
 import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
@@ -80,7 +83,7 @@ import io.wcm.wcm.core.components.testcontext.MediaFormats;
 import io.wcm.wcm.core.components.testcontext.ResourceTypeForcingResourceWrapper;
 
 @ExtendWith(AemContextExtension.class)
-class ImageV2ImplTest {
+class ImageV3ImplTest {
 
   private final AemContext context = AppAemContext.newAemContext();
 
@@ -124,7 +127,7 @@ class ImageV2ImplTest {
     assertNotNull(underTest.getId());
 
     assertInvalidMedia(underTest);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
     assertNull(underTest.getData());
 
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
@@ -139,7 +142,7 @@ class ImageV2ImplTest {
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
     assertInvalidMedia(underTest);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
@@ -162,13 +165,13 @@ class ImageV2ImplTest {
     assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertEquals(asset.getPath(), underTest.getFileReference());
-    assertArrayEquals(new int[0], underTest.getWidths());
-    assertEquals(page.getPath() + "/_jcr_content/image.imgwidth{.width}.suffix.jpg/sample.jpg", underTest.getSrcUriTemplate());
+    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
 
     assertValidMedia(underTest, expectedMediaUrl);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
@@ -191,13 +194,13 @@ class ImageV2ImplTest {
     assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertNull(underTest.getFileReference());
-    assertArrayEquals(new int[0], underTest.getWidths());
-    assertEquals(page.getPath() + "/_jcr_content/image.imgwidth{.width}.suffix.png/file1.png", underTest.getSrcUriTemplate());
+    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertEquals("/content/sample/en/page1/_jcr_content/image/file.image_file.{.width}.0.file/file1.png", underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
 
     assertValidMedia(underTest, expectedMediaUrl);
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
@@ -217,7 +220,7 @@ class ImageV2ImplTest {
     assertEquals("Asset Description", underTest.getAlt());
     assertEquals("http://myhost", underTest.getLink());
 
-    assertValidLink(underTest, "http://myhost");
+    assertValidLink(underTest.getImageLink(), "http://myhost");
 
     ComponentData data = underTest.getData();
     assertNotNull(data);
@@ -247,7 +250,7 @@ class ImageV2ImplTest {
     assertNull(underTest.getLink());
     assertTrue(underTest.isDecorative());
 
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
@@ -270,7 +273,7 @@ class ImageV2ImplTest {
     assertNull(underTest.getLink());
     assertEquals(10, underTest.getLazyThreshold());
 
-    assertInvalidLink(underTest);
+    assertInvalidLink(underTest.getImageLink());
   }
 
   @Test
@@ -396,7 +399,10 @@ class ImageV2ImplTest {
   @Test
   void testWidths() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[] { "100", "50", "200", "-123", "0", "junk" });
+        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.LANDSCAPE.getName() },
+        PN_COMPONENT_MEDIA_RESPONSIVE_TYPE, "imageSizes",
+        NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES, Map.of("sizes", "100vw", "widths", "100,50"),
+        PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
@@ -404,10 +410,10 @@ class ImageV2ImplTest {
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
-    assertEquals("/content/sample/en/page1/_jcr_content/image.imgwidth.100.suffix.jpg/sample.jpg", underTest.getSrc());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original./sample.jpg", underTest.getSrc());
     assertEquals(asset.getPath(), underTest.getFileReference());
-    assertArrayEquals(new int[] { 50, 100 }, underTest.getWidths());
-    assertEquals(page.getPath() + "/_jcr_content/image.imgwidth{.width}.suffix.jpg/sample.jpg", underTest.getSrcUriTemplate());
+    assertArrayEquals(new int[] { 50, 100, 160 }, underTest.getWidths());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
 
     assertValidMedia(underTest, DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg");
   }

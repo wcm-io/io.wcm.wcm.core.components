@@ -57,7 +57,7 @@ public class ComponentFeatureImageResolver {
 
   private final boolean imageFromPageImage;
   private final boolean altValueFromPageImage;
-  private final boolean altValueFromDam;
+  private boolean altValueFromDam;
   private final boolean isDecorative;
   private final String componentAltText;
 
@@ -102,6 +102,15 @@ public class ComponentFeatureImageResolver {
    */
   public ComponentFeatureImageResolver mediaHandlerProperty(@NotNull String key, @NotNull String value) {
     this.mediaHandlerProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * @param value Alt Value from DAM
+   * @return self
+   */
+  public ComponentFeatureImageResolver altValueFromDam(boolean value) {
+    this.altValueFromDam = value;
     return this;
   }
 
@@ -167,6 +176,7 @@ public class ComponentFeatureImageResolver {
       // otherwise rely to default media handler behavior
       builder.altText(componentAltText);
     }
+    builder.forceAltValueFromAsset(altValueFromDam);
 
     // apply custom media handling properties
     mediaHandlerProperties.entrySet().forEach(entry -> builder.property(entry.getKey(), entry.getValue()));

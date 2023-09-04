@@ -178,7 +178,6 @@ class ResponsiveImageV1ImplTest {
   }
 
   @Test
-  @SuppressWarnings("null")
   void testWithImageAndLink() {
     enableDataLayer(context, true);
 

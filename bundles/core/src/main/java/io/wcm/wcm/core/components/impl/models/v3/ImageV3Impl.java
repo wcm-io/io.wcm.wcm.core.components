@@ -144,6 +144,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     // resolve media and properties from DAM asset
     ComponentFeatureImageResolver imageResolver = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
         .targetPage(link.getLinkObject().getTargetPage())
+        .altValueFromDam(altFromAsset)
         .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
         .mediaHandlerProperty("itemprop", "contentUrl");
     String imageTitle = title;
@@ -152,10 +153,6 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     }
     media = imageResolver.buildMedia();
 
-    media = HandlerUnwrapper.get(mediaHandler, resource)
-        .decorative(isDecorative)
-        .forceAltValueFromAsset(altFromAsset)
-        .build();
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
