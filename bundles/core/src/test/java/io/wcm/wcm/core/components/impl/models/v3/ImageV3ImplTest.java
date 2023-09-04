@@ -159,6 +159,7 @@ class ImageV3ImplTest {
   void testWithAssetImage() {
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt"));
@@ -192,7 +193,6 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page1, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
-        PN_IMAGE_FROM_PAGE_IMAGE, true,
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt"));
 
@@ -221,6 +221,7 @@ class ImageV3ImplTest {
   void testWithUploadedImage() {
     Resource imageResource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         NN_MEDIA_INLINE_STANDARD + "Name", "file1.png");
     context.load().binaryFile("/files/test.png", imageResource.getPath() + "/" + NN_MEDIA_INLINE_STANDARD, ContentType.PNG);
     context.currentResource(imageResource);
@@ -252,6 +253,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://myhost"));
@@ -280,6 +282,7 @@ class ImageV3ImplTest {
   void testWithImageAndLink_Decorative() {
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://myhost",
@@ -304,6 +307,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://myhost"));
@@ -322,6 +326,7 @@ class ImageV3ImplTest {
   void testWithImage_TitleAltNotFormAsset() {
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt",
@@ -342,6 +347,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
         PN_ALT, "Resource Alt"));
@@ -358,6 +364,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, pdfAsset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -369,6 +376,7 @@ class ImageV3ImplTest {
   void testDisplayPopupTitle() {
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_DISPLAY_POPUP_TITLE, false));
 
@@ -384,6 +392,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -398,6 +407,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -413,6 +423,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -431,6 +442,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -448,6 +460,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -464,6 +477,7 @@ class ImageV3ImplTest {
   void testAreas() {
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_MAP, ImageAreaTestData.MAP_STRING));
 
@@ -480,6 +494,7 @@ class ImageV3ImplTest {
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -501,6 +516,7 @@ class ImageV3ImplTest {
 
     Resource resource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, DELEGATE_RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_MEDIA_REF_STANDARD, asset.getPath());
 
     // set context resource to wrapped resource

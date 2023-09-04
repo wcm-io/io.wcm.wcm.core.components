@@ -55,7 +55,7 @@ public class ComponentFeatureImageResolver {
   private final MediaHandler mediaHandler;
   private final Map<String, Object> mediaHandlerProperties = new HashMap<>();
 
-  private final boolean imageFromPageImage;
+  private boolean imageFromPageImage;
   private final boolean altValueFromPageImage;
   private boolean altValueFromDam;
   private final boolean isDecorative;
@@ -102,6 +102,15 @@ public class ComponentFeatureImageResolver {
    */
   public ComponentFeatureImageResolver mediaHandlerProperty(@NotNull String key, @NotNull String value) {
     this.mediaHandlerProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * @param value Image from page image
+   * @return self
+   */
+  public ComponentFeatureImageResolver imageFromPageImage(boolean value) {
+    this.imageFromPageImage = value;
     return this;
   }
 

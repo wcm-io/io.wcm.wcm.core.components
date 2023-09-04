@@ -136,6 +136,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     lazyThreshold = currentStyle.get(PN_DESIGN_LAZY_THRESHOLD, 0);
     isDecorative = properties.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
     boolean altFromAsset = properties.get(PN_ALT_VALUE_FROM_DAM, currentStyle.get(PN_ALT_VALUE_FROM_DAM, true));
+    boolean imageFromPageImage = properties.get(PN_IMAGE_FROM_PAGE_IMAGE, true);
 
     // resolve link - decorative images have no link and no alt text by definition
     if (isDecorative) {
@@ -146,7 +147,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     }
 
     // resolve media and properties from DAM asset
-    media = buildMedia(altFromAsset);
+    media = buildMedia(altFromAsset, imageFromPageImage);
 
     if (media.isValid() && !media.getRendition().isImage()) {
       // no image asset selected (cannot be rendered) - set to invalid
@@ -161,10 +162,11 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
 
   }
 
-  protected Media buildMedia(boolean altFromAsset) {
+  protected Media buildMedia(boolean altFromAsset, boolean imageFromPageImage) {
     ComponentFeatureImageResolver imageResolver = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
         .targetPage(getCurrentPage())
         .altValueFromDam(altFromAsset)
+        .imageFromPageImage(imageFromPageImage)
         .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
         .mediaHandlerProperty("itemprop", "contentUrl");
     String imageTitle = title;
