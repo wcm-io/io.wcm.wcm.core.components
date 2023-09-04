@@ -48,7 +48,7 @@
   </issueManagement>
 
   <properties>
-    <core.wcm.components.version>2.22.6</core.wcm.components.version>
+    <core.wcm.components.version>2.23.2</core.wcm.components.version>
 
     <sling.url>http://localhost:4502</sling.url>
     <sling.publish.url>http://localhost:4503</sling.publish.url>
@@ -63,7 +63,7 @@
       <dependency>
         <groupId>io.wcm.maven</groupId>
         <artifactId>io.wcm.maven.aem-dependencies</artifactId>
-        <version>6.5.14.0000</version>
+        <version>6.5.17.0001</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
