@@ -23,10 +23,12 @@ import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DA
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_LOADING_ENABLED;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_THRESHOLD;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_IMAGE_FROM_PAGE_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_IS_DECORATIVE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_MAP;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_TITLE_VALUE_FROM_DAM;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_UUID_DISABLED;
+import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
 import static com.day.cq.commons.ImageResource.PN_ALT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_UUID;
@@ -105,7 +107,7 @@ class ImageV3ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testNoImage() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
@@ -130,12 +132,19 @@ class ImageV3ImplTest {
     assertInvalidLink(underTest.getImageLink());
     assertNull(underTest.getData());
 
+    assertNull(underTest.getWidth());
+    assertNull(underTest.getHeight());
+    assertNull(underTest.getSizes());
+    assertNull(underTest.getSrcset());
+    assertNull(underTest.getSmartCropRendition());
+    assertFalse(underTest.isDmImage());
+
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
   }
 
   @Test
   void testInvalidAssetReference() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, "/content/dam/invalid"));
 
@@ -148,7 +157,7 @@ class ImageV3ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testWithAssetImage() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
@@ -175,9 +184,42 @@ class ImageV3ImplTest {
   }
 
   @Test
+  @SuppressWarnings({ "deprecation", "null" })
+  void testWithAssetImageFromPage() {
+    Page page1 = context.currentPage(context.create().page(page, "page1", null,
+        NN_PAGE_FEATURED_IMAGE, Map.of(
+            PN_MEDIA_REF_STANDARD, asset.getPath())));
+
+    context.currentResource(context.create().resource(page1, "image",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, true,
+        JCR_TITLE, "Resource Title",
+        PN_ALT, "Resource Alt"));
+
+    Image underTest = AdaptTo.notNull(context.request(), Image.class);
+
+    String expectedMediaUrl = DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg";
+
+    assertEquals(expectedMediaUrl, underTest.getSrc());
+    assertEquals("Asset Title", underTest.getTitle());
+    assertEquals("Asset Description", underTest.getAlt());
+    assertEquals("", underTest.getUuid());
+    assertNull(underTest.getLink());
+    assertTrue(underTest.displayPopupTitle());
+    assertEquals(asset.getPath(), underTest.getFileReference());
+    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
+    assertFalse(underTest.isLazyEnabled());
+    assertNull(underTest.getAreas());
+
+    assertValidMedia(underTest, expectedMediaUrl);
+    assertInvalidLink(underTest.getImageLink());
+  }
+
+  @Test
   @SuppressWarnings("deprecation")
   void testWithUploadedImage() {
-    Resource imageResource = context.create().resource(page.getContentResource().getPath() + "/image",
+    Resource imageResource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         NN_MEDIA_INLINE_STANDARD + "Name", "file1.png");
     context.load().binaryFile("/files/test.png", imageResource.getPath() + "/" + NN_MEDIA_INLINE_STANDARD, ContentType.PNG);
@@ -208,7 +250,7 @@ class ImageV3ImplTest {
   void testWithImageAndLink() {
     enableDataLayer(context, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
@@ -236,7 +278,7 @@ class ImageV3ImplTest {
   @Test
   @SuppressWarnings("deprecation")
   void testWithImageAndLink_Decorative() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
@@ -260,7 +302,7 @@ class ImageV3ImplTest {
         PN_IS_DECORATIVE, true,
         PN_DESIGN_LAZY_THRESHOLD, 10);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_LINK_TITLE, ExternalLinkType.ID,
@@ -278,7 +320,7 @@ class ImageV3ImplTest {
 
   @Test
   void testWithImage_TitleAltNotFormAsset() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
@@ -298,7 +340,7 @@ class ImageV3ImplTest {
         PN_TITLE_VALUE_FROM_DAM, false,
         PN_ALT_VALUE_FROM_DAM, false);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         JCR_TITLE, "Resource Title",
@@ -314,7 +356,7 @@ class ImageV3ImplTest {
   void testWithNoImageAsset() {
     Asset pdfAsset = context.create().asset(DAM_ROOT + "/file1.pdf", "/files/test.pdf", ContentType.PDF);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, pdfAsset.getPath()));
 
@@ -325,7 +367,7 @@ class ImageV3ImplTest {
 
   @Test
   void testDisplayPopupTitle() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_DISPLAY_POPUP_TITLE, false));
@@ -340,7 +382,7 @@ class ImageV3ImplTest {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_DISPLAY_POPUP_TITLE, false);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -354,7 +396,7 @@ class ImageV3ImplTest {
     context.contentPolicyMapping(RESOURCE_TYPE,
         PN_DESIGN_LAZY_LOADING_ENABLED, false); // property is internally named "disabled", value is inverted
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -369,7 +411,7 @@ class ImageV3ImplTest {
     ModifiableValueMap props = AdaptTo.notNull(resource, ModifiableValueMap.class);
     props.put(JCR_UUID, "test-uuid");
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -387,7 +429,7 @@ class ImageV3ImplTest {
     ModifiableValueMap props = AdaptTo.notNull(resource, ModifiableValueMap.class);
     props.put(JCR_UUID, "test-uuid");
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -404,7 +446,7 @@ class ImageV3ImplTest {
         NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES, Map.of("sizes", "100vw", "widths", "100,50"),
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -420,7 +462,7 @@ class ImageV3ImplTest {
 
   @Test
   void testAreas() {
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath(),
         PN_MAP, ImageAreaTestData.MAP_STRING));
@@ -436,7 +478,7 @@ class ImageV3ImplTest {
         PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
+    context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath()));
 
@@ -457,7 +499,7 @@ class ImageV3ImplTest {
         PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
-    Resource resource = context.create().resource(page.getContentResource().getPath() + "/image",
+    Resource resource = context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, DELEGATE_RESOURCE_TYPE,
         PN_MEDIA_REF_STANDARD, asset.getPath());
 

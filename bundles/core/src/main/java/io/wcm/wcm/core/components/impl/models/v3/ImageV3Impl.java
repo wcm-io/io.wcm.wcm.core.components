@@ -163,7 +163,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
 
   protected Media buildMedia(boolean altFromAsset) {
     ComponentFeatureImageResolver imageResolver = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
-        .targetPage(link.getLinkObject().getTargetPage())
+        .targetPage(getCurrentPage())
         .altValueFromDam(altFromAsset)
         .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
         .mediaHandlerProperty("itemprop", "contentUrl");
