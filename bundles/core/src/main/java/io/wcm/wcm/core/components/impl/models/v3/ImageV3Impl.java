@@ -56,6 +56,7 @@ import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
+import io.wcm.handler.media.Rendition;
 import io.wcm.handler.media.UriTemplate;
 import io.wcm.handler.media.UriTemplateType;
 import io.wcm.handler.media.format.Ratio;
@@ -215,7 +216,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     double primaryRatio = media.getRendition().getRatio();
     return media.getRenditions().stream()
         .filter(rendition -> Ratio.matches(rendition.getRatio(), primaryRatio))
-        .map(rendition -> rendition.getWidth())
+        .map(Rendition::getWidth)
         .distinct()
         .sorted()
         .collect(Collectors.toList());
@@ -265,7 +266,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   public String getLink() {
     return link.getURL();
   }
@@ -351,7 +352,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   public @NotNull ImageData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asImageComponent()
         .withTitle(this::getTitle)
-        .withLinkUrl(this::getLink)
+        .withLinkUrl(() -> this.link.getLinkObject().getUrl())
         .withAssetData(() -> Optional.of(media)
             .filter(Media::isValid)
             .map(Media::getAsset)
