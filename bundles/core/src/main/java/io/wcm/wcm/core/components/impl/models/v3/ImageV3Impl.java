@@ -56,7 +56,6 @@ import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
-import io.wcm.handler.media.Rendition;
 import io.wcm.handler.media.UriTemplate;
 import io.wcm.handler.media.UriTemplateType;
 import io.wcm.handler.media.format.Ratio;
@@ -87,40 +86,44 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   /**
    * Resource type
    */
-  public static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/image/v3/image";
-  private static final String WIDTH_PLACEHOLDER = "{.width}";
+  static final String RESOURCE_TYPE = "wcm-io/wcm/core/components/image/v3/image";
+
+  /**
+   * Width placeholder for URI template
+   */
+  public static final String WIDTH_PLACEHOLDER = "{.width}";
 
   @AemObject
-  private Style currentStyle;
+  protected Style currentStyle;
   @Self
-  private LinkHandler linkHandler;
+  protected LinkHandler linkHandler;
   @Self
-  private MediaHandler mediaHandler;
+  protected MediaHandler mediaHandler;
   @Self
-  private UrlHandler urlHandler;
+  protected UrlHandler urlHandler;
 
   @ValueMapValue(name = PN_ALT, injectionStrategy = InjectionStrategy.OPTIONAL)
-  private @Nullable String alt;
+  protected @Nullable String alt;
   @ValueMapValue(name = JCR_TITLE, injectionStrategy = InjectionStrategy.OPTIONAL)
-  private @Nullable String title;
+  protected @Nullable String title;
 
   @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-  private @Nullable String imageCrop;
+  protected @Nullable String imageCrop;
   @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-  private @Nullable String imageRotate;
+  protected @Nullable String imageRotate;
 
-  private LinkWrapper link;
-  private Media media;
-  private String uuid;
-  private String fileReference;
-  private boolean displayPopupTitle;
-  private boolean enableLazyLoading;
-  private int lazyThreshold;
-  private boolean isDecorative;
-  private List<ImageArea> areas;
+  protected LinkWrapper link;
+  protected Media media;
+  protected String uuid;
+  protected String fileReference;
+  protected boolean displayPopupTitle;
+  protected boolean enableLazyLoading;
+  protected int lazyThreshold;
+  protected boolean isDecorative;
+  protected List<ImageArea> areas;
 
-  private List<Long> widths = Collections.emptyList();
-  private String srcPattern;
+  protected List<Long> widths = Collections.emptyList();
+  protected String srcPattern;
 
   @PostConstruct
   private void activate() {
@@ -142,6 +145,22 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     }
 
     // resolve media and properties from DAM asset
+    media = buildMedia(altFromAsset);
+
+    if (media.isValid() && !media.getRendition().isImage()) {
+      // no image asset selected (cannot be rendered) - set to invalid
+      media = mediaHandler.invalid();
+    }
+    if (media.isValid()) {
+      initPropertiesFromDamAsset(properties);
+      widths = buildRenditionWidths();
+      srcPattern = buildSrcPattern();
+      areas = buildAreas();
+    }
+
+  }
+
+  protected Media buildMedia(boolean altFromAsset) {
     ComponentFeatureImageResolver imageResolver = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
         .targetPage(link.getLinkObject().getTargetPage())
         .altValueFromDam(altFromAsset)
@@ -151,19 +170,11 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     if (displayPopupTitle && imageTitle != null) {
       imageResolver.mediaHandlerProperty("title", imageTitle);
     }
-    media = imageResolver.buildMedia();
+    return imageResolver.buildMedia();
+  }
 
-    if (media.isValid() && !media.getRendition().isImage()) {
-      // no image asset selected (cannot be rendered) - set to invalid
-      media = mediaHandler.invalid();
-    }
-    if (media.isValid()) {
-      initPropertiesFromDamAsset(properties);
-      widths = buildRenditionWidths();
-      srcPattern = buildSrcPattern(media.getRendition());
-      areas = ImageAreaV2Impl.convertMap(media.getMap());
-    }
-
+  protected List<ImageArea> buildAreas() {
+    return ImageAreaV2Impl.convertMap(media.getMap());
   }
 
   /**
@@ -193,6 +204,30 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
         }
       }
     }
+  }
+
+  /**
+   * Build lists of rendition widths based on the resolved media renditions
+   * (those that share the same ratio as the primary rendition)
+   * @return Widths
+   */
+  protected List<Long> buildRenditionWidths() {
+    double primaryRatio = media.getRendition().getRatio();
+    return media.getRenditions().stream()
+        .filter(rendition -> Ratio.matches(rendition.getRatio(), primaryRatio))
+        .map(rendition -> rendition.getWidth())
+        .distinct()
+        .sorted()
+        .collect(Collectors.toList());
+  }
+
+  /**
+   * Build image url pattern via Media Handler URI template.
+   * @return Url pattern
+   */
+  protected String buildSrcPattern() {
+    UriTemplate uriTempalte = media.getRendition().getUriTemplate(UriTemplateType.SCALE_WIDTH);
+    return StringUtils.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
   }
 
   @Override
@@ -307,41 +342,6 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     return false;
   }
 
-  /**
-   * @deprecated Deprecated in API
-   */
-  @Override
-  @Deprecated
-  public String getJson() {
-    // not required for image v2
-    return null;
-  }
-
-
-  /**
-   * Build lists of rendition widths based on the resolved media renditions
-   * (those that share the same ratio as the primary rendition)
-   * @return Widths
-   */
-  private List<Long> buildRenditionWidths() {
-    double primaryRatio = media.getRendition().getRatio();
-    return media.getRenditions().stream()
-        .filter(rendition -> Ratio.matches(rendition.getRatio(), primaryRatio))
-        .map(rendition -> rendition.getWidth())
-        .distinct()
-        .sorted()
-        .collect(Collectors.toList());
-  }
-
-  /**
-   * Build image url pattern via Media Handler URI template.
-   * @param rendition Primary rendition
-   * @return Url pattern
-   */
-  private String buildSrcPattern(Rendition rendition) {
-    UriTemplate uriTempalte = rendition.getUriTemplate(UriTemplateType.SCALE_WIDTH);
-    return StringUtils.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
-  }
 
   // --- data layer ---
 
