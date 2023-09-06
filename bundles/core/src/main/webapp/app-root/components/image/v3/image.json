@@ -88,6 +88,17 @@
                     "column": {
                       "items": {
 
+                        /** Overwrite property to switch default value to unchecked */
+                        "imageFromPageImage": {
+                          "uncheckedValue": "false",
+                          "name": "./imageFromPageImage",
+                          "text": "Inherit featured image from page",
+                          "value": true,
+                          "checked": "${false}",
+                          "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
+                          "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined."
+                        },
+
                         /* Does not work with media handler */
                         "pageImageThumbnail": {
                           "sling:hideResource": true
