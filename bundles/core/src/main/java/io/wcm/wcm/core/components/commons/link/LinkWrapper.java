@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.link;
+package io.wcm.wcm.core.components.commons.link;
 
 import java.util.Map;
 
@@ -34,8 +34,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.wcm.handler.link.Link;
 
 /**
- * Link wrapper around wcm.io Link.
+ * Wraps a wcm.io Link object into a Core Components Link.
  */
+@SuppressWarnings("java:S3740") // unable to provide generic for Core Component Link here
 public final class LinkWrapper implements com.adobe.cq.wcm.core.components.commons.link.Link {
 
   private final Link link;

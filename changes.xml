@@ -30,6 +30,9 @@
       <action type="update" dev="sseifert" issue="14">
         Update to AEM WCM Core Components 2.23.2.
       </action>
+      <action type="update" dev="sseifert" issue="15">
+        Export LinkWrapper and LinkHtmlAttributesSerializer via OSGi to make them reusable in project code.
+      </action>
       <action type="fix" dev="sseifert">
         ComponentFeatureImageResolver: Switch to image from page by default if no image reference is given in image/teaser resource.
       </action>

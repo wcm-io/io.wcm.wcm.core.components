@@ -48,7 +48,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.type.InternalLinkType;
-import io.wcm.wcm.core.components.impl.link.LinkWrapper;
+import io.wcm.wcm.core.components.commons.link.LinkWrapper;
 import io.wcm.wcm.core.components.impl.util.CoreResourceWrapper;
 
 /**
