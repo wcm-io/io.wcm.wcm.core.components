@@ -18,7 +18,7 @@
  * #L%
  */
 /**
- * Interfaces for wcm.io Core Component models.
+ * Bridges wcm.io Link to Core Components Link.
  */
 @org.osgi.annotation.versioning.Version("1.0.0")
 package io.wcm.wcm.core.components.commons.link;
