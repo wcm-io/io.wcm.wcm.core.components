@@ -75,6 +75,7 @@ To use this module you have to deploy also:
 ### Further Resources
 
 * [adaptTo() 2019 Talk: Assets and Links in AEM Projects][adaptto-talk-2019-assets-links-in-aem-projects]
+* [AEM Sites WKND Tutorial adapted for demonstrating wcm.io Features][aem-guides-wknd-wcmio]
 
 
 ### GitHub Repository
@@ -95,3 +96,4 @@ Sources: https://github.com/wcm-io/io.wcm.wcm.core.components
 [component-library]: component-library.html
 [components]: components.html
 [adaptto-talk-2019-assets-links-in-aem-projects]: https://adapt.to/2019/en/schedule/assets-and-links-in-aem-projects.html
+[aem-guides-wknd-wcmio]: https://github.com/wcm-io/aem-guides-wknd-wcmio
