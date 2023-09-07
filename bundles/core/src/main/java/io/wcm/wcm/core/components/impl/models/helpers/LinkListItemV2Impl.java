@@ -31,7 +31,7 @@ import com.day.cq.wcm.api.components.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.wcm.handler.link.SyntheticLinkResource;
-import io.wcm.wcm.core.components.impl.link.LinkWrapper;
+import io.wcm.wcm.core.components.commons.link.LinkWrapper;
 
 /**
  * {@link ListItem} implementation for any links.

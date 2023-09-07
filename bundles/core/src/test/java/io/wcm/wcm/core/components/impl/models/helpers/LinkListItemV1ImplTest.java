@@ -36,7 +36,7 @@ import io.wcm.handler.link.LinkHandler;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import io.wcm.wcm.core.components.impl.link.LinkWrapper;
+import io.wcm.wcm.core.components.commons.link.LinkWrapper;
 import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)

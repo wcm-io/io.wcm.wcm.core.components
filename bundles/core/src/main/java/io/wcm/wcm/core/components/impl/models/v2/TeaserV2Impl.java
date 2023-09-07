@@ -55,7 +55,7 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.richtext.RichTextHandler;
 import io.wcm.handler.richtext.TextMode;
 import io.wcm.sling.models.annotations.AemObject;
-import io.wcm.wcm.core.components.impl.link.LinkWrapper;
+import io.wcm.wcm.core.components.commons.link.LinkWrapper;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemV2Impl;
 import io.wcm.wcm.core.components.impl.util.ComponentFeatureImageResolver;
