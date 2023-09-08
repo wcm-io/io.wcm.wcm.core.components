@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.wcm.handler.link.Link;
-import io.wcm.wcm.core.components.impl.link.LinkWrapper;
+import io.wcm.wcm.core.components.commons.link.LinkWrapper;
 import io.wcm.wcm.core.components.impl.models.helpers.LinkListItemV1Impl;
 import io.wcm.wcm.core.components.impl.models.v2.TeaserV2Impl;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;

@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.wcm.core.components.impl.link;
+package io.wcm.wcm.core.components.commons.link;
 
 import java.io.IOException;
 import java.util.Map;
@@ -31,9 +31,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 /**
- * Serialized map of link attributes, omitting the "href" property.
+ * Serializes a map of link attributes, omitting the "href" property.
  */
-public class LinkHtmlAttributesSerializer extends StdSerializer<Map<String, String>> {
+public final class LinkHtmlAttributesSerializer extends StdSerializer<Map<String, String>> {
   private static final long serialVersionUID = 1L;
 
   /**

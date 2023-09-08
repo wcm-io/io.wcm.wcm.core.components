@@ -35,6 +35,7 @@ There is currently no added wcm.io support for the Core Component AMP extensions
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
 |-----------------------------------|----------------------------------|---------------------------------------------
+| 1.14.0-2.23.2                     | 2.23.2 and up                    | AEM 6.5.17, AEMaaCS
 | 1.13.0-2.22.6                     | 2.22.6 and up                    | AEM 6.5.14, AEMaaCS
 | 1.12.0-2.20.0                     | 2.20.0 and up                    | AEM 6.5.13, AEMaaCS
 | 1.11.0-2.19.0                     | 2.19.0 and up                    | AEM 6.5.7, AEMaaCS
@@ -74,6 +75,7 @@ To use this module you have to deploy also:
 ### Further Resources
 
 * [adaptTo() 2019 Talk: Assets and Links in AEM Projects][adaptto-talk-2019-assets-links-in-aem-projects]
+* [AEM Sites WKND Tutorial adapted for demonstrating wcm.io Features][aem-guides-wknd-wcmio]
 
 
 ### GitHub Repository
@@ -94,3 +96,4 @@ Sources: https://github.com/wcm-io/io.wcm.wcm.core.components
 [component-library]: component-library.html
 [components]: components.html
 [adaptto-talk-2019-assets-links-in-aem-projects]: https://adapt.to/2019/en/schedule/assets-and-links-in-aem-projects.html
+[aem-guides-wknd-wcmio]: https://github.com/wcm-io/aem-guides-wknd-wcmio

@@ -42,6 +42,7 @@ import com.day.cq.wcm.api.designer.Style;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaBuilder;
 import io.wcm.handler.media.MediaHandler;
+import io.wcm.handler.media.MediaInvalidReason;
 
 /**
  * Resolves images and alt. texts for components either from the component resource,
@@ -55,9 +56,9 @@ public class ComponentFeatureImageResolver {
   private final MediaHandler mediaHandler;
   private final Map<String, Object> mediaHandlerProperties = new HashMap<>();
 
-  private final boolean imageFromPageImage;
+  private boolean imageFromPageImage;
   private final boolean altValueFromPageImage;
-  private final boolean altValueFromDam;
+  private boolean altValueFromDam;
   private final boolean isDecorative;
   private final String componentAltText;
 
@@ -106,11 +107,38 @@ public class ComponentFeatureImageResolver {
   }
 
   /**
+   * @param value Image from page image
+   * @return self
+   */
+  public ComponentFeatureImageResolver imageFromPageImage(boolean value) {
+    this.imageFromPageImage = value;
+    return this;
+  }
+
+  /**
+   * @param value Alt Value from DAM
+   * @return self
+   */
+  public ComponentFeatureImageResolver altValueFromDam(boolean value) {
+    this.altValueFromDam = value;
+    return this;
+  }
+
+  /**
    * Build media after resolving feature images and alt. texts.
    * @return Media
    */
   public @NotNull Media buildMedia() {
-    Media media;
+    Media media = mediaHandler.invalid();
+
+    if (!imageFromPageImage) {
+      // image from resource properties
+      media = buildMedia(componentResource);
+      if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING) {
+        // fallback to image from page if no reference was given
+        imageFromPageImage = true;
+      }
+    }
 
     if (imageFromPageImage) {
       // try to get feature image from target page
@@ -126,10 +154,6 @@ public class ComponentFeatureImageResolver {
         Resource featuredImageResource = ComponentUtils.getFeaturedImage(currentPage);
         media = buildMedia(wrapFeatureImageResource(featuredImageResource));
       }
-    }
-    else {
-      // image from teaser resource
-      media = buildMedia(componentResource);
     }
 
     return media;
@@ -167,6 +191,7 @@ public class ComponentFeatureImageResolver {
       // otherwise rely to default media handler behavior
       builder.altText(componentAltText);
     }
+    builder.forceAltValueFromAsset(altValueFromDam);
 
     // apply custom media handling properties
     mediaHandlerProperties.entrySet().forEach(entry -> builder.property(entry.getKey(), entry.getValue()));

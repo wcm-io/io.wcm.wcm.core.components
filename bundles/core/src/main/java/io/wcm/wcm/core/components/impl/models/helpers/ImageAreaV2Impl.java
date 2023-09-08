@@ -31,7 +31,7 @@ import com.adobe.cq.wcm.core.components.commons.link.Link;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 
 import io.wcm.handler.media.imagemap.ImageMapArea;
-import io.wcm.wcm.core.components.impl.link.LinkWrapper;
+import io.wcm.wcm.core.components.commons.link.LinkWrapper;
 
 /**
  * Implementation of {@link ImageArea}.

@@ -17,7 +17,7 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 
 * [Title (v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v3) | [v2](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/title/v2) <span class="marker-label">LINK</span>
 * [Text (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/text/v2) <span class="marker-label">RICHTEXT</span> <span class="marker-label">LINK</span>
-* [Image (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/image/v2) (deprecated) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
+* [Image (v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/image/v3) | [(v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/image/v2) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span>
 * [Button (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/button/v2) | [(v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/button/v1) <span class="marker-label">LINK</span>
 * [Teaser (v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/teaser/v2) | [(v1)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/teaser/v1) <span class="marker-label">MEDIA</span> <span class="marker-label">LINK</span> <span class="marker-label">RICHTEXT</span>
 * [List (v4)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/list/v4) | [(v3)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/list/v3) | [(v2)](https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/list/v2) <span class="marker-label">LINK</span>
@@ -59,4 +59,3 @@ _Enhanced with_ <span class="marker-label">MEDIA</span>&nbsp;_Media&nbsp;Handler
 **Page Authoring Components**
 
 * Sharing (v1)
-* Image (v3)

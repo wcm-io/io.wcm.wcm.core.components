@@ -94,14 +94,13 @@ class NavigationV2ImplTest {
     assertNotNull(underTest.getId());
     assertNull(underTest.getData());
 
-    assertNavigationItems(underTest.getItems(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page111, page112);
-    assertNavigationItems(underTest.getItems().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 3, page111, page112);
+    assertNavigationItems(underTest.getItems().get(1).getChildren(), 2);
   }
 
   @Test
-  @SuppressWarnings("null")
   void testDefault_DataLayer() {
     enableDataLayer(context, true);
 
@@ -131,11 +130,11 @@ class NavigationV2ImplTest {
     assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
-    assertNavigationItems(underTest.getItems(), root);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), page111, page112);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 0, root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 2, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), 3, page111, page112);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren(), 2);
   }
 
   @Test
@@ -151,11 +150,11 @@ class NavigationV2ImplTest {
     assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
-    assertNavigationItems(underTest.getItems(), root);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren());
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 0, root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 2, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), 3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren(), 2);
   }
 
   @Test
@@ -169,10 +168,10 @@ class NavigationV2ImplTest {
     assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
-    assertNavigationItems(underTest.getItems(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page111, page112);
-    assertNavigationItems(underTest.getItems().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 3, page111, page112);
+    assertNavigationItems(underTest.getItems().get(1).getChildren(), 2);
   }
 
   @Test
@@ -186,8 +185,8 @@ class NavigationV2ImplTest {
     assertEquals("my-label", underTest.getAccessibilityLabel());
     assertEquals(RESOURCE_TYPE, underTest.getExportedType());
 
-    assertNavigationItems(underTest.getItems(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems(), 1, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page111, page112);
   }
 
   @Test
@@ -198,8 +197,8 @@ class NavigationV2ImplTest {
         PN_NAVIGATION_ROOT, "page1"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems(), 1, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page111, page112);
   }
 
   @Test
@@ -211,8 +210,8 @@ class NavigationV2ImplTest {
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems(), 1, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page111, page112);
   }
 
   @Test
@@ -223,7 +222,7 @@ class NavigationV2ImplTest {
         PN_NAVIGATION_ROOT, "page_not_existing"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems());
+    assertNavigationItems(underTest.getItems(), 1);
   }
 
   @Test
@@ -234,8 +233,8 @@ class NavigationV2ImplTest {
         PN_NAVIGATION_ROOT, "/content/sample/en/page1"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems(), 1, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page111, page112);
   }
 
   @Test
@@ -246,8 +245,8 @@ class NavigationV2ImplTest {
         PN_NAVIGATION_ROOT, "/content/other-sample/fr/page1"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page111, page112);
+    assertNavigationItems(underTest.getItems(), 1, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2, page111, page112);
   }
 
   @Test
@@ -258,9 +257,9 @@ class NavigationV2ImplTest {
         PN_NAVIGATION_ROOT, "/content/sample"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems(), languageRoot);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), root);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page1, page3);
+    assertNavigationItems(underTest.getItems(), 0, languageRoot);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 1, root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 2, page1, page3);
   }
 
   @Test
@@ -270,7 +269,7 @@ class NavigationV2ImplTest {
         PN_NAVIGATION_ROOT, "/content/sample/en/page_not_existing"));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems());
+    assertNavigationItems(underTest.getItems(), 1);
   }
 
   @Test
@@ -281,9 +280,9 @@ class NavigationV2ImplTest {
         PN_COLLECT_ALL_PAGES, false));
     Navigation underTest = AdaptTo.notNull(context.request(), Navigation.class);
 
-    assertNavigationItems(underTest.getItems(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren());
-    assertNavigationItems(underTest.getItems().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 2);
+    assertNavigationItems(underTest.getItems().get(1).getChildren(), 2);
   }
 
   @Test
@@ -296,11 +295,11 @@ class NavigationV2ImplTest {
 
     assertTrue(underTest.getItems().get(0).isActive());
 
-    assertNavigationItems(underTest.getItems(), root);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), page11, page12);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), page111, page112);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 0, root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 2, page11, page12);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren().get(0).getChildren(), 3, page111, page112);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren(), 2);
   }
 
   @Test
@@ -317,10 +316,10 @@ class NavigationV2ImplTest {
     assertFalse(underTest.getItems().get(0).getChildren().get(0).isActive());
     assertTrue(underTest.getItems().get(0).getChildren().get(1).isActive());
 
-    assertNavigationItems(underTest.getItems(), root);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren());
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 0, root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 2);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren(), 2);
   }
 
   @Test
@@ -338,10 +337,10 @@ class NavigationV2ImplTest {
     assertFalse(underTest.getItems().get(0).getChildren().get(0).isActive());
     assertTrue(underTest.getItems().get(0).getChildren().get(1).isActive());
 
-    assertNavigationItems(underTest.getItems(), root);
-    assertNavigationItems(underTest.getItems().get(0).getChildren(), page1, page3);
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren());
-    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren());
+    assertNavigationItems(underTest.getItems(), 0, root);
+    assertNavigationItems(underTest.getItems().get(0).getChildren(), 1, page1, page3);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(0).getChildren(), 2);
+    assertNavigationItems(underTest.getItems().get(0).getChildren().get(1).getChildren(), 2);
   }
 
 }

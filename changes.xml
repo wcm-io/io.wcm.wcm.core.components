@@ -23,6 +23,24 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="1.14.0-2.23.2" date="2023-09-08">
+      <action type="add" dev="sseifert" issue="13">
+        Add Image (v3).
+      </action>
+      <action type="update" dev="sseifert" issue="14">
+        Update to AEM WCM Core Components 2.23.2.
+      </action>
+      <action type="update" dev="sseifert" issue="15">
+        Export LinkWrapper and LinkHtmlAttributesSerializer via OSGi to make them reusable in project code.
+      </action>
+      <action type="fix" dev="sseifert">
+        ComponentFeatureImageResolver: Switch to image from page by default if no image reference is given in image/teaser resource.
+      </action>
+      <action type="fix" dev="sseifert">
+        Navigation: Fix navigation item level numbering when structureStart = 0.
+      </action>
+    </release>
+
     <release version="1.13.2-2.22.6" date="2023-08-21">
       <action type="fix" dev="sseifert" issue="12">
         Fix detection of teaser actions in Teaser V2.

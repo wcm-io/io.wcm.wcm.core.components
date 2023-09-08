@@ -134,6 +134,14 @@ public final class TestUtils {
     assertListItems((Collection)items, pages);
   }
 
+  @SuppressWarnings("unchecked")
+  public static void assertNavigationItems(Collection<NavigationItem> items, int level, Page... pages) {
+    assertListItems((Collection)items, pages);
+    for (NavigationItem item : items) {
+      assertEquals(level, item.getLevel(), "Navigation Item Level");
+    }
+  }
+
   public static void assertListItems(Collection<ListItem> items, Page... pages) {
     List<String> expected = Arrays.stream(pages)
         .map(Page::getPath)
