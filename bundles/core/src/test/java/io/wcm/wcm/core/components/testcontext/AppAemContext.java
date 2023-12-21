@@ -19,6 +19,7 @@
  */
 package io.wcm.wcm.core.components.testcontext;
 
+import static com.adobe.cq.wcm.core.components.testing.mock.ContextPlugins.CORE_COMPONENTS;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_LANGUAGE;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static io.wcm.testing.mock.wcmio.caconfig.ContextPlugins.WCMIO_CACONFIG;
@@ -32,8 +33,6 @@ import java.util.Locale;
 
 import org.apache.sling.api.resource.PersistenceException;
 import org.jetbrains.annotations.NotNull;
-
-import com.adobe.cq.wcm.core.components.internal.link.DefaultPathProcessor;
 
 import io.wcm.handler.media.spi.MediaFormatProvider;
 import io.wcm.handler.media.spi.MediaHandlerConfig;
@@ -62,7 +61,7 @@ public final class AppAemContext {
   public static AemContext newAemContext() {
     return new AemContextBuilder()
         .plugin(CACONFIG)
-        .plugin(WCMIO_SLING, WCMIO_WCM, WCMIO_CACONFIG, WCMIO_HANDLER)
+        .plugin(CORE_COMPONENTS, WCMIO_SLING, WCMIO_WCM, WCMIO_CACONFIG, WCMIO_HANDLER)
         .afterSetUp(SETUP_CALLBACK)
         .build();
   }
@@ -81,9 +80,6 @@ public final class AppAemContext {
       context.registerService(UrlHandlerConfig.class, new UrlHandlerConfigImpl());
       context.registerService(MediaHandlerConfig.class, new MediaHandlerConfigImpl());
       context.registerService(MediaFormatProvider.class, new MediaFormatProviderImpl());
-
-      // core components link handling services
-      context.registerInjectActivateService(DefaultPathProcessor.class);
 
       // create template
       context.create().resource(TEMPLATE_PATH,

@@ -155,6 +155,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.adobe.cq</groupId>
+      <artifactId>core.wcm.components.testing.aem-mock-plugin</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.testing.caconfig-mock-plugin</artifactId>
       <scope>test</scope>
