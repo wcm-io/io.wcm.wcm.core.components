@@ -1,0 +1,5 @@
+{
+  "sling.servlet.resourceTypes": [
+    "wcm-io/wcm/core/components/wcmio/responsiveimage/v1/responsiveimage"
+  ]
+}
