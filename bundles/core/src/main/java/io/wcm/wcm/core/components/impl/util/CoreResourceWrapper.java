@@ -40,7 +40,7 @@ import com.adobe.cq.export.json.ExporterConstants;
  * Additionally supports overwriting and hiding some properties.
  */
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
-public class CoreResourceWrapper extends ResourceWrapper {
+public final class CoreResourceWrapper extends ResourceWrapper {
 
   private ValueMap valueMap;
   private String overriddenResourceType;
