@@ -27,6 +27,9 @@
       <action type="update" dev="sseifert">
         Switch to Handler 2.x.
       </action>
+      <action type="update" dev="sseifert">
+        Explicitly define folder type for JSON files with "nt:unstructured" as root node to circumvent SLING-12197.
+      </action>
     </release>
 
     <release version="1.14.0-2.23.2" date="2023-09-08">
