@@ -131,6 +131,7 @@ class ResponsiveImageV1ImplTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testWithAssetImage() {
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
@@ -289,6 +290,7 @@ class ResponsiveImageV1ImplTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testDisplayPopupTitle() {
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
@@ -349,6 +351,7 @@ class ResponsiveImageV1ImplTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testAreas() {
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,

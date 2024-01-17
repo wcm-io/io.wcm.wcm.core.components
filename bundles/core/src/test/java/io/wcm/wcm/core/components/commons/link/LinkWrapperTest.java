@@ -66,7 +66,6 @@ class LinkWrapperTest {
   }
 
   @Test
-  @SuppressWarnings("unused")
   void testInvalid() {
     LinkWrapper underTest = new LinkWrapper(linkHandler.invalid());
 
@@ -74,7 +73,7 @@ class LinkWrapperTest {
     assertNull(underTest.getURL());
     assertNull(underTest.getMappedURL());
     assertNull(underTest.getExternalizedURL());
-    assertNull(underTest.getHtmlAttributes());
+    assertEquals(Map.of(), underTest.getHtmlAttributes());
     assertNull(underTest.getReference());
     assertNotNull(underTest.getLinkObject());
 

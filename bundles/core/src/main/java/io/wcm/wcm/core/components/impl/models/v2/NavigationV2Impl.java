@@ -267,8 +267,9 @@ public class NavigationV2Impl extends AbstractComponentImpl implements Navigatio
   }
 
   private boolean currentPageIsRedirectTarget(@NotNull Link link) {
-    return link.getTargetPage() != null
-        && StringUtils.equals(getCurrentPage().getPath(), link.getTargetPage().getPath());
+    Page targetPage = link.getTargetPage();
+    return targetPage != null
+        && StringUtils.equals(getCurrentPage().getPath(), targetPage.getPath());
   }
 
   protected NavigationItem newNavigationItem(@NotNull Page page, @NotNull Link link,

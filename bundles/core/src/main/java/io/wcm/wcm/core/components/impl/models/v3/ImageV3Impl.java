@@ -147,8 +147,9 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
 
     // resolve media and properties from DAM asset
     media = buildMedia(altFromAsset);
+    Rendition rendition = media.getRendition();
 
-    if (media.isValid() && !media.getRendition().isImage()) {
+    if (media.isValid() && (rendition == null || !rendition.isImage())) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
     }
@@ -213,9 +214,13 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
    * @return Widths
    */
   protected List<Long> buildRenditionWidths() {
-    double primaryRatio = media.getRendition().getRatio();
+    Rendition rendition = media.getRendition();
+    if (rendition == null) {
+      return List.of();
+    }
+    double primaryRatio = rendition.getRatio();
     return media.getRenditions().stream()
-        .filter(rendition -> Ratio.matches(rendition.getRatio(), primaryRatio))
+        .filter(item -> Ratio.matches(item.getRatio(), primaryRatio))
         .map(Rendition::getWidth)
         .distinct()
         .sorted()
@@ -228,7 +233,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
    */
   protected String buildSrcPattern() {
     Rendition rendition = media.getRendition();
-    if (!rendition.isImage() || rendition.isVectorImage()) {
+    if (rendition == null || !rendition.isImage() || rendition.isVectorImage()) {
       return null;
     }
     UriTemplate uriTempalte = rendition.getUriTemplate(UriTemplateType.SCALE_WIDTH);

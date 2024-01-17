@@ -18,6 +18,7 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.commons.mime.MimeTypeService;
 import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaArgs;
 import io.wcm.handler.media.MediaBuilder;
 import io.wcm.handler.media.MediaHandler;
+import io.wcm.handler.media.Rendition;
 import io.wcm.handler.media.impl.ImageFileServlet;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.wcm.commons.contenttype.ContentType;
@@ -78,15 +80,17 @@ public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
     }
 
     // if media url used ImageFileServlet forward request
-    if (usesImageFileServlet(media.getUrl())) {
-      log.debug("Forward to {}", media.getUrl());
-      request.getRequestDispatcher(media.getUrl()).forward(request, response);
+    String url = media.getUrl();
+    Rendition rendition = media.getRendition();
+    if (usesImageFileServlet(url)) {
+      log.debug("Forward to {}", url);
+      request.getRequestDispatcher(url).forward(request, response);
     }
-    else {
+    else if (rendition != null) {
       // otherwise it points directly to a binary in repository, stream it directly
-      log.debug("Stream binary content from {}", media.getRendition().getPath());
+      log.debug("Stream binary content from {}", rendition.getPath());
       response.setContentType(getMimeType(request));
-      Resource resource = AdaptTo.notNull(media.getRendition(), Resource.class);
+      Resource resource = AdaptTo.notNull(rendition, Resource.class);
       try (InputStream is = resource.adaptTo(InputStream.class)) {
         BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
         IOUtils.copy(is, bos);
@@ -113,7 +117,7 @@ public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
     return builder.build();
   }
 
-  private boolean usesImageFileServlet(String mediaUrl) {
+  private boolean usesImageFileServlet(@Nullable String mediaUrl) {
     return StringUtils.contains(mediaUrl, "." + ImageFileServlet.SELECTOR + ".");
   }
 

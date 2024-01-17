@@ -59,6 +59,7 @@ import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.MediaNameConstants;
+import io.wcm.handler.media.Rendition;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
@@ -126,8 +127,9 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
         .mediaHandlerProperty("data-cmp-hook-image", "image")
         .mediaHandlerProperty(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
         .buildMedia();
+    Rendition rendition = media.getRendition();
 
-    if (media.isValid() && !media.getRendition().isImage()) {
+    if (media.isValid() && (rendition == null || !rendition.isImage())) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
     }
