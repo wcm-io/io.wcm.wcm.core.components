@@ -68,7 +68,7 @@ public final class ImageAreaTestData {
 
   private static ImageArea areaV1(@NotNull String shape, @NotNull String coordinates, @Nullable String relativeCoordinates,
       @Nullable Link link, @NotNull String linkUrl, @Nullable String linkWindowTarget, @Nullable String altText) {
-    return new ImageAreaV1Impl(new ImageMapAreaImpl<Link>(shape, coordinates, relativeCoordinates,
+    return new ImageAreaV1Impl(new ImageMapAreaImpl(shape, coordinates, relativeCoordinates,
         link, linkUrl, linkWindowTarget, altText));
   }
 

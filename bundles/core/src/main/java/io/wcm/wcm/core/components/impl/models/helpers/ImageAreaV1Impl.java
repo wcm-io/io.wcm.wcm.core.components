@@ -33,12 +33,12 @@ import io.wcm.handler.media.imagemap.ImageMapArea;
 /**
  * Implementation of {@link ImageArea}.
  */
-public class ImageAreaV1Impl extends ImageAreaV2Impl {
+public final class ImageAreaV1Impl extends ImageAreaV2Impl {
 
   /**
    * @param delegate Delegate
    */
-  public ImageAreaV1Impl(ImageMapArea<io.wcm.handler.link.Link> delegate) {
+  public ImageAreaV1Impl(ImageMapArea delegate) {
     super(delegate);
   }
 

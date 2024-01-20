@@ -175,7 +175,7 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
   }
 
   @SuppressWarnings("unchecked")
-  private static void setImageTitle(HtmlElement<?> element, String title) {
+  private static void setImageTitle(HtmlElement element, String title) {
     if (element == null) {
       return;
     }
@@ -183,8 +183,8 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
       element.setTitle(title);
     }
     else {
-      List<HtmlElement<?>> children = (List)element.getChildren();
-      for (HtmlElement<?> child : children) {
+      List<HtmlElement> children = (List)element.getChildren();
+      for (HtmlElement child : children) {
         setImageTitle(child, title);
       }
     }
