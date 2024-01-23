@@ -152,13 +152,13 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
+      fileReference = asset.getPath();
+      alt = asset.getAltText();
+
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);
       if (damAsset != null) {
         boolean titleFromAsset = properties.get(PN_TITLE_VALUE_FROM_DAM, currentStyle.get(PN_TITLE_VALUE_FROM_DAM, true));
         boolean uuidDisabled = currentStyle.get(PN_UUID_DISABLED, false);
-
-        fileReference = damAsset.getPath();
-        alt = asset.getAltText();
 
         if (!uuidDisabled) {
           uuid = damAsset.getID();
