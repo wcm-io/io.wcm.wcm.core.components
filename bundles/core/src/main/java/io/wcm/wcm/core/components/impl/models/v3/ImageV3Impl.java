@@ -60,6 +60,7 @@ import io.wcm.handler.media.Rendition;
 import io.wcm.handler.media.UriTemplate;
 import io.wcm.handler.media.UriTemplateType;
 import io.wcm.handler.media.format.Ratio;
+import io.wcm.handler.mediasource.inline.InlineMediaSource;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.commons.link.LinkWrapper;
@@ -186,7 +187,9 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
-      fileReference = asset.getPath();
+      if (!StringUtils.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
+        fileReference = asset.getPath();
+      }
       alt = asset.getAltText();
 
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);

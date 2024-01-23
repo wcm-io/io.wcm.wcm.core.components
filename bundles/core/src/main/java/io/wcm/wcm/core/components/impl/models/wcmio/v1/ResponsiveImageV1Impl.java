@@ -60,6 +60,7 @@ import io.wcm.handler.media.Media;
 import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.MediaNameConstants;
 import io.wcm.handler.media.Rendition;
+import io.wcm.handler.mediasource.inline.InlineMediaSource;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
@@ -152,7 +153,9 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
-      fileReference = asset.getPath();
+      if (!StringUtils.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
+        fileReference = asset.getPath();
+      }
       alt = asset.getAltText();
 
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);
