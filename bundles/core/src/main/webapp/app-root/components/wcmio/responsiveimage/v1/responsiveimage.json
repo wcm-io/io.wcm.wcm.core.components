@@ -81,6 +81,20 @@
           }
         }
       }
+    },
+
+    /**
+     * Special Smart Crop action for NextGen Dynamic Media
+     */
+    "cq:actions": ["EDITANNOTATE","COPYMOVE","DELETE","INSERT"],
+    "cq:actionConfigs": {
+      "ngdm-smartcrop": {
+          "condition": "CQ.CoreComponents.image.v3.actions.smartCrop.condition",
+          "handler": "CQ.CoreComponents.image.v3.actions.smartCrop",
+          "icon": "cropLightning",
+          "order": "before CONFIGURE",
+          "text": "Smart Crop"
+      }
     }
   },
 
