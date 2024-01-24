@@ -30,6 +30,9 @@
       <action type="update" dev="sseifert">
         Explicitly define folder type for JSON files with "nt:unstructured" as root node to circumvent SLING-12197.
       </action>
+      <action type="remove" dev="sseifert">
+        Image (v3): Remove support for inline image editing, as the Adobe Image V3 component has removed support for that as well.
+      </action>
     </release>
 
     <release version="1.14.0-2.23.2" date="2023-09-08">
