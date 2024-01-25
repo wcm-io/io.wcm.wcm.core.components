@@ -106,7 +106,7 @@ public class PageListItemV4Impl extends AbstractListItemImpl implements ListItem
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated(since = "1.9.0-2.17.2")
+  @Deprecated(forRemoval = true, since = "1.9.0-2.17.2")
   @JsonIgnore
   public String getURL() {
     return link.getURL();

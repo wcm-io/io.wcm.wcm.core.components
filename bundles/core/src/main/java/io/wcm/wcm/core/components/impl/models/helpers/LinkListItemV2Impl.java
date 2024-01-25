@@ -75,7 +75,7 @@ public class LinkListItemV2Impl extends AbstractListItemImpl implements ListItem
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore
   public String getURL() {
     return link.getURL();
