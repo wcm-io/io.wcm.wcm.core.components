@@ -84,7 +84,7 @@ public class TitleV3Impl extends AbstractComponentImpl implements Title {
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore
   public String getLinkURL() {
     return link.getURL();

@@ -37,6 +37,7 @@ import io.wcm.handler.link.Link;
 /**
  * {@link LanguageNavigationItem} implementation.
  */
+@SuppressWarnings("java:S110") // class hierarchy levels
 public class LanguageNavigationItemV1Impl extends NavigationItemV1Impl implements LanguageNavigationItem {
 
   private final Page page;
@@ -56,6 +57,7 @@ public class LanguageNavigationItemV1Impl extends NavigationItemV1Impl implement
    * @param parentId Parent ID
    * @param parentComponent The component that contains this list item
    */
+  @SuppressWarnings("java:S107") // number of parameters
   public LanguageNavigationItemV1Impl(@NotNull Page page, @NotNull Link link,
       int level, boolean active, boolean current, @NotNull List<NavigationItem> children,
       @Nullable String title, @Nullable String parentId, @Nullable Component parentComponent) {

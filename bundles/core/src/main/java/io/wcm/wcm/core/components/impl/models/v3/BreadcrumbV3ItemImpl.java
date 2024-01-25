@@ -40,6 +40,7 @@ import io.wcm.wcm.core.components.impl.models.helpers.NavigationItemV2Impl;
 @JsonIgnoreProperties({
     "page", "children", "level", "description", "lastModified", PROPERTY_PATH
 })
+@SuppressWarnings("java:S110") // class hierarchy levels
 public class BreadcrumbV3ItemImpl extends NavigationItemV2Impl implements NavigationItem {
 
   /**

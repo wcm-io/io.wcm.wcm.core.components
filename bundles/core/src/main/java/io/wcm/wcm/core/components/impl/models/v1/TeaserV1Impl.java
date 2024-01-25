@@ -70,7 +70,7 @@ public class TeaserV1Impl extends TeaserV2Impl implements LinkMixin {
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore(false)
   @JsonProperty("linkURL")
   public String getLinkURL() {

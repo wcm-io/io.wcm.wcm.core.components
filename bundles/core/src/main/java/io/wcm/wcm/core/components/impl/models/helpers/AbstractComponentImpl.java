@@ -29,6 +29,7 @@ import com.day.cq.wcm.api.components.ComponentContext;
 /**
  * Abstract class that can be used as a base class for {@link Component} implementations.
  */
+@SuppressWarnings("java:S2176") // accept duplicate class name
 public abstract class AbstractComponentImpl extends com.adobe.cq.wcm.core.components.util.AbstractComponentImpl implements ComponentExporter {
 
   @Override
