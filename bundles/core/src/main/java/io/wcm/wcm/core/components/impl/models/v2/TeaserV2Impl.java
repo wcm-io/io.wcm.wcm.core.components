@@ -262,7 +262,7 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asComponent()
         .withTitle(this::getTitle)
-        .withLinkUrl(this::getLinkURL)
+        .withLinkUrl(link::getURL)
         .withDescription(this::getDescription)
         .build();
   }

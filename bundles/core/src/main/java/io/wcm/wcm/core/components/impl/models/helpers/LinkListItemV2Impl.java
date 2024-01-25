@@ -97,7 +97,7 @@ public class LinkListItemV2Impl extends AbstractListItemImpl implements ListItem
   protected @NotNull PageData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asPage()
         .withTitle(this::getTitle)
-        .withLinkUrl(this::getURL)
+        .withLinkUrl(link::getURL)
         .build();
   }
 
