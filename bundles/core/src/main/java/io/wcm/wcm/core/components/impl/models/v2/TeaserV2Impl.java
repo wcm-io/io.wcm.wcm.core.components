@@ -104,6 +104,7 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
   private boolean titleLinkHidden;
 
   @PostConstruct
+  @SuppressWarnings({ "java:S3776", "java:S6541" }) // ignore complexity
   private void activate() {
     ValueMap properties = resource.getValueMap();
 
@@ -215,7 +216,7 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore
   public String getLinkURL() {
     return link.getURL();
@@ -261,7 +262,7 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asComponent()
         .withTitle(this::getTitle)
-        .withLinkUrl(this::getLinkURL)
+        .withLinkUrl(link::getURL)
         .withDescription(this::getDescription)
         .build();
   }

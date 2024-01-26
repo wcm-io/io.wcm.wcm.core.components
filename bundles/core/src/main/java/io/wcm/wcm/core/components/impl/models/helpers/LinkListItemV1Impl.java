@@ -58,7 +58,7 @@ public class LinkListItemV1Impl extends LinkListItemV2Impl implements LinkMixin 
   /**
    * @deprecated Deprecated in API
    */
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @Override
   @JsonIgnore
   public com.adobe.cq.wcm.core.components.commons.link.Link getLink() {
@@ -70,7 +70,7 @@ public class LinkListItemV1Impl extends LinkListItemV2Impl implements LinkMixin 
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore(false)
   public String getURL() {
     return super.getURL();

@@ -45,6 +45,7 @@ import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.wcm.handler.media.Rendition;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 import io.wcm.wcm.core.components.models.mixin.MediaMixin;
@@ -116,7 +117,8 @@ public final class TestUtils {
     MediaMixin mediaMixin = (MediaMixin)object;
     assertTrue(mediaMixin.isMediaValid());
     assertEquals(mediaUrl, mediaMixin.getMediaURL());
-    if (mediaMixin.getMediaObject().getRendition().isImage()) {
+    Rendition rendition = mediaMixin.getMediaObject().getRendition();
+    if (rendition != null && rendition.isImage()) {
       assertNotNull(mediaMixin.getMediaMarkup());
     }
   }

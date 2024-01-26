@@ -22,6 +22,7 @@ package io.wcm.wcm.core.components.testcontext;
 import static io.wcm.wcm.core.components.testcontext.AppAemContext.ROOT_LEVEL;
 
 import org.apache.sling.api.resource.Resource;
+import org.jetbrains.annotations.Nullable;
 
 import io.wcm.handler.url.spi.UrlHandlerConfig;
 
@@ -31,7 +32,7 @@ import io.wcm.handler.url.spi.UrlHandlerConfig;
 class UrlHandlerConfigImpl extends UrlHandlerConfig {
 
   @Override
-  public int getSiteRootLevel(Resource contextResource) {
+  public int getSiteRootLevel(@Nullable Resource contextResource) {
     return ROOT_LEVEL;
   }
 

@@ -54,6 +54,7 @@ import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import io.wcm.wcm.core.components.testcontext.AppAemContext;
 
 @ExtendWith(AemContextExtension.class)
+@SuppressWarnings("java:S5976") // similar tests
 class NavigationV2ImplTest {
 
   private final AemContext context = AppAemContext.newAemContext();

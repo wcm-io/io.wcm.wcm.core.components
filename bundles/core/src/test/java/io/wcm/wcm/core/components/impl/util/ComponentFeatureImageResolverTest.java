@@ -104,6 +104,7 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testComponentImage() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
@@ -119,6 +120,7 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testComponentImage_Decorative() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
@@ -135,6 +137,7 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testComponentImage_Decorative_Policy() {
     context.contentPolicyMapping(COMPONENT_RESOURCE_TYPE,
         PN_MEDIA_IS_DECORATIVE_STANDARD, true);
@@ -182,6 +185,7 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testComponentImageFromPage() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
@@ -205,6 +209,7 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testComponentImageFromPage_FallbackCurrentPage() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,

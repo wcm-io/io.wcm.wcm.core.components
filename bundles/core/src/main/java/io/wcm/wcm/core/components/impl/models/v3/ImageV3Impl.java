@@ -60,6 +60,7 @@ import io.wcm.handler.media.Rendition;
 import io.wcm.handler.media.UriTemplate;
 import io.wcm.handler.media.UriTemplateType;
 import io.wcm.handler.media.format.Ratio;
+import io.wcm.handler.mediasource.inline.InlineMediaSource;
 import io.wcm.handler.url.UrlHandler;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.commons.link.LinkWrapper;
@@ -147,8 +148,9 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
 
     // resolve media and properties from DAM asset
     media = buildMedia(altFromAsset);
+    Rendition rendition = media.getRendition();
 
-    if (media.isValid() && !media.getRendition().isImage()) {
+    if (media.isValid() && (rendition == null || !rendition.isImage())) {
       // no image asset selected (cannot be rendered) - set to invalid
       media = mediaHandler.invalid();
     }
@@ -185,13 +187,15 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
+      if (!StringUtils.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
+        fileReference = asset.getPath();
+      }
+      alt = asset.getAltText();
+
       com.day.cq.dam.api.Asset damAsset = asset.adaptTo(com.day.cq.dam.api.Asset.class);
       if (damAsset != null) {
         boolean titleFromAsset = properties.get(PN_TITLE_VALUE_FROM_DAM, currentStyle.get(PN_TITLE_VALUE_FROM_DAM, true));
         boolean uuidDisabled = currentStyle.get(PN_UUID_DISABLED, false);
-
-        fileReference = damAsset.getPath();
-        alt = asset.getAltText();
 
         if (!uuidDisabled) {
           uuid = damAsset.getID();
@@ -213,9 +217,13 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
    * @return Widths
    */
   protected List<Long> buildRenditionWidths() {
-    double primaryRatio = media.getRendition().getRatio();
+    Rendition rendition = media.getRendition();
+    if (rendition == null) {
+      return List.of();
+    }
+    double primaryRatio = rendition.getRatio();
     return media.getRenditions().stream()
-        .filter(rendition -> Ratio.matches(rendition.getRatio(), primaryRatio))
+        .filter(item -> Ratio.matches(item.getRatio(), primaryRatio))
         .map(Rendition::getWidth)
         .distinct()
         .sorted()
@@ -228,7 +236,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
    */
   protected String buildSrcPattern() {
     Rendition rendition = media.getRendition();
-    if (!rendition.isImage() || rendition.isVectorImage()) {
+    if (rendition == null || !rendition.isImage() || rendition.isVectorImage()) {
       return null;
     }
     UriTemplate uriTempalte = rendition.getUriTemplate(UriTemplateType.SCALE_WIDTH);

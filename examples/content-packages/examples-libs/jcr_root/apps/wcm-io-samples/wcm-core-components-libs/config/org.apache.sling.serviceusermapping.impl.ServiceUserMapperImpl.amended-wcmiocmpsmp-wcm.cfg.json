@@ -1,0 +1,6 @@
+{
+  "user.mapping": [
+    "io.wcm.handler.url:clientlibs-service=[sling-scripting]",
+    "io.wcm.wcm.commons:component-properties=[sling-scripting]"
+  ]
+}

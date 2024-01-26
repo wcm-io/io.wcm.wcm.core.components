@@ -192,7 +192,7 @@ class ImageV3ImplTest {
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 
-    String expectedMediaUrl = DAM_ROOT + "/sample.svg/_jcr_content/renditions/original./sample.svg";
+    String expectedMediaUrl = DAM_ROOT + "/sample.svg/_jcr_content/renditions/original.media_file.file/sample.svg";
 
     assertEquals(expectedMediaUrl, underTest.getSrc());
     assertNull(underTest.getSrcUriTemplate());

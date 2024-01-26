@@ -74,7 +74,7 @@ public class LayoutContainerV1Impl extends AbstractContainerImpl implements Layo
    */
   @Override
   @JsonIgnore
-  @Deprecated(since = "1.13.0-2.22.6")
+  @Deprecated(forRemoval = true, since = "1.13.0-2.22.6")
   public @NotNull List<ListItem> getItems() {
     return delegate.getItems();
   }

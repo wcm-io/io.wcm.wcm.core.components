@@ -93,7 +93,7 @@ public class ButtonV2Impl extends AbstractComponentImpl implements Button {
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore
   public String getLink() {
     return link.getURL();

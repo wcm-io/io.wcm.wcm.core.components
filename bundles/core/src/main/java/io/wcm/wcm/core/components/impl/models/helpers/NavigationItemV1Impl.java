@@ -34,6 +34,7 @@ import io.wcm.handler.link.Link;
 /**
  * {@link NavigationItem} implementation.
  */
+@SuppressWarnings("java:S110") // class hierarchy levels
 public class NavigationItemV1Impl extends PageListItemV1Impl implements NavigationItem {
 
   private final Page page;
@@ -52,6 +53,7 @@ public class NavigationItemV1Impl extends PageListItemV1Impl implements Navigati
    * @param parentId Parent ID
    * @param parentComponent The component that contains this list item
    */
+  @SuppressWarnings("java:S107") // number of parameters
   public NavigationItemV1Impl(@NotNull Page page, @NotNull Link link,
       int level, boolean active, boolean current, @NotNull List<NavigationItem> children,
       @Nullable String parentId, @Nullable Component parentComponent) {
@@ -67,7 +69,7 @@ public class NavigationItemV1Impl extends PageListItemV1Impl implements Navigati
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore
   public Page getPage() {
     return page;

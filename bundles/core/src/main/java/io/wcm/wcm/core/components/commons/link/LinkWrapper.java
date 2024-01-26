@@ -79,7 +79,11 @@ public final class LinkWrapper implements com.adobe.cq.wcm.core.components.commo
   @JsonSerialize(using = LinkHtmlAttributesSerializer.class)
   @JsonProperty("attributes")
   public @NotNull Map getHtmlAttributes() {
-    return link.getAnchorAttributes();
+    Map<String, String> result = link.getAnchorAttributes();
+    if (result == null) {
+      result = Map.of();
+    }
+    return result;
   }
 
   @Override

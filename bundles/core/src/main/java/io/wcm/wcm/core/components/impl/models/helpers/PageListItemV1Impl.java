@@ -33,6 +33,7 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
 /**
  * {@link ListItem} implementation for page links.
  */
+@SuppressWarnings("java:S110") // class hierarchy levels
 public class PageListItemV1Impl extends PageListItemV2Impl implements LinkMixin {
 
   /**
@@ -63,7 +64,7 @@ public class PageListItemV1Impl extends PageListItemV2Impl implements LinkMixin 
    * @deprecated Deprecated in API
    */
   @Override
-  @Deprecated
+  @Deprecated(forRemoval = true)
   @JsonIgnore(false)
   public String getURL() {
     return super.getURL();

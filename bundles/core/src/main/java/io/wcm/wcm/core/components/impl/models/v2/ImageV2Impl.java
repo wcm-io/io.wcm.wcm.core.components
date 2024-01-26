@@ -37,6 +37,7 @@ import com.adobe.cq.wcm.core.components.models.ImageArea;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.media.Media;
+import io.wcm.handler.media.Rendition;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaV1Impl;
 import io.wcm.wcm.core.components.impl.models.v3.ImageV3Impl;
 import io.wcm.wcm.core.components.impl.servlets.ImageWidthProxyServlet;
@@ -89,7 +90,11 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
    */
   @Override
   protected List<Long> buildRenditionWidths() {
-    long maxWidth = media.getRendition().getWidth();
+    Rendition rendition = media.getRendition();
+    if (rendition == null) {
+      return List.of();
+    }
+    long maxWidth = rendition.getWidth();
     String[] configuredWidths = currentStyle.get(PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[0]);
     return Arrays.stream(configuredWidths)
         .map(NumberUtils::toLong)

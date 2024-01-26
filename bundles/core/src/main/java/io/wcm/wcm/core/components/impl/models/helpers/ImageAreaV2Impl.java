@@ -38,20 +38,29 @@ import io.wcm.wcm.core.components.commons.link.LinkWrapper;
  */
 public class ImageAreaV2Impl implements ImageArea {
 
-  private final ImageMapArea<io.wcm.handler.link.Link> delegate;
+  private final ImageMapArea delegate;
   private final LinkWrapper link;
 
   /**
    * @param delegate Delegate
    */
-  public ImageAreaV2Impl(ImageMapArea<io.wcm.handler.link.Link> delegate) {
+  public ImageAreaV2Impl(ImageMapArea delegate) {
     this.delegate = delegate;
-    io.wcm.handler.link.Link delegateLink = delegate.getLink();
+    io.wcm.handler.link.Link delegateLink = toLink(delegate.getLink());
     if (delegateLink != null) {
       this.link = new LinkWrapper(delegateLink);
     }
     else {
       this.link = null;
+    }
+  }
+
+  private io.wcm.handler.link.Link toLink(Object linkObject) {
+    if (linkObject instanceof io.wcm.handler.link.Link) {
+      return (io.wcm.handler.link.Link)linkObject;
+    }
+    else {
+      return null;
     }
   }
 
