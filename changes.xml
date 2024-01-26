@@ -23,7 +23,7 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="2.0.0-2.23.2" date="not released">
+    <release version="2.0.0-2.23.2" date="2024-01-26">
       <action type="update" dev="sseifert"><![CDATA[
         Version 2.0.0-2.23.2 requires Handler 2.x, See <a href=https://wcm-io.atlassian.net/wiki/x/AYBxsw">Migrate from wcm.io Handler 1.x to 2.x</a> for details.
       ]]></action>
