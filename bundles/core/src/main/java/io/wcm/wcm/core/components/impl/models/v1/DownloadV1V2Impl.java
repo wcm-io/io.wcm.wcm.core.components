@@ -130,7 +130,7 @@ public class DownloadV1V2Impl extends AbstractComponentImpl implements Download,
     if (rendition != null) {
       filename = rendition.getFileName();
       format = rendition.getMimeType();
-      size = FileUtils.byteCountToDisplaySize(rendition.getFileSize());
+      size = toDisplayFileSize(rendition.getFileSize());
       extension = rendition.getFileExtension();
     }
 
@@ -149,6 +149,13 @@ public class DownloadV1V2Impl extends AbstractComponentImpl implements Download,
         }
       }
     }
+  }
+
+  private static String toDisplayFileSize(long fileSize) {
+    if (fileSize > 0) {
+      return FileUtils.byteCountToDisplaySize(fileSize);
+    }
+    return null;
   }
 
   @Override
