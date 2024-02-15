@@ -24,7 +24,7 @@
   <body>
 
     <release version="2.0.2-2.23.2" date="not released">
-      <action type="fix" dev="sseifert">
+      <action type="fix" dev="sseifert" issue="20">
         Download (v1/v2): Don't display file size if it is not available.
       </action>
     </release>
