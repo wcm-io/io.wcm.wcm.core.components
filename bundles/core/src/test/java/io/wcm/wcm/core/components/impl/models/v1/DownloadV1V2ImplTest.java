@@ -48,6 +48,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.ByteArrayInputStream;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -172,6 +174,26 @@ class DownloadV1V2ImplTest {
     String expectedMediaUrl = "/content/dam/sample/file1.pdf/_jcr_content/renditions/original./file1.pdf";
 
     assertEquals(expectedMediaUrl, underTest.getUrl());
+    assertEquals("15 KB", underTest.getSize());
+
+    assertValidMedia(underTest, expectedMediaUrl);
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  void testAssetReference_Inline_0size(String resourceType) {
+    Asset asset = context.create().asset(DAM_ROOT + "/file1.pdf", new ByteArrayInputStream(new byte[0]), ContentType.PDF);
+
+    context.currentResource(context.create().resource(page, "download",
+        PROPERTY_RESOURCE_TYPE, resourceType,
+        PN_MEDIA_REF_STANDARD, asset.getPath(),
+        PN_INLINE, true));
+    Download underTest = AdaptTo.notNull(context.request(), Download.class);
+
+    String expectedMediaUrl = "/content/dam/sample/file1.pdf/_jcr_content/renditions/original./file1.pdf";
+
+    assertEquals(expectedMediaUrl, underTest.getUrl());
+    assertNull(underTest.getSize());
 
     assertValidMedia(underTest, expectedMediaUrl);
   }
