@@ -35,7 +35,7 @@ There is currently no added wcm.io support for the Core Component AMP extensions
 
 |wcm.io WCM Core Components version | AEM Sites Core Component version | AEM version supported
 |-----------------------------------|----------------------------------|---------------------------------------------
-| 2.0.0-2.23.2                      | 2.23.2 and up                    | AEM 6.5.17, AEMaaCS
+| 2.0.0-2.23.2                      | 2.23.2, 2.24.6 and up            | AEM 6.5.17, AEMaaCS
 | 1.14.0-2.23.2                     | 2.23.2 and up                    | AEM 6.5.17, AEMaaCS
 | 1.13.0-2.22.6                     | 2.22.6 and up                    | AEM 6.5.14, AEMaaCS
 | 1.12.0-2.20.0                     | 2.20.0 and up                    | AEM 6.5.13, AEMaaCS
