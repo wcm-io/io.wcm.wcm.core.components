@@ -48,6 +48,9 @@ public final class LinkHtmlAttributesSerializer extends StdSerializer<Map<String
     this(null);
   }
 
+  /**
+   * @param t Class map
+   */
   protected LinkHtmlAttributesSerializer(Class<Map<String, String>> t) {
     super(t);
   }
