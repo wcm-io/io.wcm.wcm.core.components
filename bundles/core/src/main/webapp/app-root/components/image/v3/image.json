@@ -29,6 +29,7 @@
                         /** Overwrite property to switch default value to unchecked */
                         "imageFromPageImage": {
                           "uncheckedValue": "false",
+                          "forceIgnoreFreshness": true,
                           "name": "./imageFromPageImage",
                           "text": "Inherit featured image from page",
                           "value": true,

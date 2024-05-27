@@ -130,6 +130,7 @@
                             "titleValueFromDAM": {
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                               "uncheckedValue": "false",
+                              "forceIgnoreFreshness": true,
                               "name": "./titleValueFromDAM",
                               "text": "Get caption from DAM",
                               "value": true,
@@ -143,6 +144,7 @@
                             "displayPopupTitle": {
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                               "uncheckedValue": "false",
+                              "forceIgnoreFreshness": true,
                               "name": "./displayPopupTitle",
                               "text": "Display caption as pop-up",
                               "value": true,
@@ -207,6 +209,7 @@
                     "decorative": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                       "uncheckedValue": "false",
+                      "forceIgnoreFreshness": true,
                       "name": "./isDecorative",
                       "text": "Image is decorative",
                       "value": true,
@@ -215,6 +218,7 @@
                     "altValueFromDAM": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                       "uncheckedValue": "false",
+                      "forceIgnoreFreshness": true,
                       "name": "./altValueFromDAM",
                       "text": "Get alternative text from DAM",
                       "value": true,
@@ -224,6 +228,7 @@
                     "titleValueFromDAM": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                       "uncheckedValue": "false",
+                      "forceIgnoreFreshness": true,
                       "name": "./titleValueFromDAM",
                       "text": "Get caption from DAM",
                       "value": true,
@@ -233,6 +238,7 @@
                     "displayCaptionPopup": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                       "uncheckedValue": "false",
+                      "forceIgnoreFreshness": true,
                       "name": "./displayPopupTitle",
                       "text": "Display caption as pop-up",
                       "value": true,
@@ -242,6 +248,7 @@
                     "disableUuidTracking": {
                       "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                       "uncheckedValue": "false",
+                      "forceIgnoreFreshness": true,
                       "name": "./uuidDisabled",
                       "text": "Disable UUID tracking",
                       "value": true,
@@ -282,6 +289,7 @@
                               "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
                               "uncheckedValue": false,
                               "granite:class": "js-cq-ImageEditor-allowUpload",
+                              "forceIgnoreFreshness": true,
                               "name": "./allowUpload",
                               "text": "Allow asset upload from file system",
                               "value": true,
