@@ -24,7 +24,7 @@
   <body>
 
     <release version="2.0.4-2.25.4" date="not released">
-      <action type="update" dev="sseifert">
+      <action type="update" dev="sseifert" issue="22">
         Update to AEM WCM Core Components 2.25.4.
       </action>
     </release>
