@@ -23,7 +23,7 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="2.1.0-2.25.4" date="not released">
+    <release version="2.0.4-2.25.4" date="not released">
       <action type="update" dev="sseifert">
         Update to AEM WCM Core Components 2.25.4.
       </action>
