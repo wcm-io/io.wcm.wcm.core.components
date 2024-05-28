@@ -4,6 +4,9 @@
     "config:recommended",
     ":semanticCommitsDisabled"
   ],
+  "enabledManagers": [
+    "maven"
+  ],
   "ignorePaths": [
     "**/parent/**"
   ]
