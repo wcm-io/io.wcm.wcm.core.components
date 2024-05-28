@@ -5,6 +5,6 @@
     ":semanticCommitsDisabled"
   ],
   "ignorePaths": [
-    "parent/**"
+    "**/parent/**"
   ]
 }
