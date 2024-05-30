@@ -247,7 +247,7 @@
                 <text_1337505106
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p>An empty image component renders the featured image defined for the page.&lt;/p>"
+                    text="&lt;p&gt;An empty image component renders the featured image defined for the page.&lt;/p&gt;"
                     textIsRich="true"/>
                 <demo_1473529394
                     jcr:primaryType="nt:unstructured"
