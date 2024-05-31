@@ -61,7 +61,6 @@ import io.wcm.handler.media.MediaHandler;
 import io.wcm.handler.media.MediaNameConstants;
 import io.wcm.handler.media.Rendition;
 import io.wcm.handler.mediasource.inline.InlineMediaSource;
-import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
 import io.wcm.wcm.core.components.impl.models.helpers.ImageAreaV1Impl;
@@ -246,7 +245,7 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
         .withAssetData(() -> Optional.of(media)
             .filter(Media::isValid)
             .map(Media::getAsset)
-            .map(asset -> AdaptTo.notNull(asset, com.day.cq.dam.api.Asset.class))
+            .map(asset -> asset.adaptTo(com.day.cq.dam.api.Asset.class))
             .map(DataLayerBuilder::forAsset)
             .map(AssetDataBuilder::build)
             .orElse(null))

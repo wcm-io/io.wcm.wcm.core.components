@@ -30,6 +30,9 @@
       <action type="update" dev="sseifert" issue="22"><![CDATA[
         Image (v3) and Responsive Image (v1): Set forceIgnoreFreshness property on edit dialog properties with default value (related to <a href="https://github.com/adobe/aem-core-wcm-components/pull/2735">PR #2735</a>).
       ]]></action>
+      <action type="fix" dev="sseifert" issue="25">
+        Responsive Image (v1): Fix exception when trying to access asset data layer for components not based on a DAM asset (e.g. inline image).
+      </action>
     </release>
 
     <release version="2.0.2-2.23.2" date="2024-03-13">
