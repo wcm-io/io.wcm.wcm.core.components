@@ -157,6 +157,8 @@ class ResponsiveImageV1ImplTest {
 
   @Test
   void testWithUploadedImage() {
+    enableDataLayer(context, true);
+
     Resource imageResource = context.create().resource(page.getContentResource().getPath() + "/image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         NN_MEDIA_INLINE_STANDARD + "Name", "file1.png");
@@ -176,6 +178,13 @@ class ResponsiveImageV1ImplTest {
 
     assertValidMedia(underTest, expectedMediaUrl);
     assertInvalidLink(underTest);
+
+    ComponentData data = underTest.getData();
+    assertNotNull(data);
+    assertEquals(RESOURCE_TYPE, data.getType());
+
+    AssetData assetData = ((ImageData)data).getAssetData();
+    assertNull(assetData);
   }
 
   @Test
