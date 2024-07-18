@@ -144,7 +144,7 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.caconfig.editor</artifactId>
-        <version>1.16.0</version>
+        <version>1.16.2</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
