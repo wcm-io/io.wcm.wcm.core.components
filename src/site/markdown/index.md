@@ -86,7 +86,7 @@ Sources: https://github.com/wcm-io/io.wcm.wcm.core.components
 
 
 [apidocs]: core/apidocs/
-[changelog]: changes-report.html
+[changelog]: changes.html
 [adobe-core-components]: https://github.com/adobe/aem-core-wcm-components
 [wcmio-handler]: https://wcm.io/handler/
 [wcmio-handler-url]: https://wcm.io/handler/url/
