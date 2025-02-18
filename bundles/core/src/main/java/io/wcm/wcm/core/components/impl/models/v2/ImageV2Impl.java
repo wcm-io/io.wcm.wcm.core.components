@@ -50,6 +50,7 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
  * <li>Build image using Media handler</li>
  * <li>Build link using Link handler</li>
  * </ul>
+ *
  * <p>
  * This image component does not take full use of all wcm.io Media handler features, but rather emulates
  * the behavior of the original AEM core image component and it special behavior.
