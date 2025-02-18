@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="2.0.6-2.25.4" date="not released">
+      <action type="fix" dev="sseifert" issue="35">
+        ComponentFeatureImageResolver: If imageFromPageImage is explicitly set to false, do not fallback to image from page if no reference given in component.
+      </action>
+    </release>
+
     <release version="2.0.4-2.25.4" date="2024-06-04">
       <action type="update" dev="sseifert" issue="22">
         Update to AEM WCM Core Components 2.25.4.
