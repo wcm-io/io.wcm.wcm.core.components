@@ -226,7 +226,7 @@ class TeaserV2ImplTest {
         PN_COMPONENT_MEDIA_AUTOCROP, Boolean.TRUE,
         PN_COMPONENT_MEDIA_RESPONSIVE_TYPE, "imageSizes");
     context.create().resource(policyMapping.getPolicy().getPath() + "/" + NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES,
-            "widths", "45,90");
+        "widths", "45,90");
 
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
