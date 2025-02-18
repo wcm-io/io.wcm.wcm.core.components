@@ -40,9 +40,7 @@ import static io.wcm.handler.link.LinkNameConstants.PN_LINK_CONTENT_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_WINDOW_TARGET;
-import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
-import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
-import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
+import static io.wcm.handler.media.MediaNameConstants.*;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.TeaserV2Impl.RESOURCE_TYPE;
 import static io.wcm.wcm.core.components.testcontext.AppAemContext.CONTENT_ROOT;
@@ -59,6 +57,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.day.cq.wcm.api.policies.ContentPolicyMapping;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -191,12 +190,19 @@ class TeaserV2ImplTest {
         PN_DESCRIPTION_FROM_PAGE, true,
         PN_IMAGE_FROM_PAGE_IMAGE, true,
         PN_ALT_VALUE_FROM_PAGE_IMAGE, true));
+    ContentPolicyMapping policyMapping = context.contentPolicyMapping(RESOURCE_TYPE,
+            "jcr:title", "Teaser Mock Policy",
+            PN_COMPONENT_MEDIA_FORMATS, MediaFormats.SQUARE.getName(),
+            PN_COMPONENT_MEDIA_AUTOCROP, Boolean.TRUE,
+            PN_COMPONENT_MEDIA_RESPONSIVE_TYPE, "imageSizes");
+    context.create().resource(policyMapping.getPolicy().getPath() + "/" + NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES,
+            "widths", "45,90");
 
     Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
 
     assertEquals("Page Title", underTest.getTitle());
     assertEquals("Page Description", underTest.getDescription());
-    assertValidMedia(underTest, "/content/dam/sample/sample.jpg/_jcr_content/renditions/original./sample.jpg");
+    assertValidMedia(underTest, "/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg");
   }
 
   @Test
