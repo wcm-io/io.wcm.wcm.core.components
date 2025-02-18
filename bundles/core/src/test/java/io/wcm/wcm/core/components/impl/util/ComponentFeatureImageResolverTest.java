@@ -209,7 +209,6 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
-  @SuppressWarnings("null")
   void testComponentImageFromPage_Disabled() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
