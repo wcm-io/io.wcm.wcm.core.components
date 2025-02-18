@@ -210,6 +210,28 @@ class ComponentFeatureImageResolverTest {
 
   @Test
   @SuppressWarnings("null")
+  void testComponentImageFromPage_Disabled() {
+    Resource component = context.create().resource(page1, "comp1",
+        PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, asset1.getPath(),
+        PN_MEDIA_ALTTEXT_STANDARD, "My Alt",
+        PN_IMAGE_FROM_PAGE_IMAGE, false,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true);
+
+    // create feature image in page2
+    context.create().resource(page2, NN_PAGE_FEATURED_IMAGE,
+        PN_MEDIA_REF_STANDARD, asset2.getPath(),
+        PN_MEDIA_ALTTEXT_STANDARD, "Feature Alt");
+
+    Media media = newComponentFeatureImageResolver(component)
+        .targetPage(page2)
+        .buildMedia();
+
+    assertFalse(media.isValid());
+  }
+
+  @Test
+  @SuppressWarnings("null")
   void testComponentImageFromPage_FallbackCurrentPage() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,

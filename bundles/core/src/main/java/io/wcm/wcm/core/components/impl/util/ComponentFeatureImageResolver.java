@@ -56,7 +56,7 @@ public class ComponentFeatureImageResolver {
   private final MediaHandler mediaHandler;
   private final Map<String, Object> mediaHandlerProperties = new HashMap<>();
 
-  private boolean imageFromPageImage;
+  private final Boolean imageFromPageImage;
   private final boolean altValueFromPageImage;
   private boolean altValueFromDam;
   private final boolean isDecorative;
@@ -78,7 +78,7 @@ public class ComponentFeatureImageResolver {
 
     // component properties
     ValueMap props = componentResource.getValueMap();
-    this.imageFromPageImage = props.get(PN_IMAGE_FROM_PAGE_IMAGE, false);
+    this.imageFromPageImage = props.get(PN_IMAGE_FROM_PAGE_IMAGE, Boolean.class);
     this.altValueFromPageImage = props.get(PN_ALT_VALUE_FROM_PAGE_IMAGE, false);
     this.altValueFromDam = props.get(PN_ALT_VALUE_FROM_DAM, false);
     this.isDecorative = props.get(PN_IS_DECORATIVE, currentStyle.get(PN_IS_DECORATIVE, false));
@@ -107,15 +107,6 @@ public class ComponentFeatureImageResolver {
   }
 
   /**
-   * @param value Image from page image
-   * @return self
-   */
-  public ComponentFeatureImageResolver imageFromPageImage(boolean value) {
-    this.imageFromPageImage = value;
-    return this;
-  }
-
-  /**
    * @param value Alt Value from DAM
    * @return self
    */
@@ -131,16 +122,17 @@ public class ComponentFeatureImageResolver {
   public @NotNull Media buildMedia() {
     Media media = mediaHandler.invalid();
 
-    if (!imageFromPageImage) {
+    boolean useImageFromPageImage = imageFromPageImage != null && imageFromPageImage;
+    if (imageFromPageImage == null) {
       // image from resource properties
       media = buildMedia(componentResource);
       if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING) {
-        // fallback to image from page if no reference was given
-        imageFromPageImage = true;
+        // fallback to image from page if no reference was given and imageFromPageImage is neither enabled nor disabled
+        useImageFromPageImage = true;
       }
     }
 
-    if (imageFromPageImage) {
+    if (useImageFromPageImage) {
       // try to get feature image from target page
       if (targetPage != null) {
         Resource featuredImageResource = ComponentUtils.getFeaturedImage(targetPage);
