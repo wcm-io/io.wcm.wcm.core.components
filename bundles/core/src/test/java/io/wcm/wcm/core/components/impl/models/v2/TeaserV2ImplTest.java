@@ -40,8 +40,10 @@ import static io.wcm.handler.link.LinkNameConstants.PN_LINK_CONTENT_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_WINDOW_TARGET;
+import static io.wcm.handler.media.MediaNameConstants.NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_AUTOCROP;
 import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_FORMATS;
+import static io.wcm.handler.media.MediaNameConstants.PN_COMPONENT_MEDIA_RESPONSIVE_TYPE;
 import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_REF_STANDARD;
 import static io.wcm.wcm.core.components.impl.models.helpers.DataLayerTestUtils.enableDataLayer;
 import static io.wcm.wcm.core.components.impl.models.v2.TeaserV2Impl.RESOURCE_TYPE;
@@ -69,6 +71,7 @@ import com.adobe.cq.wcm.core.components.models.Teaser;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.policies.ContentPolicyMapping;
 
 import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.handler.link.type.InternalLinkType;
@@ -197,6 +200,39 @@ class TeaserV2ImplTest {
     assertEquals("Page Title", underTest.getTitle());
     assertEquals("Page Description", underTest.getDescription());
     assertValidMedia(underTest, "/content/dam/sample/sample.jpg/_jcr_content/renditions/original./sample.jpg");
+  }
+
+  @Test
+  void testTitleDescriptionImageFromPage_WithContentPolicy() {
+    Page targetPage = context.create().page(page, "page1", null,
+        JCR_TITLE, "Page Title",
+        JCR_DESCRIPTION, "Page Description");
+    context.create().resource(targetPage, NN_PAGE_FEATURED_IMAGE,
+        PN_MEDIA_REF_STANDARD, asset.getPath());
+    context.currentResource(context.create().resource(page, "teaser",
+        PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
+        JCR_TITLE, "Teaser Title",
+        JCR_DESCRIPTION, "Teaser Description",
+        PN_LINK_TYPE, InternalLinkType.ID,
+        PN_LINK_CONTENT_REF, targetPage.getPath(),
+        PN_TITLE_FROM_PAGE, true,
+        PN_DESCRIPTION_FROM_PAGE, true,
+        PN_IMAGE_FROM_PAGE_IMAGE, true,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true));
+
+    ContentPolicyMapping policyMapping = context.contentPolicyMapping(RESOURCE_TYPE,
+        JCR_TITLE, "Teaser Mock Policy",
+        PN_COMPONENT_MEDIA_FORMATS, MediaFormats.SQUARE.getName(),
+        PN_COMPONENT_MEDIA_AUTOCROP, Boolean.TRUE,
+        PN_COMPONENT_MEDIA_RESPONSIVE_TYPE, "imageSizes");
+    context.create().resource(policyMapping.getPolicy().getPath() + "/" + NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES,
+        "widths", "45,90");
+
+    Teaser underTest = AdaptTo.notNull(context.request(), Teaser.class);
+
+    assertEquals("Page Title", underTest.getTitle());
+    assertEquals("Page Description", underTest.getDescription());
+    assertValidMedia(underTest, "/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.90.90.35,0,125,90.file/sample.jpg");
   }
 
   @Test
