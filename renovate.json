@@ -10,5 +10,8 @@
   ],
   "ignorePaths": [
     "**/parent/**"
+  ],
+  "ignoreDeps": [
+    "io.wcm:io.wcm.caconfig.extensions"
   ]
 }

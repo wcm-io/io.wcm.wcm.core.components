@@ -26,7 +26,7 @@ fi
 # install AEM 6.5 with service pack
 mvn --non-recursive wcmio-content-package:install \
     --activate-profiles=${MAVEN_PROFILES} \
-    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.21.0 \
+    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.22.0 \
     -Dvault.delayAfterInstallSec=30
 
 if [ "$?" -ne "0" ]; then
