@@ -28,6 +28,9 @@
       <action type="fix" dev="sseifert" issue="35">
         ComponentFeatureImageResolver: If imageFromPageImage is explicitly set to false, do not fallback to image from page if no reference given in component.
       </action>
+      <action type="fix" dev="sseifert">
+        ComponentFeatureImageResolver: Use component resource path for wrapped feature image resource to be able to apply content policies.
+      </action>
     </release>
 
     <release version="2.0.4-2.25.4" date="2024-06-04">

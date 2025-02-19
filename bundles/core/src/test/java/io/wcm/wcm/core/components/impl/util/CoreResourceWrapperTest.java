@@ -59,7 +59,9 @@ class CoreResourceWrapperTest {
         "a", 1,
         "b", 2,
         ResourceResolver.PROPERTY_RESOURCE_TYPE, "a/b/c");
-    Resource wrappedResource = new CoreResourceWrapper(resource, "d/e/f");
+    Resource wrappedResource = new CoreResourceWrapper(resource, resource.getPath(), "d/e/f");
+
+    assertEquals(resource.getPath(), wrappedResource.getPath());
 
     Map<String, Object> expectedProperties = new HashMap<>(resource.getValueMap());
     expectedProperties.put(ResourceResolver.PROPERTY_RESOURCE_TYPE, "d/e/f");
@@ -74,7 +76,9 @@ class CoreResourceWrapperTest {
         "a", 1,
         "b", 2,
         ResourceResolver.PROPERTY_RESOURCE_TYPE, "a/b/c");
-    Resource wrappedResource = new CoreResourceWrapper(resource, "d/e/f", null, Set.of("b"));
+    Resource wrappedResource = new CoreResourceWrapper(resource, "/content/test2", "d/e/f", null, Set.of("b"));
+
+    assertEquals("/content/test2", wrappedResource.getPath());
 
     Map<String, Object> expectedProperties = new HashMap<>(resource.getValueMap());
     expectedProperties.put(ResourceResolver.PROPERTY_RESOURCE_TYPE, "d/e/f");
@@ -95,7 +99,7 @@ class CoreResourceWrapperTest {
     Map<String, Object> overriddenProperties = ImmutableValueMap.of(
         "a", "1",
         "b", "2");
-    Resource wrappedResource = new CoreResourceWrapper(resource, "a/b/c", overriddenProperties, null);
+    Resource wrappedResource = new CoreResourceWrapper(resource, resource.getPath(), "a/b/c", overriddenProperties, null);
 
     // isResourceType()
     assertTrue(wrappedResource.isResourceType("a/b/c"));
@@ -113,7 +117,7 @@ class CoreResourceWrapperTest {
   @Test
   @SuppressWarnings("null")
   void testNulls() {
-    assertThrows(IllegalArgumentException.class, () -> new CoreResourceWrapper(null, null));
+    assertThrows(IllegalArgumentException.class, () -> new CoreResourceWrapper(null, null, null));
   }
 
   @Test
@@ -124,7 +128,7 @@ class CoreResourceWrapperTest {
     when(toBeWrapped.getValueMap()).thenReturn(new ValueMapDecorator(Collections.emptyMap()));
     when(toBeWrapped.getResourceResolver()).thenReturn(resourceResolver);
     when(resourceResolver.isResourceType(any(CoreResourceWrapper.class), any(String.class))).thenReturn(true);
-    Resource wrappedResource = new CoreResourceWrapper(toBeWrapped, "a/b/c");
+    Resource wrappedResource = new CoreResourceWrapper(toBeWrapped, toBeWrapped.getPath(), "a/b/c");
     assertTrue(wrappedResource.isResourceType("a/b/c"));
     verify(resourceResolver).isResourceType(wrappedResource, "a/b/c");
   }

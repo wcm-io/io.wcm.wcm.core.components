@@ -192,7 +192,8 @@ public class PageListItemV4Impl extends AbstractListItemImpl implements ListItem
       overriddenProperties.put(PN_LINK_CONTENT_REF, this.getPath());
     }
 
-    return new CoreResourceWrapper(resourceToBeWrapped, delegateResourceType, overriddenProperties, hiddenProperties);
+    return new CoreResourceWrapper(resourceToBeWrapped, resourceToBeWrapped.getPath(),
+        delegateResourceType, overriddenProperties, hiddenProperties);
   }
 
   @JsonIgnore
