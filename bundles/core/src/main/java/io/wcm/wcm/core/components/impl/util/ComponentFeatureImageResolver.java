@@ -160,7 +160,10 @@ public class ComponentFeatureImageResolver {
     if (resource == null) {
       return null;
     }
-    return new CoreResourceWrapper(resource, HandlerUnwrapper.getResourceType(componentResource));
+    return new CoreResourceWrapper(resource,
+        // use path of component resource to get policy mappings for those
+        componentResource.getPath(),
+        HandlerUnwrapper.getResourceType(componentResource));
   }
 
   /**
