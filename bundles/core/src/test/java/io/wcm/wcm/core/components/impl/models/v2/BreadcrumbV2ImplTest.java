@@ -59,7 +59,7 @@ class BreadcrumbV2ImplTest {
   private Page page3;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     loadComponentDefinition(context, RESOURCE_TYPE);
 
     root = context.pageManager().getPage(CONTENT_ROOT);

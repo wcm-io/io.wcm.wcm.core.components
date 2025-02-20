@@ -42,26 +42,30 @@ import com.adobe.cq.export.json.ExporterConstants;
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public final class CoreResourceWrapper extends ResourceWrapper {
 
-  private ValueMap valueMap;
-  private String overriddenResourceType;
+  private final String path;
+  private final ValueMap valueMap;
+  private final String overriddenResourceType;
 
   /**
    * @param resource Target resource
+   * @param path Path of wrapped resource
    * @param overriddenResourceType New resource type
    */
-  public CoreResourceWrapper(@NotNull Resource resource, @NotNull String overriddenResourceType) {
-    this(resource, overriddenResourceType, null, null);
+  public CoreResourceWrapper(@NotNull Resource resource, @NotNull String path, @NotNull String overriddenResourceType) {
+    this(resource, path, overriddenResourceType, null, null);
   }
 
   /**
    * @param resource Target resource
+   * @param path Path of wrapped resource
    * @param overriddenResourceType New resource type
    * @param overriddenProperties Properties to add/overwrite in value map
    * @param hiddenProperties Properties to hide from value map
    */
-  public CoreResourceWrapper(@NotNull Resource resource, @NotNull String overriddenResourceType,
+  public CoreResourceWrapper(@NotNull Resource resource, @NotNull String path, @NotNull String overriddenResourceType,
       @Nullable Map<String, Object> overriddenProperties, @Nullable Set<String> hiddenProperties) {
     super(resource);
+    this.path = path;
     if (StringUtils.isEmpty(overriddenResourceType)) {
       throw new IllegalArgumentException("The " + CoreResourceWrapper.class.getName() + " needs to override the resource type of " +
           "the wrapped resource, but the resourceType argument was null or empty.");
@@ -75,6 +79,11 @@ public final class CoreResourceWrapper extends ResourceWrapper {
     if (hiddenProperties != null) {
       hiddenProperties.forEach(valueMap::remove);
     }
+  }
+
+  @Override
+  public String getPath() {
+    return path;
   }
 
   @Override

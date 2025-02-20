@@ -39,6 +39,7 @@ import io.wcm.wcm.core.components.impl.models.v2.ImageV2Impl;
  * This servlet acts as a "proxy" for the {@link io.wcm.handler.media.impl.ImageFileServlet}
  * that emulates support for the "widths" attributes of the core component and maps them
  * to media handler-URLs internally.
+ *
  * <p>
  * Expected selectors:
  * </p>

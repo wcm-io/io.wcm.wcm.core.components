@@ -60,7 +60,7 @@ class LanguageNavigationV1ImplTest {
   private Page root_fr;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     loadComponentDefinition(context, RESOURCE_TYPE);
 
     root_en = context.pageManager().getPage(CONTENT_ROOT);

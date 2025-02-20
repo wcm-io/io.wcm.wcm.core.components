@@ -199,7 +199,7 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
     if (!link.isValid()) {
       return null;
     }
-    String linkText = itemResource.getValueMap().get(List.PN_LINK_TEXT, String.class);
+    String linkText = itemResource.getValueMap().get(PN_LINK_TEXT, String.class);
     if (StringUtils.isBlank(linkText)) {
       linkText = link.getUrl();
     }

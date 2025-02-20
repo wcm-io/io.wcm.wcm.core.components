@@ -40,6 +40,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mock.Strictness;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.day.cq.dam.api.Asset;
@@ -63,7 +64,7 @@ class ImageWidthProxyServletTest {
   private Page page;
   private Asset asset;
 
-  @Mock(lenient = true)
+  @Mock(strictness = Strictness.LENIENT)
   private MockRequestDispatcherFactory requestDispatcherFactory;
   @Mock
   private RequestDispatcher requestDispatcher;
