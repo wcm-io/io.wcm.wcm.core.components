@@ -9,17 +9,17 @@
     {
       "matchFileNames": ["parent/**"],
       "matchPackageNames": [
-        "^io.wcm:io.wcm.caconfig.editor",
-        "^io.wcm:io.wcm.caconfig.extensions",
-        "^io.wcm:io.wcm.handler.commons",
-        "^io.wcm:io.wcm.handler.link",
-        "^io.wcm:io.wcm.handler.media",
-        "^io.wcm:io.wcm.handler.richtext",
-        "^io.wcm:io.wcm.handler.url",
-        "^io.wcm:io.wcm.sling.commons",
-        "^io.wcm:io.wcm.sling.models",
-        "^io.wcm:io.wcm.wcm.commons",
-        "^io.wcm:io.wcm.wcm.ui.granite"
+        "io.wcm:io.wcm.caconfig.editor",
+        "io.wcm:io.wcm.caconfig.extensions",
+        "io.wcm:io.wcm.handler.commons",
+        "io.wcm:io.wcm.handler.link",
+        "io.wcm:io.wcm.handler.media",
+        "io.wcm:io.wcm.handler.richtext",
+        "io.wcm:io.wcm.handler.url",
+        "io.wcm:io.wcm.sling.commons",
+        "io.wcm:io.wcm.sling.models",
+        "io.wcm:io.wcm.wcm.commons",
+        "io.wcm:io.wcm.wcm.ui.granite"
       ],
       "enabled": false
     }
