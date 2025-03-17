@@ -145,7 +145,7 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.wcm.ui.granite</artifactId>
-        <version>1.10.0</version>
+        <version>1.10.6</version>
       </dependency>
   
       <!-- wcm.io Testing -->
