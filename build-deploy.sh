@@ -34,7 +34,7 @@ BUILD=false
 DEPLOY=false
 HELP=false
 DEFAULT_COMMANDS=true
-DEPLOY_CORE_COMPONENTS=true
+DEPLOY_CORE_COMPONENTS=false
 
 ####
 
@@ -48,6 +48,7 @@ help_message_exit() {
   echo "    --sling.user=${SLING_USER}               or -Dsling.user=${SLING_USER}"
   echo "    --sling.password=${SLING_PASSWORD}       or -Dsling.password=${SLING_PASSWORD}"
   echo "    --jvm.args=${JVM_ARGS}                   or -Djvm.args=${JVM_ARGS}"
+  echo "    --deploy.core.components=true|false      or -Ddeploy.core.components=true|false"
   echo ""
   echo "  Commands:"
   echo "    build  - Clean and install maven project"

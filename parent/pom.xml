@@ -95,12 +95,12 @@
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.caconfig.extensions</artifactId>
-        <version>1.8.0</version>
+        <version>1.8.8</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
         <artifactId>io.wcm.caconfig.editor</artifactId>
-        <version>1.8.0</version>
+        <version>1.8.6</version>
       </dependency>
       <dependency>
         <groupId>io.wcm</groupId>
@@ -260,6 +260,16 @@
         <!-- AEM instance parameters -->
         <sling.url>http://localhost:45025</sling.url>
         <sling.publish.url>http://localhost:45035</sling.publish.url>
+      </properties>
+    </profile>
+
+    <!-- Deployment to AEM 6.6 -->
+    <profile>
+      <id>aem66</id>
+      <properties>
+        <!-- AEM instance parameters -->
+        <sling.url>http://localhost:45026</sling.url>
+        <sling.publish.url>http://localhost:45036</sling.publish.url>
       </properties>
     </profile>
 
