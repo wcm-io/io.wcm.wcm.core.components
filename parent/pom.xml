@@ -263,6 +263,16 @@
       </properties>
     </profile>
 
+    <!-- Deployment to AEM 6.6 -->
+    <profile>
+      <id>aem66</id>
+      <properties>
+        <!-- AEM instance parameters -->
+        <sling.url>http://localhost:45026</sling.url>
+        <sling.publish.url>http://localhost:45036</sling.publish.url>
+      </properties>
+    </profile>
+
   </profiles>
 
 </project>

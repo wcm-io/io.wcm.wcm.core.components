@@ -2,7 +2,7 @@
 # #%L
 #  wcm.io
 #  %%
-#  Copyright (C) 2022 wcm.io
+#  Copyright (C) 2025 wcm.io
 #  %%
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -17,20 +17,14 @@
 #  limitations under the License.
 #  #L%
 
-MAVEN_PROFILES="fast,aem65"
 
 if [[ $0 == *":\\"* ]]; then
   DISPLAY_PAUSE_MESSAGE=true
 fi
 
-# install AEM 6.5 with service pack
-mvn --non-recursive wcmio-content-package:install \
-    --activate-profiles=${MAVEN_PROFILES} \
-    -Dvault.artifact=adobe.binary.aem.65.servicepack:aem-service-pkg:zip:6.5.22.0 \
-    -Dvault.delayAfterInstallSec=30
+mvn -Paem66 package -Dvault.unpack=true wcmio-content-package:download
 
-if [ "$?" -ne "0" ]; then
-  exit
+if [ "$DISPLAY_PAUSE_MESSAGE" = true ]; then
+  echo ""
+  read -n1 -r -p "Press any key to continue..."
 fi
-
-./build-deploy.sh --deploy.core.components=true --maven.profiles=${MAVEN_PROFILES} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
