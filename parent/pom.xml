@@ -48,7 +48,7 @@
   </issueManagement>
 
   <properties>
-    <core.wcm.components.version>2.25.4</core.wcm.components.version>
+    <core.wcm.components.version>2.29.0</core.wcm.components.version>
 
     <sling.url>http://localhost:4502</sling.url>
     <sling.publish.url>http://localhost:4503</sling.publish.url>
