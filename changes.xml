@@ -25,7 +25,7 @@
   <body>
 
     <release version="2.0.8-2.25.4" date="not released">
-      <action type="fix" dev="sseifert">
+      <action type="fix" dev="sseifert" issue="52">
         Make compatible with latest Show/Hide JS implementation from WCM Granite UI Extensions 11.x.
       </action>
     </release>
