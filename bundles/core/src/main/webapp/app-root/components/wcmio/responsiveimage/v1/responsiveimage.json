@@ -124,7 +124,8 @@
                               "fieldDescription": "Additional information about the image.",
                               "granite:class": "wcmio-wcm-core-components-responsiveimage-titlevaluefromdam",
                               "granite:data": {
-                                "showhidetargetvalue": "false"
+                                "showhidetargetvalue": "true",
+                                "showhidetargetnot": "true"
                               }
                             },
                             "titleValueFromDAM": {
