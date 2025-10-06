@@ -5,6 +5,15 @@
     "github>wcm-io/renovate-config:automerge-parent",
     "github>wcm-io/renovate-config:automerge-testing"
   ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ],
   "packageRules": [
     {
       "matchFileNames": ["parent/**"],
