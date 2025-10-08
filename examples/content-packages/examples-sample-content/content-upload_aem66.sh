@@ -2,7 +2,7 @@
 # #%L
 #  wcm.io
 #  %%
-#  Copyright (C) 2020 wcm.io
+#  Copyright (C) 2025 wcm.io
 #  %%
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -18,10 +18,13 @@
 #  #L%
 
 
-SLING_URL="http://localhost:4502"
-
 if [[ $0 == *":\\"* ]]; then
   DISPLAY_PAUSE_MESSAGE=true
 fi
 
-./build-deploy.sh --deploy.core.components=false --sling.url=${SLING_URL} --display.pause.message=${DISPLAY_PAUSE_MESSAGE} "$@"
+mvn -Paem66 clean package wcmio-content-package:install
+
+if [ "$DISPLAY_PAUSE_MESSAGE" = true ]; then
+  echo ""
+  read -n1 -r -p "Press any key to continue..."
+fi

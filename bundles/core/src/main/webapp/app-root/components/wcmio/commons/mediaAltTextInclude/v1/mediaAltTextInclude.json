@@ -25,7 +25,8 @@
               "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
               "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage",
               "granite:data": {
-                "showhidetargetvalue": "false"
+                "showhidetargetvalue": "true",
+                "showhidetargetnot": "true"
               },
               "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
             },
@@ -33,7 +34,8 @@
               "sling:resourceType": "granite/ui/components/coral/foundation/well",
               "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-decorative",
               "granite:data": {
-                "showhidetargetvalue": "false"
+                "showhidetargetvalue": "true",
+                "showhidetargetnot": "true"
               },
               "items": {
                 "alt": {
@@ -41,7 +43,8 @@
                   "required": true,
                   "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-altvaluefromdamorpage",
                   "granite:data": {
-                    "showhidetargetvalue": "false"
+                    "showhidetargetvalue": "true",
+                    "showhidetargetnot": "true"
                   },
                   "name": "./alt",
                   "fieldLabel": "Alternative text for accessibility",
@@ -54,7 +57,8 @@
                   "fieldDescription": "When checked, populate the image's alt attribute with the value of the dc:description metadata in DAM, or the alternative text defined in the page properties of the linked page.",
                   "granite:class": "wcmio-dialog-showhide",
                   "granite:data": {
-                    "showhidetargetvalue": "false",
+                    "showhidetargetvalue": "true",
+                    "showhidetargetnot": "true",
                     "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-altvaluefromdamorpage"
                   }
                 }

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>wcm-io/renovate-config:maven",
+    "github>wcm-io/renovate-config:automerge-parent",
+    "github>wcm-io/renovate-config:automerge-testing"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ],
+  "packageRules": [
+    {
+      "matchFileNames": ["parent/**"],
+      "matchPackageNames": [
+        "io.wcm:io.wcm.caconfig.editor",
+        "io.wcm:io.wcm.caconfig.extensions",
+        "io.wcm:io.wcm.handler.commons",
+        "io.wcm:io.wcm.handler.link",
+        "io.wcm:io.wcm.handler.media",
+        "io.wcm:io.wcm.handler.richtext",
+        "io.wcm:io.wcm.handler.url",
+        "io.wcm:io.wcm.sling.commons",
+        "io.wcm:io.wcm.sling.models",
+        "io.wcm:io.wcm.wcm.commons",
+        "io.wcm:io.wcm.wcm.ui.granite"
+      ],
+      "enabled": false
+    },
+    {
+      "matchFileNames": ["examples/**"],
+      "matchUpdateTypes": ["minor", "patch", "lockFileMaintenance"],
+      "automerge": true,
+      "addLabels": ["automerge"]
+    }
+  ],
+  "ignoreDeps": [
+    "io.wcm:io.wcm.caconfig.extensions"
+  ]
+}
