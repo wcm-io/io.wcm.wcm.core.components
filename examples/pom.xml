@@ -34,6 +34,8 @@
   <version>2.0.7-2.25.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>io.wcm.wcm.core.components.examples.root</name>
+
   <modules>
     <module>bundles/examples-core</module>
     <module>content-packages/examples-libs</module>
