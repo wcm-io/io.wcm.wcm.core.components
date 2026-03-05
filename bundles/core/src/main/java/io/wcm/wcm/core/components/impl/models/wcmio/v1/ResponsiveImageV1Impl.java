@@ -72,7 +72,9 @@ import io.wcm.wcm.core.components.models.ResponsiveImage;
  * Responsive Image - wcm.io Core Component.
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { ResponsiveImage.class, ComponentExporter.class },
+    adapters = {
+        ResponsiveImage.class, ComponentExporter.class
+    },
     resourceType = ResponsiveImageV1Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -122,11 +124,11 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
     // resolve image and alt. text
     // add custom properties as defined in "image" core component
     media = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
-        .targetPage(link.getTargetPage())
-        .mediaHandlerProperty("itemprop", "contentUrl")
-        .mediaHandlerProperty("data-cmp-hook-image", "image")
-        .mediaHandlerProperty(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
-        .buildMedia();
+      .targetPage(link.getTargetPage())
+      .mediaHandlerProperty("itemprop", "contentUrl")
+      .mediaHandlerProperty("data-cmp-hook-image", "image")
+      .mediaHandlerProperty(MediaNameConstants.PROP_CSS_CLASS, "cmp-wcmio-responsiveimage__image")
+      .buildMedia();
     Rendition rendition = media.getRendition();
 
     if (media.isValid() && (rendition == null || !rendition.isImage())) {
@@ -240,16 +242,16 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
   @SuppressWarnings("null")
   protected @NotNull ImageData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asImageComponent()
-        .withTitle(this::getTitle)
-        .withLinkUrl(this::getLinkURL)
-        .withAssetData(() -> Optional.of(media)
-            .filter(Media::isValid)
-            .map(Media::getAsset)
-            .map(asset -> asset.adaptTo(com.day.cq.dam.api.Asset.class))
-            .map(DataLayerBuilder::forAsset)
-            .map(AssetDataBuilder::build)
-            .orElse(null))
-        .build();
+      .withTitle(this::getTitle)
+      .withLinkUrl(this::getLinkURL)
+      .withAssetData(() -> Optional.of(media)
+        .filter(Media::isValid)
+        .map(Media::getAsset)
+        .map(asset -> asset.adaptTo(com.day.cq.dam.api.Asset.class))
+        .map(DataLayerBuilder::forAsset)
+        .map(AssetDataBuilder::build)
+        .orElse(null))
+      .build();
   }
 
 }

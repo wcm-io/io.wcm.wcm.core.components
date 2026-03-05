@@ -44,7 +44,9 @@ import io.wcm.wcm.core.components.impl.models.v2.NavigationV2Impl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Navigation.class, ComponentExporter.class },
+    adapters = {
+        Navigation.class, ComponentExporter.class
+    },
     resourceType = NavigationV1Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,

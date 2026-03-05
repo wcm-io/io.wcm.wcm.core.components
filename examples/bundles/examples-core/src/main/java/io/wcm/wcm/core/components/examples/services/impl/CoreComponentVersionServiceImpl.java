@@ -47,12 +47,12 @@ public class CoreComponentVersionServiceImpl implements CoreComponentVersionServ
 
   private @Nullable String getBundleVersion(BundleContext bundleContext, String symbolicName) {
     return Arrays.stream(bundleContext.getBundles())
-        .filter(bundle -> StringUtils.equals(bundle.getSymbolicName(), symbolicName))
-        .map(Bundle::getVersion)
-        // if multiple bundles with the same version exist: pick highest version
-        .sorted(Collections.reverseOrder())
-        .map(Version::toString)
-        .findFirst().orElse(null);
+      .filter(bundle -> StringUtils.equals(bundle.getSymbolicName(), symbolicName))
+      .map(Bundle::getVersion)
+      // if multiple bundles with the same version exist: pick highest version
+      .sorted(Collections.reverseOrder())
+      .map(Version::toString)
+      .findFirst().orElse(null);
   }
 
   @Override

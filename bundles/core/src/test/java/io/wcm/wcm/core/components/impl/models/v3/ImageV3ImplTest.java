@@ -173,7 +173,9 @@ class ImageV3ImplTest {
     assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertEquals(asset.getPath(), underTest.getFileReference());
-    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertArrayEquals(new int[] {
+        160
+    }, underTest.getWidths());
     assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
@@ -199,7 +201,9 @@ class ImageV3ImplTest {
   }
 
   @Test
-  @SuppressWarnings({ "deprecation", "null" })
+  @SuppressWarnings({
+      "deprecation", "null"
+  })
   void testWithAssetImageFromPage() {
     Page page1 = context.currentPage(context.create().page(page, "page1", null,
         NN_PAGE_FEATURED_IMAGE, Map.of(
@@ -221,7 +225,9 @@ class ImageV3ImplTest {
     assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertEquals(asset.getPath(), underTest.getFileReference());
-    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertArrayEquals(new int[] {
+        160
+    }, underTest.getWidths());
     assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
@@ -250,7 +256,9 @@ class ImageV3ImplTest {
     assertNull(underTest.getLink());
     assertTrue(underTest.displayPopupTitle());
     assertNull(underTest.getFileReference());
-    assertArrayEquals(new int[] { 160 }, underTest.getWidths());
+    assertArrayEquals(new int[] {
+        160
+    }, underTest.getWidths());
     assertEquals("/content/sample/en/page1/_jcr_content/image/file.image_file.{.width}.0.file/file1.png", underTest.getSrcUriTemplate());
     assertFalse(underTest.isLazyEnabled());
     assertNull(underTest.getAreas());
@@ -455,7 +463,9 @@ class ImageV3ImplTest {
   @Test
   void testWidths() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.LANDSCAPE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.LANDSCAPE.getName()
+        },
         PN_COMPONENT_MEDIA_RESPONSIVE_TYPE, "imageSizes",
         NN_COMPONENT_MEDIA_RESPONSIVEIMAGE_SIZES, Map.of("sizes", "100vw", "widths", "100,50"),
         PN_COMPONENT_MEDIA_AUTOCROP, true);
@@ -468,7 +478,9 @@ class ImageV3ImplTest {
 
     assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original./sample.jpg", underTest.getSrc());
     assertEquals(asset.getPath(), underTest.getFileReference());
-    assertArrayEquals(new int[] { 50, 100, 160 }, underTest.getWidths());
+    assertArrayEquals(new int[] {
+        50, 100, 160
+    }, underTest.getWidths());
     assertEquals("/content/dam/sample/sample.jpg/_jcr_content/renditions/original.image_file.{.width}.0.file/sample.jpg", underTest.getSrcUriTemplate());
 
     assertValidMedia(underTest, DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg");
@@ -489,7 +501,9 @@ class ImageV3ImplTest {
   @Test
   void testWithImageAutoCropping_ContentPolicy() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.SQUARE.getName()
+        },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     context.currentResource(context.create().resource(page, "image",
@@ -510,7 +524,9 @@ class ImageV3ImplTest {
         "sling:resourceSuperType", RESOURCE_TYPE);
 
     context.contentPolicyMapping(DELEGATE_RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.SQUARE.getName()
+        },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     Resource resource = context.create().resource(page, "image",

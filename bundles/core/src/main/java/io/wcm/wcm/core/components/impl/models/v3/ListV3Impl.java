@@ -45,7 +45,9 @@ import io.wcm.wcm.core.components.impl.models.v4.ListV4Impl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { List.class, ComponentExporter.class },
+    adapters = {
+        List.class, ComponentExporter.class
+    },
     resourceType = ListV3Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,

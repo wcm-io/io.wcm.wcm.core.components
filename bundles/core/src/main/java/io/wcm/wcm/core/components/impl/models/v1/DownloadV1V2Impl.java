@@ -59,8 +59,12 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Download.class, ComponentExporter.class },
-    resourceType = { DownloadV1V2Impl.RESOURCE_TYPE_V1, DownloadV1V2Impl.RESOURCE_TYPE_V2 })
+    adapters = {
+        Download.class, ComponentExporter.class
+    },
+    resourceType = {
+        DownloadV1V2Impl.RESOURCE_TYPE_V1, DownloadV1V2Impl.RESOURCE_TYPE_V2
+    })
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
@@ -115,11 +119,11 @@ public class DownloadV1V2Impl extends AbstractComponentImpl implements Download,
     }
 
     media = mediaHandler.get(resource, new MediaArgs()
-        // only allow linking to "download" media formats
-        .download(true)
-        // set content disposition attachment when not inline
-        .contentDispositionAttachment(!inline))
-        .build();
+      // only allow linking to "download" media formats
+      .download(true)
+      // set content disposition attachment when not inline
+      .contentDispositionAttachment(!inline))
+      .build();
     if (media.isValid()) {
       initPropertiesFromMedia();
     }

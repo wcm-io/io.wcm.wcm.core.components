@@ -76,11 +76,11 @@ public final class DataLayerTestUtils {
 
   public static void assertListItems_DataLayer(Collection<ListItem> items, Page... pages) {
     List<String> expected = Arrays.stream(pages)
-        .map(Page::getPath)
-        .collect(Collectors.toList());
+      .map(Page::getPath)
+      .collect(Collectors.toList());
     List<String> actual = items.stream()
-        .map(ListItem::getPath)
-        .collect(Collectors.toList());
+      .map(ListItem::getPath)
+      .collect(Collectors.toList());
     assertEquals(expected, actual);
 
     List<ListItem> itemsList = List.copyOf(items);

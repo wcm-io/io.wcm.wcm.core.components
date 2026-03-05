@@ -45,8 +45,12 @@ import io.wcm.wcm.core.components.examples.services.impl.CoreComponentVersionSer
  * Customizes text model that replaced version placeholders with the core component bundle versions.
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Text.class, ComponentExporter.class },
-    resourceType = { TextImpl.RESOURCE_TYPE })
+    adapters = {
+        Text.class, ComponentExporter.class
+    },
+    resourceType = {
+        TextImpl.RESOURCE_TYPE
+    })
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class TextImpl implements Text {
 

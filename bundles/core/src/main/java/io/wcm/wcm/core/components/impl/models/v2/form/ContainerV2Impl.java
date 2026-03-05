@@ -49,7 +49,9 @@ import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Container.class, ContainerExporter.class, ComponentExporter.class },
+    adapters = {
+        Container.class, ContainerExporter.class, ComponentExporter.class
+    },
     resourceType = ContainerV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,

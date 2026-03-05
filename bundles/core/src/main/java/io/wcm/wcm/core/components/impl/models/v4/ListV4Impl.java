@@ -64,7 +64,9 @@ import io.wcm.wcm.core.components.impl.models.helpers.PageListItemV4Impl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { List.class, ComponentExporter.class },
+    adapters = {
+        List.class, ComponentExporter.class
+    },
     resourceType = ListV4Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -153,8 +155,8 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
   private Collection<ListItem> getStaticListItems(@NotNull Resource staticItemsResource) {
     Stream<Resource> itemResources = StreamSupport.stream(staticItemsResource.getChildren().spliterator(), false);
     Stream<ListItem> listItems = itemResources
-        .map(this::toLinkListItem)
-        .filter(Objects::nonNull);
+      .map(this::toLinkListItem)
+      .filter(Objects::nonNull);
 
     // apply sorting
     ValueMap properties = resource.getValueMap();
@@ -213,9 +215,9 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
 
   protected Collection<ListItem> transformToPageListItems(Collection<Page> pages) {
     return pages.stream()
-        .filter(Objects::nonNull)
-        .map(page -> newPageListItem(page, linkHandler.get(page).build(), null))
-        .collect(Collectors.toList());
+      .filter(Objects::nonNull)
+      .map(page -> newPageListItem(page, linkHandler.get(page).build(), null))
+      .collect(Collectors.toList());
   }
 
   protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link, @Nullable String linkText) {

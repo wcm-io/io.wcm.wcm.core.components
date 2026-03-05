@@ -82,8 +82,8 @@ public abstract class AbstractContainerImpl extends AbstractComponentImpl implem
    */
   private @NotNull String buildBackgroundStyle_BackgroundImage() {
     Media media = HandlerUnwrapper.get(mediaHandler, resource)
-        .refProperty(PN_BACKGROUND_IMAGE_REFERENCE)
-        .build();
+      .refProperty(PN_BACKGROUND_IMAGE_REFERENCE)
+      .build();
     if (media.isValid()) {
       return "background-image:url(" + media.getUrl() + ");"
           + "background-size:cover;"
@@ -109,8 +109,8 @@ public abstract class AbstractContainerImpl extends AbstractComponentImpl implem
   @NotNull
   protected ContainerData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asContainer()
-        .withShownItems(this::getDataLayerShownItems)
-        .build();
+      .withShownItems(this::getDataLayerShownItems)
+      .build();
   }
 
   @JsonIgnore

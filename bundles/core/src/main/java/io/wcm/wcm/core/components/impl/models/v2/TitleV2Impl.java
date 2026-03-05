@@ -41,7 +41,9 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Title.class, ComponentExporter.class },
+    adapters = {
+        Title.class, ComponentExporter.class
+    },
     resourceType = TitleV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,

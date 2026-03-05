@@ -81,7 +81,9 @@ class ButtonV1ImplTest {
   }
 
   @Test
-  @SuppressWarnings({ "null", "deprecation" })
+  @SuppressWarnings({
+      "null", "deprecation"
+  })
   void testProperties() {
     enableDataLayer(context, true);
 

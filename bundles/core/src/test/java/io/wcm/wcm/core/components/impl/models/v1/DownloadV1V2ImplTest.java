@@ -81,7 +81,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testEmpty(String resourceType) {
     context.currentResource(context.create().resource(page, "download",
         PROPERTY_RESOURCE_TYPE, resourceType));
@@ -109,7 +111,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testEmpty_ContentPolicy(String resourceType) {
     context.contentPolicyMapping(resourceType,
         PN_TITLE_TYPE, "h3",
@@ -130,7 +134,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testAssetReference(String resourceType) {
     Asset asset = context.create().asset(DAM_ROOT + "/file1.pdf", "/files/test.pdf", ContentType.PDF);
 
@@ -161,7 +167,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testAssetReference_Inline(String resourceType) {
     Asset asset = context.create().asset(DAM_ROOT + "/file1.pdf", "/files/test.pdf", ContentType.PDF);
 
@@ -180,7 +188,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testAssetReference_Inline_0size(String resourceType) {
     Asset asset = context.create().asset(DAM_ROOT + "/file1.pdf", new ByteArrayInputStream(new byte[0]), ContentType.PDF);
 
@@ -199,7 +209,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testAssetReference_TitleDescFromAsset(String resourceType) {
     Asset asset = context.create().asset(DAM_ROOT + "/file1.pdf", "/files/test.pdf", ContentType.PDF,
         DC_TITLE, "My Asset Title",
@@ -219,7 +231,9 @@ class DownloadV1V2ImplTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = { RESOURCE_TYPE_V1, RESOURCE_TYPE_V2 })
+  @ValueSource(strings = {
+      RESOURCE_TYPE_V1, RESOURCE_TYPE_V2
+  })
   void testUploadedFile(String resourceType) {
     Resource downloadResource = context.create().resource(page, "download",
         PROPERTY_RESOURCE_TYPE, resourceType,

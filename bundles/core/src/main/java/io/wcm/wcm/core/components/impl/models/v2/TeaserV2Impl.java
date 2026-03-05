@@ -70,7 +70,9 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Teaser.class, ComponentExporter.class },
+    adapters = {
+        Teaser.class, ComponentExporter.class
+    },
     resourceType = TeaserV2Impl.RESOURCE_TYPE)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
     extensions = ExporterConstants.SLING_MODEL_EXTENSION)
@@ -104,7 +106,9 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
   private boolean titleLinkHidden;
 
   @PostConstruct
-  @SuppressWarnings({ "java:S3776", "java:S6541" }) // ignore complexity
+  @SuppressWarnings({
+      "java:S3776", "java:S6541"
+  }) // ignore complexity
   private void activate() {
     ValueMap properties = resource.getValueMap();
 
@@ -153,9 +157,9 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
 
     // resolve teaser image and alt. text
     media = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
-        .targetPage(targetPage)
-        .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
-        .buildMedia();
+      .targetPage(targetPage)
+      .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
+      .buildMedia();
 
     // read title and description
     if (!pretitleHidden) {
@@ -261,10 +265,10 @@ public class TeaserV2Impl extends AbstractComponentImpl implements Teaser, Media
   @Override
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asComponent()
-        .withTitle(this::getTitle)
-        .withLinkUrl(link::getURL)
-        .withDescription(this::getDescription)
-        .build();
+      .withTitle(this::getTitle)
+      .withLinkUrl(link::getURL)
+      .withDescription(this::getDescription)
+      .build();
   }
 
   protected ListItem newLinkListItem(@NotNull String newTitle, @NotNull LinkWrapper newLink, @NotNull String itemIdPrefix) {
