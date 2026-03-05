@@ -1,3 +1,22 @@
+/*
+ * #%L
+ * wcm.io
+ * %%
+ * Copyright (C) 2026 wcm.io
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 package io.wcm.wcm.core.components.impl.servlets;
 
 import java.io.BufferedOutputStream;
@@ -50,9 +69,13 @@ import io.wcm.wcm.core.components.impl.models.v2.ImageV2Impl;
  */
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(
-    resourceTypes = { ImageV2Impl.RESOURCE_TYPE },
+    resourceTypes = {
+        ImageV2Impl.RESOURCE_TYPE
+    },
     selectors = ImageWidthProxyServlet.SELECTOR,
-    extensions = { FileExtension.JPEG, FileExtension.PNG, FileExtension.GIF },
+    extensions = {
+        FileExtension.JPEG, FileExtension.PNG, FileExtension.GIF
+    },
     methods = "GET")
 public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
 

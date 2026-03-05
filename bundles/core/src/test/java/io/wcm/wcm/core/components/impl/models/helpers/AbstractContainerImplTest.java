@@ -175,6 +175,7 @@ class AbstractContainerImplTest {
 
   @Model(adaptables = SlingHttpServletRequest.class)
   public static class DummyContainer extends AbstractContainerImpl {
+
     @Override
     protected String[] getDataLayerShownItems() {
       return null;

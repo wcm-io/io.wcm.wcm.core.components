@@ -98,7 +98,7 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_REF_STANDARD, "/content/dam/invalid.jpg");
 
     Media media = newComponentFeatureImageResolver(component)
-        .buildMedia();
+      .buildMedia();
 
     assertFalse(media.isValid());
   }
@@ -112,7 +112,7 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_ALTTEXT_STANDARD, "My Alt");
 
     Media media = newComponentFeatureImageResolver(component)
-        .buildMedia();
+      .buildMedia();
 
     assertTrue(media.isValid());
     assertEquals("/content/dam/sample/sample1.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample1.jpg", media.getUrl());
@@ -129,7 +129,7 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_IS_DECORATIVE_STANDARD, true);
 
     Media media = newComponentFeatureImageResolver(component)
-        .buildMedia();
+      .buildMedia();
 
     assertTrue(media.isValid());
     assertEquals("/content/dam/sample/sample1.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample1.jpg", media.getUrl());
@@ -148,7 +148,7 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_ALTTEXT_STANDARD, "My Alt");
 
     Media media = newComponentFeatureImageResolver(component)
-        .buildMedia();
+      .buildMedia();
 
     assertTrue(media.isValid());
     assertEquals("/content/dam/sample/sample1.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample1.jpg", media.getUrl());
@@ -164,7 +164,7 @@ class ComponentFeatureImageResolverTest {
         PN_IMAGE_FROM_PAGE_IMAGE, true);
 
     Media media = newComponentFeatureImageResolver(component)
-        .buildMedia();
+      .buildMedia();
 
     assertFalse(media.isValid());
   }
@@ -178,8 +178,8 @@ class ComponentFeatureImageResolverTest {
         PN_IMAGE_FROM_PAGE_IMAGE, true);
 
     Media media = newComponentFeatureImageResolver(component)
-        .targetPage(page2)
-        .buildMedia();
+      .targetPage(page2)
+      .buildMedia();
 
     assertFalse(media.isValid());
   }
@@ -200,8 +200,8 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_ALTTEXT_STANDARD, "Feature Alt");
 
     Media media = newComponentFeatureImageResolver(component)
-        .targetPage(page2)
-        .buildMedia();
+      .targetPage(page2)
+      .buildMedia();
 
     assertTrue(media.isValid());
     assertEquals("/content/dam/sample/sample2.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample2.jpg", media.getUrl());
@@ -223,8 +223,8 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_ALTTEXT_STANDARD, "Feature Alt");
 
     Media media = newComponentFeatureImageResolver(component)
-        .targetPage(page2)
-        .buildMedia();
+      .targetPage(page2)
+      .buildMedia();
 
     assertFalse(media.isValid());
   }
@@ -245,8 +245,8 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_ALTTEXT_STANDARD, "Current Page Alt");
 
     Media media = newComponentFeatureImageResolver(component)
-        .targetPage(page2)
-        .buildMedia();
+      .targetPage(page2)
+      .buildMedia();
 
     assertTrue(media.isValid());
     assertEquals("/content/dam/sample/sample2.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample2.jpg", media.getUrl());
@@ -269,8 +269,8 @@ class ComponentFeatureImageResolverTest {
         PN_MEDIA_ALTTEXT_STANDARD, "Current Page Alt");
 
     Media media = newComponentFeatureImageResolver(component)
-        .targetPage(page2)
-        .buildMedia();
+      .targetPage(page2)
+      .buildMedia();
 
     assertFalse(media.isValid());
   }

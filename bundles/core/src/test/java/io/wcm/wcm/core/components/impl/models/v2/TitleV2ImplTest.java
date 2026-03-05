@@ -82,7 +82,9 @@ class TitleV2ImplTest {
   }
 
   @Test
-  @SuppressWarnings({ "null", "deprecation" })
+  @SuppressWarnings({
+      "null", "deprecation"
+  })
   void testProperties() {
     enableDataLayer(context, true);
 

@@ -60,8 +60,8 @@ public final class ImageAreaV1Impl extends ImageAreaV2Impl {
       return null;
     }
     return (List)imageMap.stream()
-        .map(ImageAreaV1Impl::new)
-        .collect(Collectors.toList());
+      .map(ImageAreaV1Impl::new)
+      .collect(Collectors.toList());
   }
 
 }

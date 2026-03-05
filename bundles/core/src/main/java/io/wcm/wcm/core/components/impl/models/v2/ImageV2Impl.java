@@ -57,7 +57,9 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
  * </p>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Image.class, ComponentExporter.class },
+    adapters = {
+        Image.class, ComponentExporter.class
+    },
     resourceType = ImageV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -72,11 +74,11 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
   @Override
   protected Media buildMedia(boolean altFromAsset) {
     return HandlerUnwrapper.get(mediaHandler, resource)
-        // disable dynamic media support as it is not compatible with the "src-pattern" concept
-        .dynamicMediaDisabled(true)
-        .decorative(isDecorative)
-        .forceAltValueFromAsset(altFromAsset)
-        .build();
+      // disable dynamic media support as it is not compatible with the "src-pattern" concept
+      .dynamicMediaDisabled(true)
+      .decorative(isDecorative)
+      .forceAltValueFromAsset(altFromAsset)
+      .build();
   }
 
   @Override
@@ -98,10 +100,10 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
     long maxWidth = rendition.getWidth();
     String[] configuredWidths = currentStyle.get(PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[0]);
     return Arrays.stream(configuredWidths)
-        .map(NumberUtils::toLong)
-        .filter(width -> width > 0 && width <= maxWidth)
-        .sorted()
-        .collect(Collectors.toList());
+      .map(NumberUtils::toLong)
+      .filter(width -> width > 0 && width <= maxWidth)
+      .sorted()
+      .collect(Collectors.toList());
   }
 
   /**
@@ -125,10 +127,10 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
     suffix.append(fileName);
 
     String url = urlHandler.get(resource)
-        .selectors(ImageWidthProxyServlet.SELECTOR)
-        .extension(extension)
-        .suffix(suffix.toString())
-        .buildExternalResourceUrl();
+      .selectors(ImageWidthProxyServlet.SELECTOR)
+      .extension(extension)
+      .suffix(suffix.toString())
+      .buildExternalResourceUrl();
 
     // insert {.width} placeholder for rendition selection
     return StringUtils.replace(url, "." + ImageWidthProxyServlet.SELECTOR + ".",

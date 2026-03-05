@@ -50,7 +50,9 @@ import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Button.class, ComponentExporter.class },
+    adapters = {
+        Button.class, ComponentExporter.class
+    },
     resourceType = ButtonV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -82,9 +84,9 @@ public class ButtonV2Impl extends AbstractComponentImpl implements Button {
   @Override
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asComponent()
-        .withTitle(this::getText)
-        .withLinkUrl(link::getURL)
-        .build();
+      .withTitle(this::getText)
+      .withLinkUrl(link::getURL)
+      .build();
   }
 
   // --- fallback implementations ---

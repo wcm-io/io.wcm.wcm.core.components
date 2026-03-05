@@ -396,7 +396,9 @@ class ImageV2ImplTest {
   @Test
   void testWidths() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[] { "100", "50", "200", "-123", "0", "junk" });
+        PN_DESIGN_ALLOWED_RENDITION_WIDTHS, new String[] {
+            "100", "50", "200", "-123", "0", "junk"
+        });
 
     context.currentResource(context.create().resource(page, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
@@ -406,7 +408,9 @@ class ImageV2ImplTest {
 
     assertEquals("/content/sample/en/page1/_jcr_content/image.imgwidth.100.suffix.jpg/sample.jpg", underTest.getSrc());
     assertEquals(asset.getPath(), underTest.getFileReference());
-    assertArrayEquals(new int[] { 50, 100 }, underTest.getWidths());
+    assertArrayEquals(new int[] {
+        50, 100
+    }, underTest.getWidths());
     assertEquals(page.getPath() + "/_jcr_content/image.imgwidth{.width}.suffix.jpg/sample.jpg", underTest.getSrcUriTemplate());
 
     assertValidMedia(underTest, DAM_ROOT + "/sample.jpg/_jcr_content/renditions/original./sample.jpg");
@@ -427,7 +431,9 @@ class ImageV2ImplTest {
   @Test
   void testWithImageAutoCropping_ContentPolicy() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.SQUARE.getName()
+        },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     context.currentResource(context.create().resource(page, "image",
@@ -448,7 +454,9 @@ class ImageV2ImplTest {
         "sling:resourceSuperType", RESOURCE_TYPE);
 
     context.contentPolicyMapping(DELEGATE_RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.SQUARE.getName()
+        },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     Resource resource = context.create().resource(page, "image",

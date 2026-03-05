@@ -47,7 +47,9 @@ import io.wcm.wcm.core.components.impl.models.helpers.AbstractComponentImpl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Text.class, ComponentExporter.class },
+    adapters = {
+        Text.class, ComponentExporter.class
+    },
     resourceType = TextV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -66,9 +68,9 @@ public class TextV2Impl extends AbstractComponentImpl implements Text {
   @PostConstruct
   private void activate() {
     text = richTextHandler
-        .get(resource)
-        .textMode(textIsRich ? TextMode.XHTML : TextMode.PLAIN)
-        .buildMarkup();
+      .get(resource)
+      .textMode(textIsRich ? TextMode.XHTML : TextMode.PLAIN)
+      .buildMarkup();
   }
 
   @Override
@@ -86,8 +88,8 @@ public class TextV2Impl extends AbstractComponentImpl implements Text {
   @Override
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asComponent()
-        .withText(() -> StringUtils.defaultIfEmpty(this.getText(), StringUtils.EMPTY))
-        .build();
+      .withText(() -> StringUtils.defaultIfEmpty(this.getText(), StringUtils.EMPTY))
+      .build();
   }
 
 }
