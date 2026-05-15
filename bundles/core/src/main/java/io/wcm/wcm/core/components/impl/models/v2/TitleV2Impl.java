@@ -72,6 +72,7 @@ public class TitleV2Impl extends TitleV3Impl implements LinkMixin {
   @Deprecated(forRemoval = true)
   @JsonIgnore(false)
   @JsonProperty("linkURL")
+  @SuppressWarnings("removal")
   public String getLinkURL() {
     return super.getLinkURL();
   }

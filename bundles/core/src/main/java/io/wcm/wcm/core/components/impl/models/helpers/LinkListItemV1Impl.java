@@ -72,6 +72,7 @@ public class LinkListItemV1Impl extends LinkListItemV2Impl implements LinkMixin 
   @Override
   @Deprecated(forRemoval = true)
   @JsonIgnore(false)
+  @SuppressWarnings("removal")
   public String getURL() {
     return super.getURL();
   }

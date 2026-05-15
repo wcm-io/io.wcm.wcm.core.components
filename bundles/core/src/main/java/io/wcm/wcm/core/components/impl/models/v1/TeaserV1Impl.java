@@ -75,6 +75,7 @@ public class TeaserV1Impl extends TeaserV2Impl implements LinkMixin {
   @Deprecated(forRemoval = true)
   @JsonIgnore(false)
   @JsonProperty("linkURL")
+  @SuppressWarnings("removal")
   public String getLinkURL() {
     return super.getLinkURL();
   }

@@ -74,6 +74,7 @@ public class ButtonV1Impl extends ButtonV2Impl implements LinkMixin {
   @Override
   @Deprecated(forRemoval = true)
   @JsonIgnore(false)
+  @SuppressWarnings("removal")
   public String getLink() {
     return super.getLink();
   }
