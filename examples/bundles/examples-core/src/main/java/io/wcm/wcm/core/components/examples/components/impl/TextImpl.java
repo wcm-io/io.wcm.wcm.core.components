@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
@@ -87,13 +88,13 @@ public class TextImpl implements Text {
   }
 
   private @NotNull String replacePlaceholder(@NotNull String markup) {
-    String result = StringUtils.replace(markup, PLACEHOLDERS_PROJECT_VERSION, formatVersion(versionService.getProjectVersion()));
-    return StringUtils.replace(result, PLACEHOLDERS_CORE_COMPONENTS_VERSION, formatVersion(versionService.getCoreComponentVersion()));
+    String result = Strings.CS.replace(markup, PLACEHOLDERS_PROJECT_VERSION, formatVersion(versionService.getProjectVersion()));
+    return Strings.CS.replace(result, PLACEHOLDERS_CORE_COMPONENTS_VERSION, formatVersion(versionService.getCoreComponentVersion()));
   }
 
   private String formatVersion(@Nullable String version) {
     String formattedVersion = StringUtils.defaultString(version);
-    formattedVersion = StringUtils.replace(formattedVersion, "_", ".");
+    formattedVersion = Strings.CS.replace(formattedVersion, "_", ".");
 
     Matcher matcher = DOUBLE_VERSION_PATTERN.matcher(formattedVersion);
     if (matcher.matches()) {

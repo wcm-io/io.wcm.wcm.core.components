@@ -22,13 +22,14 @@ package io.wcm.wcm.core.components.impl.servlets;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -142,12 +143,12 @@ public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
   }
 
   private boolean usesImageFileServlet(@Nullable String mediaUrl) {
-    return StringUtils.contains(mediaUrl, "." + ImageFileServlet.SELECTOR + ".");
+    return Strings.CS.contains(mediaUrl, "." + ImageFileServlet.SELECTOR + ".");
   }
 
   private String getMimeType(SlingHttpServletRequest request) {
     String mimeType = mimeTypeService.getMimeType(request.getRequestPathInfo().getExtension());
-    return StringUtils.defaultString(mimeType, ContentType.OCTET_STREAM);
+    return Objects.toString(mimeType, ContentType.OCTET_STREAM);
   }
 
 }

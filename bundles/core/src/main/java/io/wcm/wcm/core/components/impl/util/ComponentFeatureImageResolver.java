@@ -28,7 +28,7 @@ import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_ALTTEXT_STANDARD;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.NotNull;
@@ -209,7 +209,7 @@ public class ComponentFeatureImageResolver {
     if (parentPath == null) {
       return false;
     }
-    return StringUtils.startsWith(componentResource.getPath(), parentPath + "/");
+    return Strings.CS.startsWith(componentResource.getPath(), parentPath + "/");
   }
 
 }

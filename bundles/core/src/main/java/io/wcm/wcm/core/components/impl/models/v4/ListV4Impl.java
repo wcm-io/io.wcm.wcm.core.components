@@ -31,6 +31,7 @@ import java.util.stream.StreamSupport;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -149,7 +150,7 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
 
   private boolean isListSourceStatic() {
     String source = resource.getValueMap().get(PN_SOURCE, String.class);
-    return StringUtils.equals(source, SOURCE_STATIC);
+    return Strings.CS.equals(source, SOURCE_STATIC);
   }
 
   private Collection<ListItem> getStaticListItems(@NotNull Resource staticItemsResource) {
@@ -162,13 +163,13 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
     ValueMap properties = resource.getValueMap();
     String orderBy = properties.get(PN_ORDER_BY, String.class);
     String sortOrder = properties.get(PN_SORT_ORDER, String.class);
-    int direction = StringUtils.equalsIgnoreCase(sortOrder, SORTORDER_DESC) ? -1 : 1;
-    if (StringUtils.equals(orderBy, ORDERBY_TITLE)) {
+    int direction = Strings.CI.equals(sortOrder, SORTORDER_DESC) ? -1 : 1;
+    if (Strings.CS.equals(orderBy, ORDERBY_TITLE)) {
       // getTitle may return null, define null to be greater than nonnull values
       Comparator<String> titleComparator = Comparator.nullsLast(getCollator());
       listItems = listItems.sorted((item1, item2) -> direction * titleComparator.compare(item1.getTitle(), item2.getTitle()));
     }
-    else if (StringUtils.equals(orderBy, ORDERBY_MODIFIED)) {
+    else if (Strings.CS.equals(orderBy, ORDERBY_MODIFIED)) {
       // getLastModified may return null, define null to be after nonnull values
       listItems = listItems.sorted((item1, item2) -> direction * ObjectUtils.compare(getLastModifiedDate(item1),
           getLastModifiedDate(item2), true));

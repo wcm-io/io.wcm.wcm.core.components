@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Exporter;
@@ -133,7 +134,7 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
       .buildExternalResourceUrl();
 
     // insert {.width} placeholder for rendition selection
-    return StringUtils.replace(url, "." + ImageWidthProxyServlet.SELECTOR + ".",
+    return Strings.CS.replace(url, "." + ImageWidthProxyServlet.SELECTOR + ".",
         "." + ImageWidthProxyServlet.SELECTOR + WIDTH_PLACEHOLDER + ".");
   }
 
@@ -147,7 +148,7 @@ public class ImageV2Impl extends ImageV3Impl implements LinkMixin {
   public String getSrc() {
     long noScriptWidth = getNoScriptWidth();
     if (noScriptWidth > 0) {
-      return StringUtils.replace(srcPattern, WIDTH_PLACEHOLDER, "." + noScriptWidth);
+      return Strings.CS.replace(srcPattern, WIDTH_PLACEHOLDER, "." + noScriptWidth);
     }
     else {
       return media.getUrl();

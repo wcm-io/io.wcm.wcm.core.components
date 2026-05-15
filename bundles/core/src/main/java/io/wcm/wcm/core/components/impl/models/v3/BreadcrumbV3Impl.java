@@ -26,7 +26,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
@@ -96,7 +96,7 @@ public class BreadcrumbV3Impl extends AbstractComponentImpl implements Breadcrum
     List<NavigationItem> result = new LinkedList<>();
     Page page = getCurrentPage();
     while (page != null) {
-      boolean isCurrentPage = StringUtils.equals(page.getPath(), getCurrentPage().getPath());
+      boolean isCurrentPage = Strings.CS.equals(page.getPath(), getCurrentPage().getPath());
       if (!(isCurrentPage && hideCurrent) && checkIfNotHidden(page)) {
         Link link = linkHandler.get(page).build();
         NavigationItem navigationItem = newNavigationItem(page, link, isCurrentPage);

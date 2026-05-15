@@ -82,13 +82,13 @@ public final class CoreResourceWrapper extends ResourceWrapper {
   }
 
   @Override
-  public String getPath() {
+  public @NotNull String getPath() {
     return path;
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public <AdapterType> AdapterType adaptTo(Class<AdapterType> type) {
+  public <AdapterType> AdapterType adaptTo(@NotNull Class<AdapterType> type) {
     if (type == ValueMap.class) {
       return (AdapterType)valueMap;
     }

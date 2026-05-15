@@ -32,6 +32,7 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
@@ -154,7 +155,7 @@ public class ResponsiveImageV1Impl extends AbstractComponentImpl implements Resp
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
-      if (!StringUtils.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
+      if (!Strings.CS.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
         fileReference = asset.getPath();
       }
       alt = asset.getAltText();

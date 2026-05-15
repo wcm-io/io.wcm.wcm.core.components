@@ -30,6 +30,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -164,7 +165,7 @@ public class NavigationV2Impl extends AbstractComponentImpl implements Navigatio
       // use site root as configured in URL handler as navigation root
       navigationRootPage = siteRoot.getRootPage();
     }
-    else if (StringUtils.startsWith(navigationRootPath, "/")) {
+    else if (Strings.CS.startsWith(navigationRootPath, "/")) {
       // configured root path is absolute path - rewrite to current context and try to resolve matching page
       Resource configuredRootResource = new SyntheticResource(resourceResolver, navigationRootPath, NT_UNSTRUCTURED);
       String rewrittenPath = urlHandler.rewritePathToContext(configuredRootResource);
@@ -260,18 +261,18 @@ public class NavigationV2Impl extends AbstractComponentImpl implements Navigatio
 
   private boolean isActive(@NotNull Page page, @NotNull Link link) {
     return isCurrent(page, link) ||
-        StringUtils.startsWith(getCurrentPage().getPath(), page.getPath() + "/");
+        Strings.CS.startsWith(getCurrentPage().getPath(), page.getPath() + "/");
   }
 
   private boolean isCurrent(@NotNull Page page, @NotNull Link link) {
-    return StringUtils.equals(page.getPath(), getCurrentPage().getPath()) ||
+    return Strings.CS.equals(page.getPath(), getCurrentPage().getPath()) ||
         currentPageIsRedirectTarget(link);
   }
 
   private boolean currentPageIsRedirectTarget(@NotNull Link link) {
     Page targetPage = link.getTargetPage();
     return targetPage != null
-        && StringUtils.equals(getCurrentPage().getPath(), targetPage.getPath());
+        && Strings.CS.equals(getCurrentPage().getPath(), targetPage.getPath());
   }
 
   protected NavigationItem newNavigationItem(@NotNull Page page, @NotNull Link link,

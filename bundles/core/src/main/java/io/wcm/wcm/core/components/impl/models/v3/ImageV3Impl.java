@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
@@ -189,7 +190,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
-      if (!StringUtils.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
+      if (!Strings.CS.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
         fileReference = asset.getPath();
       }
       alt = asset.getAltText();
@@ -242,7 +243,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
       return null;
     }
     UriTemplate uriTempalte = rendition.getUriTemplate(UriTemplateType.SCALE_WIDTH);
-    return StringUtils.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
+    return Strings.CS.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
   }
 
   @Override
