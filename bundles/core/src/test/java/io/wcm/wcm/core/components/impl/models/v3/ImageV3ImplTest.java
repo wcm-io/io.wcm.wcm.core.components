@@ -23,6 +23,7 @@ import static com.adobe.cq.wcm.core.components.models.Image.PN_ALT_VALUE_FROM_DA
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_LOADING_ENABLED;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DESIGN_LAZY_THRESHOLD;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_DISPLAY_POPUP_TITLE;
+import static com.adobe.cq.wcm.core.components.models.Image.PN_IMAGE_FROM_PAGE_IMAGE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_IS_DECORATIVE;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_MAP;
 import static com.adobe.cq.wcm.core.components.models.Image.PN_TITLE_VALUE_FROM_DAM;
@@ -212,7 +213,8 @@ class ImageV3ImplTest {
     context.currentResource(context.create().resource(page1, "image",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE,
         JCR_TITLE, "Resource Title",
-        PN_ALT, "Resource Alt"));
+        PN_ALT, "Resource Alt",
+        PN_IMAGE_FROM_PAGE_IMAGE, true));
 
     Image underTest = AdaptTo.notNull(context.request(), Image.class);
 

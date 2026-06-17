@@ -18,6 +18,7 @@ wcm-io/wcm/core/components/image/v3/image
 * Uses the enhanced Media Handler File Upload dialog widget with path field and media format validation
 * Uses [wcm.io Link Handler][wcmio-handler-link] for processing the image link
 * Uses the Link Handler dialog widget for defining link type and link target
+* The feature "Inherit featured image from page" is disabled by default for a new component, but can be enabled in the edit dialog
 
 
 [extends-component]: https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/image/v3/image
