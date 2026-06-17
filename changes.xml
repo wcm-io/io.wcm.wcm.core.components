@@ -29,7 +29,7 @@
         Switch to AEM 6.5.24 as minimum version (also compatible with AEM 6.6.2 / AEM 6.5 LTS SP2 and AEMaaCS).
       </action>
       <action type="fix" dev="sseifert" issue="88">
-        wcm.io Image (v3): Render image defined in component when "Inherit image from page" is explicitly disabled.
+        wcm.io Image (v3), wcm.io Responsive Image (v1): Fix "Inherit image from page" handling.
       </action>
     </release>
 
