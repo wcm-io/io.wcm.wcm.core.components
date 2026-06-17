@@ -121,6 +121,23 @@ class ComponentFeatureImageResolverTest {
 
   @Test
   @SuppressWarnings("null")
+  void testComponentImage_ComponentImageFromPage_Disabled() {
+    Resource component = context.create().resource(page1, "comp1",
+        PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, asset1.getPath(),
+        PN_MEDIA_ALTTEXT_STANDARD, "My Alt",
+        PN_IMAGE_FROM_PAGE_IMAGE, false);
+
+    Media media = newComponentFeatureImageResolver(component)
+      .buildMedia();
+
+    assertTrue(media.isValid());
+    assertEquals("/content/dam/sample/sample1.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample1.jpg", media.getUrl());
+    assertEquals("My Alt", media.getAsset().getAltText());
+  }
+
+  @Test
+  @SuppressWarnings("null")
   void testComponentImage_Decorative() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
@@ -212,7 +229,6 @@ class ComponentFeatureImageResolverTest {
   void testComponentImageFromPage_Disabled() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
-        PN_MEDIA_REF_STANDARD, asset1.getPath(),
         PN_MEDIA_ALTTEXT_STANDARD, "My Alt",
         PN_IMAGE_FROM_PAGE_IMAGE, false,
         PN_ALT_VALUE_FROM_PAGE_IMAGE, true);

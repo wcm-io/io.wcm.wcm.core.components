@@ -123,10 +123,10 @@ public class ComponentFeatureImageResolver {
     Media media = mediaHandler.invalid();
 
     boolean useImageFromPageImage = imageFromPageImage != null && imageFromPageImage;
-    if (imageFromPageImage == null) {
+    if (!useImageFromPageImage) {
       // image from resource properties
       media = buildMedia(componentResource);
-      if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING) {
+      if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING && imageFromPageImage == null) {
         // fallback to image from page if no reference was given and imageFromPageImage is neither enabled nor disabled
         useImageFromPageImage = true;
       }
