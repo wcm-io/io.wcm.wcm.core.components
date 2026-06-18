@@ -8,7 +8,8 @@
   "wcmio:linkTargetUrlFallbackProperty": "linkURL",
 
   "cq:editConfig": {
-    "jcr:primaryType": "cq:EditConfig"
+    "jcr:primaryType": "cq:EditConfig",
+    "cq:inherit": true
   },
 
   "cq:dialog": {

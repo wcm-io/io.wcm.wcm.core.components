@@ -28,6 +28,9 @@
       <action type="update" dev="sseifert">
         Switch to AEM 6.5.24 as minimum version (also compatible with AEM 6.6.2 / AEM 6.5 LTS SP2 and AEMaaCS).
       </action>
+      <action type="fix" dev="sseifert" issue="92">
+        Image (v3): Enabled inheritance for cq:editConfig to ensure cq:dropTargets configuration is applied as well.
+      </action>
     </release>
 
     <release version="2.0.10-2.25.4" date="2026-02-24">
