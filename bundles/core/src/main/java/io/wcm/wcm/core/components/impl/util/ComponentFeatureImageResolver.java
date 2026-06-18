@@ -120,7 +120,7 @@ public class ComponentFeatureImageResolver {
    * @return Media
    */
   public @NotNull Media buildMedia() {
-    Media media;
+    Media media = null;
 
     // special handling if imageFromPageImage is not set at all - check if image from resource is valid, otherwise fallback to image from page.
     boolean useImageFromPageImage = imageFromPageImage != null && imageFromPageImage;
@@ -148,8 +148,10 @@ public class ComponentFeatureImageResolver {
     }
 
     else {
-      // image from resource properties
-      media = buildMedia(componentResource);
+      // image from resource properties, if not build already
+      if (media == null) {
+        media = buildMedia(componentResource);
+      }
     }
 
     return media;
