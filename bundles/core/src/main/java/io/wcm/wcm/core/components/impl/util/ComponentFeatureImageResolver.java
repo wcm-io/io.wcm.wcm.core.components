@@ -122,7 +122,7 @@ public class ComponentFeatureImageResolver {
   public @NotNull Media buildMedia() {
     Media media = null;
 
-    // special handling if imageFromPageImage is not set at all - check if image from resource is valid, otherwise fallback to image from page.
+    // special handling when imageFromPageImage is not set: use the image from the resource if valid; fallback to the page featured image only if no media reference was provided.
     boolean useImageFromPageImage = imageFromPageImage != null && imageFromPageImage;
     if (imageFromPageImage == null) {
       media = buildMedia(componentResource);
