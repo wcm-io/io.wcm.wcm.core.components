@@ -27,6 +27,19 @@
                     "column": {
                       "items": {
 
+                        /** Overwrite property to apply show/hide behavior for FileUpload widget */
+                        "imageFromPageImage": {
+                          "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/checkbox",
+                          "name": "./imageFromPageImage",
+                          "text": "Inherit featured image from page",
+                          "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined.",
+                          "checked": "${true}",
+                          "granite:class": "wcmio-dialog-showhide",
+                          "granite:data": {
+                            "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage"
+                          }
+                        },
+
                         /* Does not work with media handler */
                         "pageImageThumbnail": {
                           "sling:hideResource": true
@@ -35,6 +48,11 @@
                         /* Use wcm.io Media Handler FileUpload */
                         "file": {
                           "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+                          "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage",
+                          "granite:data": {
+                            "showhidetargetvalue": "true",
+                            "showhidetargetnot": "true"
+                          },
                           "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
                         },
 
