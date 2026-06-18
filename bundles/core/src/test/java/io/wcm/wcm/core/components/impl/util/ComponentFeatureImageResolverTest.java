@@ -278,6 +278,66 @@ class ComponentFeatureImageResolverTest {
     assertFalse(media.isValid());
   }
 
+  @Test
+  @SuppressWarnings("null")
+  void testImageFromPageImageNotSet_NoMediaReference_FallbackToPageImage() {
+    // imageFromPageImage not set + no media reference => fallback to page featured image
+    Resource component = context.create().resource(page1, "comp1",
+        PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
+        PN_ALT_VALUE_FROM_PAGE_IMAGE, true);
+
+    // create feature image in page2
+    context.create().resource(page2, NN_PAGE_FEATURED_IMAGE,
+        PN_MEDIA_REF_STANDARD, asset2.getPath(),
+        PN_MEDIA_ALTTEXT_STANDARD, "Feature Alt");
+
+    Media media = newComponentFeatureImageResolver(component)
+      .targetPage(page2)
+      .buildMedia();
+
+    assertTrue(media.isValid());
+    assertEquals("/content/dam/sample/sample2.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample2.jpg", media.getUrl());
+    assertEquals("Feature Alt", media.getAsset().getAltText());
+  }
+
+  @Test
+  void testImageFromPageImageNotSet_InvalidMediaReference_NoFallback() {
+    // imageFromPageImage not set + invalid media reference => no fallback to page featured image
+    Resource component = context.create().resource(page1, "comp1",
+        PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
+        PN_MEDIA_REF_STANDARD, "/content/dam/invalid.jpg");
+
+    // create feature image in page2 - must not be used because media reference is set but invalid
+    context.create().resource(page2, NN_PAGE_FEATURED_IMAGE,
+        PN_MEDIA_REF_STANDARD, asset2.getPath(),
+        PN_MEDIA_ALTTEXT_STANDARD, "Feature Alt");
+
+    Media media = newComponentFeatureImageResolver(component)
+      .targetPage(page2)
+      .buildMedia();
+
+    assertFalse(media.isValid());
+  }
+
+  @Test
+  void testImageFromPageImageDisabled_NoMediaReference_NoFallback() {
+    // imageFromPageImage == false + no media reference => no fallback to page featured image
+    Resource component = context.create().resource(page1, "comp1",
+        PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
+        PN_IMAGE_FROM_PAGE_IMAGE, false);
+
+    // create feature image in page2 - must not be used because feature image is explicitly disabled
+    context.create().resource(page2, NN_PAGE_FEATURED_IMAGE,
+        PN_MEDIA_REF_STANDARD, asset2.getPath(),
+        PN_MEDIA_ALTTEXT_STANDARD, "Feature Alt");
+
+    Media media = newComponentFeatureImageResolver(component)
+      .targetPage(page2)
+      .buildMedia();
+
+    assertFalse(media.isValid());
+  }
+
   @SuppressWarnings("deprecation")
   private ComponentFeatureImageResolver newComponentFeatureImageResolver(@NotNull Resource resource) {
     context.currentResource(resource);
