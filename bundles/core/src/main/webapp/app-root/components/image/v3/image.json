@@ -29,11 +29,14 @@
 
                         /** Overwrite property to apply show/hide behavior for FileUpload widget */
                         "imageFromPageImage": {
-                          "sling:resourceType": "wcm-io/wcm/ui/granite/components/form/checkbox",
+                          "uncheckedValue": "false",
+                          "forceIgnoreFreshness": true,
                           "name": "./imageFromPageImage",
                           "text": "Inherit featured image from page",
-                          "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined.",
+                          "value": true,
                           "checked": "${true}",
+                          "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
+                          "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined.",
                           "granite:class": "wcmio-dialog-showhide",
                           "granite:data": {
                             "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage"
