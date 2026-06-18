@@ -122,12 +122,11 @@ public class ComponentFeatureImageResolver {
   public @NotNull Media buildMedia() {
     Media media = mediaHandler.invalid();
 
+    // special handling if imageFromPageImage is not set at all - check if image from resource is valid, otherwise fallback to image from page.
     boolean useImageFromPageImage = imageFromPageImage != null && imageFromPageImage;
     if (imageFromPageImage == null) {
-      // image from resource properties
       media = buildMedia(componentResource);
       if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING) {
-        // fallback to image from page if no reference was given and imageFromPageImage is neither enabled nor disabled
         useImageFromPageImage = true;
       }
     }
@@ -146,6 +145,11 @@ public class ComponentFeatureImageResolver {
         Resource featuredImageResource = ComponentUtils.getFeaturedImage(currentPage);
         media = buildMedia(wrapFeatureImageResource(featuredImageResource));
       }
+    }
+
+    else {
+      // image from resource properties
+      media = buildMedia(componentResource);
     }
 
     return media;

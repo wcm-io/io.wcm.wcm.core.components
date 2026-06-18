@@ -209,6 +209,7 @@ class ComponentFeatureImageResolverTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testComponentImageFromPage_Disabled() {
     Resource component = context.create().resource(page1, "comp1",
         PROPERTY_RESOURCE_TYPE, COMPONENT_RESOURCE_TYPE,
@@ -226,7 +227,9 @@ class ComponentFeatureImageResolverTest {
       .targetPage(page2)
       .buildMedia();
 
-    assertFalse(media.isValid());
+    assertTrue(media.isValid());
+    assertEquals("/content/dam/sample/sample1.jpg/_jcr_content/renditions/original.image_file.160.90.0,35,160,125.file/sample1.jpg", media.getUrl());
+    assertEquals("My Alt", media.getAsset().getAltText());
   }
 
   @Test
