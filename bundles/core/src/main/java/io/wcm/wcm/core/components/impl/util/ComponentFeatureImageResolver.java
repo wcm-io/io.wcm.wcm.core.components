@@ -147,11 +147,9 @@ public class ComponentFeatureImageResolver {
       }
     }
 
-    else {
+    else if (media == null) {
       // image from resource properties, if not build already
-      if (media == null) {
-        media = buildMedia(componentResource);
-      }
+      media = buildMedia(componentResource);
     }
 
     return media;
