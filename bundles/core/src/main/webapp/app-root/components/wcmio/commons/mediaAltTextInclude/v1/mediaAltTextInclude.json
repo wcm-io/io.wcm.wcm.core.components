@@ -16,6 +16,7 @@
               "name": "./imageFromPageImage",
               "text": "Inherit featured image from page",
               "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined.",
+              "checked": "${true}",
               "granite:class": "wcmio-dialog-showhide",
               "granite:data": {
                 "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage"
