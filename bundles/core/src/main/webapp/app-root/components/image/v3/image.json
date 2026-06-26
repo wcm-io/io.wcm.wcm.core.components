@@ -27,16 +27,20 @@
                     "column": {
                       "items": {
 
-                        /** Overwrite property to switch default value to unchecked */
+                        /** Overwrite property to apply show/hide behavior for FileUpload widget */
                         "imageFromPageImage": {
                           "uncheckedValue": "false",
                           "forceIgnoreFreshness": true,
                           "name": "./imageFromPageImage",
                           "text": "Inherit featured image from page",
                           "value": true,
-                          "checked": "${false}",
+                          "checked": "${true}",
                           "sling:resourceType": "granite/ui/components/coral/foundation/form/checkbox",
-                          "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined."
+                          "fieldDescription": "Use the featured image defined in the properties of the linked page, or in the properties of the current page when no link is defined.",
+                          "granite:class": "wcmio-dialog-showhide",
+                          "granite:data": {
+                            "wcmio-dialog-showhide-target": ".wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage"
+                          }
                         },
 
                         /* Does not work with media handler */
@@ -47,6 +51,11 @@
                         /* Use wcm.io Media Handler FileUpload */
                         "file": {
                           "sling:resourceType": "wcm-io/handler/media/components/granite/form/fileupload",
+                          "granite:class": "wcmio-wcm-core-components-mediaalttextinclude-imagefrompageimage",
+                          "granite:data": {
+                            "showhidetargetvalue": "true",
+                            "showhidetargetnot": "true"
+                          },
                           "allowUpload": "${not empty cqDesign.allowUpload ? cqDesign.allowUpload : true}"
                         },
 
