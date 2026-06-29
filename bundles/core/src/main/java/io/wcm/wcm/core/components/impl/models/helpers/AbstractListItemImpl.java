@@ -63,7 +63,9 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl impleme
   }
 
   @Override
-  @SuppressWarnings({ "null", "java:S2637" })
+  @SuppressWarnings({
+      "null", "java:S2637"
+  })
   @SuppressFBWarnings("NP_NONNULL_RETURN_VIOLATION")
   public @NotNull String getId() {
     if (this.resource == null) {
@@ -76,11 +78,11 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl impleme
   @SuppressWarnings("null")
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData())
-        .asComponent()
-        .withType(() -> Optional.ofNullable(this.dataLayerType).orElseGet(() -> super.getComponentData().getType()))
-        .withTitle(this::getTitle)
-        .withLinkUrl(() -> Optional.ofNullable(this.getLink()).map(Link::getURL).orElse(null))
-        .build();
+      .asComponent()
+      .withType(() -> Optional.ofNullable(this.dataLayerType).orElseGet(() -> super.getComponentData().getType()))
+      .withTitle(this::getTitle)
+      .withLinkUrl(() -> Optional.ofNullable(this.getLink()).map(Link::getURL).orElse(null))
+      .build();
   }
 
 }

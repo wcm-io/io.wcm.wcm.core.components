@@ -31,6 +31,7 @@ import java.util.stream.StreamSupport;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -64,7 +65,9 @@ import io.wcm.wcm.core.components.impl.models.helpers.PageListItemV4Impl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { List.class, ComponentExporter.class },
+    adapters = {
+        List.class, ComponentExporter.class
+    },
     resourceType = ListV4Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -147,26 +150,26 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
 
   private boolean isListSourceStatic() {
     String source = resource.getValueMap().get(PN_SOURCE, String.class);
-    return StringUtils.equals(source, SOURCE_STATIC);
+    return Strings.CS.equals(source, SOURCE_STATIC);
   }
 
   private Collection<ListItem> getStaticListItems(@NotNull Resource staticItemsResource) {
     Stream<Resource> itemResources = StreamSupport.stream(staticItemsResource.getChildren().spliterator(), false);
     Stream<ListItem> listItems = itemResources
-        .map(this::toLinkListItem)
-        .filter(Objects::nonNull);
+      .map(this::toLinkListItem)
+      .filter(Objects::nonNull);
 
     // apply sorting
     ValueMap properties = resource.getValueMap();
     String orderBy = properties.get(PN_ORDER_BY, String.class);
     String sortOrder = properties.get(PN_SORT_ORDER, String.class);
-    int direction = StringUtils.equalsIgnoreCase(sortOrder, SORTORDER_DESC) ? -1 : 1;
-    if (StringUtils.equals(orderBy, ORDERBY_TITLE)) {
+    int direction = Strings.CI.equals(sortOrder, SORTORDER_DESC) ? -1 : 1;
+    if (Strings.CS.equals(orderBy, ORDERBY_TITLE)) {
       // getTitle may return null, define null to be greater than nonnull values
       Comparator<String> titleComparator = Comparator.nullsLast(getCollator());
       listItems = listItems.sorted((item1, item2) -> direction * titleComparator.compare(item1.getTitle(), item2.getTitle()));
     }
-    else if (StringUtils.equals(orderBy, ORDERBY_MODIFIED)) {
+    else if (Strings.CS.equals(orderBy, ORDERBY_MODIFIED)) {
       // getLastModified may return null, define null to be after nonnull values
       listItems = listItems.sorted((item1, item2) -> direction * ObjectUtils.compare(getLastModifiedDate(item1),
           getLastModifiedDate(item2), true));
@@ -213,9 +216,9 @@ public class ListV4Impl extends AbstractComponentImpl implements List {
 
   protected Collection<ListItem> transformToPageListItems(Collection<Page> pages) {
     return pages.stream()
-        .filter(Objects::nonNull)
-        .map(page -> newPageListItem(page, linkHandler.get(page).build(), null))
-        .collect(Collectors.toList());
+      .filter(Objects::nonNull)
+      .map(page -> newPageListItem(page, linkHandler.get(page).build(), null))
+      .collect(Collectors.toList());
   }
 
   protected ListItem newPageListItem(@NotNull Page page, @NotNull Link link, @Nullable String linkText) {

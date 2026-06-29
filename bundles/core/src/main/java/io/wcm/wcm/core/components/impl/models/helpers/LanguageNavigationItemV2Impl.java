@@ -102,8 +102,8 @@ public class LanguageNavigationItemV2Impl extends NavigationItemV2Impl implement
   @NotNull
   protected final PageData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asPage()
-        .withLanguage(this::getLanguage)
-        .build();
+      .withLanguage(this::getLanguage)
+      .build();
   }
 
 }

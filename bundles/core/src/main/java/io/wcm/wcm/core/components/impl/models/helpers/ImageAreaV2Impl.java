@@ -130,8 +130,8 @@ public class ImageAreaV2Impl implements ImageArea {
       return null;
     }
     return (List)imageMap.stream()
-        .map(ImageAreaV2Impl::new)
-        .collect(Collectors.toList());
+      .map(ImageAreaV2Impl::new)
+      .collect(Collectors.toList());
   }
 
 }

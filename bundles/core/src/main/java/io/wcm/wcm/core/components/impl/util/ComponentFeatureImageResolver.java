@@ -28,7 +28,7 @@ import static io.wcm.handler.media.MediaNameConstants.PN_MEDIA_ALTTEXT_STANDARD;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.NotNull;
@@ -120,14 +120,13 @@ public class ComponentFeatureImageResolver {
    * @return Media
    */
   public @NotNull Media buildMedia() {
-    Media media = mediaHandler.invalid();
+    Media media = null;
 
+    // special handling when imageFromPageImage is not set: use the image from the resource if valid; fallback to the page featured image only if no media reference was provided.
     boolean useImageFromPageImage = imageFromPageImage != null && imageFromPageImage;
     if (imageFromPageImage == null) {
-      // image from resource properties
       media = buildMedia(componentResource);
       if (!media.isValid() && media.getMediaInvalidReason() == MediaInvalidReason.MEDIA_REFERENCE_MISSING) {
-        // fallback to image from page if no reference was given and imageFromPageImage is neither enabled nor disabled
         useImageFromPageImage = true;
       }
     }
@@ -146,6 +145,11 @@ public class ComponentFeatureImageResolver {
         Resource featuredImageResource = ComponentUtils.getFeaturedImage(currentPage);
         media = buildMedia(wrapFeatureImageResource(featuredImageResource));
       }
+    }
+
+    else if (media == null) {
+      // image from resource properties, if not build already
+      media = buildMedia(componentResource);
     }
 
     return media;
@@ -209,7 +213,7 @@ public class ComponentFeatureImageResolver {
     if (parentPath == null) {
       return false;
     }
-    return StringUtils.startsWith(componentResource.getPath(), parentPath + "/");
+    return Strings.CS.startsWith(componentResource.getPath(), parentPath + "/");
   }
 
 }

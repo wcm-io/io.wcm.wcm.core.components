@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
  * Serializes a map of link attributes, omitting the "href" property.
  */
 public final class LinkHtmlAttributesSerializer extends StdSerializer<Map<String, String>> {
+
   private static final long serialVersionUID = 1L;
 
   /**
@@ -57,8 +58,8 @@ public final class LinkHtmlAttributesSerializer extends StdSerializer<Map<String
 
   private Map<String, String> filter(Map<String, String> map) {
     return map.entrySet().stream()
-        .filter(x -> !IGNORED_HTML_ATTRIBUTES.contains(x.getKey()) && !StringUtils.isBlank(x.getValue()))
-        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+      .filter(x -> !IGNORED_HTML_ATTRIBUTES.contains(x.getKey()) && !StringUtils.isBlank(x.getValue()))
+      .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
 
   @Override

@@ -32,33 +32,35 @@ public final class MediaFormats {
     // constants only
   }
 
-  private static final String[] IMAGE_FILE_EXTENSIONS = new String[] { "gif", "jpg", "png" };
+  private static final String[] IMAGE_FILE_EXTENSIONS = new String[] {
+      "gif", "jpg", "png"
+  };
 
   /**
    * Square
    */
   public static final MediaFormat SQUARE = create("square")
-      .label("Square")
-      .ratio(1, 1)
-      .extensions(IMAGE_FILE_EXTENSIONS)
-      .build();
+    .label("Square")
+    .ratio(1, 1)
+    .extensions(IMAGE_FILE_EXTENSIONS)
+    .build();
 
   /**
    * Landscape
    */
   public static final MediaFormat LANDSCAPE = create("landscape")
-      .label("Landscape")
-      .ratio(16, 9)
-      .extensions(IMAGE_FILE_EXTENSIONS)
-      .build();
+    .label("Landscape")
+    .ratio(16, 9)
+    .extensions(IMAGE_FILE_EXTENSIONS)
+    .build();
 
   /**
    * Download
    */
   public static final MediaFormat DOWNLOAD = create("download")
-      .label("Download")
-      .extensions("pdf", "zip", "ppt", "pptx", "doc", "docx", "jpg", "tif")
-      .download(true)
-      .build();
+    .label("Download")
+    .extensions("pdf", "zip", "ppt", "pptx", "doc", "docx", "jpg", "tif")
+    .download(true)
+    .build();
 
 }

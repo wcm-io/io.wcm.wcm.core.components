@@ -378,7 +378,9 @@ class ResponsiveImageV1ImplTest {
   @Test
   void testWithAssetImage_AutoCropping_ContentPolicy() {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.SQUARE.getName()
+        },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     context.currentResource(context.create().resource(page.getContentResource().getPath() + "/image",
@@ -403,7 +405,9 @@ class ResponsiveImageV1ImplTest {
         "sling:resourceSuperType", RESOURCE_TYPE);
 
     context.contentPolicyMapping(DELEGATE_RESOURCE_TYPE,
-        PN_COMPONENT_MEDIA_FORMATS, new String[] { MediaFormats.SQUARE.getName() },
+        PN_COMPONENT_MEDIA_FORMATS, new String[] {
+            MediaFormats.SQUARE.getName()
+        },
         PN_COMPONENT_MEDIA_AUTOCROP, true);
 
     Resource resource = context.create().resource(page.getContentResource().getPath() + "/image",

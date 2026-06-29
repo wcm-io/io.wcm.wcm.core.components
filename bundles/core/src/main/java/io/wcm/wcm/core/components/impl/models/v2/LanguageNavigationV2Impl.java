@@ -50,7 +50,9 @@ import io.wcm.wcm.core.components.impl.models.helpers.LanguageNavigationItemV2Im
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { LanguageNavigation.class, ComponentExporter.class },
+    adapters = {
+        LanguageNavigation.class, ComponentExporter.class
+    },
     resourceType = LanguageNavigationV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -73,8 +75,8 @@ public class LanguageNavigationV2Impl extends AbstractComponentImpl implements L
 
   private List<NavigationItem> toLanguageNavigationItems(List<NavigationItem> items) {
     return items.stream()
-        .map(this::toLanguageNavigationItem)
-        .collect(Collectors.toList());
+      .map(this::toLanguageNavigationItem)
+      .collect(Collectors.toList());
   }
 
   @SuppressWarnings("deprecation")

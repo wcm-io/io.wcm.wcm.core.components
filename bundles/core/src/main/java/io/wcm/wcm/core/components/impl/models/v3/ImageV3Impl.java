@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
@@ -78,7 +79,9 @@ import io.wcm.wcm.core.components.models.mixin.MediaMixin;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Image.class, ComponentExporter.class },
+    adapters = {
+        Image.class, ComponentExporter.class
+    },
     resourceType = ImageV3Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -165,10 +168,10 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
 
   protected Media buildMedia(boolean altFromAsset) {
     ComponentFeatureImageResolver imageResolver = new ComponentFeatureImageResolver(resource, getCurrentPage(), currentStyle, mediaHandler)
-        .targetPage(getCurrentPage())
-        .altValueFromDam(altFromAsset)
-        .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
-        .mediaHandlerProperty("itemprop", "contentUrl");
+      .targetPage(getCurrentPage())
+      .altValueFromDam(altFromAsset)
+      .mediaHandlerProperty(PROP_CSS_CLASS, "cmp-image__image")
+      .mediaHandlerProperty("itemprop", "contentUrl");
     String imageTitle = title;
     if (displayPopupTitle && imageTitle != null) {
       imageResolver.mediaHandlerProperty("title", imageTitle);
@@ -187,7 +190,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   private void initPropertiesFromDamAsset(ValueMap properties) {
     Asset asset = media.getAsset();
     if (asset != null) {
-      if (!StringUtils.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
+      if (!Strings.CS.equals(media.getMediaSource().getId(), InlineMediaSource.ID)) {
         fileReference = asset.getPath();
       }
       alt = asset.getAltText();
@@ -223,11 +226,11 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
     }
     double primaryRatio = rendition.getRatio();
     return media.getRenditions().stream()
-        .filter(item -> Ratio.matches(item.getRatio(), primaryRatio))
-        .map(Rendition::getWidth)
-        .distinct()
-        .sorted()
-        .collect(Collectors.toList());
+      .filter(item -> Ratio.matches(item.getRatio(), primaryRatio))
+      .map(Rendition::getWidth)
+      .distinct()
+      .sorted()
+      .collect(Collectors.toList());
   }
 
   /**
@@ -240,7 +243,7 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
       return null;
     }
     UriTemplate uriTempalte = rendition.getUriTemplate(UriTemplateType.SCALE_WIDTH);
-    return StringUtils.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
+    return Strings.CS.replace(uriTempalte.getUriTemplate(), URI_TEMPLATE_PLACEHOLDER_WIDTH, WIDTH_PLACEHOLDER);
   }
 
   @Override
@@ -311,8 +314,8 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   @Override
   public int @NotNull [] getWidths() {
     return widths.stream()
-        .mapToInt(Long::intValue)
-        .toArray();
+      .mapToInt(Long::intValue)
+      .toArray();
   }
 
   @Override
@@ -363,16 +366,16 @@ public class ImageV3Impl extends AbstractComponentImpl implements Image, MediaMi
   @SuppressWarnings("null")
   public @NotNull ImageData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asImageComponent()
-        .withTitle(this::getTitle)
-        .withLinkUrl(() -> this.link.getLinkObject().getUrl())
-        .withAssetData(() -> Optional.of(media)
-            .filter(Media::isValid)
-            .map(Media::getAsset)
-            .map(asset -> asset.adaptTo(com.day.cq.dam.api.Asset.class))
-            .map(DataLayerBuilder::forAsset)
-            .map(AssetDataBuilder::build)
-            .orElse(null))
-        .build();
+      .withTitle(this::getTitle)
+      .withLinkUrl(() -> this.link.getLinkObject().getUrl())
+      .withAssetData(() -> Optional.of(media)
+        .filter(Media::isValid)
+        .map(Media::getAsset)
+        .map(asset -> asset.adaptTo(com.day.cq.dam.api.Asset.class))
+        .map(DataLayerBuilder::forAsset)
+        .map(AssetDataBuilder::build)
+        .orElse(null))
+      .build();
   }
 
 }

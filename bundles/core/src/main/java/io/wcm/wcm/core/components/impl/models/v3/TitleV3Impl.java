@@ -51,7 +51,9 @@ import io.wcm.wcm.core.components.impl.util.HandlerUnwrapper;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Title.class, ComponentExporter.class },
+    adapters = {
+        Title.class, ComponentExporter.class
+    },
     resourceType = TitleV3Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -119,9 +121,9 @@ public class TitleV3Impl extends AbstractComponentImpl implements Title {
   @Override
   protected @NotNull ComponentData getComponentData() {
     return DataLayerBuilder.extending(super.getComponentData()).asComponent()
-        .withTitle(this::getText)
-        .withLinkUrl(link::getURL)
-        .build();
+      .withTitle(this::getText)
+      .withLinkUrl(link::getURL)
+      .build();
   }
 
 }

@@ -18,20 +18,19 @@
   limitations under the License.
   #L%
   -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>io.wcm</groupId>
     <artifactId>io.wcm.wcm.core.components.parent</artifactId>
-    <version>2.0.10-2.25.4</version>
+    <version>2.1.0-2.25.4</version>
     <relativePath>../../../parent/pom.xml</relativePath>
   </parent>
 
   <groupId>io.wcm.samples</groupId>
   <artifactId>io.wcm.wcm.core.components.examples-core</artifactId>
-  <version>2.0.10-2.25.4</version>
+  <version>2.1.0-2.25.4</version>
   <packaging>jar</packaging>
 
   <name>WCM Core Components Examples Core</name>
@@ -44,7 +43,7 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.wcm.core.components</artifactId>
-      <version>2.0.10-2.25.4</version>
+      <version>2.1.0-2.25.4</version>
       <scope>compile</scope>
     </dependency>
 
@@ -75,12 +74,10 @@
               cq=http://www.day.com/jcr/cq/1.0,\
               granite=http://www.adobe.com/jcr/granite/1.0,\
               sling=http://sling.apache.org/jcr/sling/1.0
-
             <!-- For build compatibility with Java 11 -->
             Import-Package: \
               javax.annotation;version="[0.0,2)",\
               *
-
             <!-- All wcm.io Handler SPI implementation only get active for the resource paths of this application -->
             Wcmio-CAService-ContextPathRegex: ^/(content|content/dam|conf)/wcmio-core-components-examples(/.*)?$
           </bnd>

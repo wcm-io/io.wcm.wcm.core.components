@@ -22,7 +22,7 @@ package io.wcm.wcm.core.components.examples.services.impl;
 import java.util.Arrays;
 import java.util.Collections;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -47,12 +47,12 @@ public class CoreComponentVersionServiceImpl implements CoreComponentVersionServ
 
   private @Nullable String getBundleVersion(BundleContext bundleContext, String symbolicName) {
     return Arrays.stream(bundleContext.getBundles())
-        .filter(bundle -> StringUtils.equals(bundle.getSymbolicName(), symbolicName))
-        .map(Bundle::getVersion)
-        // if multiple bundles with the same version exist: pick highest version
-        .sorted(Collections.reverseOrder())
-        .map(Version::toString)
-        .findFirst().orElse(null);
+      .filter(bundle -> Strings.CS.equals(bundle.getSymbolicName(), symbolicName))
+      .map(Bundle::getVersion)
+      // if multiple bundles with the same version exist: pick highest version
+      .sorted(Collections.reverseOrder())
+      .map(Version::toString)
+      .findFirst().orElse(null);
   }
 
   @Override

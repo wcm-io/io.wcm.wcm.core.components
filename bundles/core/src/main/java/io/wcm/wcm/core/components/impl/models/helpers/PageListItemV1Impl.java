@@ -66,6 +66,7 @@ public class PageListItemV1Impl extends PageListItemV2Impl implements LinkMixin 
   @Override
   @Deprecated(forRemoval = true)
   @JsonIgnore(false)
+  @SuppressWarnings("removal")
   public String getURL() {
     return super.getURL();
   }

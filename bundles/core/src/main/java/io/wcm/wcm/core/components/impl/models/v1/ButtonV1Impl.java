@@ -40,7 +40,9 @@ import io.wcm.wcm.core.components.models.mixin.LinkMixin;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Button.class, ComponentExporter.class },
+    adapters = {
+        Button.class, ComponentExporter.class
+    },
     resourceType = ButtonV1Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -72,6 +74,7 @@ public class ButtonV1Impl extends ButtonV2Impl implements LinkMixin {
   @Override
   @Deprecated(forRemoval = true)
   @JsonIgnore(false)
+  @SuppressWarnings("removal")
   public String getLink() {
     return super.getLink();
   }

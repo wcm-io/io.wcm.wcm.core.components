@@ -20,6 +20,7 @@
 package io.wcm.wcm.core.components.examples.config.impl;
 
 import org.apache.sling.api.resource.Resource;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
 import io.wcm.handler.url.spi.UrlHandlerConfig;
@@ -31,7 +32,7 @@ import io.wcm.handler.url.spi.UrlHandlerConfig;
 public class UrlHandlerConfigImpl extends UrlHandlerConfig {
 
   @Override
-  public int getSiteRootLevel(Resource contextResource) {
+  public int getSiteRootLevel(@Nullable Resource contextResource) {
     return 2;
   }
 

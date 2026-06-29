@@ -28,6 +28,7 @@ import com.adobe.cq.wcm.core.components.commons.link.Link;
 import com.adobe.cq.wcm.core.components.models.ImageArea;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.wcm.handler.media.imagemap.ImageMapArea;
 
 /**
@@ -55,13 +56,14 @@ public final class ImageAreaV1Impl extends ImageAreaV2Impl {
    * @return Converted image map
    */
   @SuppressWarnings("unchecked")
+  @SuppressFBWarnings("HSM_HIDING_METHOD")
   public static @Nullable List<ImageArea> convertMap(@Nullable List<ImageMapArea> imageMap) {
     if (imageMap == null) {
       return null;
     }
     return (List)imageMap.stream()
-        .map(ImageAreaV1Impl::new)
-        .collect(Collectors.toList());
+      .map(ImageAreaV1Impl::new)
+      .collect(Collectors.toList());
   }
 
 }

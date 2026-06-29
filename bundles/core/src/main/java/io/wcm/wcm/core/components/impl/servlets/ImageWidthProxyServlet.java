@@ -1,15 +1,35 @@
+/*
+ * #%L
+ * wcm.io
+ * %%
+ * Copyright (C) 2019 wcm.io
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 package io.wcm.wcm.core.components.impl.servlets;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -50,9 +70,13 @@ import io.wcm.wcm.core.components.impl.models.v2.ImageV2Impl;
  */
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(
-    resourceTypes = { ImageV2Impl.RESOURCE_TYPE },
+    resourceTypes = {
+        ImageV2Impl.RESOURCE_TYPE
+    },
     selectors = ImageWidthProxyServlet.SELECTOR,
-    extensions = { FileExtension.JPEG, FileExtension.PNG, FileExtension.GIF },
+    extensions = {
+        FileExtension.JPEG, FileExtension.PNG, FileExtension.GIF
+    },
     methods = "GET")
 public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
 
@@ -119,12 +143,12 @@ public class ImageWidthProxyServlet extends SlingSafeMethodsServlet {
   }
 
   private boolean usesImageFileServlet(@Nullable String mediaUrl) {
-    return StringUtils.contains(mediaUrl, "." + ImageFileServlet.SELECTOR + ".");
+    return Strings.CS.contains(mediaUrl, "." + ImageFileServlet.SELECTOR + ".");
   }
 
   private String getMimeType(SlingHttpServletRequest request) {
     String mimeType = mimeTypeService.getMimeType(request.getRequestPathInfo().getExtension());
-    return StringUtils.defaultString(mimeType, ContentType.OCTET_STREAM);
+    return Objects.toString(mimeType, ContentType.OCTET_STREAM);
   }
 
 }

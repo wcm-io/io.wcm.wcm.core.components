@@ -47,7 +47,9 @@ import io.wcm.wcm.core.components.impl.models.helpers.AbstractContainerImpl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { LayoutContainer.class, ComponentExporter.class },
+    adapters = {
+        LayoutContainer.class, ComponentExporter.class
+    },
     resourceType = LayoutContainerV1Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,
@@ -101,7 +103,9 @@ public class LayoutContainerV1Impl extends AbstractContainerImpl implements Layo
 
   @Override
   @JsonIgnore
-  @SuppressWarnings({ "PMD.ReturnEmptyCollectionRatherThanNull", "java:S1168" })
+  @SuppressWarnings({
+      "PMD.ReturnEmptyCollectionRatherThanNull", "java:S1168"
+  })
   public String[] getDataLayerShownItems() {
     return null;
   }

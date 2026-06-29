@@ -43,7 +43,9 @@ import io.wcm.wcm.core.components.impl.models.v3.BreadcrumbV3Impl;
  * </ul>
  */
 @Model(adaptables = SlingHttpServletRequest.class,
-    adapters = { Breadcrumb.class, ComponentExporter.class },
+    adapters = {
+        Breadcrumb.class, ComponentExporter.class
+    },
     resourceType = BreadcrumbV2Impl.RESOURCE_TYPE)
 @Exporter(
     name = ExporterConstants.SLING_MODEL_EXPORTER_NAME,

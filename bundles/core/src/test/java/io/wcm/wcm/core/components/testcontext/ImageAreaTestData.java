@@ -50,7 +50,9 @@ public final class ImageAreaTestData {
     // constants only
   }
 
-  @SuppressWarnings({ "unchecked", "null" })
+  @SuppressWarnings({
+      "unchecked", "null"
+  })
   @SuppressFBWarnings("NP_NULL_ON_SOME_PATH")
   public static List<ImageArea> getExpectedAreasV1(AemContext context) {
     ImageMapLinkResolver<Link> imageMapLinkResolver = context.getService(ImageMapLinkResolver.class);
@@ -64,7 +66,7 @@ public final class ImageAreaTestData {
         areaV1("poly", "917,344,1280,852,532,852", "0.7164,0.4033,1.0000,0.9988,0.4156,0.9988",
             imageMapLinkResolver.resolveLink("http://myhost", "_blank", context.currentResource()),
             "http://myhost", "_blank", null));
-    }
+  }
 
   private static ImageArea areaV1(@NotNull String shape, @NotNull String coordinates, @Nullable String relativeCoordinates,
       @Nullable Link link, @NotNull String linkUrl, @Nullable String linkWindowTarget, @Nullable String altText) {

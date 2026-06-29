@@ -21,6 +21,7 @@ package io.wcm.wcm.core.components.testcontext;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceWrapper;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Copy of org.apache.sling.models.impl.via.AbstractResourceTypeViaProvider$ResourceTypeForcingResourceWrapper
@@ -40,7 +41,7 @@ public final class ResourceTypeForcingResourceWrapper extends ResourceWrapper {
   }
 
   @Override
-  public String getResourceType() {
+  public @NotNull String getResourceType() {
     return resourceType;
   }
 
