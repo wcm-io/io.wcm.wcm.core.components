@@ -29,7 +29,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.adobe.cq.wcm.core.components.util.ComponentUtils;
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.commons.WCMUtils;
+import com.day.cq.wcm.api.components.ComponentContext;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -66,7 +66,7 @@ class IdGenerationTest {
     context.currentResource(resource);
 
     assertEquals(EXPECTED_ID, ComponentUtils.getId(resource, context.currentPage(),
-        WCMUtils.getComponentContext(context.request())));
+        (ComponentContext)context.request().getAttribute(ComponentContext.CONTEXT_ATTR_NAME)));
   }
 
 }
