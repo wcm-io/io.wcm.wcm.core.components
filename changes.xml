@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="2.1.2-2.30.0" date="not released">
+      <action type="update" dev="sseifert">
+        Update to AEM WCM Core Components 2.30.0 to be able to deploy examples to AEM 6.5, 6.6 (LTS) and AEMaaCS.
+      </action>
+    </release>
+
     <release version="2.1.0-2.25.4" date="2026-06-29">
       <action type="update" dev="sseifert">
         Switch to AEM 6.5.24 as minimum version (also compatible with AEM 6.6.2 / AEM 6.5 LTS SP2 and AEMaaCS).

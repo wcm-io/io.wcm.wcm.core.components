@@ -38,8 +38,5 @@
       "automerge": true,
       "addLabels": ["automerge"]
     }
-  ],
-  "ignoreDeps": [
-    "io.wcm:io.wcm.caconfig.extensions"
   ]
 }
