@@ -632,4 +632,5 @@
             </components>
         </wcm-core-components>
     </wcm-io-samples>
+    <jcr:content jcr:primaryType="cq:PageContent"/>
 </jcr:root>

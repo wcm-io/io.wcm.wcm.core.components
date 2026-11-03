@@ -19,17 +19,17 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Navegación de idioma&lt;sub&gt;v2&lt;/sub&gt;&lt;/h1&gt;&#xD;&#xA;"
+                    text="&lt;h1>Navegación de idioma&lt;sub>v2&lt;/sub>&lt;/h1>&#xd;&#xa;"
                     textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Navegación de idioma proporciona una navegación de idioma / país para un sitio, de modo que los visitantes puedan navegar a la misma página en una ubicación diferente.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Navegación de idioma proporciona una navegación de idioma / país para un sitio, de modo que los visitantes puedan navegar a la misma página en una ubicación diferente.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -37,7 +37,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/languagenavigation/v2"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -59,7 +59,7 @@
                 <text_1337506761
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Navegación de idioma simple con &lt;i&gt;Profundidad de estructura de idioma&lt;/i&gt; establecida en dos. Muestra una estructura de navegación de idioma creada a partir de un árbol de páginas con el país y la configuración regional mostrados en el resultado.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Navegación de idioma simple con &lt;i>Profundidad de estructura de idioma&lt;/i> establecida en dos. Muestra una estructura de navegación de idioma creada a partir de un árbol de páginas con el país y la configuración regional mostrados en el resultado.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"

@@ -11,6 +11,7 @@
     <outbound-marketing/>
     <cq:tags/>
     <usergenerated/>
+    <cq:i18n/>
     <launches/>
     <core-components-examples/>
     <wcmio-core-components-examples/>

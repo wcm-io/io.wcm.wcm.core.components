@@ -19,17 +19,17 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Download&lt;sub&gt;v2&lt;/sub&gt;&lt;/h1&gt;"
+                    text="&lt;h1>Download&lt;sub>v2&lt;/sub>&lt;/h1>"
                     textIsRich="true"/>
                 <text_442449340
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Download allows linking to an asset for download. Optionally displays a title, description, metadata and a download action.&lt;/p&gt;&#xA;"
+                    text="&lt;p>Download allows linking to an asset for download. Optionally displays a title, description, metadata and a download action.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -37,7 +37,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/download/v2"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -59,7 +59,7 @@
                 <text_1337506761
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Simple Download with only an &lt;i&gt;Action Text&lt;/i&gt; and &lt;i&gt;Download Asset&lt;/i&gt; configured. The &lt;i&gt;Title&lt;/i&gt; and &lt;i&gt;Description&lt;/i&gt; are by default taken from the provided asset.&lt;/p&gt;&#xA;"
+                    text="&lt;p>Simple Download with only an &lt;i>Action Text&lt;/i> and &lt;i>Download Asset&lt;/i> configured. The &lt;i>Title&lt;/i> and &lt;i>Description&lt;/i> are by default taken from the provided asset.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"
@@ -104,7 +104,7 @@
                 <text_1337506762
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;By default, the &lt;i&gt;Title&lt;/i&gt; and &lt;i&gt;Description&lt;/i&gt; are taken from the provided asset. In this example, we provide a custom title and description for the download.&lt;/p&gt;&#xA;"
+                    text="&lt;p>By default, the &lt;i>Title&lt;/i> and &lt;i>Description&lt;/i> are taken from the provided asset. In this example, we provide a custom title and description for the download.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_1197373359
                     jcr:primaryType="nt:unstructured"
@@ -113,7 +113,7 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="core-components-examples/components/demo/component">
                         <download
-                            jcr:description="&lt;p&gt;Custom description&lt;/p&gt;&#xD;&#xA;"
+                            jcr:description="&lt;p>Custom description&lt;/p>&#xd;&#xa;"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Custom Title"
                             sling:resourceType="wcm-io/wcm/core/components/download/v2/download"
@@ -152,7 +152,7 @@
                 <text_1338806794
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;It is possible to upload an asset directly from a local file system rather than selecting an asset from DAM.&lt;/p&gt;&#xA;"
+                    text="&lt;p>It is possible to upload an asset directly from a local file system rather than selecting an asset from DAM.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <d2
                     jcr:primaryType="nt:unstructured"
@@ -161,7 +161,7 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="core-components-examples/components/demo/component">
                         <download
-                            jcr:description="&lt;p&gt;Asset uploaded directly from a local file system&lt;/p&gt;&#xD;&#xA;"
+                            jcr:description="&lt;p>Asset uploaded directly from a local file system&lt;/p>&#xd;&#xa;"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Uploaded Asset"
                             sling:resourceType="wcm-io/wcm/core/components/download/v2/download"
@@ -201,7 +201,7 @@
                 <text_1337506794
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;By default the asset is downloaded directly, but it is also possible to display it inline in the browser.&lt;/p&gt;&#xA;"
+                    text="&lt;p>By default the asset is downloaded directly, but it is also possible to display it inline in the browser.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_69071411
                     jcr:primaryType="nt:unstructured"

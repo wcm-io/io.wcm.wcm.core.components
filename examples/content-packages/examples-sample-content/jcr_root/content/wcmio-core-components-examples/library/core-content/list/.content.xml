@@ -18,17 +18,17 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;List&lt;sub&gt;v3&lt;/sub&gt;&lt;/h1&gt;&#xA;"
+                    text="&lt;h1>List&lt;sub>v3&lt;/sub>&lt;/h1>&#xa;"
                     textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List can be used to display a list of pages. They can be defined either dynamically - by search query, tags or from a parent page - or as a static list of items.&lt;/p&gt;&#xA;"
+                    text="&lt;p>List can be used to display a list of pages. They can be defined either dynamically - by search query, tags or from a parent page - or as a static list of items.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -36,7 +36,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/list/v4"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -58,7 +58,7 @@
                 <text_1337506761
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List built from child pages of a root page. In this example the depth is 1 level but deeper structures can be configured.&lt;/p&gt;&#xA;"
+                    text="&lt;p>List built from child pages of a root page. In this example the depth is 1 level but deeper structures can be configured.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"
@@ -106,7 +106,7 @@
                 <text_1337507111
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List built from a bespoke set of pages and external URLs defined directly in the component edit dialog.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>List built from a bespoke set of pages and external URLs defined directly in the component edit dialog.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo_1611536266
                     jcr:primaryType="nt:unstructured"
@@ -178,7 +178,7 @@
                 <text_1337508112
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List built from a search query term under a defined root page.&lt;/p&gt;&#xA;"
+                    text="&lt;p>List built from a search query term under a defined root page.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_839079176
                     jcr:primaryType="nt:unstructured"
@@ -228,7 +228,7 @@
                 <text_1337505001
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List built from a set of tags to be found related to pages under a root page. Uses the default match &lt;i&gt;Any tag&lt;/i&gt; feature, but it's also possible to configure the component to match all tags.&lt;/p&gt;&#xA;"
+                    text="&lt;p>List built from a set of tags to be found related to pages under a root page. Uses the default match &lt;i>Any tag&lt;/i> feature, but it's also possible to configure the component to match all tags.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_491373107
                     jcr:primaryType="nt:unstructured"
@@ -278,7 +278,7 @@
                 <text_1337505103
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List built from child pages, with the sort order set to order by title, descending. It is also possible to order by the last modified date.&lt;/p&gt;&#xA;"
+                    text="&lt;p>List built from child pages, with the sort order set to order by title, descending. It is also possible to order by the last modified date.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_2081031248
                     jcr:primaryType="nt:unstructured"
@@ -327,7 +327,7 @@
                 <text_1337505105
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;List with the maximum number of items set to 4.&lt;/p&gt;&#xA;"
+                    text="&lt;p>List with the maximum number of items set to 4.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_1675126228
                     jcr:primaryType="nt:unstructured"
@@ -376,7 +376,7 @@
                 <text_1337505106
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;The rendering of the list items can be configured to optionally display a link to the page, page description and last modified date.&lt;/p&gt;&#xA;"
+                    text="&lt;p>The rendering of the list items can be configured to optionally display a link to the page, page description and last modified date.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_1381767468
                     jcr:primaryType="nt:unstructured"
@@ -424,7 +424,7 @@
                 <text_1337505107
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;The rendering of the list items can be configured to optionally display the items as teasers.&lt;/p&gt;"
+                    text="&lt;p>The rendering of the list items can be configured to optionally display the items as teasers.&lt;/p>"
                     textIsRich="true"/>
                 <demo_1381767469
                     jcr:primaryType="nt:unstructured"

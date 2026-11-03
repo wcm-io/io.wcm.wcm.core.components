@@ -19,17 +19,17 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Breadcrumb&lt;sub&gt;v3&lt;/sub&gt;&lt;/h1&gt;&#xA;"
+                    text="&lt;h1>Breadcrumb&lt;sub>v3&lt;/sub>&lt;/h1>&#xa;"
                     textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Breadcrumb allows navigation of the page hierarchy relative to the current page. It is commonly added to a page template, in the header or footer.&lt;/p&gt;&#xA;"
+                    text="&lt;p>Breadcrumb allows navigation of the page hierarchy relative to the current page. It is commonly added to a page template, in the header or footer.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -37,7 +37,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/breadcrumb/v3"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -59,7 +59,7 @@
                 <text_1337506761
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Simple breadcrumb with no configuration applied. Shows the current page in relation to the page hierarchy.&lt;/p&gt;&#xA;"
+                    text="&lt;p>Simple breadcrumb with no configuration applied. Shows the current page in relation to the page hierarchy.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"
@@ -103,7 +103,7 @@
                 <text_1337506761_copy_1034941677
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;The &lt;i&gt;Navigation Start Level &lt;/i&gt;is set to two by default, which is typically the site root. In this example, we increase it to three to display a breadcrumb for a section one level lower.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>The &lt;i>Navigation Start Level &lt;/i>is set to two by default, which is typically the site root. In this example, we increase it to three to display a breadcrumb for a section one level lower.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo_copy_copy
                     jcr:primaryType="nt:unstructured"
@@ -147,7 +147,7 @@
                 <text_1337506761_copy_1888023046
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;By default, pages that are marked as &lt;i&gt;Hide in Navigation &lt;/i&gt; are not displayed in the breadcrumb. It is possible to configure a breadcrumb so that they are shown.&lt;/p&gt;&#xA;"
+                    text="&lt;p>By default, pages that are marked as &lt;i>Hide in Navigation &lt;/i> are not displayed in the breadcrumb. It is possible to configure a breadcrumb so that they are shown.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_copy
                     jcr:primaryType="nt:unstructured"
@@ -191,7 +191,7 @@
                 <text_1337506761_copy_1888023047
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;By default, the current page is&amp;nbsp;shown in the navigation. It is possible to configure a breadcrumb so that it is hidden.&lt;/p&gt;&#xA;"
+                    text="&lt;p>By default, the current page is&amp;nbsp;shown in the navigation. It is possible to configure a breadcrumb so that it is hidden.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <Copy_x0020_of_x0020_demo_copy
                     jcr:primaryType="nt:unstructured"
