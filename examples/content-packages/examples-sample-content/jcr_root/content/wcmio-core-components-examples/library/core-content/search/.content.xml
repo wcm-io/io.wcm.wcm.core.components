@@ -2,10 +2,10 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:template="/conf/core-components-examples/settings/wcm/templates/content-page"
+        cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
         jcr:description="Quick Search v3 with optional Semantic Search toggle"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Search v3"
+        jcr:title="Search"
         sling:resourceType="core-components-examples/components/page">
         <root
             jcr:primaryType="nt:unstructured"
@@ -17,53 +17,46 @@
                 <text
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="core-components-examples/components/text"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;h1>Quick Search&lt;sub>v3&lt;/sub>&lt;/h1>"
                     textIsRich="true"/>
                 <text_806535487
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="core-components-examples/components/text"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p>Quick Search v3 extends v2 with an optional visitor-facing Semantic Search toggle. When enabled, the search query is prefixed with &lt;code>?{}?&lt;/code> to route to ContentAI-powered semantic search.&lt;/p>"
                     textIsRich="true"/>
-                <teaser
+                <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p>GitHub&lt;/p>"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Technical Documentation"
+                    jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/github-logo.svg"
-                    linkURL="https://github.com/adobe/aem-core-wcm-components/blob/main/content/src/content/jcr_root/apps/core/wcm/components/search/v3/search/README.md"
-                    textIsRich="true"
-                    titleFromPage="false"/>
-                <teaser_1419027210
+                    linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/search/v3"/>
+                <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p>Adobe Help Center&lt;/p>"
+                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
                     jcr:primaryType="nt:unstructured"
-                    jcr:title="Using Core Components"
+                    jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
-                    actionsEnabled="false"
-                    descriptionFromPage="false"
                     fileReference="/content/dam/core-components-examples/library/adobe-logo.svg"
-                    linkURL="https://www.adobe.com/go/aem_cmp_search_v3"
-                    textIsRich="true"
-                    titleFromPage="false"/>
+                    linkURL="https://github.com/adobe/aem-core-wcm-components/tree/master/content/src/content/jcr_root/apps/core/wcm/components/search/v3/search"
+                    textIsRich="true"/>
                 <title
                     cq:styleIds="[1544759664489]"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Examples"
-                    sling:resourceType="core-components-examples/components/title"
+                    sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
                     type="h2"/>
                 <title_439265523
                     cq:styleIds="[1544759676459]"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Basic configuration"
-                    sling:resourceType="core-components-examples/components/title"
+                    sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
                     type="h3"/>
                 <text_1083667127
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="core-components-examples/components/text"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p>Quick Search v3 with a configured Search Root. With the Semantic Search toggle off, behavior matches v2 fulltext search.&lt;/p>"
                     textIsRich="true"/>
                 <demo
@@ -75,12 +68,12 @@
                         sling:resourceType="core-components-examples/components/demo/component">
                         <search_v3_basic
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="core-components-examples/components/search-v3"
-                            searchRoot="/content/core-components-examples/library"/>
+                            sling:resourceType="wcm-io/wcm/core/components/search/v3/search"
+                            searchRoot="/content/wcmio-core-components-examples/library"/>
                     </component>
                     <info
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core-components-examples/components/tabs">
+                        sling:resourceType="wcm-io/wcm/core/components/tabs/v1/tabs">
                         <properties
                             cq:panelTitle="Properties"
                             jcr:primaryType="nt:unstructured"
@@ -102,11 +95,11 @@
                     cq:styleIds="[1544759676459]"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Semantic Search toggle"
-                    sling:resourceType="core-components-examples/components/title"
+                    sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
                     type="h3"/>
                 <text_1083667128
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="core-components-examples/components/text"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p>When the visitor enables the Semantic Search toggle, the component prepends &lt;code>?{}?&lt;/code> to the &lt;code>fulltext&lt;/code> query parameter. Use the browser network tab to inspect the search request when testing semantic search.&lt;/p>"
                     textIsRich="true"/>
                 <demo_2
@@ -118,12 +111,12 @@
                         sling:resourceType="core-components-examples/components/demo/component">
                         <search_v3_ai_toggle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="core-components-examples/components/search-v3"
-                            searchRoot="/content/core-components-examples/library"/>
+                            sling:resourceType="wcm-io/wcm/core/components/search/v3/search"
+                            searchRoot="/content/wcmio-core-components-examples/library"/>
                     </component>
                     <info
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="core-components-examples/components/tabs">
+                        sling:resourceType="wcm-io/wcm/core/components/tabs/v1/tabs">
                         <properties
                             cq:panelTitle="Properties"
                             jcr:primaryType="nt:unstructured"
@@ -145,11 +138,11 @@
                     cq:styleIds="[1544759676459]"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Hide Semantic Search toggle (design policy)"
-                    sling:resourceType="core-components-examples/components/title"
+                    sling:resourceType="wcm-io/wcm/core/components/title/v2/title"
                     type="h3"/>
                 <text_1083667129
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="core-components-examples/components/text"
+                    sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
                     text="&lt;p>Template authors can hide the visitor-facing toggle via the v3 design dialog property &lt;code>hideAiSearchToggle&lt;/code>. When enabled, the component behaves like v2 and only performs fulltext search. On AEM 6.5, the toggle is hidden by default.&lt;/p>"
                     textIsRich="true"/>
             </responsivegrid>

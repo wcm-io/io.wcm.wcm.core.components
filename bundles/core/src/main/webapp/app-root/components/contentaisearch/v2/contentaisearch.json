@@ -2,5 +2,5 @@
   "jcr:primaryType": "cq:Component",
   "jcr:title": "wcm.io ContentAI Supported Search (v2)",
   "componentGroup": ".wcmio-core-wcm",
-  "sling:resourceSuperType": "contentaisearch/v2/contentaisearch"
+  "sling:resourceSuperType": "core/wcm/components/contentaisearch/v2/contentaisearch"
 }
