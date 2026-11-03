@@ -26,7 +26,7 @@
 
     <release version="2.2.0-2.33.0" date="not released">
       <action type="add" dev="sseifert">
-        Add Search (v2) and ContentAI Supported Search (v2) components.
+        Add Search (v3) and ContentAI Supported Search (v2) components.
       </action>
     </release>
 
