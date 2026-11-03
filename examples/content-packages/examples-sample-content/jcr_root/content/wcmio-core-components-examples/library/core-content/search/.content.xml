@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:template="/conf/wcmio-core-components-examples/settings/wcm/templates/content-page"
@@ -27,7 +27,7 @@
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -35,7 +35,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/search/v3"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"

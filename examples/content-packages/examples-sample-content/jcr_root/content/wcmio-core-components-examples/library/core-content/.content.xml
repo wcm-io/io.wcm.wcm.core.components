@@ -26,6 +26,8 @@
     <list/>
     <pdf-viewer/>
     <progressbar/>
+    <search/>
+    <contentai-supported-search/>
     <separator/>
     <tabs/>
     <teaser/>

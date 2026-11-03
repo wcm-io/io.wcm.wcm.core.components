@@ -19,17 +19,17 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Sprachnavigation&lt;sub&gt;v2&lt;/sub&gt;&lt;/h1&gt;&#xD;&#xA;"
+                    text="&lt;h1>Sprachnavigation&lt;sub>v2&lt;/sub>&lt;/h1>&#xd;&#xa;"
                     textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Sprachnavigation bietet eine Sprach- / Landesnavigation für eine Site, sodass Besucher in einem anderen Gebietsschema zu derselben Seite navigieren können.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Sprachnavigation bietet eine Sprach- / Landesnavigation für eine Site, sodass Besucher in einem anderen Gebietsschema zu derselben Seite navigieren können.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -37,7 +37,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/languagenavigation/v2"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -59,7 +59,7 @@
                 <text_1337506761
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Einfache Sprachnavigation mit default Konfiguration (Navigationstiefe auf zwei gesetzt). Zeigt die Sprachnavigation vom Seitenbaum mit der Anzeige des jeweiligen Landes und der Sprache.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Einfache Sprachnavigation mit default Konfiguration (Navigationstiefe auf zwei gesetzt). Zeigt die Sprachnavigation vom Seitenbaum mit der Anzeige des jeweiligen Landes und der Sprache.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"

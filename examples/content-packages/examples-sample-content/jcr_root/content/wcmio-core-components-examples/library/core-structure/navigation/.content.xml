@@ -18,17 +18,17 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Navigation&lt;sub&gt;v2&lt;/sub&gt;&lt;/h1&gt;&#xA;"
+                    text="&lt;h1>Navigation&lt;sub>v2&lt;/sub>&lt;/h1>&#xa;"
                     textIsRich="true"/>
                 <text
                     cq:styleIds="[1544762734201]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Navigation allows an author to build a site navigation. Navigation structures can be built from live copies of a blueprint, language copies of a language master or from a simple page tree.&lt;/p&gt;&#xA;"
+                    text="&lt;p>Navigation allows an author to build a site navigation. Navigation structures can be built from live copies of a blueprint, language copies of a language master or from a simple page tree.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -36,7 +36,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/navigation/v2"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -58,7 +58,7 @@
                 <text_1337506761
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Simple navigation with no configuration applied. Shows a navigation structure built from a page tree. The navigation root is excluded by default.&lt;/p&gt;&#xA;"
+                    text="&lt;p>Simple navigation with no configuration applied. Shows a navigation structure built from a page tree. The navigation root is excluded by default.&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"
@@ -105,7 +105,7 @@
                 <text_1337509867
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;By default, the navigation root is excluded in the navigation structure. In this example we display it.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>By default, the navigation root is excluded in the navigation structure. In this example we display it.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo_56474747
                     jcr:primaryType="nt:unstructured"
@@ -151,7 +151,7 @@
                 <text_130342336
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Multiple root levels can be skipped. In this example we are skipping two, showing the main categories.&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Multiple root levels can be skipped. In this example we are skipping two, showing the main categories.&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo_1435920429
                     jcr:primaryType="nt:unstructured"
@@ -194,7 +194,7 @@
                 <text_894947512
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;By default, the navigation is built from all child pages. In this example, we again display the navigation root and reduce the structure depth to one. As a result, only one level from the navigation root is shown.&amp;nbsp;&lt;/p&gt;&#xA;"
+                    text="&lt;p>By default, the navigation is built from all child pages. In this example, we again display the navigation root and reduce the structure depth to one. As a result, only one level from the navigation root is shown.&amp;nbsp;&lt;/p>&#xa;"
                     textIsRich="true"/>
                 <demo_650088868
                     jcr:primaryType="nt:unstructured"
