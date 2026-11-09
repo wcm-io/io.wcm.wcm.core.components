@@ -20,16 +20,16 @@
                     cq:styleIds="[1644862132301]"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;h1&gt;Form Text&lt;sub&gt;v2&lt;/sub&gt;&lt;/h1&gt;&#xD;&#xA;"
+                    text="&lt;h1>Form Text&lt;sub>v2&lt;/sub>&lt;/h1>&#xd;&#xa;"
                     textIsRich="true"/>
                 <text_1408574198
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Form Text allows a user to create different input fields to collect information the user can use later on.&amp;nbsp;&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Form Text allows a user to create different input fields to collect information the user can use later on.&amp;nbsp;&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <teaser_github_wcmio
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="wcm.io Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -37,7 +37,7 @@
                     linkURL="https://github.com/wcm-io/wcm-io-wcm-core-components/tree/develop/bundles/core/src/main/webapp/app-root/components/form/input/v2"/>
                 <teaser_github_adobe
                     cq:styleIds="[1550165685463]"
-                    jcr:description="&lt;p&gt;GitHub&lt;/p&gt;&#xD;&#xA;"
+                    jcr:description="&lt;p>GitHub&lt;/p>&#xd;&#xa;"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Adobe Documentation"
                     sling:resourceType="core-components-examples/components/teaser"
@@ -58,7 +58,7 @@
                 <text_1910564414
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;&lt;span&gt;This is a Form Container with the Form Texts: Text, Textarea, and Email as child elements.&lt;/span&gt;&lt;br&gt;&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>&lt;span>This is a Form Container with the Form Texts: Text, Textarea, and Email as child elements.&lt;/span>&lt;br>&#xd;&#xa;&lt;/p>&#xd;&#xa;&lt;p>&amp;nbsp;&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo
                     jcr:primaryType="nt:unstructured"
@@ -131,7 +131,7 @@
                 <text_1068966881
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Form Container with Form Text variations: Phone Number, Date, Number fields as child elements.&amp;nbsp;&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Form Container with Form Text variations: Phone Number, Date, Number fields as child elements.&amp;nbsp;&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo_881795653
                     jcr:primaryType="nt:unstructured"
@@ -200,7 +200,7 @@
                 <text_203677928
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm-io/wcm/core/components/text/v2/text"
-                    text="&lt;p&gt;Form Container with Form Text Password. It hides the input from being visible.&amp;nbsp;&lt;/p&gt;&#xD;&#xA;"
+                    text="&lt;p>Form Container with Form Text Password. It hides the input from being visible.&amp;nbsp;&lt;/p>&#xd;&#xa;"
                     textIsRich="true"/>
                 <demo_665944747
                     jcr:primaryType="nt:unstructured"

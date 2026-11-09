@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="2.2.0-2.33.0" date="2026-11-09">
+      <action type="add" dev="sseifert">
+        Add Search (v3) and ContentAI Supported Search (v2) components.
+      </action>
+    </release>
+
     <release version="2.1.0-2.25.4" date="2026-06-29">
       <action type="update" dev="sseifert">
         Switch to AEM 6.5.24 as minimum version (also compatible with AEM 6.6.2 / AEM 6.5 LTS SP2 and AEMaaCS).
